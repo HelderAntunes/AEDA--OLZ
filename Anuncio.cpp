@@ -2,7 +2,7 @@
  * Anuncio.cpp
  *
  *  Created on: 17/10/2015
- *      Author: Inês
+ *      Author: InÃªs
  */
 
 #include"Anuncio.h"
