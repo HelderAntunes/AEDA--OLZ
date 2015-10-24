@@ -2,7 +2,7 @@
  * Anuncio.h
  *
  *  Created on: 17/10/2015
- *      Author: Inês
+ *      Author: InÃªs
  */
 
 #ifndef SRC_ANUNCIO_H_
