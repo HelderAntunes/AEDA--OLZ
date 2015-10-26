@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include "Localizacao.h"
 
 using namespace std;
 
@@ -24,8 +25,8 @@ public:
 	virtual ~Utilizador();
 	string getNome() const;
 	string getEmail() const;
-	string contacto() const;
-	Localizacao localizacao() const;
+	string getContacto() const;
+	Localizacao getLocalizacao() const;
 };
 
 class Utilizadores {
@@ -37,8 +38,8 @@ public:
 	Utilizador getUtilizadorByEmail(const string & email);
 	int getUtilizadorIndex(const Utilizador & u);
 	void ordena_clientes_nome();
-	void ordena_clientes_email;
-	void ordena_clientes_contacto;
+	void ordena_clientes_email();
+	void ordena_clientes_contacto();
 	//void ordena_clientes_localizacao;
 };
 
