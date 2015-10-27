@@ -37,8 +37,13 @@ public:
 		mes = m;
 		ano = a;
 	}
+	friend std::ostream operator<< (std::ostream out, Data data);
 };
 
+std::ostream operator<< (std::ostream out, Data data){
+		out << data.dia << "/" << data.mes << "/" << data.ano;
 
+		return out;
+	}
 
 #endif /* SRC_DATA_H_ */
