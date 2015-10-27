@@ -1,9 +1,7 @@
-/*
- * Anuncio.cpp
- *
- *  Created on: 17/10/2015
- *      Author: Inês
- */
+/**
+* @file Anuncio.cpp
+*
+* @brief Code for class Anuncio*/
 
 #include"Anuncio.h"
 #include"Data.h"
@@ -24,9 +22,7 @@ Anuncio::Anuncio(string titulo, string categoria, string descricao, Utilizador* 
 	this->data = Data(now->tm_mday,now->tm_mon + 1,now->tm_year + 1900);
 }
 
-Anuncio::~Anuncio(){
-	delete anunciante;
-}
+Anuncio::~Anuncio(){}
 
 string Anuncio::getTitulo(){return titulo;}
 
@@ -55,7 +51,7 @@ float DeVenda::getPreco(){ return preco;}
 
 void DeVenda::setPreco(float preco){this->preco = preco;}
 
-void DeVenda::imprime(){
+void DeVenda::imprime() const {
 	cout << id << ". Vende-se " << titulo << endl;
 	cout << "\t Categoria: " << cat.getCat() << endl;
 	cout << descricao << endl;
@@ -86,9 +82,10 @@ DeCompra::DeCompra(string titulo, string categoria, string descricao,/*imagens*/
 	this->troca = NULL;
 }
 
-void DeCompra::imprime(){
+void DeCompra::imprime() const{
 	cout << id << ". Compra-se " << titulo << endl;
-	cout << "\t Categoria: " << cat.getCat() << endl;
+	cout << "\t Categoria: ";
+	cout << cat.getCat() << endl;
 	cout << descricao << endl;
 	if(troca != NULL)
 		cout << "Aceita-se tambem troca pelo produto de id: " << troca->getId() << endl;

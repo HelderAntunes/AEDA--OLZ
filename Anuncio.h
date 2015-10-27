@@ -15,16 +15,16 @@
 using namespace std;
 
 /**@class Categoria
- * @brief category class
  * This class helps make the categories finite and uniform
+ * @brief category class.
  */
 class Categoria{
 	string cat;					/**< category name */
 	Categoria* subCategoria;	/**< pointer to subcategory */
 public:
 	/**
-	 * @brief class Categoria constructor.
 	 * Creates new category without subcategories
+	 * @brief class Categoria constructor.
 	 *
 	 * @param nome category's name
 	 */
@@ -33,8 +33,8 @@ public:
 		subCategoria = NULL;
 	}
 	/**
-	 * @brief class Categoria constructor.
 	 * Creates new category with subcategories
+	 * @brief class Categoria constructor.
 	 *
 	 * @param nome category's name
 	 * @param catPtr pointer to subcategory
@@ -69,8 +69,8 @@ protected:
 	Utilizador* anunciante;	/**< pointer to the advertiser */
 public:
 	/**
-	 * @brief class Anuncio constructor.
 	 * Creates new advertisement with information provided and data correspondent to current date.
+	 * @brief class Anuncio constructor.
 	 *
 	 * @param titulo advertisement's title
 	 * @param categoria advertisement's category
@@ -79,8 +79,8 @@ public:
 	 */
 	Anuncio(string titulo, string categoria, string descricao,/*imagens*/Utilizador* anunciante);
 	/**
-	 * @brief class Anuncio destructor.
 	 * A virtual destructor
+	 * @brief class Anuncio destructor.
 	 */
 	virtual ~Anuncio();
 	/**
@@ -114,28 +114,61 @@ public:
 	 */
 	int getVisualizacoes();
 	/**
-	 * @brief increment views
-	 *
 	 * This function increments view counter by one
+	 * @brief increment views.
 	 */
 	void incVisualizacoes();
 	/**
-	 * @brief display ad
-	 *
-	 * Funtion display advertisement on screen
+	 * Funtion displays advertisement on screen
+	 * @brief display ad.
 	 */
 	virtual void imprime() const = 0;
 };
 
+/**@class DeVenda
+ * @brief Sale Advertisement class derived from Anuncio
+ */
 class DeVenda: public Anuncio{
-	Estado estado;
-	float preco;
-	bool negociacao;
+	Estado estado;				/**< advertised object's condition */
+	float preco;				/**< advertised object's demanded price */
+	bool negociacao;			/**< boolean indicating whether advertiser is willing to negotiate */
 public:
+	/**
+	 * Creates new sale advertisement with information provided and data correspondent to current date.
+	 * @brief class DeVenda constructor.
+	 *
+	 * @param titulo advertisement's title
+	 * @param categoria advertisement's category
+	 * @param descricao advertisement's description
+	 * @param estado advertised object's condition
+	 * @param preco advertised object's demanded price
+	 * @param negociacao advertiser position regarding negotiation
+	 * @param anunciante pointer to the advertiser
+	 */
 	DeVenda(string titulo, string categoria, string descricao,/*imagens*/Estado estado,	float preco,bool negociacao,Utilizador* anunciante);
+	/**
+	 * @brief get condition.
+	 *
+	 * @return condition of advertised product
+	 */
 	Estado getEstado();
+	/**
+	 * @brief get price.
+	 *
+	 * @return price of advertised product
+	 */
 	float getPreco();
+	/**
+	 * Function changes the price of the product
+	 * @brief set price.
+	 *
+	 * @param preco new price for product
+	 */
 	void setPreco(float preco);
+	/**
+	 * Function displays sale advertisement on screen
+	 * @brief display ad.
+	 */
 	void imprime() const ;
 };
 
