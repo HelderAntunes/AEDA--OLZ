@@ -1,9 +1,3 @@
-/*
- * Localizacao.h
- *
- *  Created on: 25/10/2015
- *      Author: filip
- */
 
 #ifndef LOCALIZACAO_H_
 #define LOCALIZACAO_H_
@@ -21,6 +15,7 @@ public:
 	string getFreguesia() const;
 	string getConcelho() const;
 	string getDistrito() const;
+	bool operator<(const Localizacao & l) const;
 };
 
 #endif /* LOCALIZACAO_H_ */
