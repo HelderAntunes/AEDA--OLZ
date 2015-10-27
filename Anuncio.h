@@ -9,7 +9,9 @@
 #define SRC_ANUNCIO_H_
 
 #include <string>
+#include <ctime>
 #include "Data.h"
+#include "Utilizador.h"
 
 using namespace std;
 
@@ -25,7 +27,10 @@ public:
 		this->cat = nome;
 		this->subCategoria = catPtr;
 	}
+	string getCat(){return cat;}
 };
+
+enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
 
 class Anuncio{
 	static int identificador;
@@ -37,26 +42,37 @@ protected:
 	int id;
 	Data data;
 	int visualizacoes;
+	Utilizador* anunciante;
 public:
-	Anuncio(string titulo, string categoria, string descricao,/*imagens*/int dia,int mes,int ano);
-	Anuncio(string titulo, string categoria, string descricao,/*imagens*/ Data data);
+	Anuncio(string titulo, string categoria, string descricao,/*imagens*/Utilizador* anunciante);
+	virtual ~Anuncio();
+	string getTitulo();
+	string getCategoria();
+	int getId();
+	Data getData();
+	int getVisualizacoes();
+	void incVisualizacoes();
+	virtual void imprime() const = 0;
 };
 
 class DeVenda: public Anuncio{
-public:
-	enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
-	DeVenda(string titulo, string categoria, string descricao,/*imagens*/int dia,int mes,int ano,string estado,	float preco,bool negociacao);
-private:
 	Estado estado;
 	float preco;
 	bool negociacao;
+public:
+	DeVenda(string titulo, string categoria, string descricao,/*imagens*/Estado estado,	float preco,bool negociacao,Utilizador* anunciante);
+	Estado getEstado();
+	float getPreco();
+	void setPreco(float preco);
+	void imprime() const ;
 };
 
 class DeCompra: public Anuncio{
 	DeVenda* troca;
 public:
-	DeCompra(string titulo, string categoria, string descricao,/*imagens*/int dia,int mes,int ano, DeVenda* ptr);
-	DeCompra(string titulo, string categoria, string descricao,/*imagens*/int dia,int mes,int ano);
+	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ DeVenda* ptr,Utilizador* anunciante);
+	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ Utilizador* anunciante);
+	void imprime() const ;
 };
 
 
