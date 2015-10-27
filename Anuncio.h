@@ -19,7 +19,7 @@ using namespace std;
  * @brief category class.
  */
 class Categoria{
-	string cat;					/**< category name */
+	string catName;					/**< category name */
 	Categoria* subCategoria;	/**< pointer to subcategory */
 public:
 	/**
@@ -29,7 +29,7 @@ public:
 	 * @param nome category's name
 	 */
 	Categoria(string nome){
-		cat = nome;
+		catName = nome;
 		subCategoria = NULL;
 	}
 	/**
@@ -40,16 +40,21 @@ public:
 	 * @param catPtr pointer to subcategory
 	 */
 	Categoria(string nome, Categoria* catPtr){
-		this->cat = nome;
+		this->catName = nome;
 		this->subCategoria = catPtr;
 	}
 	/**
-	 * @brief get category's name.
+	 * @brief display category on screen.
 	 *
-	 * @return category's name
+	 * @return output stream passed as parameter
 	 */
-	string getCat(){return cat;}
+	friend std::ostream operator<< (std::ostream out, Categoria category);
 };
+
+std::ostream operator<< (std::ostream out, Categoria category){
+	out << category.catName;
+	return out;
+}
 
 enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
 
@@ -167,16 +172,42 @@ public:
 	void setPreco(float preco);
 	/**
 	 * Function displays sale advertisement on screen
-	 * @brief display ad.
+	 * @brief display sale ad.
 	 */
 	void imprime() const ;
 };
 
+/**@class DeCompra
+ * @brief Purchase Advertisement class derived from Anuncio
+ */
 class DeCompra: public Anuncio{
-	DeVenda* troca;
+	DeVenda* troca;				/**< pointer to an sale advertisement alerting for the possibility of an exchange */
 public:
+	/**
+	 * Creates new purchase advertisement with exchange possibility.
+	 * @brief class DeCompra constructor.
+	 *
+	 * @param titulo advertisement's title
+	 * @param categoria advertisement's category
+	 * @param descricao advertisement's description
+	 * @param anunciante pointer to the advertiser
+	 * @param ptr pointer to sale ad admissible for exchange
+	 */
 	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ DeVenda* ptr,Utilizador* anunciante);
+	/**
+	 * Creates new purchase advertisement without exchange possibility (troca equal to NULL).
+	 * @brief class DeCompra constructor.
+	 *
+	 * @param titulo advertisement's title
+	 * @param categoria advertisement's category
+	 * @param descricao advertisement's description
+	 * @param anunciante pointer to the advertiser
+	 */
 	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ Utilizador* anunciante);
+	/**
+	 * Function displays purchase advertisement on screen
+	 * @brief display purchase ad.
+	 */
 	void imprime() const ;
 };
 
