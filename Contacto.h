@@ -8,6 +8,7 @@
 #ifndef SRC_CONTACTO_H_
 #define SRC_CONTACTO_H_
 
+#include "Utilizador.h"
 #include <string>
 
 class Contacto {
