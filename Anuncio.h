@@ -67,64 +67,24 @@ protected:
 	string titulo;			/**< advertisement's title */
 	Categoria cat;			/**< advertisement's category */
 	string descricao;		/**< advertisement's description */
-	//imagens
+	vector<string> imagens;	/**< vector of name of image files used*/
 	int id;					/**< advertisement's id */
 	Data data;				/**< advertisement's date of creation */
 	int visualizacoes;		/**< advertisement's number of views */
-	Utilizador* anunciante;	/**< pointer to the advertiser */
+	Utilizador *anunciante;	/**< pointer to the advertiser */
 public:
-	/**
-	 * Creates new advertisement with information provided and data correspondent to current date.
-	 * @brief class Anuncio constructor.
-	 *
-	 * @param titulo advertisement's title
-	 * @param categoria advertisement's category
-	 * @param descricao advertisement's description
-	 * @param anunciante pointer to the advertiser
-	 */
-	Anuncio(string titulo, string categoria, string descricao,/*imagens*/Utilizador* anunciante);
-	/**
-	 * A virtual destructor
-	 * @brief class Anuncio destructor.
-	 */
+	Anuncio(string titulo, string categoria, string descricao, Utilizador* anunciante);
+	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Utilizador* anunciante);
 	virtual ~Anuncio();
-	/**
-	 * @brief get title.
-	 *
-	 * @return advertisement's title
-	 */
 	string getTitulo();
-	/**
-	 * @brief get category.
-	 *
-	 * @return advertisement's category
-	 */
 	string getCategoria();
-	/**
-	 * @brief get id.
-	 *
-	 * @return advertisement's id
-	 */
 	int getId();
-	/**
-	 * @brief get date.
-	 *
-	 * @return advertisement's creation date
-	 */
 	Data getData();
-	/**
-	 * @brief get views.
-	 *
-	 * @return number of views gotten by the advertisement
-	 */
 	int getVisualizacoes();
-	/**
-	 * This function increments view counter by one
-	 * @brief increment views.
-	 */
 	void incVisualizacoes();
+	bool procuraPalavraChave(string palavra);
 	/**
-	 * Funtion displays advertisement on screen
+	 * Function displays advertisement on screen
 	 * @brief display ad.
 	 */
 	virtual void imprime() const = 0;
@@ -138,42 +98,10 @@ class DeVenda: public Anuncio{
 	float preco;				/**< advertised object's demanded price */
 	bool negociacao;			/**< boolean indicating whether advertiser is willing to negotiate */
 public:
-	/**
-	 * Creates new sale advertisement with information provided and data correspondent to current date.
-	 * @brief class DeVenda constructor.
-	 *
-	 * @param titulo advertisement's title
-	 * @param categoria advertisement's category
-	 * @param descricao advertisement's description
-	 * @param estado advertised object's condition
-	 * @param preco advertised object's demanded price
-	 * @param negociacao advertiser position regarding negotiation
-	 * @param anunciante pointer to the advertiser
-	 */
-	DeVenda(string titulo, string categoria, string descricao,/*imagens*/Estado estado,	float preco,bool negociacao,Utilizador* anunciante);
-	/**
-	 * @brief get condition.
-	 *
-	 * @return condition of advertised product
-	 */
+	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, Estado estado, float preco,bool negociacao,Utilizador* anunciante);
 	Estado getEstado();
-	/**
-	 * @brief get price.
-	 *
-	 * @return price of advertised product
-	 */
 	float getPreco();
-	/**
-	 * Function changes the price of the product
-	 * @brief set price.
-	 *
-	 * @param preco new price for product
-	 */
 	void setPreco(float preco);
-	/**
-	 * Function displays sale advertisement on screen
-	 * @brief display sale ad.
-	 */
 	void imprime() const ;
 };
 
@@ -183,31 +111,8 @@ public:
 class DeCompra: public Anuncio{
 	DeVenda* troca;				/**< pointer to an sale advertisement alerting for the possibility of an exchange */
 public:
-	/**
-	 * Creates new purchase advertisement with exchange possibility.
-	 * @brief class DeCompra constructor.
-	 *
-	 * @param titulo advertisement's title
-	 * @param categoria advertisement's category
-	 * @param descricao advertisement's description
-	 * @param anunciante pointer to the advertiser
-	 * @param ptr pointer to sale ad admissible for exchange
-	 */
-	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ DeVenda* ptr,Utilizador* anunciante);
-	/**
-	 * Creates new purchase advertisement without exchange possibility (troca equal to NULL).
-	 * @brief class DeCompra constructor.
-	 *
-	 * @param titulo advertisement's title
-	 * @param categoria advertisement's category
-	 * @param descricao advertisement's description
-	 * @param anunciante pointer to the advertiser
-	 */
-	DeCompra(string titulo, string categoria, string descricao,/*imagens*/ Utilizador* anunciante);
-	/**
-	 * Function displays purchase advertisement on screen
-	 * @brief display purchase ad.
-	 */
+	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, DeVenda* ptr,Utilizador* anunciante);
+	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, Utilizador* anunciante);
 	void imprime() const ;
 };
 
