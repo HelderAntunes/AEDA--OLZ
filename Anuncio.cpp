@@ -72,7 +72,7 @@ string Anuncio::getTitulo(){return titulo;}
  *
  * @return advertisement's category
  */
-string Anuncio::getCategoria(){	return cat;}
+Categoria Anuncio::getCategoria(){	return cat;}
 
 /**
  * @brief get id.

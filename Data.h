@@ -37,10 +37,15 @@ public:
 		mes = m;
 		ano = a;
 	}
-	friend std::ostream operator<< (std::ostream out, Data data);
+	Data(){
+		dia = 1;
+		mes = 1;
+		ano = 2000;
+	}
+	friend std::ostream& operator<< (std::ostream out, Data data);
 };
 
-std::ostream operator<< (std::ostream out, Data data){
+std::ostream& operator<< (std::ostream out, Data data){
 		out << data.dia << "/" << data.mes << "/" << data.ano;
 
 		return out;

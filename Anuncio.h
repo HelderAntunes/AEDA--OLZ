@@ -9,6 +9,7 @@
 
 #include <string>
 #include <ctime>
+#include <iostream>
 #include "Data.h"
 #include "Utilizador.h"
 
@@ -48,15 +49,17 @@ public:
 	 *
 	 * @return output stream passed as parameter
 	 */
-	friend std::ostream operator<< (std::ostream out, Categoria category);
+	friend std::ostream& operator<< (std::ostream& out,const Categoria& category);
 };
 
-std::ostream operator<< (std::ostream out, Categoria category){
+std::ostream& operator<< (std::ostream& out,const Categoria& category){
 	out << category.catName;
 	return out;
 }
 
 enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
+
+class Utilizador;
 
 /**@class Anuncio
  * @brief Advertisement class
@@ -77,7 +80,7 @@ public:
 	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Utilizador* anunciante);
 	virtual ~Anuncio();
 	string getTitulo();
-	string getCategoria();
+	Categoria getCategoria();
 	int getId();
 	Data getData();
 	int getVisualizacoes();
