@@ -1,4 +1,4 @@
-//
+
 #ifndef UTILIZADOR_H_
 #define UTILIZADOR_H_
 
@@ -6,7 +6,6 @@
 #include <vector>
 #include <iostream>
 #include "Localizacao.h"
-#include "Anuncio.h"
 
 using namespace std;
 
@@ -15,7 +14,6 @@ class Utilizador {
 	string email;
 	string contacto;
 	Localizacao localizacao;
-	//vector<Anuncio *> anuncios;
 
 public:
 	Utilizador(string nome, string email, string contacto, Localizacao localizacao);
@@ -35,7 +33,7 @@ public:
 class Utilizadores {
 	vector<Utilizador> utilizadores;
 public:
-	void addUtilizador(const Utilizador & u);
+	void addUtilizador(const Utilizador * u);
 	bool delUtilizador(const string & email);
 	Utilizador * getUtilizador(const string & email);
 	void ordena_clientes_nome();
@@ -51,19 +49,19 @@ public:
 
 class ExceptionEmailJaExistente {
 
-	Utilizador * utilizador;
+	const Utilizador * utilizador;
 public:
-	ExceptionEmailJaExistente(Utilizador * u);
+	ExceptionEmailJaExistente(const Utilizador * u);
 	string getEmail() const;
-	Utilizador & getUtilizador() const;
+	const Utilizador * getUtilizador() const;
 };
 
 class ExceptionContactoJaExistente {
-	Utilizador * utilizador;
+	const Utilizador * utilizador;
 public:
-	ExceptionContactoJaExistente(Utilizador * u);
+	ExceptionContactoJaExistente(const Utilizador * u);
 	string getContacto() const;
-	Utilizador & getUtilizador() const;
+	const Utilizador * getUtilizador() const;
 };
 
 #endif /* UTILIZADOR_H_ */

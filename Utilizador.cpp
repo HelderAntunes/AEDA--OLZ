@@ -1,6 +1,5 @@
 //TODO Add ExceptionEmailMalFormado
-//TODO Add visible members to other Utilizadores
-//
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -8,13 +7,13 @@
 #include "Localizacao.h"
 #include "Anuncio.h"
 
-ExceptionEmailJaExistente::ExceptionEmailJaExistente(Utilizador * u):
+ExceptionEmailJaExistente::ExceptionEmailJaExistente(const Utilizador * u):
 		utilizador(u)
 {
 	// Empty Block
 }
 
-Utilizador & ExceptionEmailJaExistente::getUtilizador() const
+const Utilizador * ExceptionEmailJaExistente::getUtilizador() const
 {
 	return utilizador;
 }
@@ -26,13 +25,13 @@ string ExceptionEmailJaExistente::getEmail() const
 
 
 
-ExceptionContactoJaExistente::ExceptionContactoJaExistente(Utilizador * u):
+ExceptionContactoJaExistente::ExceptionContactoJaExistente(const Utilizador * u):
 		utilizador(u)
 {
 	// Empty Block
 }
 
-Utilizador & ExceptionContactoJaExistente::getUtilizador() const
+const Utilizador * ExceptionContactoJaExistente::getUtilizador() const
 {
 	return utilizador;
 }
@@ -104,25 +103,23 @@ void Utilizador::setLocalizacao(const Localizacao & localizacao)
 
 
 
-void Utilizadores::addUtilizador(const Utilizador & u)
+void Utilizadores::addUtilizador(const Utilizador * u)
 {
 	for (vector<Utilizador>::iterator it = utilizadores.begin(); it != utilizadores.end(); it++)
 	{
-		if (it->getEmail() == u.getEmail())
+		if (it->getEmail() == u->getEmail())
 		{
-			Utilizador * ptr = u;
-			ExceptionEmailJaExistente e(ptr);
+			ExceptionEmailJaExistente e(u);
 			throw e;
 		}
-		if (it->getContacto() == u.getContacto())
+		if (it->getContacto() == u->getContacto())
 		{
-			Utilizador * ptr = u;
-			ExceptionContactoJaExistente e(ptr);
+			ExceptionContactoJaExistente e(u);
 			throw e;
 		}
 	}
 
-	utilizadores.push_back(u);
+	utilizadores.push_back(*u);
 }
 
 bool Utilizadores::delUtilizador(const string & email)
