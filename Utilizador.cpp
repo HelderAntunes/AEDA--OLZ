@@ -6,7 +6,7 @@
 #include "Localizacao.h"
 #include "Anuncio.h"
 
-ExceptionEmailJaExistente::ExceptionEmailJaExistente(Utilizador u):
+ExceptionEmailJaExistente::ExceptionEmailJaExistente(Utilizador * u):
 		utilizador(u)
 {
 	// Empty Block
@@ -19,12 +19,12 @@ Utilizador & ExceptionEmailJaExistente::getUtilizador() const
 
 string ExceptionEmailJaExistente::getEmail() const
 {
-	return utilizador.getEmail();
+	return utilizador->getEmail();
 }
 
 
 
-ExceptionContactoJaExistente::ExceptionContactoJaExistente(Utilizador u):
+ExceptionContactoJaExistente::ExceptionContactoJaExistente(Utilizador * u):
 		utilizador(u)
 {
 	// Empty Block
@@ -37,7 +37,7 @@ Utilizador & ExceptionContactoJaExistente::getUtilizador() const
 
 string ExceptionContactoJaExistente::getContacto() const
 {
-	return utilizador.getContacto();
+	return utilizador->getContacto();
 }
 
 
@@ -80,12 +80,24 @@ Localizacao Utilizador::getLocalizacao() const
 	return localizacao;
 }
 
-friend ostream & operator<<(ostream & os, const Utilizador & utilizador)
+void Utilizador::setNome(const string & nome)
 {
-	os << "Nome: " << utilizador.getNome() << endl;
-	os << "Email: " << utilizador.getEmail() << endl;
-	os << "Contacto: " << utilizador.getContacto() << endl;
-	os << "Localização: " << utilizador.getLocalizacao() << endl;
+	this->nome = nome;
+}
+
+void Utilizador::setEmail(const string & email)
+{
+	this->email = email;
+}
+
+void Utilizador::setContacto(const string & contacto)
+{
+	this->email = email;
+}
+
+void Utilizador::setLocalizacao(const Localizacao & localizacao)
+{
+	this->localizacao = localizacao;
 }
 
 
@@ -96,12 +108,14 @@ void Utilizadores::addUtilizador(const Utilizador & u)
 	{
 		if (it->getEmail() == u.getEmail())
 		{
-			ExceptionEmailJaExistente e(u);
+			Utilizador * ptr = u;
+			ExceptionEmailJaExistente e(ptr);
 			throw e;
 		}
 		if (it->getContacto() == u.getContacto())
 		{
-			ExceptionContactoJaExistente e(u);
+			Utilizador * ptr = u;
+			ExceptionContactoJaExistente e(ptr);
 			throw e;
 		}
 	}
@@ -126,7 +140,7 @@ bool ordena_nome(const Utilizador & u1, const Utilizador & u2)
 {
 	if (u1.getNome() == u2.getNome())
 	{
-		return ordena_email(u1, u2);
+		//return ordena_email(u1, u2);
 	}
 	return u1.getNome() < u2.getNome();
 }
@@ -175,6 +189,44 @@ vector<Utilizador> Utilizadores::getUtilizadores() const
 	return utilizadores;
 }
 
+void Utilizadores::setUtilizadorNome(Utilizador * u, const string & nome)
+{
+	u->setNome(nome);
+}
+
+void Utilizadores::setUtilizadorEmail(Utilizador * u, const string & email)
+{
+	for (vector<Utilizador>::iterator it = utilizadores.begin(); it != utilizadores.end(); it++)
+	{
+		if (it->getEmail() == u->getEmail())
+		{
+			ExceptionEmailJaExistente e(u);
+			throw e;
+		}
+	}
+
+	u->setEmail(email);
+}
+
+void Utilizadores::setUtilizadorContacto(Utilizador * u, const string & contacto)
+{
+	for (vector<Utilizador>::iterator it = utilizadores.begin(); it != utilizadores.end(); it++)
+	{
+		if (it->getContacto() == u->getContacto())
+		{
+			ExceptionContactoJaExistente e(u);
+			throw e;
+		}
+	}
+
+	u->setContacto(contacto);
+}
+
+void Utilizadores::setUtilizadorLocalizacao(Utilizador * u, const Localizacao & localizacao)
+{
+	u->setLocalizacao(localizacao);
+}
+
 ostream & operator<<(ostream & os, const Utilizadores & utilizadores)
 {
 	vector<Utilizador> u = utilizadores.getUtilizadores();
@@ -186,4 +238,12 @@ ostream & operator<<(ostream & os, const Utilizadores & utilizadores)
 	}
 
 	return os;
+}
+
+ostream & operator<<(ostream & os, const Utilizador & utilizador)
+{
+	os << "Nome: " << utilizador.getNome() << endl;
+	os << "Email: " << utilizador.getEmail() << endl;
+	os << "Contacto: " << utilizador.getContacto() << endl;
+	os << "Localização: " << utilizador.getLocalizacao() << endl;
 }
