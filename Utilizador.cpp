@@ -80,6 +80,14 @@ Localizacao Utilizador::getLocalizacao() const
 	return localizacao;
 }
 
+friend ostream & operator<<(ostream & os, const Utilizador & utilizador)
+{
+	os << "Nome: " << utilizador.getNome() << endl;
+	os << "Email: " << utilizador.getEmail() << endl;
+	os << "Contacto: " << utilizador.getContacto() << endl;
+	os << "Localização: " << utilizador.getLocalizacao() << endl;
+}
+
 
 
 void Utilizadores::addUtilizador(const Utilizador & u)
