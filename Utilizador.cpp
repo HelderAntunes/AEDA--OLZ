@@ -1,6 +1,10 @@
 
-#include "Utilizador.h"
+#include <string>
+#include <vector>
+#include <iostream>
 #include <algorithm>
+#include "Localizacao.h"
+#include "Anuncio.h"
 
 Utilizador::Utilizador(string nome, string email, string contacto, Localizacao localizacao):
 	nome(nome),
@@ -64,22 +68,22 @@ bool Utilizadores::delUtilizador(const string & email)
 	return false;
 }
 
-bool ordena_nome(const Utilizador & u1, const Utilizador & u2) const
+bool ordena_nome(const Utilizador & u1, const Utilizador & u2)
 {
 	return u1.getNome() < u2.getNome();
 }
 
-bool ordena_email(const Utilizador & u1, const Utilizador & u2) const
+bool ordena_email(const Utilizador & u1, const Utilizador & u2)
 {
 	return u1.getEmail() < u2.getEmail();
 }
 
-bool ordena_contacto(const Utilizador & u1, const Utilizador & u2) const
+bool ordena_contacto(const Utilizador & u1, const Utilizador & u2)
 {
 	return u1.getContacto() < u2.getContacto();
 }
 
-bool ordena_localizacao(const Utilizador & u1, const Utilizador & u2) const
+bool ordena_localizacao(const Utilizador & u1, const Utilizador & u2)
 {
 	return u1.getLocalizacao() < u2.getLocalizacao();
 }
@@ -102,4 +106,22 @@ void Utilizadores::ordena_clientes_contacto()
 void Utilizadores::ordena_clientes_localizacao()
 {
 	sort(utilizadores.begin(), utilizadores.end(), ordena_localizacao);
+}
+
+vector<Utilizador> Utilizadores::getUtilizadores() const
+{
+	return utilizadores;
+}
+
+ostream & operator<<(ostream & os, const Utilizadores & utilizadores)
+{
+	vector<Utilizador> u = utilizadores.getUtilizadores();
+
+	os << "Nome\t\tEmail\t\tContacto\\Localizacao" << endl;
+	for (vector<Utilizador>::const_iterator it = u.begin(); it != u.end(); it++)
+	{
+		os << it->getNome() << it->getEmail() << it->getContacto() << it->getLocalizacao() << endl;
+	}
+
+	return os;
 }

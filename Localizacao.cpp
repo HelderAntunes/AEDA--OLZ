@@ -1,4 +1,6 @@
 
+#include <string>
+#include <iostream>
 #include "Localizacao.h"
 
 Localizacao::Localizacao(string freguesia, string concelho, string distrito):
@@ -38,4 +40,9 @@ bool Localizacao::operator <(const Localizacao & l) const
 	}
 
 	return distrito < l.distrito;
+}
+
+ostream & operator<<(ostream & os, const Localizacao & l)
+{
+	os << l.getFreguesia() << ", " << l.getConcelho() << ", " << l.getDistrito();
 }

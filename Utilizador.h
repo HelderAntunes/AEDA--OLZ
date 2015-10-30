@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Localizacao.h"
 #include "Anuncio.h"
 
@@ -14,7 +15,7 @@ class Utilizador {
 	string email;
 	string contacto;
 	Localizacao localizacao;
-	vector<Anuncio> anuncios;
+	//vector<Anuncio *> anuncios;
 
 public:
 	Utilizador(string nome, string email, string contacto, Localizacao localizacao);
@@ -36,6 +37,8 @@ public:
 	void ordena_clientes_email();
 	void ordena_clientes_contacto();
 	void ordena_clientes_localizacao();
+	vector<Utilizador> getUtilizadores() const;
+	friend ostream & operator<<(ostream & os, const Utilizadores & utilizadores);
 };
 
 #endif /* UTILIZADOR_H_ */
