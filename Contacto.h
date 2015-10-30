@@ -1,34 +1,70 @@
 /*
- * Contacto.h
- *
- *  Created on: 16/10/2015
- *      Author: Hélder Antunes
+ * Contacto.cpp
+ * Author: Helder Antunes
  */
 
-#ifndef SRC_CONTACTO_H_
-#define SRC_CONTACTO_H_
+#include "Contacto.h"
 
-#include "Utilizador.h"
-#include <string>
+/******************************
+ * Functions of class Contacto*
+ ******************************/
 
-class Contacto {
-private:
-	Utilizador* anuciante;
-	Utilizador* pessoaInt;
-public:
-	Contacto(Utilizador* anuciante,Utilizador* pessoaInt);
-	virtual ~Contacto();
-};
 
-class Contacto_site: public Contacto{
-private:
-	std::string msg;
-	int numTel_pessoaInt;
-public:
-	Contacto_site(Utilizador* anuciante,Utilizador* pessoaInt,std::string msg,int numTel_pessoaInt);
-	virtual ~Contacto_site(){}
-	std::string get_msg() const;
-	int get_numTel_pessoaInt() const;
-};
 
-#endif /* SRC_CONTACTO_H_ */
+/**
+ * @brief class Contacto constructor
+ *
+ * @param pointer to anunciante
+ * @param pointer to interested person
+ */
+Contacto::Contacto(Utilizador* anuciante, Utilizador* pessoaInt):
+	anuciante(anuciante), pessoaInt(pessoaInt){}
+
+
+/**
+ * @brief class contacto destructor
+ */
+Contacto::~Contacto() {}
+
+
+
+/******************************
+ * Functions of class Contacto*
+ ******************************/
+
+
+
+/**
+ * @brief class Contacto_site constructor
+ *
+ * @param pointer to advertiser
+ * @param pointer to interested person
+ * @param message to send
+ * @param phone number of interested person
+ */
+Contacto_site::Contacto_site(Utilizador* anuciante,Utilizador* pessoaInt,std::string msg, int numTel_pessoaInt)
+: Contacto(anuciante,pessoaInt){
+	this->msg = msg;
+	this->numTel_pessoaInt = numTel_pessoaInt;
+}
+
+
+
+/**
+ * @brief get message to send
+ * @return message to send
+ */
+std::string Contacto_site::get_msg() const{
+	return msg;
+}
+
+
+/**
+ * @brief get phone number of interested person
+ * @return phone number of interested person
+ */
+int Contacto_site::get_numTel_pessoaInt() const{
+	return numTel_pessoaInt;
+}
+
+
