@@ -70,6 +70,10 @@ bool Utilizadores::delUtilizador(const string & email)
 
 bool ordena_nome(const Utilizador & u1, const Utilizador & u2)
 {
+	if (u1.getNome() == u2.getNome())
+	{
+		return ordena_email(u1, u2);
+	}
 	return u1.getNome() < u2.getNome();
 }
 
@@ -85,6 +89,10 @@ bool ordena_contacto(const Utilizador & u1, const Utilizador & u2)
 
 bool ordena_localizacao(const Utilizador & u1, const Utilizador & u2)
 {
+	if (u1.getLocalizacao() == u2.getLocalizacao())
+	{
+		return ordena_nome(u1, u2);
+	}
 	return u1.getLocalizacao() < u2.getLocalizacao();
 }
 
