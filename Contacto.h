@@ -1,70 +1,48 @@
 /*
- * Contacto.cpp
+ * Contacto.h
  * Author: Helder Antunes
  */
 
-#include "Contacto.h"
+#ifndef SRC_CONTACTO_H_
+#define SRC_CONTACTO_H_
 
-/******************************
- * Functions of class Contacto*
- ******************************/
+#include "Utilizador.h"
+#include <string>
+#include <iostream>
 
 
 
-/**
- * @brief class Contacto constructor
- *
- * @param pointer to anunciante
- * @param pointer to interested person
+/**@class Contacto
+ * @brief contact between two persons
  */
-Contacto::Contacto(Utilizador* anuciante, Utilizador* pessoaInt):
-	anuciante(anuciante), pessoaInt(pessoaInt){}
+class Contacto {
+private:
+	Utilizador* anuciante;    /**< pointer to advertiser */
+	Utilizador* pessoaInt;    /**< pointer to interested person */
+
+public:
+	Contacto(Utilizador* anuciante,Utilizador* pessoaInt);
+	virtual ~Contacto();
+};
 
 
-/**
- * @brief class contacto destructor
+
+
+/**@class Contacto_site
+ * @brief contact between two persons mediated by site
  */
-Contacto::~Contacto() {}
+class Contacto_site: public Contacto{
+private:
+	std::string msg;         /**< message to send */
+	int numTel_pessoaInt;    /**< phone number of interested person */
+
+public:
+	Contacto_site(Utilizador* anuciante,Utilizador* pessoaInt,std::string msg,int numTel_pessoaInt);
+	virtual ~Contacto_site(){}
+	std::string get_msg() const;
+	int get_numTel_pessoaInt() const;
+};
 
 
 
-/******************************
- * Functions of class Contacto*
- ******************************/
-
-
-
-/**
- * @brief class Contacto_site constructor
- *
- * @param pointer to advertiser
- * @param pointer to interested person
- * @param message to send
- * @param phone number of interested person
- */
-Contacto_site::Contacto_site(Utilizador* anuciante,Utilizador* pessoaInt,std::string msg, int numTel_pessoaInt)
-: Contacto(anuciante,pessoaInt){
-	this->msg = msg;
-	this->numTel_pessoaInt = numTel_pessoaInt;
-}
-
-
-
-/**
- * @brief get message to send
- * @return message to send
- */
-std::string Contacto_site::get_msg() const{
-	return msg;
-}
-
-
-/**
- * @brief get phone number of interested person
- * @return phone number of interested person
- */
-int Contacto_site::get_numTel_pessoaInt() const{
-	return numTel_pessoaInt;
-}
-
-
+#endif /* SRC_CONTACTO_H_ */
