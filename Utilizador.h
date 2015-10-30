@@ -18,7 +18,7 @@ class Utilizador {
 public:
 	Utilizador(string nome, string email, string contacto, Localizacao localizacao);
 	Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito);
-	virtual ~Utilizador();
+	virtual ~Utilizador(){}
 	string getNome() const;
 	string getEmail() const;
 	string getContacto() const;
