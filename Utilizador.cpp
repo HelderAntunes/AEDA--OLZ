@@ -1,6 +1,6 @@
 //TODO Add ExceptionEmailMalFormado
 //TODO Add visible members to other Utilizadores
-
+//
 #include <string>
 #include <vector>
 #include <iostream>
