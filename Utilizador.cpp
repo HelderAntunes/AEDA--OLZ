@@ -6,6 +6,42 @@
 #include "Localizacao.h"
 #include "Anuncio.h"
 
+ExceptionEmailJaExistente::ExceptionEmailJaExistente(Utilizador u):
+		utilizador(u)
+{
+	// Empty Block
+}
+
+Utilizador & ExceptionEmailJaExistente::getUtilizador() const
+{
+	return utilizador;
+}
+
+string ExceptionEmailJaExistente::getEmail() const
+{
+	return utilizador.getEmail();
+}
+
+
+
+ExceptionContactoJaExistente::ExceptionContactoJaExistente(Utilizador u):
+		utilizador(u)
+{
+	// Empty Block
+}
+
+Utilizador & ExceptionContactoJaExistente::getUtilizador() const
+{
+	return utilizador;
+}
+
+string ExceptionContactoJaExistente::getContacto() const
+{
+	return utilizador.getContacto();
+}
+
+
+
 Utilizador::Utilizador(string nome, string email, string contacto, Localizacao localizacao):
 	nome(nome),
 	email(email),
@@ -46,13 +82,23 @@ Localizacao Utilizador::getLocalizacao() const
 
 
 
-bool Utilizadores::addUtilizador(const Utilizador & u)
+void Utilizadores::addUtilizador(const Utilizador & u)
 {
-	if (getUtilizador(u.getEmail()) == NULL)
-		return false;
+	for (vector<Utilizador>::iterator it = utilizadores.begin(); it != utilizadores.end(); it++)
+	{
+		if (it->getEmail() == u.getEmail())
+		{
+			ExceptionEmailJaExistente e(u);
+			throw e;
+		}
+		if (it->getContacto() == u.getContacto())
+		{
+			ExceptionContactoJaExistente e(u);
+			throw e;
+		}
+	}
 
 	utilizadores.push_back(u);
-	return true;
 }
 
 bool Utilizadores::delUtilizador(const string & email)

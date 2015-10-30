@@ -18,6 +18,8 @@ class Utilizador {
 	//vector<Anuncio *> anuncios;
 
 public:
+
+
 	Utilizador(string nome, string email, string contacto, Localizacao localizacao);
 	Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito);
 	virtual ~Utilizador();
@@ -30,7 +32,7 @@ public:
 class Utilizadores {
 	vector<Utilizador> utilizadores;
 public:
-	bool addUtilizador(const Utilizador & u);
+	void addUtilizador(const Utilizador & u);
 	bool delUtilizador(const string & email);
 	Utilizador * getUtilizador(const string & email);
 	void ordena_clientes_nome();
@@ -39,6 +41,23 @@ public:
 	void ordena_clientes_localizacao();
 	vector<Utilizador> getUtilizadores() const;
 	friend ostream & operator<<(ostream & os, const Utilizadores & utilizadores);
+};
+
+class ExceptionEmailJaExistente {
+
+	Utilizador utilizador;
+public:
+	ExceptionEmailJaExistente(Utilizador u);
+	string getEmail() const;
+	Utilizador & getUtilizador() const;
+};
+
+class ExceptionContactoJaExistente {
+	Utilizador utilizador;
+public:
+	ExceptionContactoJaExistente(Utilizador u);
+	string getContacto() const;
+	Utilizador & getUtilizador() const;
 };
 
 #endif /* UTILIZADOR_H_ */
