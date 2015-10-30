@@ -35,7 +35,7 @@ protected:
 	Utilizador *anunciante;	/**< pointer to the advertiser */
 public:
 	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante);
-	virtual ~Anuncio();
+	virtual ~Anuncio(){}
 	string getTitulo();
 	string getCategoria();
 	int getId();
