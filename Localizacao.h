@@ -17,6 +17,7 @@ public:
 	string getConcelho() const;
 	string getDistrito() const;
 	bool operator<(const Localizacao & l) const;
+	bool operator==(const Localizacao & l) const;
 	friend ostream & operator<<(ostream & os, const Localizacao & l);
 };
 

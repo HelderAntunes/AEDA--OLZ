@@ -42,7 +42,14 @@ bool Localizacao::operator <(const Localizacao & l) const
 	return distrito < l.distrito;
 }
 
+bool Localizacao::operator==(const Localizacao & l) const
+{
+	return getFreguesia() == l.getFreguesia() && getConcelho() == l.getConcelho() && getDistrito() == l.getDistrito();
+}
+
+
 ostream & operator<<(ostream & os, const Localizacao & l)
 {
 	os << l.getFreguesia() << ", " << l.getConcelho() << ", " << l.getDistrito();
+	return os;
 }
