@@ -17,41 +17,17 @@ int Anuncio::identificador(0);
  * @param titulo advertisement's title
  * @param categoria advertisement's category
  * @param descricao advertisement's description
- * @param anunciante pointer to the advertiser
- */
-Anuncio::Anuncio(string titulo, string categoria, string descricao, Utilizador* anunciante): id(identificador++), cat (Categoria(categoria)){
-	this->titulo = titulo;
-	this->descricao = descricao;
-	this->visualizacoes = 0;
-	this->anunciante = anunciante;
-
-	//Obter a data de criacao
-	time_t t = time(0);   // get time now
-	tm * now = localtime( & t );
-	this->data = Data(now->tm_mday,now->tm_mon + 1,now->tm_year + 1900);
-}
-
-/**
- * Creates new advertisement with information provided and data correspondent to current date.
- * @brief class Anuncio constructor.
- *
- * @param titulo advertisement's title
- * @param categoria advertisement's category
- * @param descricao advertisement's description
  * @param imagens names of image files used
+ * @param data date of creation
  * @param anunciante pointer to the advertiser
  */
-Anuncio::Anuncio(string titulo, string categoria, string descricao, vector<string> imagens, Utilizador* anunciante): id(identificador++), cat (Categoria(categoria)){
+Anuncio::Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante): id(identificador++), data(data){
 	this->titulo = titulo;
 	this->descricao = descricao;
 	this->imagens = imagens;
 	this->visualizacoes = 0;
 	this->anunciante = anunciante;
-
-	//Obter a data de criacao
-	time_t t = time(0);   // get time now
-	tm * now = localtime( & t );
-	this->data = Data(now->tm_mday,now->tm_mon + 1,now->tm_year + 1900);
+	this->cat = categoria;
 }
 
 /**
@@ -72,7 +48,7 @@ string Anuncio::getTitulo(){return titulo;}
  *
  * @return advertisement's category
  */
-Categoria Anuncio::getCategoria(){	return cat;}
+string Anuncio::getCategoria(){	return cat;}
 
 /**
  * @brief get id.
@@ -130,10 +106,11 @@ bool Anuncio::procuraPalavraChave(string palavra){
  * @param estado advertised object's condition
  * @param preco advertised object's demanded price
  * @param negociacao advertiser position regarding negotiation
+ * @param data date of creation
  * @param anunciante pointer to the advertiser
  */
-DeVenda::DeVenda(string titulo,	string categoria,string descricao,vector<string> imagens, Estado estado,float preco, bool negociacao,Utilizador* anunciante) :
-																Anuncio(titulo,categoria,descricao, imagens, anunciante){
+DeVenda::DeVenda(string titulo,	string categoria,string descricao,vector<string> imagens, Estado estado,float preco, bool negociacao,Data data, Utilizador* anunciante) :
+																Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
 	this->estado = estado;
 	this->preco = preco;
 	this->negociacao = negociacao;
@@ -172,12 +149,16 @@ void DeVenda::imprime() const {
 	switch(estado){
 	case NOVO:
 		cout << "Artigo novo\n";
+		break;
 	case USADO:
 		cout << "Artigo usado como novo\n";
+		break;
 	case FUNCIONAL:
 		cout << "Artigo funcional\n";
+		break;
 	case PECAS:
 		cout << "Artigo indicado somente para pecas";
+		break;
 	}
 	cout << preco << "€";
 	if(negociacao)
@@ -194,11 +175,12 @@ void DeVenda::imprime() const {
  * @param categoria advertisement's category
  * @param descricao advertisement's description
  * @param imagens names of image files used
+ * @param data date of creation
  * @param anunciante pointer to the advertiser
  * @param ptr pointer to sale ad admissible for exchange
  */
-DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, DeVenda* ptr, Utilizador* anunciante):
-																	Anuncio(titulo,categoria,descricao, imagens, anunciante){
+DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, DeVenda* ptr, Data data, Utilizador* anunciante):
+																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
 	this->troca = ptr;
 }
 
@@ -210,10 +192,11 @@ DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<str
  * @param categoria advertisement's category
  * @param descricao advertisement's description
  * @param imagens names of image files used
+ * @param data date of creation
  * @param anunciante pointer to the advertiser
  */
-DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, Utilizador* anunciante):
-																	Anuncio(titulo,categoria,descricao, imagens, anunciante){
+DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, Data data, Utilizador* anunciante):
+																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
 	this->troca = NULL;
 }
 

@@ -9,6 +9,7 @@
 #define SRC_DATA_H_
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -42,13 +43,11 @@ public:
 		mes = 1;
 		ano = 2000;
 	}
-	friend std::ostream& operator<< (std::ostream out, Data data);
-};
-
-std::ostream& operator<< (std::ostream out, Data data){
+	friend ostream& operator<< (ostream& out, const Data &data){
 		out << data.dia << "/" << data.mes << "/" << data.ano;
 
 		return out;
 	}
+};
 
 #endif /* SRC_DATA_H_ */
