@@ -1,11 +1,10 @@
+#ifndef SRC_ANUNCIO_H_
+#define SRC_ANUNCIO_H_
+
 /**
  * @file Anuncio.h
  *
  * @brief Header file for class Anuncio*/
-
-
-#ifndef SRC_ANUNCIO_H_
-#define SRC_ANUNCIO_H_
 
 #include <string>
 #include <ctime>
@@ -17,13 +16,11 @@ using namespace std;
 
 enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
 
-class Utilizador;
-
 /**@class Anuncio
  * @brief Advertisement class
  */
 class Anuncio{
-	static int identificador;
+	static int identificador; /**< id for the next advertisement created (ensures no 2 advertisements have the same id)*/
 protected:
 	string titulo;			/**< advertisement's title */
 	string cat;				/**< advertisement's category */
@@ -33,14 +30,23 @@ protected:
 	Data data;				/**< advertisement's date of creation */
 	int visualizacoes;		/**< advertisement's number of views */
 	Utilizador *anunciante;	/**< pointer to the advertiser */
+	bool showEmail;			/**< advertiser wishes to make email public*/
+	bool showNome;			/**< advertiser wishes to make name public*/
+	bool showNumTel;		/**< advertiser wishes to make phone number public*/
 public:
-	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante);
+	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante, bool showEmail, bool showNome,	bool showNumTel);
 	virtual ~Anuncio();
 	string getTitulo();
 	string getCategoria();
 	int getId();
 	Data getData();
 	int getVisualizacoes();
+	bool getShowEmail();
+	bool getShowNome();
+	bool getShowNumTel();
+	void setShowEmail(bool showEmail);
+	void setShowNome(bool showNome);
+	void setShowNumTel(bool showNumTel);
 	void incVisualizacoes();
 	bool procuraPalavraChave(string palavra);
 	/**
@@ -48,6 +54,7 @@ public:
 	 * @brief display ad.
 	 */
 	virtual void imprime() const {}
+	bool operator<(const Anuncio &right);
 };
 
 /**@class DeVenda
@@ -58,7 +65,7 @@ class DeVenda: public Anuncio{
 	float preco;				/**< advertised object's demanded price */
 	bool negociacao;			/**< boolean indicating whether advertiser is willing to negotiate */
 public:
-	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante);
+	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante, bool showEmail, bool showNome,	bool showNumTel);
 	Estado getEstado();
 	float getPreco();
 	void setPreco(float preco);
@@ -69,12 +76,11 @@ public:
  * @brief Purchase Advertisement class derived from Anuncio
  */
 class DeCompra: public Anuncio{
-	DeVenda* troca;				/**< pointer to an sale advertisement alerting for the possibility of an exchange */
+	bool troca;					/**< advertiser is open to the possibility of an exchange of items*/
+	int trocaId;				/**< id of sale ad possible for exchange */
 public:
-	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, DeVenda* ptr,Data data, Utilizador* anunciante);
-	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens,Data data, Utilizador* anunciante);
+	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, bool troca, int trocaId,Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel);
 	void imprime() const ;
 };
-
 
 #endif /* SRC_ANUNCIO_H_ */

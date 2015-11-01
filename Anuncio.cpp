@@ -14,20 +14,26 @@ int Anuncio::identificador(0);
  * Creates new advertisement with information provided and data correspondent to current date.
  * @brief class Anuncio constructor.
  *
- * @param titulo advertisement's title
- * @param categoria advertisement's category
- * @param descricao advertisement's description
- * @param imagens names of image files used
- * @param data date of creation
- * @param anunciante pointer to the advertiser
+ * @param titulo 		advertisement's title
+ * @param categoria 	advertisement's category
+ * @param descricao 	advertisement's description
+ * @param imagens 		names of image files used
+ * @param data 			date of creation
+ * @param anunciante 	pointer to the advertiser
+ * @param showEmail 	is email public?
+ * @param showNome		is name public?
+ * @param showNumTel	is phone number public?
  */
-Anuncio::Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante): id(identificador++), data(data){
+Anuncio::Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel): id(identificador++), data(data){
 	this->titulo = titulo;
 	this->descricao = descricao;
 	this->imagens = imagens;
 	this->visualizacoes = 0;
 	this->anunciante = anunciante;
 	this->cat = categoria;
+	this->showEmail =  showEmail;
+	this->showNome = showNome;
+	this->showNumTel = showNumTel;
 }
 
 /**
@@ -72,6 +78,60 @@ Data Anuncio::getData(){ return data;}
 int Anuncio::getVisualizacoes(){return visualizacoes;}
 
 /**
+ * @brief get permit to show email.
+ *
+ * @return is email public?
+ */
+bool Anuncio::getShowEmail(){
+	return showEmail;
+}
+
+/**
+ * @brief get permit to show name.
+ *
+ * @return is name public?
+ */
+bool Anuncio::getShowNome(){
+	return this->showNome;
+}
+
+/**
+ * @brief get permit to show phone number.
+ *
+ * @return is phone number public?
+ */
+bool Anuncio::getShowNumTel(){
+	return showNumTel;
+}
+
+/**
+ * @brief set permit to email.
+ *
+ * @param is email public?
+ */
+void Anuncio::setShowEmail(bool showEmail){
+	this->showEmail = showEmail;
+}
+
+/**
+ * @brief set permit to show name.
+ *
+ * @param is name public?
+ */
+void Anuncio::setShowNome(bool showNome){
+	this->showNome = showNome;
+}
+
+/**
+ * @brief set permit to show phone number.
+ *
+ * @param is phone number public?
+ */
+void Anuncio::setShowNumTel(bool showNumTel){
+	this->showNumTel = showNumTel;
+}
+
+/**
  * This function increments view counter by one
  * @brief increment views.
  */
@@ -95,6 +155,10 @@ bool Anuncio::procuraPalavraChave(string palavra){
 	return false;
 }
 
+bool Anuncio::operator<(const Anuncio &right){
+	return id < right.id;
+}
+
 /**
  * Creates new sale advertisement with information provided and data correspondent to current date.
  * @brief class DeVenda constructor.
@@ -108,9 +172,12 @@ bool Anuncio::procuraPalavraChave(string palavra){
  * @param negociacao advertiser position regarding negotiation
  * @param data date of creation
  * @param anunciante pointer to the advertiser
+ * @param showEmail 	is email public?
+ * @param showNome		is name public?
+ * @param showNumTel	is phone number public?
  */
-DeVenda::DeVenda(string titulo,	string categoria,string descricao,vector<string> imagens, Estado estado,float preco, bool negociacao,Data data, Utilizador* anunciante) :
-																Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
+DeVenda::DeVenda(string titulo,	string categoria,string descricao,vector<string> imagens, Estado estado,float preco, bool negociacao,Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel) :
+																Anuncio(titulo,categoria,descricao, imagens, data, anunciante, showEmail, showNome, showNumTel){
 	this->estado = estado;
 	this->preco = preco;
 	this->negociacao = negociacao;
@@ -163,7 +230,17 @@ void DeVenda::imprime() const {
 	cout << preco << "€";
 	if(negociacao)
 		cout << " mas com possibilidade de negociar preco";
-	//Imprimir os dados que o anunciante deseja mostrar
+
+	//Informações do anunciante
+	if(showNome || showEmail || showNumTel)
+		cout << "Informacao do anunciante:\n";
+	if(showNome)
+		cout << "\t" << anunciante->getNome() << endl;
+	if(showNumTel)
+		cout << "\t" << anunciante->getContacto() << endl;
+	if(showEmail)
+		cout << "\t" << anunciante->getEmail() << endl;
+
 	cout << "\n\tcriado em: " << data <<endl;
 }
 
@@ -177,27 +254,15 @@ void DeVenda::imprime() const {
  * @param imagens names of image files used
  * @param data date of creation
  * @param anunciante pointer to the advertiser
- * @param ptr pointer to sale ad admissible for exchange
+ * @param trocaId id of the sale ad admissible for exchange
+ * @param showEmail 	is email public?
+ * @param showNome		is name public?
+ * @param showNumTel	is phone number public?
  */
-DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, DeVenda* ptr, Data data, Utilizador* anunciante):
-																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
-	this->troca = ptr;
-}
-
-/**
- * Creates new purchase advertisement without exchange possibility (troca equal to NULL).
- * @brief class DeCompra constructor.
- *
- * @param titulo advertisement's title
- * @param categoria advertisement's category
- * @param descricao advertisement's description
- * @param imagens names of image files used
- * @param data date of creation
- * @param anunciante pointer to the advertiser
- */
-DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, Data data, Utilizador* anunciante):
-																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante){
-	this->troca = NULL;
+DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, bool troca, int trocaId, Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel):
+																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante, showEmail, showNome, showNumTel){
+	this->troca = troca;
+	this->trocaId = trocaId;
 }
 
 /**
@@ -209,8 +274,18 @@ void DeCompra::imprime() const{
 	cout << "\t Categoria: ";
 	cout << cat << endl;
 	cout << descricao << endl;
-	if(troca != NULL)
-		cout << "Aceita-se tambem troca pelo produto de id: " << troca->getId() << endl;
-	//Imprimir os dados que o anunciante deseja mostrar
+	if(troca)
+		cout << "Aceita-se tambem troca pelo produto de id: " << trocaId << endl;
+
+	//Informações do anunciante
+	if(showNome || showEmail || showNumTel)
+		cout << "Informacao do anunciante:\n";
+	if(showNome)
+		cout << "\t" << anunciante->getNome() << endl;
+	if(showNumTel)
+		cout << "\t" << anunciante->getContacto() << endl;
+	if(showEmail)
+		cout << "\t" << anunciante->getEmail() << endl;
+
 	cout << "\tcriado em: " << data <<endl;
 }
