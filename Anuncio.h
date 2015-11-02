@@ -43,6 +43,7 @@ public:
 	int getId();
 	Data getData();
 	int getVisualizacoes();
+	Utilizador* getAnunciante();
 	bool getShowEmail();
 	bool getShowNome();
 	bool getShowNumTel();

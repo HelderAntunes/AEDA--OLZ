@@ -10,13 +10,13 @@
 #include <iostream>
 #include <vector>
 #include "Anuncio.h"
-
-using namespace std;
+#include "Contacto.h"
 
 class OLZ {
 	vector<DeVenda*> anunciosDeVenda;
 	vector<DeCompra*> anunciosDeCompra;
 	vector<Utilizador*> utilizadores;
+	vector<Contacto*> contactos;
 public:
 	OLZ();
 	virtual ~OLZ();
@@ -28,6 +28,15 @@ public:
 	void imprimeUtilizadores();
 	void imprimeAnunciosDeVenda();
 	void imprimeAnunciosDeCompra();
+	void adicionarUtilizador(Utilizador* novoUtilizador);
+	void apagarUtilizador(string email);
+	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
+	void adicionarAnuncioCompra(DeCompra* novoAanuncio);
+	void apagarAnuncioVenda(int id);
+	void apagarAnuncioCompra(int id);
+	void adicionarContacto(Contacto* novoContacto);
+	void mostrarContactos();
+	void mostrarNegociosConcretizados();
 };
 
 #endif /* SRC_OLZ_H_ */

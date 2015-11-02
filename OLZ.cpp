@@ -7,6 +7,9 @@
 
 #include "OLZ.h"
 
+/*
+ * Funções auxiliares
+ */
 Utilizador* leUtilizador(istream& olz_file);
 DeVenda* leAnuncioDeVenda(istream& olz_file);
 Data leDataDoAnuncio(istream& olz_file);
@@ -101,7 +104,23 @@ void OLZ::imprimeAnunciosDeCompra(){
 		anunciosDeCompra[i]->imprime();
 }
 
+void OLZ::adicionarUtilizador(Utilizador* novoUtilizador){
+	utilizadores.push_back(novoUtilizador);
+}
 
+/*
+void adicionarAnuncioVenda(DeVenda* novoAnuncio);
+void adicionarAnuncioCompra(DeCompra* novoAanuncio);
+void apagarAnuncioVenda(int id);
+void apagarAnuncioCompra(int id);
+void adicionarContacto(Contacto* novoContacto);
+void mostrarContactos();
+void mostrarNegociosConcretizados();
+*/
+
+/*
+ * Funcoes auxiliares
+ */
 
 DeCompra* leAnuncioDeCompra(istream& olz_file){
 	string lixo, titulo, categoria, descricao;

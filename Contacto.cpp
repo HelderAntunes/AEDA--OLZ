@@ -16,55 +16,23 @@
  *
  * @param pointer to anunciante
  * @param pointer to interested person
+ * @param pointer to anuncio
+ * @param message to send to anunciante
+ * @param numTel_pessoaInt to send to anunciante
  */
-Contacto::Contacto(Utilizador* anuciante, Utilizador* pessoaInt):
-	anuciante(anuciante), pessoaInt(pessoaInt){}
-
+Contacto::Contacto(Utilizador* anunciante,Utilizador* pessoaInt,
+		Anuncio* anuncio, string mensagem, string numTel_pessoaInt)
+:anunciante(anunciante),
+ pessoaInt(pessoaInt),
+ mensagem(mensagem),
+ numTel_pessoaInt(numTel_pessoaInt)
+{
+	concretizado = false;
+	montanteNegociado = 0;
+	dataNegociada = Data(0,0,0);
+}
 
 /**
  * @brief class contacto destructor
  */
 Contacto::~Contacto() {}
-
-
-
-/******************************
- * Functions of class Contacto*
- ******************************/
-
-
-
-/**
- * @brief class Contacto_site constructor
- *
- * @param pointer to advertiser
- * @param pointer to interested person
- * @param message to send
- * @param phone number of interested person
- */
-Contacto_site::Contacto_site(Utilizador* anuciante,Utilizador* pessoaInt,std::string msg, int numTel_pessoaInt)
-: Contacto(anuciante,pessoaInt){
-	this->msg = msg;
-	this->numTel_pessoaInt = numTel_pessoaInt;
-}
-
-
-
-/**
- * @brief get message to send
- * @return message to send
- */
-std::string Contacto_site::get_msg() const{
-	return msg;
-}
-
-
-/**
- * @brief get phone number of interested person
- * @return phone number of interested person
- */
-int Contacto_site::get_numTel_pessoaInt() const{
-	return numTel_pessoaInt;
-}
-
-
