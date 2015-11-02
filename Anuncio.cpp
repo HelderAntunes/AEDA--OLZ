@@ -24,16 +24,20 @@ int Anuncio::identificador(0);
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
  */
-Anuncio::Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel): id(identificador++), data(data){
+Anuncio::Anuncio(string titulo, string categoria, string descricao,
+		vector<string> imagens,int id, Data data, Utilizador* anunciante,
+		int visualizacoes, bool showEmail, bool showNome, bool showNumTel):
+		data(data){
 	this->titulo = titulo;
 	this->descricao = descricao;
 	this->imagens = imagens;
-	this->visualizacoes = 0;
+	this->visualizacoes = visualizacoes;
 	this->anunciante = anunciante;
 	this->cat = categoria;
 	this->showEmail =  showEmail;
 	this->showNome = showNome;
 	this->showNumTel = showNumTel;
+	this->id = id;
 }
 
 /**
@@ -76,6 +80,13 @@ Data Anuncio::getData(){ return data;}
  * @return number of views gotten by the advertisement
  */
 int Anuncio::getVisualizacoes(){return visualizacoes;}
+
+/**
+ * @brief get pointer to anunciante
+ *
+ * @return pointer to anunciante
+ */
+Utilizador* Anuncio::getAnunciante(){return anunciante;}
 
 /**
  * @brief get permit to show email.
@@ -159,6 +170,14 @@ bool Anuncio::operator<(const Anuncio &right){
 	return id < right.id;
 }
 
+void Anuncio::setAnunciantePtr(Utilizador* anunciantePtr){
+	anunciante = anunciantePtr;
+}
+
+void Anuncio::setIdentificadorInicial(int static_id_anuncio_inicial){
+	identificador = static_id_anuncio_inicial;
+}
+
 /**
  * Creates new sale advertisement with information provided and data correspondent to current date.
  * @brief class DeVenda constructor.
@@ -176,8 +195,12 @@ bool Anuncio::operator<(const Anuncio &right){
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
  */
-DeVenda::DeVenda(string titulo,	string categoria,string descricao,vector<string> imagens, Estado estado,float preco, bool negociacao,Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel) :
-																Anuncio(titulo,categoria,descricao, imagens, data, anunciante, showEmail, showNome, showNumTel){
+DeVenda::DeVenda(string titulo,	string categoria,string descricao,
+		vector<string> imagens,int id, Estado estado,float preco,
+		bool negociacao,Data data, Utilizador* anunciante,
+		int visualizacoes, bool showEmail, bool showNome, bool showNumTel) :
+	Anuncio(titulo,categoria,descricao, imagens, id, data, anunciante,
+			visualizacoes, showEmail, showNome, showNumTel){
 	this->estado = estado;
 	this->preco = preco;
 	this->negociacao = negociacao;
@@ -210,9 +233,11 @@ void DeVenda::setPreco(float preco){this->preco = preco;}
  * @brief display sale ad.
  */
 void DeVenda::imprime() const {
-	cout << id << ". Vende-se " << titulo << endl;
-	cout << "\t Categoria: " << cat << endl;
-	cout << descricao << endl;
+	cout << "Id do anuncio de venda: " << id << "." << endl;
+	cout << "\tTitulo: " << titulo << endl;
+	cout << "\tCategoria: " << cat << endl;
+	cout << "\tDescricao: " << descricao << endl;
+	cout << "\tEstado do produto: ";
 	switch(estado){
 	case NOVO:
 		cout << "Artigo novo\n";
@@ -224,24 +249,24 @@ void DeVenda::imprime() const {
 		cout << "Artigo funcional\n";
 		break;
 	case PECAS:
-		cout << "Artigo indicado somente para pecas";
+		cout << "Artigo indicado somente para pecas\n";
 		break;
 	}
-	cout << preco << "€";
+	cout << "\tPreco: " << preco << "€";
 	if(negociacao)
-		cout << " mas com possibilidade de negociar preco";
-
+		cout << ", mas com possibilidade de negociar preco.\n";
+	cout << endl;
 	//Informações do anunciante
 	if(showNome || showEmail || showNumTel)
 		cout << "Informacao do anunciante:\n";
 	if(showNome)
-		cout << "\t" << anunciante->getNome() << endl;
+		cout << "\tNome: " << anunciante->getNome() << endl;
 	if(showNumTel)
-		cout << "\t" << anunciante->getContacto() << endl;
+		cout << "\tContacto telemovel: " << anunciante->getContacto() << endl;
 	if(showEmail)
-		cout << "\t" << anunciante->getEmail() << endl;
+		cout << "\tEmail: " << anunciante->getEmail() << endl;
 
-	cout << "\n\tcriado em: " << data <<endl;
+	cout << "\n\tCriado em: " << data <<endl;
 }
 
 /**
@@ -259,8 +284,11 @@ void DeVenda::imprime() const {
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
  */
-DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, bool troca, int trocaId, Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel):
-																	Anuncio(titulo,categoria,descricao, imagens, data, anunciante, showEmail, showNome, showNumTel){
+DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens,
+		int id, bool troca, int trocaId, Data data, Utilizador* anunciante,int visualizacoes,
+		bool showEmail, bool showNome, bool showNumTel):
+		Anuncio(titulo,categoria,descricao, imagens,id, data, anunciante,
+				visualizacoes, showEmail, showNome, showNumTel){
 	this->troca = troca;
 	this->trocaId = trocaId;
 }
@@ -270,13 +298,13 @@ DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<str
  * @brief display purchase ad.
  */
 void DeCompra::imprime() const{
-	cout << id << ". Compra-se " << titulo << endl;
-	cout << "\t Categoria: ";
-	cout << cat << endl;
-	cout << descricao << endl;
+	cout << "Id do anuncio de compra: " << id << "." << endl;
+	cout << "\tTitulo: " << titulo << endl;
+	cout << "\tCategoria: " << cat << endl;
+	cout << "\tDescricao: " << descricao << endl;
 	if(troca)
-		cout << "Aceita-se tambem troca pelo produto de id: " << trocaId << endl;
-
+		cout << "\tAceita-se tambem troca pelo produto de id: " << trocaId << endl;
+	cout << endl;
 	//Informações do anunciante
 	if(showNome || showEmail || showNumTel)
 		cout << "Informacao do anunciante:\n";
@@ -287,5 +315,5 @@ void DeCompra::imprime() const{
 	if(showEmail)
 		cout << "\t" << anunciante->getEmail() << endl;
 
-	cout << "\tcriado em: " << data <<endl;
+	cout << "\n\tCriado em: " << data <<endl;
 }

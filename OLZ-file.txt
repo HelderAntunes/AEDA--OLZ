@@ -1,0 +1,42 @@
+INICIO_UTILIZADORES
+NOVO_UTILIZADOR
+Helder Antunes
+helder_antunes-@hotmail.com
+918370036
+Sobrado
+Valongo
+Porto
+INICIO_ANUNCIOS_VENDA
+NOVO_ANUNCIO
+vendo telemovel
+tecnologia
+vendo telemovel Iphone 5s
+Imagens
+imagem 1
+imagem 2
+FimImagens
+1
+31 10 2015
+22
+1 1 1
+USADO
+199.99
+1
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+NOVO_ANUNCIO
+compro telemovel
+tecnologia
+interessado em um Samsumg Galaxy
+Imagens
+imagem 1
+imagem 2
+FimImagens
+2
+31 10 2015
+32
+1 1 1
+1 1
+FIM_ANUNCIOS_COMPRA
+FIM_UTILIZADORES
+3
