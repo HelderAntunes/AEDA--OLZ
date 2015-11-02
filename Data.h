@@ -2,7 +2,7 @@
  * Data.h
  *
  *  Created on: 17/10/2015
- *      Author: InÃªs
+ *      Author: Inês
  */
 
 #ifndef SRC_DATA_H_
@@ -79,7 +79,7 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend ostream& operator<< (ostream& out, const Data &data){
-		out << data.dia << "/" << data.mes << "/" << data.ano;
+		out << data.dia << " " << data.mes << " " << data.ano;
 
 		return out;
 	}
@@ -92,8 +92,8 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend istream &operator>>( istream  &in, Data &data ){
-		char ignore;
-		in >> data.dia >> ignore >> data.mes >> ignore >> data.ano;
+
+		in >> data.dia >> data.mes >> data.ano;
 
 		return in;
 	}

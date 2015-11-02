@@ -82,13 +82,6 @@ Data Anuncio::getData(){ return data;}
 int Anuncio::getVisualizacoes(){return visualizacoes;}
 
 /**
- * @brief get pointer to anunciante
- *
- * @return pointer to anunciante
- */
-Utilizador* Anuncio::getAnunciante(){return anunciante;}
-
-/**
  * @brief get permit to show email.
  *
  * @return is email public?
@@ -316,4 +309,126 @@ void DeCompra::imprime() const{
 		cout << "\t" << anunciante->getEmail() << endl;
 
 	cout << "\n\tCriado em: " << data <<endl;
+}
+
+//Operators << e >>
+ostream &operator<<(ostream &out, DeVenda a){
+	out << a.titulo <<endl;
+	out << a.cat <<endl;
+	out << a.descricao <<endl;
+
+	//escreve imagens
+	out << "Imagens\n";
+	for(unsigned int i = 0; i < a.imagens.size(); i++)
+		out << a.imagens[i] <<endl;
+	out << "FimImagens\n";
+
+	out << a.id << endl;
+	out << a.data << endl;
+	out << a.visualizacoes << endl;
+	out << a.showEmail << " " << a.showNome << " " << a.showNumTel << endl;
+
+	//escreve estado
+	switch (a.estado){
+	case NOVO:
+		out << "NOVO\n";
+		break;
+	case USADO:
+			out << "USADO\n";
+			break;
+	case FUNCIONAL:
+			out << "FUNCIONAL\n";
+			break;
+	case PECAS:
+			out << "PECAS\n";
+			break;
+	}
+
+	out << a.preco;
+	out << a.negociacao;
+	return out;
+}
+
+istream &operator>>(istream &in, DeVenda &a){
+	string temp;
+
+	getline(in, a.titulo);
+	getline(in, a.cat);
+	getline(in, a.descricao);
+	//lê imagens
+	getline(in, temp);
+	while(1){
+		getline(in,temp);
+		if(temp == "FimImagens")
+			break;
+		else
+			a.imagens.push_back(temp);
+	}
+
+	in >> a.id;
+	in >> a.data;
+	in >> a.visualizacoes;
+	in >> a.showEmail >> a.showNome >> a.showNumTel;
+
+	//ler estado
+	string estado_string;
+	in >> estado_string;
+	if(estado_string == "NOVO")
+		a.estado = NOVO;
+	else if(estado_string == "USADO")
+		a.estado = USADO;
+	else if(estado_string == "FUNCIONAL")
+		a.estado = FUNCIONAL;
+	else if(estado_string == "PECAS")
+		a.estado = PECAS;
+
+	in >> a.preco;
+	in >> a.negociacao;
+
+	return in;
+}
+ostream &operator<<(ostream &out, DeCompra a){
+	out << a.titulo <<endl;
+	out << a.cat <<endl;
+	out << a.descricao <<endl;
+
+	//escreve imagens
+	out << "Imagens\n";
+	for(unsigned int i = 0; i < a.imagens.size(); i++)
+		out << a.imagens[i] <<endl;
+	out << "FimImagens\n";
+
+	out << a.id << endl;
+	out << a.data << endl;
+	out << a.visualizacoes << endl;
+	out << a.showEmail << " " << a.showNome << " " << a.showNumTel << endl;
+	out << a.troca << endl;
+	out << a.trocaId << endl;
+	return out;
+}
+
+istream &operator>>(istream &in, DeCompra &a){
+	string temp;
+
+	getline(in, a.titulo);
+	getline(in, a.cat);
+	getline(in, a.descricao);
+	//lê imagens
+	getline(in, temp);
+	while(1){
+		getline(in,temp);
+		if(temp == "FimImagens")
+			break;
+		else
+			a.imagens.push_back(temp);
+	}
+
+	in >> a.id;
+	in >> a.data;
+	in >> a.visualizacoes;
+	in >> a.showEmail >> a.showNome >> a.showNumTel;
+	in >> a.troca;
+	in >> a.trocaId;
+
+	return in;
 }

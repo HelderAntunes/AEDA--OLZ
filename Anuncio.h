@@ -43,7 +43,6 @@ public:
 	int getId();
 	Data getData();
 	int getVisualizacoes();
-	Utilizador* getAnunciante();
 	bool getShowEmail();
 	bool getShowNome();
 	bool getShowNumTel();
@@ -60,29 +59,35 @@ public:
 	 */
 	virtual void imprime() const {}
 	bool operator<(const Anuncio &right);
+	//friend ostream &operator<<(ostream &out, Anuncio a);
+	//friend istream &operator>>(istream &in, Anuncio &a);
 };
 
 /**@class DeVenda
  * @brief Sale Advertisement class derived from Anuncio
  */
 class DeVenda: public Anuncio{
+protected:
 	Estado estado;				/**< advertised object's condition */
 	float preco;				/**< advertised object's demanded price */
 	bool negociacao;			/**< boolean indicating whether advertiser is willing to negotiate */
 public:
 	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, int id,
-	Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante,
-	int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
+			Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante,
+			int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
 	Estado getEstado();
 	float getPreco();
 	void setPreco(float preco);
 	void imprime() const ;
+	friend ostream &operator<<(ostream &out, DeVenda a);
+	friend istream &operator>>(istream &in, DeVenda &a);
 };
 
 /**@class DeCompra
  * @brief Purchase Advertisement class derived from Anuncio
  */
 class DeCompra: public Anuncio{
+protected:
 	bool troca;					/**< advertiser is open to the possibility of an exchange of items*/
 	int trocaId;				/**< id of sale ad possible for exchange */
 public:
@@ -90,6 +95,8 @@ public:
 			bool troca, int trocaId, Data data, Utilizador* anunciante, int visualizacoes,
 			bool showEmail, bool showNome, bool showNumTel);
 	void imprime() const ;
+	friend ostream &operator<<(ostream &out, DeCompra a);
+	friend istream &operator>>(istream &in, DeCompra &a);
 };
 
 #endif /* SRC_ANUNCIO_H_ */
