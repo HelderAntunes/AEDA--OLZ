@@ -31,12 +31,13 @@ public:
 	void adicionarUtilizador(Utilizador* novoUtilizador);
 	void apagarUtilizador(string email);
 	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
-	void adicionarAnuncioCompra(DeCompra* novoAanuncio);
+	void adicionarAnuncioCompra(DeCompra* novoAnuncio);
 	void apagarAnuncioVenda(int id);
 	void apagarAnuncioCompra(int id);
 	void adicionarContacto(Contacto* novoContacto);
 	void mostrarContactos();
 	void mostrarNegociosConcretizados();
+	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 };
 
 #endif /* SRC_OLZ_H_ */

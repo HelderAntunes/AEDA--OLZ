@@ -28,6 +28,15 @@ private:
 public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);
+	void setAnuncioPtr(Anuncio* anuncio);
+	Anuncio* getAnuncioPtr();
+	Utilizador* getAnunciante();
+	Utilizador* getPessoaInteressada();
+	void setAnunciantePtr_toNull();
+	void setPessoaInteressadaPtr_toNull();
+	bool negocioEstaConcretizado();
+	void imprimeContacto();
+	void imprimeNegocioConcretizado();
 	virtual ~Contacto();
 };
 

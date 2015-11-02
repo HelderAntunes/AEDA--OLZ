@@ -108,16 +108,93 @@ void OLZ::adicionarUtilizador(Utilizador* novoUtilizador){
 	utilizadores.push_back(novoUtilizador);
 }
 
-/*
-void adicionarAnuncioVenda(DeVenda* novoAnuncio);
-void adicionarAnuncioCompra(DeCompra* novoAanuncio);
-void apagarAnuncioVenda(int id);
-void apagarAnuncioCompra(int id);
-void adicionarContacto(Contacto* novoContacto);
-void mostrarContactos();
-void mostrarNegociosConcretizados();
-*/
 
+void OLZ::adicionarAnuncioVenda(DeVenda* novoAnuncio){
+	anunciosDeVenda.push_back(novoAnuncio);
+}
+
+void OLZ::adicionarAnuncioCompra(DeCompra* novoAnuncio){
+	anunciosDeCompra.push_back(novoAnuncio);
+}
+
+void OLZ::apagarAnuncioVenda(int id){
+	for(int i = 0;i < anunciosDeVenda.size();i++)
+		if(anunciosDeVenda[i]->getId() == id){
+			// all the contactos stay with anuncio pointer equal to NULL
+			for(int j = 0;j < contactos.size();j++)
+				if(contactos[j]->getAnuncioPtr()->getId() == id)
+					contactos[j]->setAnuncioPtr(NULL);
+			anunciosDeVenda.erase(anunciosDeVenda.begin()+i);
+			break;
+		}
+}
+
+void OLZ::apagarAnuncioCompra(int id){
+	for(int i = 0;i < anunciosDeCompra.size();i++)
+			if(anunciosDeCompra[i]->getId() == id){
+				// all the contactos stay with anuncio pointer equal to NULL
+				for(int j = 0;j < contactos.size();j++)
+					if(contactos[j]->getAnuncioPtr()->getId() == id)
+						contactos[j]->setAnuncioPtr(NULL);
+				anunciosDeCompra.erase(anunciosDeCompra.begin()+i);
+				break;
+			}
+}
+
+void OLZ::adicionarContacto(Contacto* novoContacto){
+	contactos.push_back(novoContacto);
+}
+
+void OLZ::mostrarContactos(){
+	for(int i = 0;i < contactos.size();i++)
+		contactos[i]->imprimeContacto();
+}
+
+void OLZ::mostrarNegociosConcretizados(){
+	for(int i = 0;i < contactos.size();i++)
+		if(contactos[i]->negocioEstaConcretizado())
+			contactos[i]->imprimeNegocioConcretizado();
+}
+
+vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
+	vector<Anuncio*> anuncios;
+	for(int i = 0;i < anunciosDeVenda.size();i++)
+		anuncios.push_back(anunciosDeVenda[i]);
+	for(int i = 0;i < anunciosDeCompra.size();i++)
+		anuncios.push_back(anunciosDeCompra[i]);
+	return anuncios;
+}
+
+void OLZ::apagarUtilizador(string email){
+	for(int i = 0;i < utilizadores.size();i++)
+		if(utilizadores[i]->getEmail() == email){
+			//todos os anuncios do utilizador serao apagados
+			for(int j = 0;j < anunciosDeVenda.size();j++)
+				if(anunciosDeVenda[j]->getAnunciante()->getEmail() == email){
+					int id_anuncio = anunciosDeVenda[j]->getId();
+					this->apagarAnuncioVenda(id_anuncio);
+					j--;
+				}
+			for(int j = 0;j < anunciosDeCompra.size();j++)
+				if(anunciosDeCompra[j]->getAnunciante()->getEmail() == email){
+					int id_anuncio = anunciosDeCompra[j]->getId();
+					this->apagarAnuncioCompra(id_anuncio);
+					j--;
+				}
+			// Os contactos nao serao apagados,mas quando
+			// existir um apontador(anunciante ou pessoa interessada)
+			// referente a este utilizador, esse apontador vai ser posto
+			// a NULL
+			for(int j = 0;j < contactos.size();j++)
+				if(contactos[j]->getAnunciante()->getEmail() == email)
+					contactos[j]->setAnunciantePtr_toNull();
+				else if(contactos[j]->getPessoaInteressada()->getEmail() == email)
+					contactos[j]->setPessoaInteressadaPtr_toNull();
+
+			utilizadores.erase(utilizadores.begin()+i);
+			break;
+		}
+}
 /*
  * Funcoes auxiliares
  */

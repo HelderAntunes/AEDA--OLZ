@@ -82,6 +82,13 @@ Data Anuncio::getData(){ return data;}
 int Anuncio::getVisualizacoes(){return visualizacoes;}
 
 /**
+ * @brief get pointer to anunciante
+ *
+ * @return pointer to anunciante
+ */
+Utilizador* Anuncio::getAnunciante(){return anunciante;}
+
+/**
  * @brief get permit to show email.
  *
  * @return is email public?

@@ -14,6 +14,9 @@ void mostrarMenuPrincipal();
 bool opcaoInvalida(int opcao);
 bool opcaoDeSaidaDaAplicacaoEscolhida(int opcao);
 Utilizador* criarUtilizador();
+string pedeEmailDoUtilizadorQueQuerApagar();
+void mostrarAnunciosPorCategoria(const OLZ& olz);
+void mostrarAnunciosPorLocalizacao(const OLZ& olz);
 
 int main(){
 	OLZ olz;
@@ -24,17 +27,34 @@ int main(){
 	do{
 		mostrarMenuPrincipal();
 		cin >> opcao;
-		if(opcaoInvalida(opcao))
+		if(opcaoInvalida(opcao) == true)
 			cout << "Opcao invalida\n\n";
 		else if(opcaoDeSaidaDaAplicacaoEscolhida(opcao))
 			break;
 
+
 		switch(opcao){
 		case 1:
 			olz.imprimeUtilizadores();
+			break;
 		case 2:
+		{
 			Utilizador* novoUtil = criarUtilizador();
 			olz.adicionarUtilizador(novoUtil);
+		}
+		case 3:
+		{
+			string email = pedeEmailDoUtilizadorQueQuerApagar();
+			olz.apagarUtilizador(email);
+		}
+		case 4:
+		{
+			mostrarAnunciosPorCategoria(olz);
+		}
+		case 5:
+		{
+			mostrarAnunciosPorLocalizacao(olz);
+		}
 		}
 	}while(opcao < 1 || opcao > 3);
 
@@ -45,11 +65,15 @@ int main(){
 bool opcaoInvalida(int opcao){
 	if(opcao < 1 || opcao > 15)
 		return true;
+	else
+		return false;
 }
 
 bool opcaoDeSaidaDaAplicacaoEscolhida(int opcao){
 	if(opcao == 15)
 		return true;
+	else
+		return false;
 }
 
 void mostrarMenuPrincipal(){
@@ -65,7 +89,7 @@ void mostrarMenuPrincipal(){
 				"\t9 - Adicionar anuncio de compra\n"
 				"\t10 - Ver anuncio\n"
 				"\t11 - Apagar anuncio\n"
-				"\t12 - Criar contacto entre dois utilizadores"
+				"\t12 - Criar contacto entre dois utilizadores\n"
 				"\t13 - Concretizar negocio\n"
 				"\t14 - Mostrar negocios concretizados\n"
 				"\t15 - Sair da aplicacao\n";
@@ -88,5 +112,31 @@ Utilizador* criarUtilizador(){
 	return new Utilizador(nome, email,contacto, local);
 }
 
+string pedeEmailDoUtilizadorQueQuerApagar(){
+	string email;
+	cout << "Email do utilizador que quer apagar: ";
+	cin >> email;
+	return email;
+}
+
+void mostrarAnunciosPorCategoria(const OLZ& olz){
+	string categoria;
+	cout << "Introduza uma categoria: ";
+	cin >> categoria;
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	int anunciosImprimidos = 0;
+	for(int i = 0;i < anuncios.size();i++)
+		if(anuncios[i]->getCategoria() == categoria){
+			anuncios[i]->imprime();
+			cout << endl;
+			anunciosImprimidos++;
+		}
+	if(anunciosImprimidos == 0)
+		cout << "Nao foram encontrados anuncios dessa categoria.\n";
+}
+
+void mostrarAnunciosPorLocalizacao(const OLZ& olz){
+
+}
 
 
