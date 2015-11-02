@@ -28,6 +28,7 @@ public:
 	void setContacto(const string & contacto);
 	void setLocalizacao(const Localizacao & localizacao);
 	friend ostream & operator<<(ostream & os, const Utilizador & utilizador);
+	void imprime();
 };
 
 class Utilizadores {

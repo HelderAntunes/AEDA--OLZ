@@ -34,7 +34,9 @@ protected:
 	bool showNome;			/**< advertiser wishes to make name public*/
 	bool showNumTel;		/**< advertiser wishes to make phone number public*/
 public:
-	Anuncio(string titulo, string categoria, string descricao,vector<string> imagens, Data data, Utilizador* anunciante, bool showEmail, bool showNome,	bool showNumTel);
+	Anuncio(string titulo, string categoria, string descricao,
+			vector<string> imagens,int id, Data data, Utilizador* anunciante,
+			int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
 	virtual ~Anuncio();
 	string getTitulo();
 	string getCategoria();
@@ -49,6 +51,8 @@ public:
 	void setShowNumTel(bool showNumTel);
 	void incVisualizacoes();
 	bool procuraPalavraChave(string palavra);
+	void setAnunciantePtr(Utilizador* anunciantePtr);
+	static void setIdentificadorInicial(int static_id_anuncio_inicial);
 	/**
 	 * Function displays advertisement on screen
 	 * @brief display ad.
@@ -65,7 +69,9 @@ class DeVenda: public Anuncio{
 	float preco;				/**< advertised object's demanded price */
 	bool negociacao;			/**< boolean indicating whether advertiser is willing to negotiate */
 public:
-	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante, bool showEmail, bool showNome,	bool showNumTel);
+	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, int id,
+	Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante,
+	int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
 	Estado getEstado();
 	float getPreco();
 	void setPreco(float preco);
@@ -79,7 +85,9 @@ class DeCompra: public Anuncio{
 	bool troca;					/**< advertiser is open to the possibility of an exchange of items*/
 	int trocaId;				/**< id of sale ad possible for exchange */
 public:
-	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, bool troca, int trocaId,Data data, Utilizador* anunciante, bool showEmail, bool showNome, bool showNumTel);
+	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, int id,
+			bool troca, int trocaId, Data data, Utilizador* anunciante, int visualizacoes,
+			bool showEmail, bool showNome, bool showNumTel);
 	void imprime() const ;
 };
 
