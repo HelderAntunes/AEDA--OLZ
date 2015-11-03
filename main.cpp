@@ -11,12 +11,16 @@
 using namespace std;
 
 void mostrarMenuPrincipal();
-bool opcaoInvalida(int opcao);
-bool opcaoDeSaidaDaAplicacaoEscolhida(int opcao);
+bool isOpcaoInvalida(int opcao, int inf, int sup);
+bool isOpcaoSaida(int opcao);
 Utilizador* criarUtilizador();
 string pedeEmailDoUtilizadorQueQuerApagar();
 void mostrarAnunciosPorCategoria(const OLZ& olz);
-void mostrarAnunciosPorLocalizacao(const OLZ& olz);
+void mostrarAnunciosPorLocalizacaoDoAnunciante(const OLZ& olz);
+void mostrarAnunciosPorPalavraChave(const OLZ& olz);
+void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados);
+void mostrarAnunciosPorPrecoAproximado(const OLZ& olz);
+
 
 int main(){
 	OLZ olz;
@@ -24,52 +28,48 @@ int main(){
 	olz.leTodosOsDados(olz_file);
 	cout << "Bem-vindo ao OLZ!!!\n\n";
 	int opcao = 0;
-	do{
+	while(1){
 		mostrarMenuPrincipal();
 		cin >> opcao;
-		if(opcaoInvalida(opcao) == true)
+		if(isOpcaoInvalida(opcao, 1, 15) == true){
 			cout << "Opcao invalida\n\n";
-		else if(opcaoDeSaidaDaAplicacaoEscolhida(opcao))
+			continue;
+		}
+		else if(isOpcaoSaida(opcao))
 			break;
-
-
-		switch(opcao){
-		case 1:
+		if(opcao == 1)
 			olz.imprimeUtilizadores();
-			break;
-		case 2:
-		{
+		else if(opcao == 2){
 			Utilizador* novoUtil = criarUtilizador();
 			olz.adicionarUtilizador(novoUtil);
 		}
-		case 3:
-		{
+		else if(opcao == 3){
 			string email = pedeEmailDoUtilizadorQueQuerApagar();
 			olz.apagarUtilizador(email);
 		}
-		case 4:
-		{
+		else if(opcao == 4)
 			mostrarAnunciosPorCategoria(olz);
-		}
-		case 5:
-		{
-			mostrarAnunciosPorLocalizacao(olz);
-		}
-		}
-	}while(opcao < 1 || opcao > 3);
+		else if(opcao == 5)
+			mostrarAnunciosPorLocalizacaoDoAnunciante(olz);
+		else if(opcao == 6)
+			mostrarAnunciosPorPalavraChave(olz);
+		else if(opcao == 7)
+			mostrarAnunciosPorPrecoAproximado(olz);
+
+	}while(isOpcaoInvalida(opcao,1,15));
 
 
 	return 0;
 }
 
-bool opcaoInvalida(int opcao){
-	if(opcao < 1 || opcao > 15)
+bool isOpcaoInvalida(int opcao, int inf, int sup){
+	if(opcao < inf || opcao > sup)
 		return true;
 	else
 		return false;
 }
 
-bool opcaoDeSaidaDaAplicacaoEscolhida(int opcao){
+bool isOpcaoSaida(int opcao){
 	if(opcao == 15)
 		return true;
 	else
@@ -78,15 +78,15 @@ bool opcaoDeSaidaDaAplicacaoEscolhida(int opcao){
 
 void mostrarMenuPrincipal(){
 	cout << "Pretende:\n"
-				"\t1 - Mostrar Utilizadores\n"
-				"\t2 - Adicionar Utilizador\n"
-				"\t3 - Apagar Utilizador\n"
-				"\t4 - Mostrar anuncios por categoria\n"
-				"\t5 - Mostrar anuncios por localizacao do anunciante\n"
-				"\t6 - Mostrar anuncios por palavra-chave\n"
-				"\t7 - Mostrar anuncios por preco aproximado\n"
-				"\t8 - Adicionar anuncio de venda\n"
-				"\t9 - Adicionar anuncio de compra\n"
+				"\t 1 - Mostrar Utilizadores\n"
+				"\t 2 - Adicionar Utilizador\n"
+				"\t 3 - Apagar Utilizador\n"
+				"\t 4 - Mostrar anuncios por categoria\n"
+				"\t 5 - Mostrar anuncios por localizacao do anunciante\n"
+				"\t 6 - Mostrar anuncios por palavra-chave\n"
+				"\t 7 - Mostrar anuncios por preco aproximado\n"
+				"\t 8 - Adicionar anuncio de venda\n"
+				"\t 9 - Adicionar anuncio de compra\n"
 				"\t10 - Ver anuncio\n"
 				"\t11 - Apagar anuncio\n"
 				"\t12 - Criar contacto entre dois utilizadores\n"
@@ -135,8 +135,82 @@ void mostrarAnunciosPorCategoria(const OLZ& olz){
 		cout << "Nao foram encontrados anuncios dessa categoria.\n";
 }
 
-void mostrarAnunciosPorLocalizacao(const OLZ& olz){
+void mostrarAnunciosPorLocalizacaoDoAnunciante(const OLZ& olz){
+	int opcao = 0;
+	do{
+		cout << "Procurar anuncios por:\n";
+		cout << "\t1 - Freguesia do anunciante\n";
+		cout << "\t2 - Concelho do anunciante\n";
+		cout << "\t3 - Distrito do anunciante\n";
+		cin >> opcao;
+		if(isOpcaoInvalida(opcao,1,3))
+			cout << "Opcao invalida\n\n";
+	}while(isOpcaoInvalida(opcao,1,3));
 
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	vector<Anuncio*> anunciosEncontrados;
+
+	if(opcao == 1){
+		string freguesia;
+		cout << "Introduza a freguesia a procurar: "; cin >> freguesia;
+		for(int i = 0;i< anuncios.size();i++)
+			if(anuncios[i]->getAnunciante()->getLocalizacao().getFreguesia() == freguesia)
+				anunciosEncontrados.push_back(anuncios[i]);
+		imprimirAnunciosEncontrados(anunciosEncontrados);
+	}
+	else if(opcao == 2){
+		string concelho;
+		cout << "Introduza a concelho a procurar: "; cin >> concelho;
+		for(int i = 0;i< anuncios.size();i++)
+			if(anuncios[i]->getAnunciante()->getLocalizacao().getConcelho() == concelho)
+				anunciosEncontrados.push_back(anuncios[i]);
+		imprimirAnunciosEncontrados(anunciosEncontrados);
+	}
+	else if(opcao == 3){
+		string distrito;
+		cout << "Introduza a distrito a procurar: "; cin >> distrito;
+		for(int i = 0;i< anuncios.size();i++)
+			if(anuncios[i]->getAnunciante()->getLocalizacao().getDistrito() == distrito)
+				anunciosEncontrados.push_back(anuncios[i]);
+		imprimirAnunciosEncontrados(anunciosEncontrados);
+	}
+}
+
+void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados){
+	for(int i = 0;i< anunciosEncontrados.size();i++)
+		anunciosEncontrados[i]->imprime();
+	if(anunciosEncontrados.size() == 0)
+		cout << "Nao foi encontrado nenhum anuncio com a distrito indicada.\n";
+}
+
+void mostrarAnunciosPorPalavraChave(const OLZ& olz){
+	string palavraChave;
+	cout << "Introduz a palavra chave:";
+	cin >> palavraChave;
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	vector<Anuncio*> anunciosEncontrados;
+	for(int i = 0;i < anuncios.size();i++)
+		if(anuncios[i]->procuraPalavraChave(palavraChave))
+			anunciosEncontrados.push_back(anuncios[i]);
+	imprimirAnunciosEncontrados(anunciosEncontrados);
+}
+
+void mostrarAnunciosPorPrecoAproximado(const OLZ& olz){
+	float preco_min, preco_max;
+	cout << "Introduza um intervalo de preco\n";
+	cout << "Preco minimo: ";
+	cin >> preco_min;
+	cout << "Preco maximo: ";
+	cin >> preco_max;
+	vector<DeVenda*> anunciosVenda = olz.getAnunciosDeVenda();
+	vector<DeVenda*> anunciosEncontrados;
+	for(int i = 0;i < anunciosVenda.size();i++)
+		if(anunciosVenda[i]->getPreco() >= preco_min && anunciosVenda[i]->getPreco() <= preco_max)
+			anunciosEncontrados.push_back(anunciosVenda[i]);
+	vector<Anuncio*> anunciosParaImprimir;
+	for(int i = 0;i< anunciosEncontrados.size();i++)
+		anunciosParaImprimir.push_back(anunciosEncontrados[i]);
+	imprimirAnunciosEncontrados(anunciosParaImprimir);
 }
 
 

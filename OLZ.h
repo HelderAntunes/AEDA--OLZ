@@ -38,6 +38,7 @@ public:
 	void mostrarContactos();
 	void mostrarNegociosConcretizados();
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
+	vector<DeVenda*> getAnunciosDeVenda() const;
 };
 
 #endif /* SRC_OLZ_H_ */

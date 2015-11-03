@@ -19,7 +19,14 @@ DeCompra* leAnuncioDeCompra(istream& olz_file);
 
 OLZ::OLZ() {}
 
-OLZ::~OLZ() {}
+OLZ::~OLZ() {
+	for(int i = 0;i < utilizadores.size();i++)
+		delete utilizadores[i];
+	for(int i = 0;i < anunciosDeCompra.size();i++)
+		delete anunciosDeCompra[i];
+	for(int i = 0;i < anunciosDeVenda.size();i++)
+		delete anunciosDeVenda[i];
+}
 
 void OLZ::leTodosOsDados(istream& olz_file){
 	leUtilizadores_e_respetivosAnuncios(olz_file);
@@ -195,6 +202,11 @@ void OLZ::apagarUtilizador(string email){
 			break;
 		}
 }
+
+vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
+	return anunciosDeVenda;
+}
+
 /*
  * Funcoes auxiliares
  */
