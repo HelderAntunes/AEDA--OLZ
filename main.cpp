@@ -22,7 +22,7 @@ void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados);
 void mostrarAnunciosPorPrecoAproximado(const OLZ& olz);
 DeVenda* CriarAnuncioVenda(const OLZ& olz);
 DeCompra* CriaAnuncioCompra(const OLZ& olz);
-Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz);
+Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email);
 bool existeCategoria(const OLZ& olz,string categoria);
 Estado leEstadoDoProduto();
 bool leResposta();
@@ -31,6 +31,11 @@ string leCategoria(const OLZ& olz);
 vector<string> leImagens();
 int leIdDoAnuncioDeVendaParaTroca(Utilizador* anunciante,const OLZ& olz);
 void verAnuncio(const OLZ& olz);
+Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz);
+Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz);
+Anuncio* encontraAnuncioAtravesDoId(const OLZ& olz,int id);
+void apagarAnuncio(OLZ& olz);
+
 
 
 int main(){
@@ -74,13 +79,83 @@ int main(){
 			DeCompra* novoAnuncio = CriaAnuncioCompra(olz);
 			olz.adicionarAnuncioCompra(novoAnuncio);
 		}
-		else if(opcao == 10){
+		else if(opcao == 10)
 			verAnuncio(olz);
+		else if(opcao == 11)
+			apagarAnuncio(olz);
+		else if(opcao == 12){
+			Contacto* novoContacto = criarContactoEntreDoisUtilizadores(olz);
+			olz.adicionarContacto(novoContacto);
+		}
+		else if(opcao == 13){
+
 		}
 	}
 
 
 	return 0;
+}
+
+void apagarAnuncio(OLZ& olz){
+	int id;
+	Anuncio* anuncio = NULL;
+	cout << "Introduza o id do anuncio que quer apagar:";
+	while(1){
+		cin >> id;
+		anuncio = encontraAnuncioAtravesDoId(olz,id);
+		if(anuncio != NULL)
+			break;
+		else
+			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
+	}
+	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
+	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
+		if(anunciosDeVenda[i]->getId() == id){
+			olz.apagarAnuncioVenda(id);
+			return;
+		}
+	vector<DeCompra*> anunciosDeCompra = olz.getAnunciosDeCompra();
+	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
+		if(anunciosDeCompra[i]->getId() == id){
+			olz.apagarAnuncioCompra(id);
+			return;
+		}
+}
+
+
+Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
+	Utilizador* anunciante = NULL;
+	Utilizador* pessoaInt = NULL;
+	string mensagem, numTel_pessoaInt;
+	Anuncio* anuncio = NULL;
+	cout << "Introduza o email do anunciante:";
+	anunciante = leUtilizadorAtravesDoEmail(olz);
+	cout << "Introduza o email da pessoa interessada:";
+	pessoaInt = leUtilizadorAtravesDoEmail(olz);
+	cout << "Introduza o id do anuncio:";
+	int id;
+	while(1){
+		cin >> id;
+		anuncio = encontraAnuncioAtravesDoId(olz, id);
+		if(anuncio != NULL)
+			break;
+		else
+			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
+	}
+	cout << "Mensagem da pessoa interessada para a o anunciante:\n";
+	cin.ignore();
+	getline(cin, mensagem);
+	numTel_pessoaInt = pessoaInt->getContacto();
+	return new Contacto(anunciante,pessoaInt,anuncio,mensagem,numTel_pessoaInt);
+}
+
+Anuncio* encontraAnuncioAtravesDoId(const OLZ& olz,int id){
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	for(unsigned int i = 0;i < anuncios.size();i++)
+		if(anuncios[i]->getId() == id){
+			return anuncios[i];
+		}
+	return NULL;
 }
 
 bool isOpcaoInvalida(int opcao, int inf, int sup){
@@ -258,11 +333,8 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	bool negociacao, showEmail, showNome, showNumTel;
 	Data data;
 	Utilizador* anunciante = NULL;
-	while(1){
-		anunciante = encontraUtilizadorAtravesDoEmail(olz);
-		if(anunciante != NULL)
-			break;
-	}
+	cout << "Introduza o email do anunciante: ";
+	anunciante = leUtilizadorAtravesDoEmail(olz);
 	cout << "Introduza o titulo do anuncio: ";
 	cin.ignore();
 	getline(cin,titulo);
@@ -294,6 +366,24 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 			,visualizacoes,showEmail,showNome,showNumTel);
 }
 
+Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz){
+	Utilizador* anunciante = NULL;
+	while(1){
+		string email;
+		cin >> email;
+		try{
+			anunciante = encontraUtilizadorAtravesDoEmail(olz, email);
+		}
+		catch(ExceptionUtilizadorNaoExistente& e){
+			cout << "Nao existe um utilizador com o email: " << e.getEmail() << endl;
+			cout << "Tente de novo...\n";
+		}
+		if(anunciante != NULL)
+			break;
+	}
+	return anunciante;
+}
+
 DeCompra* CriaAnuncioCompra(const OLZ& olz){
 		string titulo,categoria,descricao;
 		vector<string> imagens;
@@ -301,11 +391,8 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 		bool troca, showEmail, showNome, showNumTel;
 		Data data;
 		Utilizador* anunciante = NULL;
-		while(1){
-			anunciante = encontraUtilizadorAtravesDoEmail(olz);
-			if(anunciante != NULL)
-				break;
-		}
+		cout << "Introduza o email do anunciante: ";
+		anunciante = leUtilizadorAtravesDoEmail(olz);
 		cout << "Introduza o titulo do anuncio: ";
 		cin.ignore();
 		getline(cin,titulo);
@@ -437,25 +524,18 @@ bool existeCategoria(const OLZ& olz,string categoria){
 	}
 }
 
-Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz){
+Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 	Utilizador* utilizador = NULL;
-	string email;
-	try{
-		cout << "Introduza o email do utilizador: ";
-		cin >> email;
-		vector<Utilizador*> utilizadores = olz.getUtilizadores();
-		for(unsigned int i = 0;i < utilizadores.size();i++)
-			if(utilizadores[i]->getEmail() == email){
-				utilizador = utilizadores[i];
-				break;
-			}
-		if(utilizador == NULL)
-			throw ExceptionUtilizadorNaoExistente(email);
-	}
-	catch(ExceptionUtilizadorNaoExistente& e){
-		cout << "Nao existe um utilizador com o email: " << e.getEmail() << endl;
-	}
-	return utilizador;
+	vector<Utilizador*> utilizadores = olz.getUtilizadores();
+	for(unsigned int i = 0;i < utilizadores.size();i++)
+		if(utilizadores[i]->getEmail() == email){
+			utilizador = utilizadores[i];
+			break;
+		}
+	if(utilizador == NULL)
+		throw ExceptionUtilizadorNaoExistente(email);
+	else
+		return utilizador;
 }
 
 

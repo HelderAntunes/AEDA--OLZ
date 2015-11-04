@@ -32,11 +32,11 @@ Contacto::Contacto(Utilizador* anunciante,Utilizador* pessoaInt,
 	dataNegociada = Data(0,0,0);
 }
 
-void Contacto::setAnuncioPtr(Anuncio* anuncio){
-	this->anuncio = anuncio;
+void Contacto::setAnuncioPtr_toNull(){
+	this->anuncio = NULL;
 }
 
-Anuncio* Contacto::getAnuncioPtr(){
+Anuncio* Contacto::getAnuncio(){
 	return anuncio;
 }
 
@@ -63,6 +63,11 @@ void Contacto::imprimeContacto(){
 		cout << "Pessoa interessada: " << pessoaInt->getNome() << endl;
 	else
 		cout << "A pessoa interessada ja nao se encontra registado no site OLZ.\n";
+
+	if(anuncio != NULL)
+		cout << "Id do anuncio:" << anuncio->getId();
+	else
+		cout << "Anuncio ja nao se encontra no site OLZ.\n";
 
 	cout << "Mensagem da pessoa interessada\n";
 	cout << mensagem << endl;

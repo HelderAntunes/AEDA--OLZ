@@ -28,8 +28,8 @@ private:
 public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);
-	void setAnuncioPtr(Anuncio* anuncio);
-	Anuncio* getAnuncioPtr();
+	void setAnuncioPtr_toNull();
+	Anuncio* getAnuncio();
 	Utilizador* getAnunciante();
 	Utilizador* getPessoaInteressada();
 	void setAnunciantePtr_toNull();

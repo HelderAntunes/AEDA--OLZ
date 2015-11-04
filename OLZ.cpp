@@ -129,8 +129,8 @@ void OLZ::apagarAnuncioVenda(int id){
 		if(anunciosDeVenda[i]->getId() == id){
 			// all the contactos stay with anuncio pointer equal to NULL
 			for(int j = 0;j < contactos.size();j++)
-				if(contactos[j]->getAnuncioPtr()->getId() == id)
-					contactos[j]->setAnuncioPtr(NULL);
+				if(contactos[j]->getAnuncio()->getId() == id)
+					contactos[j]->setAnuncioPtr_toNull();
 			anunciosDeVenda.erase(anunciosDeVenda.begin()+i);
 			break;
 		}
@@ -141,8 +141,8 @@ void OLZ::apagarAnuncioCompra(int id){
 			if(anunciosDeCompra[i]->getId() == id){
 				// all the contactos stay with anuncio pointer equal to NULL
 				for(int j = 0;j < contactos.size();j++)
-					if(contactos[j]->getAnuncioPtr()->getId() == id)
-						contactos[j]->setAnuncioPtr(NULL);
+					if(contactos[j]->getAnuncio()->getId() == id)
+						contactos[j]->setAnuncioPtr_toNull();
 				anunciosDeCompra.erase(anunciosDeCompra.begin()+i);
 				break;
 			}
@@ -170,6 +170,10 @@ vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 	for(int i = 0;i < anunciosDeCompra.size();i++)
 		anuncios.push_back(anunciosDeCompra[i]);
 	return anuncios;
+}
+
+vector<Contacto*> OLZ::getContactos() const{
+	return contactos;
 }
 
 void OLZ::apagarUtilizador(string email){
@@ -205,6 +209,10 @@ void OLZ::apagarUtilizador(string email){
 
 vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 	return anunciosDeVenda;
+}
+
+vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
+	return anunciosDeCompra;
 }
 
 /*

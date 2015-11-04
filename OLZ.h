@@ -40,8 +40,10 @@ public:
 	void mostrarNegociosConcretizados();
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 	vector<DeVenda*> getAnunciosDeVenda() const;
+	vector<DeCompra*> getAnunciosDeCompra() const;
 	vector<Utilizador*> getUtilizadores() const;
 	vector<string> getCategorias() const;
+	vector<Contacto*> getContactos() const;
 };
 
 class ExceptionCategoriaInexistente{
