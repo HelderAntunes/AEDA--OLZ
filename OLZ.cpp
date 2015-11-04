@@ -308,3 +308,10 @@ vector<string> leImagensDoAnuncio(istream& olz_file){
 	return imagens;
 }
 
+vector<Utilizador*> OLZ::getUtilizadores() const{
+	return utilizadores;
+}
+
+vector<string> OLZ::getCategorias() const{
+	return categorias;
+}

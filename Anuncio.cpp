@@ -178,6 +178,10 @@ void Anuncio::setIdentificadorInicial(int static_id_anuncio_inicial){
 	identificador = static_id_anuncio_inicial;
 }
 
+int Anuncio::getIdentificadorInicial(){
+	return identificador;
+}
+
 /**
  * Creates new sale advertisement with information provided and data correspondent to current date.
  * @brief class DeVenda constructor.

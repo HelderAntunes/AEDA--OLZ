@@ -17,6 +17,7 @@ class OLZ {
 	vector<DeCompra*> anunciosDeCompra;
 	vector<Utilizador*> utilizadores;
 	vector<Contacto*> contactos;
+	vector<string> categorias;
 public:
 	OLZ();
 	virtual ~OLZ();
@@ -39,6 +40,19 @@ public:
 	void mostrarNegociosConcretizados();
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 	vector<DeVenda*> getAnunciosDeVenda() const;
+	vector<Utilizador*> getUtilizadores() const;
+	vector<string> getCategorias() const;
+};
+
+class ExceptionCategoriaInexistente{
+	string categoria;
+public:
+	ExceptionCategoriaInexistente(string categoria){
+		this->categoria = categoria;
+	}
+	string getCategoria() const{
+		return categoria;
+	}
 };
 
 #endif /* SRC_OLZ_H_ */

@@ -65,4 +65,15 @@ public:
 	const Utilizador * getUtilizador() const;
 };
 
+class ExceptionUtilizadorNaoExistente{
+	string email;
+public:
+	ExceptionUtilizadorNaoExistente(string email){
+		this->email = email;
+	}
+	string getEmail() const{
+		return email;
+	}
+};
+
 #endif /* UTILIZADOR_H_ */

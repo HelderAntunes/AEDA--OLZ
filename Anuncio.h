@@ -54,6 +54,7 @@ public:
 	bool procuraPalavraChave(string palavra);
 	void setAnunciantePtr(Utilizador* anunciantePtr);
 	static void setIdentificadorInicial(int static_id_anuncio_inicial);
+	static int getIdentificadorInicial();
 	/**
 	 * Function displays advertisement on screen
 	 * @brief display ad.
