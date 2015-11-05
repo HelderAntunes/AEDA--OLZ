@@ -25,6 +25,7 @@ public:
 	void leUtilizadores_e_respetivosAnuncios(istream& olz_file);
 	void leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
+	void leContactos(istream& olz_file);
 	void imprimeTodosOsDados();
 	void imprimeUtilizadores();
 	void imprimeAnunciosDeVenda();
@@ -37,13 +38,13 @@ public:
 	void apagarAnuncioCompra(int id);
 	void adicionarContacto(Contacto* novoContacto);
 	void mostrarContactos();
-	void mostrarNegociosConcretizados();
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 	vector<DeVenda*> getAnunciosDeVenda() const;
 	vector<DeCompra*> getAnunciosDeCompra() const;
 	vector<Utilizador*> getUtilizadores() const;
 	vector<string> getCategorias() const;
 	vector<Contacto*> getContactos() const;
+	void salvarTodosOsDados(ostream& olz_file);
 };
 
 class ExceptionCategoriaInexistente{

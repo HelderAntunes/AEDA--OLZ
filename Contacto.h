@@ -23,7 +23,7 @@ private:
 	string mensagem;
 	string numTel_pessoaInt;
 	bool concretizado;
-	int montanteNegociado;
+	float montanteNegociado;
 	Data dataNegociada;
 public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
@@ -32,8 +32,13 @@ public:
 	Anuncio* getAnuncio();
 	Utilizador* getAnunciante();
 	Utilizador* getPessoaInteressada();
+	string getMensagem();
+	string getNumTel_PessoaInt();
+	float getMontanteNegociado();
+	Data getDataNegociada();
 	void setAnunciantePtr_toNull();
 	void setPessoaInteressadaPtr_toNull();
+	void concretizaNegocio(int montanteNegociado, Data data);
 	bool negocioEstaConcretizado();
 	void imprimeContacto();
 	void imprimeNegocioConcretizado();

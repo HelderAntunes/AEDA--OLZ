@@ -116,6 +116,24 @@ bool Anuncio::getShowNumTel(){
 }
 
 /**
+ * @brief get description of anuncio
+ *
+ * @return description
+ */
+string Anuncio::getDescricao(){
+	return descricao;
+}
+
+/**
+ * @brief get images of anuncio
+ *
+ * @return vector of images
+ */
+vector<string> Anuncio::getImagens(){
+	return imagens;
+}
+
+/**
  * @brief set permit to email.
  *
  * @param is email public?
@@ -233,6 +251,12 @@ float DeVenda::getPreco(){ return preco;}
 void DeVenda::setPreco(float preco){this->preco = preco;}
 
 /**
+ * @brief get information about if the advertiser want negotiate
+ *
+ * @return true if he wants, false if he does not want
+ */
+bool DeVenda::getNegociacao(){return negociacao;}
+/**
  * Function displays sale advertisement on screen
  * @brief display sale ad.
  */
@@ -320,6 +344,20 @@ void DeCompra::imprime() const{
 		cout << "\t" << anunciante->getEmail() << endl;
 
 	cout << "\n\tCriado em: " << data <<endl;
+}
+
+/**
+ * @return if the advertiser want a exchange
+ */
+bool DeCompra::getTroca(){
+	return troca;
+}
+
+/**
+ * @return the id of anuncio de venda
+ */
+int DeCompra::GetTrocaId(){
+	return trocaId;
 }
 
 //Operators << e >>

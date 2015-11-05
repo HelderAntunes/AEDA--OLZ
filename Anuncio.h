@@ -44,6 +44,8 @@ public:
 	Data getData();
 	int getVisualizacoes();
 	Utilizador* getAnunciante();
+	vector<string> getImagens();
+	string getDescricao();
 	bool getShowEmail();
 	bool getShowNome();
 	bool getShowNumTel();
@@ -79,6 +81,7 @@ public:
 			int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
 	Estado getEstado();
 	float getPreco();
+	bool getNegociacao();
 	void setPreco(float preco);
 	void imprime() const ;
 	friend ostream &operator<<(ostream &out, DeVenda a);
@@ -99,6 +102,8 @@ public:
 	void imprime() const ;
 	friend ostream &operator<<(ostream &out, DeCompra a);
 	friend istream &operator>>(istream &in, DeCompra &a);
+	bool getTroca();
+	int GetTrocaId();
 };
 
 #endif /* SRC_ANUNCIO_H_ */

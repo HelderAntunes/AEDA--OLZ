@@ -40,3 +40,19 @@ FimImagens
 FIM_ANUNCIOS_COMPRA
 FIM_UTILIZADORES
 3
+CATEGORIAS
+tecnologia
+vestuario
+mobilia
+FIM_CATEGORIAS
+CONTACTOS
+NOVO_CONTACTO
+helder_antunes-@hotmail.com
+helder_antunes-@hotmail.com
+1
+desejo comprar o telemovel
+918370036
+1
+200
+5 11 2015
+FIM_CONTACTOS
