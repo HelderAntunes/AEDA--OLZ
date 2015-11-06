@@ -99,7 +99,7 @@ void Contacto::imprimeContacto(){
 		cout << "A pessoa interessada ja nao se encontra registado no site OLZ.\n";
 
 	if(anuncio != NULL)
-		cout << "Id do anuncio:" << anuncio->getId();
+		cout << "Id do anuncio:" << anuncio->getId() << endl;
 	else
 		cout << "Anuncio ja nao se encontra no site OLZ.\n";
 

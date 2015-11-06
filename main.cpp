@@ -1,6 +1,7 @@
 /*
  * main.cpp
  */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -225,9 +226,9 @@ void concretizarNegocio(OLZ& olz){
 				cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
 		}
 
-		cout << "Introduza o email do anunciante:";
+		cout << "Email do anunciante\n";
 		anunciante = leUtilizadorAtravesDoEmail(olz);
-		cout << "Introduza o email da pessoa interessada:";
+		cout << "Email da pessoa interessada\n";
 		pessoaInt = leUtilizadorAtravesDoEmail(olz);
 		vector<Contacto*> contactos = olz.getContactos();
 
@@ -504,7 +505,7 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz){
 	Utilizador* anunciante = NULL;
 	while(1){
-		cout << "Introduza o email do anunciante: ";
+		cout << "Introduza o email do utilizador: ";
 		string email;
 		getline(cin,email);
 		try{
