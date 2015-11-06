@@ -19,12 +19,12 @@ class Contacto {
 private:
 	Utilizador* anunciante;    /**< pointer to advertiser */
 	Utilizador* pessoaInt;    /**< pointer to interested person */
-	Anuncio* anuncio;
-	string mensagem;
-	string numTel_pessoaInt;
-	bool concretizado;
-	float montanteNegociado;
-	Data dataNegociada;
+	Anuncio* anuncio;		/**< pointer to add */
+	string mensagem;    /**< message of interested person to advertiser */
+	string numTel_pessoaInt;  /**< phone number of interested person */
+	bool concretizado;   /**< reveals if trade is concretized */
+	float montanteNegociado;  /** money negotiated */
+	Data dataNegociada;   /** data of negotiation */
 public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);

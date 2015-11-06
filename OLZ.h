@@ -2,7 +2,7 @@
  * OLZ.h
  *
  *  Created on: 01/11/2015
- *      Author: Asus
+ *      Author: Helder Antunes
  */
 
 #ifndef SRC_OLZ_H_
@@ -12,12 +12,15 @@
 #include "Anuncio.h"
 #include "Contacto.h"
 
+/**@class OLZ
+ * @brief compact all information of system
+ */
 class OLZ {
-	vector<DeVenda*> anunciosDeVenda;
-	vector<DeCompra*> anunciosDeCompra;
-	vector<Utilizador*> utilizadores;
-	vector<Contacto*> contactos;
-	vector<string> categorias;
+	vector<DeVenda*> anunciosDeVenda; /**< vector of pointers to DeVenda */
+	vector<DeCompra*> anunciosDeCompra; /**< vector of pointers to DeCompra */
+	vector<Utilizador*> utilizadores; /**< vector of pointers to Utilizador */
+	vector<Contacto*> contactos; /**< vector of pointers to Contacto */
+	vector<string> categorias;  /**< vector of categorias */
 public:
 	OLZ();
 	virtual ~OLZ();
@@ -26,10 +29,7 @@ public:
 	void leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leContactos(istream& olz_file);
-	void imprimeTodosOsDados();
 	void imprimeUtilizadores();
-	void imprimeAnunciosDeVenda();
-	void imprimeAnunciosDeCompra();
 	void adicionarUtilizador(Utilizador* novoUtilizador);
 	void apagarUtilizador(string email);
 	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
@@ -47,12 +47,23 @@ public:
 	void salvarTodosOsDados(ostream& olz_file);
 };
 
+/**@class ExceptionCategoriaInexistente
+ * @brief it is used when a category does not exist.
+ */
 class ExceptionCategoriaInexistente{
-	string categoria;
+	string categoria; /**< string name of category that does not exist*/
 public:
+	/**
+	 * @brief Constructor of class
+	 * @param name of category that does not exist
+	 */
 	ExceptionCategoriaInexistente(string categoria){
 		this->categoria = categoria;
 	}
+	/**
+	 * @brief return the name of category that does not exist
+	 * @return the name of category that does not exist
+	 */
 	string getCategoria() const{
 		return categoria;
 	}

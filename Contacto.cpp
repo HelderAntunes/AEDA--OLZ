@@ -33,31 +33,59 @@ Contacto::Contacto(Utilizador* anunciante,Utilizador* pessoaInt,
 	dataNegociada = Data(0,0,0);
 }
 
+/**
+ * @brief set add pointer to null
+ */
 void Contacto::setAnuncioPtr_toNull(){
 	this->anuncio = NULL;
 }
 
+/**
+ * @brief get pointer to add
+ * @return Anuncio* anuncio
+ */
 Anuncio* Contacto::getAnuncio(){
 	return anuncio;
 }
 
+/**
+ * @brief get pointer to advertiser
+ * @return Utilizador* anunciante
+ */
 Utilizador* Contacto::getAnunciante(){
 	return anunciante;
 }
 
+/**
+ * @brief get pointer to interested person
+ * @return Utilizador* pessoaInt
+ */
 Utilizador* Contacto::getPessoaInteressada(){
 	return pessoaInt;
 }
 
+/**
+ * @brief reveals if trade is concretized
+ * @return bool concretizado
+ */
 bool Contacto::negocioEstaConcretizado(){
 	return concretizado;
 }
 
+/**
+ * @brief concretize the trade
+ * @param int montanteNegociado
+ * @param Data data of negotiation
+ */
 void Contacto::concretizaNegocio(int montanteNegociado, Data data){
 	concretizado = true;
 	this->montanteNegociado = montanteNegociado;
 	this->dataNegociada = data;
 }
+
+/**
+ * @brief print the contact
+ */
 void Contacto::imprimeContacto(){
 
 	if(anunciante != NULL)
@@ -82,6 +110,9 @@ void Contacto::imprimeContacto(){
 		cout << "Numero de telemovel da pessoa interessada: " << numTel_pessoaInt << endl;
 }
 
+/**
+ * @brief print the contact traded
+ */
 void Contacto::imprimeNegocioConcretizado(){
 	if(anunciante != NULL)
 		cout << "Anuciante: " << anunciante->getNome() << endl;
@@ -103,9 +134,16 @@ void Contacto::imprimeNegocioConcretizado(){
 	cout << "Data do negocio: " << dataNegociada << endl;
 }
 
+/**
+ * @brief set pointer to advertiser to NULL
+ */
 void Contacto::setAnunciantePtr_toNull(){
 	anunciante = NULL;
 }
+
+/**
+ * @brief set pointer to interested person to NULL
+ */
 void Contacto::setPessoaInteressadaPtr_toNull(){
 	pessoaInt = NULL;
 }
