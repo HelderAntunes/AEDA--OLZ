@@ -228,7 +228,7 @@ vector<Contacto*> OLZ::getContactos() const{
 }
 
 void OLZ::apagarUtilizador(string email){
-	for(unsigned int i = 0;i < utilizadores.size();i++)
+	for(unsigned int i = 0;i < utilizadores.size();i++){
 		if(utilizadores[i]->getEmail() == email){
 			//todos os anuncios do utilizador serao apagados
 			for(unsigned int j = 0;j < anunciosDeVenda.size();j++)
@@ -252,10 +252,12 @@ void OLZ::apagarUtilizador(string email){
 					contactos[j]->setAnunciantePtr_toNull();
 				else if(contactos[j]->getPessoaInteressada()->getEmail() == email)
 					contactos[j]->setPessoaInteressadaPtr_toNull();
-
 			utilizadores.erase(utilizadores.begin()+i);
-			break;
+			return;
 		}
+	}
+
+	throw ExceptionUtilizadorNaoExistente(email);
 }
 
 vector<DeVenda*> OLZ::getAnunciosDeVenda() const{

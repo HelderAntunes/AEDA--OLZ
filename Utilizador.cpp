@@ -243,8 +243,8 @@ ostream & operator<<(ostream & os, const Utilizador & utilizador)
 {
 	os << "Nome: " << utilizador.getNome() << endl;
 	os << "Email: " << utilizador.getEmail() << endl;
-	os << "Contacto: " << utilizador.getContacto() << endl;
-	os << "Localização: " << utilizador.getLocalizacao() << endl;
+	os << "Contacto: " << utilizador.getContacto()<< endl;
+	os << "Localizacao: " << utilizador.getLocalizacao()<< endl;
 	return os;
 }
 
@@ -252,5 +252,5 @@ void Utilizador::imprime(){
 	cout << "Nome: " << nome << endl;
 	cout << "Email: " << email << endl;
 	cout << "Contacto: " << contacto << endl;
-	cout << "Localização: " << localizacao << endl;
+	cout << "Localizacao: " << localizacao << endl;
 }
