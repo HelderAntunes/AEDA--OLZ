@@ -39,6 +39,7 @@ void mostrarNegociosConcretizados(OLZ& olz);
 void mostrarContactos(OLZ& olz);
 void mostrarCategorias(OLZ& olz);
 void apagarUtilizador(OLZ& olz);
+void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
 
 
 
@@ -190,15 +191,29 @@ void mostrarNegociosConcretizados(OLZ& olz){
 	if(negociosImpri == 0)
 		cout << "Nao foram encontrados negocios concretizados.\n";
 }
+void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz){
+	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
+	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
+		if(anunciosDeVenda[i]->getId() == id_anuncio){
+			olz.apagarAnuncioVenda(id_anuncio);
+			return;
+		}
 
+	vector<DeCompra*> anunciosDeCompra = olz.getAnunciosDeCompra();
+	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
+		if(anunciosDeCompra[i]->getId() == id_anuncio){
+			olz.apagarAnuncioCompra(id_anuncio);
+			return;
+		}
+}
 
 void concretizarNegocio(OLZ& olz){
 	Anuncio* anuncio = NULL;
 	Utilizador* anunciante = NULL;
 	Utilizador* pessoaInt = NULL;
 	Contacto* contacto = NULL;
+	int id;
 	while(1){
-		int id;
 		cout << "Introduza o id do anuncio: ";
 		while(1){
 			cin >> id;
@@ -209,6 +224,7 @@ void concretizarNegocio(OLZ& olz){
 			else
 				cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
 		}
+
 		cout << "Introduza o email do anunciante:";
 		anunciante = leUtilizadorAtravesDoEmail(olz);
 		cout << "Introduza o email da pessoa interessada:";
@@ -232,6 +248,7 @@ void concretizarNegocio(OLZ& olz){
 	cout << "Introduza a data de negociacai: (exemplo: '4 11 215', dia mes ano)\n";
 	Data data = leData();
 	contacto->concretizaNegocio(montanteNegociado,data);
+	apagarAnuncioEncontrado(id, olz);
 }
 
 void apagarAnuncio(OLZ& olz){
@@ -247,18 +264,7 @@ void apagarAnuncio(OLZ& olz){
 		else
 			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
 	}
-	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
-	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
-		if(anunciosDeVenda[i]->getId() == id){
-			olz.apagarAnuncioVenda(id);
-			return;
-		}
-	vector<DeCompra*> anunciosDeCompra = olz.getAnunciosDeCompra();
-	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
-		if(anunciosDeCompra[i]->getId() == id){
-			olz.apagarAnuncioCompra(id);
-			return;
-		}
+	apagarAnuncioEncontrado(id,olz);
 }
 
 
