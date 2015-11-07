@@ -39,15 +39,12 @@ void apagarAnuncio(OLZ& olz);
 void concretizarNegocio(OLZ& olz);
 void mostrarNegociosConcretizados(OLZ& olz);
 void mostrarContactos(OLZ& olz);
-void mostrarCategorias(OLZ& olz);
+void mostrarCategorias(const OLZ& olz);
 void apagarUtilizador(OLZ& olz);
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
 void mostrarAnunciosMaisPoulares(const OLZ& olz);
 void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
-
-
-
 
 int main(){
 	OLZ olz;
@@ -61,7 +58,8 @@ int main(){
 	olz_file.close();
 	cout << "Bem-vindo ao OLZ!!!\n\n";
 	int opcao = 0;
-	while(1){
+	bool run = true;
+	while(run){
 		mostrarMenuPrincipal();
 		cin >> opcao;
 		cin.ignore();
@@ -69,51 +67,75 @@ int main(){
 			cout << "Opcao invalida\n\n";
 			continue;
 		}
-		if(opcao == 1)
+		switch(opcao){
+		case 1:
 			olz.imprimeUtilizadores();
-		else if(opcao == 2)
+			break;
+		case 2:
 			criar_e_adicionarNovoUtilizador(olz);
-		else if(opcao == 3)
+			break;
+		case 3:
 			apagarUtilizador(olz);
-		else if(opcao == 4)
+			break;
+		case 4:
 			mostrarAnunciosPorCategoria(olz);
-		else if(opcao == 5)
+			break;
+		case 5:
 			mostrarAnunciosPorLocalizacaoDoAnunciante(olz);
-		else if(opcao == 6)
+			break;
+		case 6:
 			mostrarAnunciosPorPalavraChave(olz);
-		else if(opcao == 7)
+			break;
+		case 7:
 			mostrarAnunciosPorPrecoAproximado(olz);
-		else if(opcao == 8){
+			break;
+		case 8:
+		{
 			DeVenda* novoAnuncio = CriarAnuncioVenda(olz);
 			olz.adicionarAnuncioVenda(novoAnuncio);
 		}
-		else if(opcao == 9){
+		break;
+		case 9:
+		{
 			DeCompra* novoAnuncio = CriaAnuncioCompra(olz);
 			olz.adicionarAnuncioCompra(novoAnuncio);
 		}
-		else if(opcao == 10)
+		break;
+		case 10:
 			verAnuncio(olz);
-		else if(opcao == 11)
+			break;
+		case 11:
 			apagarAnuncio(olz);
-		else if(opcao == 12){
+			break;
+		case 12:
+		{
 			Contacto* novoContacto = criarContactoEntreDoisUtilizadores(olz);
 			olz.adicionarContacto(novoContacto);
 		}
-		else if(opcao == 13)
+		break;
+		case 13:
 			concretizarNegocio(olz);
-		else if(opcao == 14)
-			mostrarNegociosConcretizados(olz);
-		else if(opcao == 15)
-			mostrarContactos(olz);
-		else if(opcao == 16)
-			mostrarCategorias(olz);
-		else if(opcao == 17)
-			mostrarAnunciosMaisPoulares(olz);
-		else
 			break;
-		cout << "\n\nPrime a tecla enter para continuar.\n";
-		cin.get();
+		case 14:
+			mostrarNegociosConcretizados(olz);
+			break;
+		case 15:
+			mostrarContactos(olz);
+			break;
+		case 16:
+			mostrarCategorias(olz);
+			break;
+		case 17:
+			mostrarAnunciosMaisPoulares(olz);
+			break;
+		case 18:
+			run = false;
+		}
+		cout << "\n\nPrime a tecla enter para continuar.";
+		cin.ignore(1000,'\n');
+		system("cls");
 	}
+	cout << "Obrigado! Volte sempre!\n";
 	ofstream olzFile("OLZ-file.txt");
 	olz.salvarTodosOsDados(olzFile);
 	olzFile.close();
@@ -163,7 +185,7 @@ void apagarUtilizador(OLZ& olz){
 	}
 }
 
-void mostrarCategorias(OLZ& olz){
+void mostrarCategorias(const OLZ& olz){
 	vector<string> categorias = olz.getCategorias();
 	cout << "Categorias:\n";
 	for(unsigned int i = 0;i < categorias.size();i++)
@@ -307,8 +329,6 @@ Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
 	Utilizador* pessoaInt = NULL;
 	string mensagem, numTel_pessoaInt;
 	Anuncio* anuncio = NULL;
-	cout << "Introduza o email do anunciante:";
-	anunciante = leUtilizadorAtravesDoEmail(olz);
 	cout << "Introduza o email da pessoa interessada:";
 	pessoaInt = leUtilizadorAtravesDoEmail(olz);
 	cout << "Introduza o id do anuncio:";
@@ -317,8 +337,10 @@ Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
 		cin >> id;
 		cin.ignore();
 		anuncio = encontraAnuncioAtravesDoId(olz, id);
-		if(anuncio != NULL)
+		if (anuncio != NULL){
+			anunciante = anuncio->getAnunciante();
 			break;
+		}
 		else
 			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
 	}
@@ -401,7 +423,8 @@ void verAnuncio(const OLZ& olz){
 
 void mostrarAnunciosPorCategoria(const OLZ& olz){
 	string categoria;
-	cout << "Introduza uma categoria: ";
+	mostrarCategorias(olz);
+	cout << "Introduza a categoria do anuncio de entre estas:";
 	cin >> categoria;
 	cin.ignore();
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
@@ -507,17 +530,20 @@ void mostrarAnunciosPorPrecoAproximado(const OLZ& olz){
 DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	string titulo,categoria,descricao;
 	vector<string> imagens;
-	int id, visualizacoes;
+	int id;
 	float preco;
 	Estado estado;
 	bool negociacao, showEmail, showNome, showNumTel;
 	Data data;
 	Utilizador* anunciante = NULL;
 
+	cout << "Introduza o email do utilizador: ";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 	cout << "Introduza o titulo do anuncio:";
 	getline(cin,titulo);
-	cout << "Introduza a categoria do anuncio:";
+
+	mostrarCategorias(olz);
+	cout << "Introduza a categoria do anuncio de entre estas:";
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:";
 	getline(cin, descricao);
@@ -525,7 +551,6 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	imagens = leImagens();
 	id = Anuncio::getIdentificadorInicial();
 	Anuncio::setIdentificadorInicial(id+1);
-	visualizacoes = 0;
 	cout << "Introduza o preco do anuncio:\n";
 	cin >> preco;
 	cin.ignore();
@@ -543,13 +568,12 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	data = leData();
 	return new DeVenda(titulo,categoria,descricao,imagens,
 			id,estado,preco,negociacao,data,anunciante
-			,visualizacoes,showEmail,showNome,showNumTel);
+			,0,showEmail,showNome,showNumTel);
 }
 
 Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz){
 	Utilizador* anunciante = NULL;
 	while(1){
-		cout << "Introduza o email do utilizador: ";
 		string email;
 		getline(cin,email);
 		try{
@@ -568,7 +592,8 @@ Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz){
 DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	string titulo,categoria,descricao;
 	vector<string> imagens;
-	int id, visualizacoes, trocaId;
+	int id;
+	int trocaId = 0;
 	bool troca, showEmail, showNome, showNumTel;
 	Data data;
 	Utilizador* anunciante = NULL;
@@ -576,7 +601,8 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 	cout << "Introduza o titulo do anuncio:\n";
 	getline(cin,titulo);
-	cout << "Introduza a categoria do anuncio:\n";
+	mostrarCategorias(olz);
+	cout << "Introduza a categoria do anuncio de entre estas:";
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:\n";
 	getline(cin, descricao);
@@ -584,11 +610,12 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	imagens = leImagens();
 	id = Anuncio::getIdentificadorInicial();
 	Anuncio::setIdentificadorInicial(id+1);
-	visualizacoes = 0;
 	cout << "Esta disponivel para troca: y-sim n-nao\n";
 	troca = leResposta();
-	cout << "Introduza o id do anuncio de venda do utilizador\n";
-	trocaId = leIdDoAnuncioDeVendaParaTroca(anunciante, olz);
+	if (troca){
+		cout << "Introduza o id do anuncio de venda do utilizador\n";
+		trocaId = leIdDoAnuncioDeVendaParaTroca(anunciante, olz);
+	}
 	cout << "Pretende mostrar o email no anuncio: y-sim n-nao\n";
 	showEmail = leResposta();
 	cout << "Pretende mostrar o nome no anuncio: y-sim n-nao\n";
@@ -599,7 +626,7 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	data = leData();
 	return new DeCompra(titulo,categoria,descricao,imagens,
 			id,troca,trocaId,data,anunciante
-			,visualizacoes,showEmail,showNome,showNumTel);
+			,0,showEmail,showNome,showNumTel);
 }
 
 int leIdDoAnuncioDeVendaParaTroca(Utilizador* anunciante,const OLZ& olz){
