@@ -14,7 +14,7 @@ using namespace std;
 
 void mostrarMenuPrincipal();
 bool isOpcaoInvalida(int opcao, int inf, int sup);
-Utilizador* criarUtilizador();
+Utilizador* criarUtilizador(const OLZ& olz);
 string pedeEmailDoUtilizadorQueQuerApagar();
 void mostrarAnunciosPorCategoria(const OLZ& olz);
 void mostrarAnunciosPorLocalizacaoDoAnunciante(const OLZ& olz);
@@ -43,6 +43,9 @@ void mostrarCategorias(OLZ& olz);
 void apagarUtilizador(OLZ& olz);
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
 void mostrarAnunciosMaisPoulares(const OLZ& olz);
+void criar_e_adicionarNovoUtilizador(OLZ& olz);
+bool emailExiste(string email,const OLZ& olz);
+
 
 
 
@@ -68,10 +71,8 @@ int main(){
 		}
 		if(opcao == 1)
 			olz.imprimeUtilizadores();
-		else if(opcao == 2){
-			Utilizador* novoUtil = criarUtilizador();
-			olz.adicionarUtilizador(novoUtil);
-		}
+		else if(opcao == 2)
+			criar_e_adicionarNovoUtilizador(olz);
 		else if(opcao == 3)
 			apagarUtilizador(olz);
 		else if(opcao == 4)
@@ -117,6 +118,23 @@ int main(){
 	olz.salvarTodosOsDados(olzFile);
 	olzFile.close();
 	return 0;
+}
+
+void criar_e_adicionarNovoUtilizador(OLZ& olz){
+	Utilizador* novoUtil = NULL;
+	while(1){
+		try{
+			novoUtil = criarUtilizador(olz);
+		}
+		catch(ExceptionEmailJaExistente& e){
+			cout << "Erro ao criar o utilizador.\n";
+			cout << "O email " << e.getEmail() << " ja existe.\n";
+			cout << "Por favor, tente de novo.\n";
+			continue;
+		}
+		break;
+	}
+	olz.adicionarUtilizador(novoUtil);
 }
 
 bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2){
@@ -326,13 +344,23 @@ bool isOpcaoInvalida(int opcao, int inf, int sup){
 		return false;
 }
 
-Utilizador* criarUtilizador(){
+bool emailExiste(string email,const OLZ& olz){
+	vector<Utilizador*> utilizadores = olz.getUtilizadores();
+	for(unsigned int i = 0;i < utilizadores.size();i++)
+		if(utilizadores[i]->getEmail() == email)
+			return true;
+	return false;
+}
+
+Utilizador* criarUtilizador(const OLZ& olz){
 	string nome, email, contacto;
 	string freguesia, concelho, distrito;
 	cout << "Nome do utilizador: ";
 	getline(cin,nome);
 	cout << "Email do Utilizador: ";
 	getline(cin, email);
+	if(emailExiste(email,olz))
+		throw ExceptionEmailJaExistente(email);
 	cout << "Contacto do utilizador: ";
 	getline(cin, contacto);
 	cout << "Introduza os dados da morada.\n";

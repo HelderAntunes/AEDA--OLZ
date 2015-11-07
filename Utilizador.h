@@ -31,38 +31,16 @@ public:
 	void imprime();
 };
 
-class Utilizadores {
-	vector<Utilizador> utilizadores;
-public:
-	void addUtilizador(const Utilizador * u);
-	bool delUtilizador(const string & email);
-	Utilizador * getUtilizador(const string & email);
-	void ordena_clientes_nome();
-	void ordena_clientes_email();
-	void ordena_clientes_contacto();
-	void ordena_clientes_localizacao();
-	vector<Utilizador> getUtilizadores() const;
-	void setUtilizadorNome(Utilizador * u, const string & nome);
-	void setUtilizadorEmail(Utilizador * u, const string & email);
-	void setUtilizadorContacto(Utilizador * u, const string & contacto);
-	void setUtilizadorLocalizacao(Utilizador * u, const Localizacao & localizacao);
-};
-
 class ExceptionEmailJaExistente {
-
-	const Utilizador * utilizador;
+	string email;
 public:
-	ExceptionEmailJaExistente(const Utilizador * u);
-	string getEmail() const;
-	const Utilizador * getUtilizador() const;
-};
+	ExceptionEmailJaExistente(string email){
+		this->email = email;
+	}
+	string getEmail() const{
+		return email;
+	}
 
-class ExceptionContactoJaExistente {
-	const Utilizador * utilizador;
-public:
-	ExceptionContactoJaExistente(const Utilizador * u);
-	string getContacto() const;
-	const Utilizador * getUtilizador() const;
 };
 
 class ExceptionUtilizadorNaoExistente{
