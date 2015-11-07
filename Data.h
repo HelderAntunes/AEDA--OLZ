@@ -13,11 +13,11 @@
 
 using namespace std;
 
-/**@struct DataInvalida
+/**exception thrown when attempting to create an invalid date
+ * @struct ExceptionDataInvalida
  * @brief exception for class Data
- * exception thrown when attempting to create an invalid date
  */
-struct DataInvalida{
+struct ExceptionDataInvalida{
 	string dado;	/**< component of Data that created the exception*/
 	int valor;		/**< invalid value the component of Data took*/
 	/**
@@ -27,7 +27,7 @@ struct DataInvalida{
 	 * @param dado 		component of Data that created the exception
 	 * @param valor 	invalid value the component of Data took
 	 */
-	DataInvalida(string erro, int val): dado(erro), valor(val){}
+	ExceptionDataInvalida(string erro, int val): dado(erro), valor(val){}
 };
 
 /**@class Data
@@ -48,14 +48,14 @@ public:
 	 */
 	Data(int d, int m, int a){
 		if(m < 0 || m >12)
-			throw DataInvalida("mes",m);
+			throw ExceptionDataInvalida("mes",m);
 		if(d < 0 || d > 31)
-			throw DataInvalida("dia",d);
+			throw ExceptionDataInvalida("dia",d);
 		if((m == 4 || m == 6 || m == 9 || m == 11) && d > 30)
 			if(m == 2 && a%4 == 0 && d > 29)
-				throw DataInvalida("dia",d);
+				throw ExceptionDataInvalida("dia",d);
 		if(m == 2 && a%4 != 0 && d > 28)
-			throw DataInvalida("dia",d);
+			throw ExceptionDataInvalida("dia",d);
 		dia = d;
 		mes = m;
 		ano = a;

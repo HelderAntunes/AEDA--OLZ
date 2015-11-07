@@ -1,5 +1,8 @@
-/*
- * main.cpp
+/** @mainpage Olz documentation
+ *
+ * @section intro_sec Introduction
+ *
+ * This document contains the doxygen generated documentation for every class in this project
  */
 
 #include <iostream>
@@ -672,8 +675,8 @@ Data leData(){
 			cin >> dia >> mes >> ano;
 			cin.ignore();
 			Data d(dia, mes, ano);
-		}catch(DataInvalida& dInv){
-			cout << dInv.dado << "(" << dInv.valor << ")" << " invalido, tente de novo.\n";
+		}catch(ExceptionDataInvalida& dInv){
+			cout << dInv.dado << " " << dInv.valor << " invalido, tente de novo.\n";
 			continue;
 		}
 		return Data(dia,mes,ano);
