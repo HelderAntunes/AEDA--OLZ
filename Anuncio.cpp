@@ -293,8 +293,8 @@ void DeVenda::imprime() const {
 		cout << "\tContacto telemovel: " << anunciante->getContacto() << endl;
 	if(showEmail)
 		cout << "\tEmail: " << anunciante->getEmail() << endl;
-
-	cout << "\n\tCriado em: " << data <<endl;
+	cout << "\n\tNumero de visualizacoes: " << visualizacoes << endl;
+	cout << "\tCriado em: " << data <<endl;
 }
 
 /**
@@ -343,7 +343,8 @@ void DeCompra::imprime() const{
 	if(showEmail)
 		cout << "\t" << anunciante->getEmail() << endl;
 
-	cout << "\n\tCriado em: " << data <<endl;
+	cout << "\n\tNumero de visualizacoes: " << visualizacoes << endl;
+	cout << "\tCriado em: " << data <<endl;
 }
 
 /**

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 #include "Anuncio.h"
 #include "OLZ.h"
 
@@ -41,6 +42,7 @@ void mostrarContactos(OLZ& olz);
 void mostrarCategorias(OLZ& olz);
 void apagarUtilizador(OLZ& olz);
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
+void mostrarAnunciosMaisPoulares(const OLZ& olz);
 
 
 
@@ -60,7 +62,7 @@ int main(){
 		mostrarMenuPrincipal();
 		cin >> opcao;
 		cin.ignore();
-		if(isOpcaoInvalida(opcao, 1, 17) == true){
+		if(isOpcaoInvalida(opcao, 1, 18) == true){
 			cout << "Opcao invalida\n\n";
 			continue;
 		}
@@ -104,6 +106,8 @@ int main(){
 			mostrarContactos(olz);
 		else if(opcao == 16)
 			mostrarCategorias(olz);
+		else if(opcao == 17)
+			mostrarAnunciosMaisPoulares(olz);
 		else
 			break;
 		cout << "\n\nPrime a tecla enter para continuar.\n";
@@ -113,6 +117,16 @@ int main(){
 	olz.salvarTodosOsDados(olzFile);
 	olzFile.close();
 	return 0;
+}
+
+bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2){
+	return a1->getVisualizacoes() > a2->getVisualizacoes(); // ordem decrescente
+}
+
+void mostrarAnunciosMaisPoulares(const OLZ& olz){
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	sort(anuncios.begin(),anuncios.end(),ordenaPorVisualizacoes); // ordem decrescente
+	imprimirAnunciosEncontrados(anuncios);
 }
 
 void apagarUtilizador(OLZ& olz){
@@ -156,7 +170,8 @@ void mostrarMenuPrincipal(){
 			"\t14 - Mostrar negocios concretizados\n"
 			"\t15 - Mostrar contactos\n"
 			"\t16 - Mostrar categorias\n"
-			"\t17 - Sair da aplicacao\n";
+			"\t17 - Mostrar anuncios mais populares\n"
+			"\t18 - Sair da aplicacao\n";
 	cout << endl;
 	cout << "Opcao: ";
 	return;
@@ -348,6 +363,7 @@ void verAnuncio(const OLZ& olz){
 		cin.ignore();
 		for(unsigned int i = 0;i < anuncios.size();i++)
 			if(anuncios[i]->getId() == id){
+				anuncios[i]->incVisualizacoes();
 				anuncios[i]->imprime();
 				return;
 			}
