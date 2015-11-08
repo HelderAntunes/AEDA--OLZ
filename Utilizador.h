@@ -1,4 +1,3 @@
-
 #ifndef UTILIZADOR_H_
 #define UTILIZADOR_H_
 
@@ -9,11 +8,14 @@
 
 using namespace std;
 
+/**@class Utilizador
+ * @brief Utilizador class
+ */
 class Utilizador {
-	string nome;
-	string email;
-	string contacto;
-	Localizacao localizacao;
+	string nome;	            /**< name of user*/
+	string email;	            /**< email of user*/
+	string contacto;			/**< phone number of user*/
+	Localizacao localizacao;	/**< localization of user*/
 
 public:
 	Utilizador(string nome, string email, string contacto, Localizacao localizacao);
@@ -31,24 +33,42 @@ public:
 	void imprime();
 };
 
+/**@class ExceptionEmailJaExistente
+ * @brief a exception class
+ */
 class ExceptionEmailJaExistente {
-	string email;
+	string email;		/**< existing email*/
 public:
+	/**
+	 * @brief constructor of ExceptionEmailJaExistente
+	 */
 	ExceptionEmailJaExistente(string email){
 		this->email = email;
 	}
+	/**
+	 * @brief get existing email
+	 */
 	string getEmail() const{
 		return email;
 	}
 
 };
 
+/**@class ExceptionUtilizadorNaoExistente
+ * @brief a exception class
+ */
 class ExceptionUtilizadorNaoExistente{
-	string email;
+	string email;	/**< nonexistent email*/
 public:
+	/**
+	 * @brief constructor of ExceptionUtilizadorNaoExistente
+	 */
 	ExceptionUtilizadorNaoExistente(string email){
 		this->email = email;
 	}
+	/**
+	 * @brief get nonexistent email
+	 */
 	string getEmail() const{
 		return email;
 	}

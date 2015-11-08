@@ -1,5 +1,3 @@
-//TODO Add ExceptionEmailMalFormado
-
 #include <string>
 #include <vector>
 #include <iostream>
@@ -7,7 +5,14 @@
 #include "Localizacao.h"
 #include "Anuncio.h"
 
-
+/**
+ * @brief constructor of class Utilizador
+ *
+ * @param nome 			name of user
+ * @param email 		email of user
+ * @param contacto 		phone number of user
+ * @param localizacao	        localization of user
+ */
 Utilizador::Utilizador(string nome, string email, string contacto, Localizacao localizacao):
 	nome(nome),
 	email(email),
@@ -17,6 +22,16 @@ Utilizador::Utilizador(string nome, string email, string contacto, Localizacao l
 	// Empty Block
 }
 
+/**
+ * @brief constructor of class Utilizador
+ *
+ * @param nome 			name of user
+ * @param email 		email of user
+ * @param contacto 		phone number of user
+ * @param freguesia		freguesia of user
+ * @param concelho		concelho of user
+ * @param distrito		distrito of user
+ */
 Utilizador::Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito):
 		nome(nome),
 		email(email),
@@ -26,46 +41,87 @@ Utilizador::Utilizador(string nome, string email, string contacto, string fregue
 	// Empty Block
 }
 
+/**
+ * @brief get name of user
+ *
+ * @return nome
+ */
 string Utilizador::getNome() const
 {
 	return nome;
 }
 
+/**
+ * @brief get email of user
+ *
+ * @return email
+ */
 string Utilizador::getEmail() const
 {
 	return email;
 }
 
+/**
+ * @brief get phone number of user
+ *
+ * @return contacto
+ */
 string Utilizador::getContacto() const
 {
 	return contacto;
 }
 
+/**
+ * @brief get localization of user
+ *
+ * @return localizacao
+ */
 Localizacao Utilizador::getLocalizacao() const
 {
 	return localizacao;
 }
 
+/**
+ * @brief set name of user
+ *
+ * @param nome	      name of user
+ */
 void Utilizador::setNome(const string & nome)
 {
 	this->nome = nome;
 }
 
+/**
+ * @brief set email of user
+ *
+ * @param email	       email of user
+ */
 void Utilizador::setEmail(const string & email)
 {
 	this->email = email;
 }
 
+/**
+ * @brief set phone number of user
+ *
+ * @param contacto 	phone numeber of user
+ */
 void Utilizador::setContacto(const string & contacto)
 {
 	this->email = email;
 }
 
+/**
+ * @brief set localization of user
+ *
+ * @param localizacao
+ */
 void Utilizador::setLocalizacao(const Localizacao & localizacao)
 {
 	this->localizacao = localizacao;
 }
 
+//operator <<
 ostream & operator<<(ostream & os, const Utilizador & utilizador)
 {
 	os << "Nome: " << utilizador.getNome() << endl;
@@ -75,6 +131,9 @@ ostream & operator<<(ostream & os, const Utilizador & utilizador)
 	return os;
 }
 
+/**
+ * @brief print information of user in console
+ */
 void Utilizador::imprime(){
 	cout << "Nome: " << nome << endl;
 	cout << "Email: " << email << endl;

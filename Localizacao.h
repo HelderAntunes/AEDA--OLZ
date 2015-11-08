@@ -1,4 +1,3 @@
-
 #ifndef LOCALIZACAO_H_
 #define LOCALIZACAO_H_
 
@@ -7,17 +6,19 @@
 
 using namespace std;
 
+/**
+ * @class Localizacao
+ * @brief Localizacao class
+ */
 class Localizacao {
-	string freguesia;
-	string concelho;
-	string distrito;
+	string freguesia;    /**< freguesia of user */
+	string concelho;	/**< concelho of user */
+	string distrito;	/**< distrito of user */
 public:
 	Localizacao(string freguesia, string concelho, string distrito);
 	string getFreguesia() const;
 	string getConcelho() const;
 	string getDistrito() const;
-	bool operator<(const Localizacao & l) const;
-	bool operator==(const Localizacao & l) const;
 	friend ostream & operator<<(ostream & os, const Localizacao & l);
 };
 

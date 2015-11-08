@@ -65,6 +65,12 @@ int main(){
 	while(run){
 		mostrarMenuPrincipal();
 		cin >> opcao;
+		if(cin.fail()){
+			cin.clear();
+			cin.ignore(1000,'\n');
+			cout << "Opcao invalida, tente de novo.\n";
+			continue;
+		}
 		cin.ignore();
 		if(isOpcaoInvalida(opcao, 1, 18) == true){
 			cout << "Opcao invalida\n\n";
@@ -494,7 +500,7 @@ void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados){
 	}
 
 	if(anunciosEncontrados.size() == 0)
-		cout << "Nao foi encontrado nenhum anuncio com a distrito indicada.\n";
+		cout << "Nao foi encontrado nenhum anuncio.\n";
 }
 
 void mostrarAnunciosPorPalavraChave(const OLZ& olz){
@@ -550,7 +556,7 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:";
 	getline(cin, descricao);
-	cout << "Imagens do anuncio: ('N' - nao tem mais imagens)";
+	cout << "Imagens do anuncio: ('N' - nao tem mais imagens)\n";
 	imagens = leImagens();
 	id = Anuncio::getIdentificadorInicial();
 	Anuncio::setIdentificadorInicial(id+1);

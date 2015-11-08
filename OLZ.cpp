@@ -184,6 +184,8 @@ void OLZ::leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunci
 void OLZ::imprimeUtilizadores(){
 	for(unsigned int i = 0;i < utilizadores.size();i++)
 		cout << (*utilizadores[i]) << endl << "/--------------------------------------------\n";
+	if(utilizadores.size() == 0)
+		cout << "\nNenhum utilizador foi encontrado.\n";
 }
 
 
@@ -220,8 +222,9 @@ void OLZ::apagarAnuncioVenda(int id){
 		if(anunciosDeVenda[i]->getId() == id){
 			// all the contactos stay with anuncio pointer equal to NULL
 			for(unsigned int j = 0;j < contactos.size();j++)
-				if(contactos[j]->getAnuncio()->getId() == id)
-					contactos[j]->setAnuncioPtr_toNull();
+				if(contactos[j]->getAnuncio() != NULL)
+					if(contactos[j]->getAnuncio()->getId() == id)
+						contactos[j]->setAnuncioPtr_toNull();
 			anunciosDeVenda.erase(anunciosDeVenda.begin()+i);
 			break;
 		}
@@ -236,8 +239,9 @@ void OLZ::apagarAnuncioCompra(int id){
 			if(anunciosDeCompra[i]->getId() == id){
 				// all the contactos stay with anuncio pointer equal to NULL
 				for(unsigned int j = 0;j < contactos.size();j++)
-					if(contactos[j]->getAnuncio()->getId() == id)
-						contactos[j]->setAnuncioPtr_toNull();
+					if(contactos[j]->getAnuncio() != NULL)
+						if(contactos[j]->getAnuncio()->getId() == id)
+							contactos[j]->setAnuncioPtr_toNull();
 				anunciosDeCompra.erase(anunciosDeCompra.begin()+i);
 				break;
 			}
@@ -287,28 +291,38 @@ void OLZ::apagarUtilizador(string email){
 	for(unsigned int i = 0;i < utilizadores.size();i++){
 		if(utilizadores[i]->getEmail() == email){
 			//todos os anuncios do utilizador serao apagados
+			cout << "\nencontrou email\n";
 			for(unsigned int j = 0;j < anunciosDeVenda.size();j++)
 				if(anunciosDeVenda[j]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunciosDeVenda[j]->getId();
 					this->apagarAnuncioVenda(id_anuncio);
 					j--;
 				}
+			cout << "apagou as vendas\n";
 			for(unsigned int j = 0;j < anunciosDeCompra.size();j++)
 				if(anunciosDeCompra[j]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunciosDeCompra[j]->getId();
 					this->apagarAnuncioCompra(id_anuncio);
 					j--;
 				}
+			cout << "apagou as compras\n";
 			// Os contactos nao serao apagados,mas quando
 			// existir um apontador(anunciante ou pessoa interessada)
 			// referente a este utilizador, esse apontador vai ser posto
 			// a NULL
-			for(unsigned int j = 0;j < contactos.size();j++)
-				if(contactos[j]->getAnunciante()->getEmail() == email)
-					contactos[j]->setAnunciantePtr_toNull();
-				else if(contactos[j]->getPessoaInteressada()->getEmail() == email)
-					contactos[j]->setPessoaInteressadaPtr_toNull();
+			for(unsigned int j = 0;j < contactos.size();j++){
+				if(contactos[j]->getAnunciante() != NULL)
+					if(contactos[j]->getAnunciante()->getEmail() == email)
+						contactos[j]->setAnunciantePtr_toNull();
+
+				if(contactos[j]->getPessoaInteressada() != NULL)
+					if(contactos[j]->getPessoaInteressada()->getEmail() == email)
+						contactos[j]->setPessoaInteressadaPtr_toNull();
+			}
+
+			cout << "apagou os contactos\n";
 			utilizadores.erase(utilizadores.begin()+i);
+			cout << "apagou o utilizador\n";
 			return;
 		}
 	}
