@@ -45,7 +45,7 @@ void mostrarContactos(OLZ& olz);
 void mostrarCategorias(const OLZ& olz);
 void apagarUtilizador(OLZ& olz);
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
-void mostrarAnunciosMaisPoulares(const OLZ& olz);
+void mostrarAnunciosMaisPopulares(const OLZ& olz);
 void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
 
@@ -135,7 +135,7 @@ int main(){
 			mostrarCategorias(olz);
 			break;
 		case 17:
-			mostrarAnunciosMaisPoulares(olz);
+			mostrarAnunciosMaisPopulares(olz);
 			break;
 		case 18:
 			run = false;
@@ -172,7 +172,7 @@ bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2){
 	return a1->getVisualizacoes() > a2->getVisualizacoes(); // ordem decrescente
 }
 
-void mostrarAnunciosMaisPoulares(const OLZ& olz){
+void mostrarAnunciosMaisPopulares(const OLZ& olz){
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
 	sort(anuncios.begin(),anuncios.end(),ordenaPorVisualizacoes); // ordem decrescente
 	imprimirAnunciosEncontrados(anuncios);
