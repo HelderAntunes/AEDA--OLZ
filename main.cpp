@@ -198,7 +198,7 @@ void mostrarCategorias(const OLZ& olz){
 	vector<string> categorias = olz.getCategorias();
 	cout << "Categorias:\n";
 	for(unsigned int i = 0;i < categorias.size();i++)
-		cout << categorias[i] << endl;
+		cout << "\t" << categorias[i] << endl;
 }
 
 void mostrarMenuPrincipal(){
