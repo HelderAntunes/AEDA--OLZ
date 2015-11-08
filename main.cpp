@@ -674,17 +674,22 @@ string leCategoria(const OLZ& olz){
 }
 
 Data leData(){
-	int dia, mes, ano;
+	Data data;
 	while(1){
 		try{
-			cin >> dia >> mes >> ano;
-			cin.ignore();
-			Data d(dia, mes, ano);
+			if (!(cin >> data)){
+				cout << "Erro na data! Tente de novo. ";
+				cin.clear();
+				cin.ignore(10000, '\n');
+				continue;
+			}
+			else
+				cin.ignore();
 		}catch(ExceptionDataInvalida& dInv){
 			cout << dInv.dado << " " << dInv.valor << " invalido, tente de novo.\n";
 			continue;
 		}
-		return Data(dia,mes,ano);
+		return data;
 	}
 }
 
@@ -706,7 +711,7 @@ Estado leEstadoDoProduto(){
 	Estado estado;
 	string estadoString;
 	while(1){
-		getline(cin,estadoString);
+		getline(cin, estadoString);
 		if(estadoString == "NOVO"){
 			estado = NOVO;
 			return estado;

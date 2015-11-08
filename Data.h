@@ -95,6 +95,8 @@ public:
 
 		in >> data.dia >> data.mes >> data.ano;
 
+		Data test(data.dia,data.mes,data.ano);
+
 		return in;
 	}
 };
