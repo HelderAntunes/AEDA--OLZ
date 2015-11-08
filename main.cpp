@@ -198,7 +198,7 @@ void mostrarCategorias(const OLZ& olz){
 	vector<string> categorias = olz.getCategorias();
 	cout << "Categorias:\n";
 	for(unsigned int i = 0;i < categorias.size();i++)
-		cout << i+1 << " - " << categorias[i] << endl;
+		cout << categorias[i] << endl;
 }
 
 void mostrarMenuPrincipal(){
@@ -407,7 +407,7 @@ Utilizador* criarUtilizador(const OLZ& olz){
 
 string pedeEmailDoUtilizadorQueQuerApagar(){
 	string email;
-	cout << "Email do utilizador que quer apagar:";
+	cout << "Email do utilizador que quer apagar: ";
 	cin >> email;
 	cin.ignore();
 	return email;
@@ -417,7 +417,7 @@ void verAnuncio(const OLZ& olz){
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
 	int id;
 	while(1){
-		cout << "Introduz o id do anuncio que quer ver:";
+		cout << "Introduz o id do anuncio que quer ver: ";
 		cin >> id;
 		cin.ignore();
 		for(unsigned int i = 0;i < anuncios.size();i++)
@@ -433,7 +433,7 @@ void verAnuncio(const OLZ& olz){
 void mostrarAnunciosPorCategoria(const OLZ& olz){
 	string categoria;
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
 	getline(cin,categoria);
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
 	int anunciosImprimidos = 0;
@@ -504,7 +504,7 @@ void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados){
 
 void mostrarAnunciosPorPalavraChave(const OLZ& olz){
 	string palavraChave;
-	cout << "Introduz a palavra chave:";
+	cout << "Introduz a palavra chave: ";
 	cin >> palavraChave;
 	cin.ignore();
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
@@ -547,13 +547,13 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 
 	cout << "Introduza o email do utilizador: ";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
-	cout << "Introduza o titulo do anuncio:";
+	cout << "Introduza o titulo do anuncio: ";
 	getline(cin,titulo);
 
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
 	categoria = leCategoria(olz);
-	cout << "Introduza a descricao do anuncio:";
+	cout << "Introduza a descricao do anuncio: ";
 	getline(cin, descricao);
 	cout << "Imagens do anuncio: ('N' - nao tem mais imagens)\n";
 	imagens = leImagens();
@@ -610,7 +610,7 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	cout << "Introduza o titulo do anuncio:\n";
 	getline(cin,titulo);
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:\n";
 	getline(cin, descricao);
