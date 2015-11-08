@@ -706,8 +706,7 @@ Estado leEstadoDoProduto(){
 	Estado estado;
 	string estadoString;
 	while(1){
-		cin >> estadoString;
-		cin.ignore();
+		getline(cin,estadoString);
 		if(estadoString == "NOVO"){
 			estado = NOVO;
 			return estado;
