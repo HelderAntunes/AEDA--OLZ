@@ -296,11 +296,14 @@ void concretizarNegocio(OLZ& olz){
 		pessoaInt = leUtilizadorAtravesDoEmail(olz);
 		vector<Contacto*> contactos = olz.getContactos();
 
-		for(unsigned int i = 0;i < contactos.size();i++)
-			if(contactos[i]->getAnunciante()->getEmail() == anunciante->getEmail()
-					&& contactos[i]->getPessoaInteressada()->getEmail() == pessoaInt->getEmail()
-					&& contactos[i]->getAnuncio()->getId() == anuncio->getId())
-				contacto = contactos[i];
+		for(unsigned int i = 0;i < contactos.size();i++){
+			if(contactos[i]->getAnunciante() != NULL && contactos[i]->getPessoaInteressada() != NULL)
+				if(contactos[i]->getAnunciante()->getEmail() == anunciante->getEmail()
+				&& contactos[i]->getPessoaInteressada()->getEmail() == pessoaInt->getEmail()
+				&& contactos[i]->getAnuncio()->getId() == anuncio->getId())
+					contacto = contactos[i];
+		}
+
 		if(contacto != NULL)
 			break;
 		else
