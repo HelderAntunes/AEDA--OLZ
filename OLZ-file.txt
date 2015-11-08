@@ -1,11 +1,117 @@
 INICIO_UTILIZADORES
-FIM_UTILIZADORES
+NOVO_UTILIZADOR
+Helder Antunes
+helder_antunes-@hotmail.com
+918370036
+Sobrado
+Valongo
+Porto
+INICIO_ANUNCIOS_VENDA
+NOVO_ANUNCIO
+vendo telemovel
+tecnologia
+vendo telemovel Iphone 5s
+Imagens
+imagem 1
+imagem 2
+FimImagens
 1
+31/0/15
+22
+1 1 1
+USADO
+199.99
+1
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+NOVO_ANUNCIO
+compro telemovel
+tecnologia
+interessado em um Samsumg Galaxy
+Imagens
+imagem 1
+imagem 2
+FimImagens
+2
+31/10/2015
+32
+1 1 1
+1
+1
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Ines Proenca
+inesfproenca@gmail.com
+916560700
+Lordelo do Ouro
+Porto
+Porto
+INICIO_ANUNCIOS_VENDA
+NOVO_ANUNCIO
+Vendo cadeira
+mobilia
+cadeira de criança com desenhos
+Imagens
+cad1
+cad2
+cad3
+FimImagens
+3
+3/3/2015
+5
+0 0 0
+FUNCIONAL
+9.99
+1
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Alfredo Afonso
+alf@aqui.pt
+961231234
+Canal Caveira
+Setubal
+Setubal
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Maria Bolacha
+mariaB@manteigas.com
+123456789
+Vitrine
+Balcao
+Pastelaria
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+FIM_UTILIZADORES
+4
 CATEGORIAS
 tecnologia
 vestuario
 mobilia
-veiculos
 FIM_CATEGORIAS
 CONTACTOS
+NOVO_CONTACTO
+helder_antunes-@hotmail.com
+helder_antunes-@hotmail.com
+1
+desejo comprar o telemovel
+918370036
+1
+200
+5/11/2015
+NOVO_CONTACTO
+helder_antunes-@hotmail.com
+inesfproenca@gmail.com
+1
+gostava de adquirir o produto em questao
+916560700
+1
+200
+6/11/2015
 FIM_CONTACTOS
