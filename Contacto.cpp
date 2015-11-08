@@ -77,7 +77,7 @@ bool Contacto::negocioEstaConcretizado(){
  * @param int montanteNegociado
  * @param Data data of negotiation
  */
-void Contacto::concretizaNegocio(int montanteNegociado, Data data){
+void Contacto::concretizaNegocio(float montanteNegociado, Data data){
 	concretizado = true;
 	this->montanteNegociado = montanteNegociado;
 	this->dataNegociada = data;

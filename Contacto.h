@@ -38,7 +38,7 @@ public:
 	Data getDataNegociada();
 	void setAnunciantePtr_toNull();
 	void setPessoaInteressadaPtr_toNull();
-	void concretizaNegocio(int montanteNegociado, Data data);
+	void concretizaNegocio(float montanteNegociado, Data data);
 	bool negocioEstaConcretizado();
 	void imprimeContacto();
 	void imprimeNegocioConcretizado();

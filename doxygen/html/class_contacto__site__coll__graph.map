@@ -1,0 +1,5 @@
+<map id="Contacto_site" name="Contacto_site">
+<area shape="rect" id="node2" href="$class_contacto.html" title="contact between two persons " alt="" coords="39,582,141,674"/>
+<area shape="rect" id="node3" href="$class_utilizador.html" title="{Utilizador\n|&#45; nome\l&#45; email\l&#45; contacto\l|+ Utilizador()\l+ Utilizador()\l+ ~Utilizador()\l+ getNome()\l+ getEmail()\l+ getContacto()\l+ getLocalizacao()\l+ setNome()\l+ setEmail()\l+ setContacto()\l+ setLocalizacao()\l}" alt="" coords="26,251,155,504"/>
+<area shape="rect" id="node4" href="$class_localizacao.html" title="{Localizacao\n|&#45; freguesia\l&#45; concelho\l&#45; distrito\l|+ Localizacao()\l+ getFreguesia()\l+ getConcelho()\l+ getDistrito()\l+ operator\&lt;()\l+ operator==()\l}" alt="" coords="32,6,149,186"/>
+</map>

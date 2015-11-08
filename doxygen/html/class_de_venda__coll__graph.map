@@ -1,0 +1,6 @@
+<map id="DeVenda" name="DeVenda">
+<area shape="rect" id="node2" href="$class_anuncio.html" title="Advertisement class. " alt="" coords="7,555,169,941"/>
+<area shape="rect" id="node3" href="$class_data.html" title="Date class. " alt="" coords="5,295,75,417"/>
+<area shape="rect" id="node4" href="$class_utilizador.html" title="Utilizador class. " alt="" coords="99,222,228,490"/>
+<area shape="rect" id="node5" href="$class_localizacao.html" title="Localizacao class. " alt="" coords="105,6,223,157"/>
+</map>

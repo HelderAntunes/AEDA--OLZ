@@ -1,0 +1,4 @@
+<map id="ExceptionContactoJaExistente" name="ExceptionContactoJaExistente">
+<area shape="rect" id="node2" href="$class_utilizador.html" title="{Utilizador\n|&#45; nome\l&#45; email\l&#45; contacto\l|+ Utilizador()\l+ Utilizador()\l+ ~Utilizador()\l+ getNome()\l+ getEmail()\l+ getContacto()\l+ getLocalizacao()\l+ setNome()\l+ setEmail()\l+ setContacto()\l+ setLocalizacao()\l+ imprime()\l}" alt="" coords="50,251,179,519"/>
+<area shape="rect" id="node3" href="$class_localizacao.html" title="{Localizacao\n|&#45; freguesia\l&#45; concelho\l&#45; distrito\l|+ Localizacao()\l+ getFreguesia()\l+ getConcelho()\l+ getDistrito()\l+ operator\&lt;()\l+ operator==()\l}" alt="" coords="56,6,173,186"/>
+</map>

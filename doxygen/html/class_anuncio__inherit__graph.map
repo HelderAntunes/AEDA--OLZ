@@ -1,0 +1,4 @@
+<map id="Anuncio" name="Anuncio">
+<area shape="rect" id="node2" href="$class_de_compra.html" title="Purchase Advertisement class derived from Anuncio. " alt="" coords="5,492,109,628"/>
+<area shape="rect" id="node3" href="$class_de_venda.html" title="Sale Advertisement class derived from Anuncio. " alt="" coords="135,470,263,650"/>
+</map>

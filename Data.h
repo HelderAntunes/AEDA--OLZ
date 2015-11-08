@@ -79,7 +79,7 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend ostream& operator<< (ostream& out, const Data &data){
-		out << data.dia << " " << data.mes << " " << data.ano;
+		out << data.dia << "/" << data.mes << "/" << data.ano;
 
 		return out;
 	}
@@ -92,8 +92,8 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend istream &operator>>( istream  &in, Data &data ){
-
-		in >> data.dia >> data.mes >> data.ano;
+		char lixo;
+		in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
 
 		Data test(data.dia,data.mes,data.ano);
 

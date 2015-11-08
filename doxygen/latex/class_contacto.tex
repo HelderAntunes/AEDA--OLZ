@@ -1,0 +1,279 @@
+\hypertarget{class_contacto}{}\section{Contacto Class Reference}
+\label{class_contacto}\index{Contacto@{Contacto}}
+
+
+contact between two persons  
+
+
+
+
+{\ttfamily \#include $<$Contacto.\+h$>$}
+
+
+
+Collaboration diagram for Contacto\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_contacto__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_contacto_af3d7e17b38f1c9dcf239b92b47f9d1fa}{Contacto} (\hyperlink{class_utilizador}{Utilizador} $\ast$\hyperlink{class_contacto_a77aa3267764f1deae040ab8d3a09cf9a}{anunciante}, \hyperlink{class_utilizador}{Utilizador} $\ast$\hyperlink{class_contacto_a30bc3e0baecefc67118e591858b5da4c}{pessoa\+Int}, \hyperlink{class_anuncio}{Anuncio} $\ast$\hyperlink{class_contacto_a5cb4811ded2eea7ac9645acb1553b410}{anuncio}, string \hyperlink{class_contacto_a5df8ad3ac8609cee665c21a2fa2a3e6a}{mensagem}, string \hyperlink{class_contacto_a87b5fa8d59ad7b8596eb1d48bfb405df}{num\+Tel\+\_\+pessoa\+Int})
+\begin{DoxyCompactList}\small\item\em class \hyperlink{class_contacto}{Contacto} constructor \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_a3be07cbbddb82a3e5eb7bd3fcaed2f50}{}void \hyperlink{class_contacto_a3be07cbbddb82a3e5eb7bd3fcaed2f50}{set\+Anuncio\+Ptr\+\_\+to\+Null} ()\label{class_contacto_a3be07cbbddb82a3e5eb7bd3fcaed2f50}
+
+\begin{DoxyCompactList}\small\item\em set add pointer to null \end{DoxyCompactList}\item 
+\hyperlink{class_anuncio}{Anuncio} $\ast$ \hyperlink{class_contacto_a4ad1dc12564c5d5b495d1ec5343d396d}{get\+Anuncio} ()
+\begin{DoxyCompactList}\small\item\em get pointer to add \end{DoxyCompactList}\item 
+\hyperlink{class_utilizador}{Utilizador} $\ast$ \hyperlink{class_contacto_a588d6077fe57f64fcb5b436db6a0c844}{get\+Anunciante} ()
+\begin{DoxyCompactList}\small\item\em get pointer to advertiser \end{DoxyCompactList}\item 
+\hyperlink{class_utilizador}{Utilizador} $\ast$ \hyperlink{class_contacto_a69478b8031acc4ab2b7a2b0522889b5c}{get\+Pessoa\+Interessada} ()
+\begin{DoxyCompactList}\small\item\em get pointer to interested person \end{DoxyCompactList}\item 
+string \hyperlink{class_contacto_a435afe8dfd007e6df292d7d2c5235867}{get\+Mensagem} ()
+\begin{DoxyCompactList}\small\item\em get message between two users \end{DoxyCompactList}\item 
+string \hyperlink{class_contacto_aee20176836aae17cac823b87f850c500}{get\+Num\+Tel\+\_\+\+Pessoa\+Int} ()
+\begin{DoxyCompactList}\small\item\em get phone number of interested person \end{DoxyCompactList}\item 
+float \hyperlink{class_contacto_a73657b4f2576a340e4dc7b5fe8ca0d3c}{get\+Montante\+Negociado} ()
+\begin{DoxyCompactList}\small\item\em get the amount traded, it will be 0 if not negotiated \end{DoxyCompactList}\item 
+\hyperlink{class_data}{Data} \hyperlink{class_contacto_aa6792efa6165813ed7d471558b502f4f}{get\+Data\+Negociada} ()
+\begin{DoxyCompactList}\small\item\em get the data of negotiation, it will be 0/0/0 if not negotiated \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_a9ddf36376fb679d3e5ff9190329e54c5}{}void \hyperlink{class_contacto_a9ddf36376fb679d3e5ff9190329e54c5}{set\+Anunciante\+Ptr\+\_\+to\+Null} ()\label{class_contacto_a9ddf36376fb679d3e5ff9190329e54c5}
+
+\begin{DoxyCompactList}\small\item\em set pointer to advertiser to N\+U\+L\+L \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_aadc1fd12d6f93993f47da7a14682a667}{}void \hyperlink{class_contacto_aadc1fd12d6f93993f47da7a14682a667}{set\+Pessoa\+Interessada\+Ptr\+\_\+to\+Null} ()\label{class_contacto_aadc1fd12d6f93993f47da7a14682a667}
+
+\begin{DoxyCompactList}\small\item\em set pointer to interested person to N\+U\+L\+L \end{DoxyCompactList}\item 
+void \hyperlink{class_contacto_a6d8d08fbe5dcb7e5a6c5f6e9a4948fe9}{concretiza\+Negocio} (float montante\+Negociado, \hyperlink{class_data}{Data} data)
+\begin{DoxyCompactList}\small\item\em concretize the trade \end{DoxyCompactList}\item 
+bool \hyperlink{class_contacto_a754f72a858209441e499f78d2a38990d}{negocio\+Esta\+Concretizado} ()
+\begin{DoxyCompactList}\small\item\em reveals if trade is concretized \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_a8bcc026a54f12e98634655cc9723bfff}{}void \hyperlink{class_contacto_a8bcc026a54f12e98634655cc9723bfff}{imprime\+Contacto} ()\label{class_contacto_a8bcc026a54f12e98634655cc9723bfff}
+
+\begin{DoxyCompactList}\small\item\em print the contact \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_ace2a2a384d530518e1e5fb2dd1e8a92c}{}void \hyperlink{class_contacto_ace2a2a384d530518e1e5fb2dd1e8a92c}{imprime\+Negocio\+Concretizado} ()\label{class_contacto_ace2a2a384d530518e1e5fb2dd1e8a92c}
+
+\begin{DoxyCompactList}\small\item\em print the contact traded \end{DoxyCompactList}\item 
+\hypertarget{class_contacto_ad4dbabd4cc3502bd8560c23d558e845c}{}virtual \hyperlink{class_contacto_ad4dbabd4cc3502bd8560c23d558e845c}{$\sim$\+Contacto} ()\label{class_contacto_ad4dbabd4cc3502bd8560c23d558e845c}
+
+\begin{DoxyCompactList}\small\item\em class contacto destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_utilizador}{Utilizador} $\ast$ \hyperlink{class_contacto_a77aa3267764f1deae040ab8d3a09cf9a}{anunciante}
+\item 
+\hyperlink{class_utilizador}{Utilizador} $\ast$ \hyperlink{class_contacto_a30bc3e0baecefc67118e591858b5da4c}{pessoa\+Int}
+\item 
+\hyperlink{class_anuncio}{Anuncio} $\ast$ \hyperlink{class_contacto_a5cb4811ded2eea7ac9645acb1553b410}{anuncio}
+\item 
+string \hyperlink{class_contacto_a5df8ad3ac8609cee665c21a2fa2a3e6a}{mensagem}
+\item 
+string \hyperlink{class_contacto_a87b5fa8d59ad7b8596eb1d48bfb405df}{num\+Tel\+\_\+pessoa\+Int}
+\item 
+bool \hyperlink{class_contacto_abc6301a323bd9b2808f29370800d3aa1}{concretizado}
+\item 
+\hypertarget{class_contacto_a607eae3e973a68616173d159874db4f0}{}float {\bfseries montante\+Negociado}\label{class_contacto_a607eae3e973a68616173d159874db4f0}
+
+\item 
+\hyperlink{class_data}{Data} \hyperlink{class_contacto_aa228ef797c7b8338bed47ad7ec8680f9}{data\+Negociada}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+contact between two persons 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_contacto_af3d7e17b38f1c9dcf239b92b47f9d1fa}{}\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\subsubsection[{Contacto(\+Utilizador $\ast$anunciante, Utilizador $\ast$pessoa\+Int, Anuncio $\ast$anuncio, string mensagem, string num\+Tel\+\_\+pessoa\+Int)}]{\setlength{\rightskip}{0pt plus 5cm}Contacto\+::\+Contacto (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador} $\ast$}]{anunciante, }
+\item[{{\bf Utilizador} $\ast$}]{pessoa\+Int, }
+\item[{{\bf Anuncio} $\ast$}]{anuncio, }
+\item[{string}]{mensagem, }
+\item[{string}]{num\+Tel\+\_\+pessoa\+Int}
+\end{DoxyParamCaption}
+)}\label{class_contacto_af3d7e17b38f1c9dcf239b92b47f9d1fa}
+
+
+class \hyperlink{class_contacto}{Contacto} constructor 
+
+data of negotiation
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointer} & to anunciante \\
+\hline
+{\em pointer} & to interested person \\
+\hline
+{\em pointer} & to anuncio \\
+\hline
+{\em message} & to send to anunciante \\
+\hline
+{\em num\+Tel\+\_\+pessoa\+Int} & to send to anunciante \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_contacto_a6d8d08fbe5dcb7e5a6c5f6e9a4948fe9}{}\index{Contacto@{Contacto}!concretiza\+Negocio@{concretiza\+Negocio}}
+\index{concretiza\+Negocio@{concretiza\+Negocio}!Contacto@{Contacto}}
+\subsubsection[{concretiza\+Negocio(float montante\+Negociado, Data data)}]{\setlength{\rightskip}{0pt plus 5cm}void Contacto\+::concretiza\+Negocio (
+\begin{DoxyParamCaption}
+\item[{float}]{montante\+Negociado, }
+\item[{{\bf Data}}]{data}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a6d8d08fbe5dcb7e5a6c5f6e9a4948fe9}
+
+
+concretize the trade 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & montante\+Negociado \\
+\hline
+{\em \hyperlink{class_data}{Data}} & data of negotiation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_contacto_a588d6077fe57f64fcb5b436db6a0c844}{}\index{Contacto@{Contacto}!get\+Anunciante@{get\+Anunciante}}
+\index{get\+Anunciante@{get\+Anunciante}!Contacto@{Contacto}}
+\subsubsection[{get\+Anunciante()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Utilizador} $\ast$ Contacto\+::get\+Anunciante (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a588d6077fe57f64fcb5b436db6a0c844}
+
+
+get pointer to advertiser 
+
+\begin{DoxyReturn}{Returns}
+Utilizador$\ast$ anunciante 
+\end{DoxyReturn}
+\hypertarget{class_contacto_a4ad1dc12564c5d5b495d1ec5343d396d}{}\index{Contacto@{Contacto}!get\+Anuncio@{get\+Anuncio}}
+\index{get\+Anuncio@{get\+Anuncio}!Contacto@{Contacto}}
+\subsubsection[{get\+Anuncio()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Anuncio} $\ast$ Contacto\+::get\+Anuncio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a4ad1dc12564c5d5b495d1ec5343d396d}
+
+
+get pointer to add 
+
+\begin{DoxyReturn}{Returns}
+Anuncio$\ast$ anuncio 
+\end{DoxyReturn}
+\hypertarget{class_contacto_aa6792efa6165813ed7d471558b502f4f}{}\index{Contacto@{Contacto}!get\+Data\+Negociada@{get\+Data\+Negociada}}
+\index{get\+Data\+Negociada@{get\+Data\+Negociada}!Contacto@{Contacto}}
+\subsubsection[{get\+Data\+Negociada()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} Contacto\+::get\+Data\+Negociada (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_aa6792efa6165813ed7d471558b502f4f}
+
+
+get the data of negotiation, it will be 0/0/0 if not negotiated 
+
+\begin{DoxyReturn}{Returns}
+data 
+\end{DoxyReturn}
+\hypertarget{class_contacto_a435afe8dfd007e6df292d7d2c5235867}{}\index{Contacto@{Contacto}!get\+Mensagem@{get\+Mensagem}}
+\index{get\+Mensagem@{get\+Mensagem}!Contacto@{Contacto}}
+\subsubsection[{get\+Mensagem()}]{\setlength{\rightskip}{0pt plus 5cm}string Contacto\+::get\+Mensagem (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a435afe8dfd007e6df292d7d2c5235867}
+
+
+get message between two users 
+
+\begin{DoxyReturn}{Returns}
+message 
+\end{DoxyReturn}
+\hypertarget{class_contacto_a73657b4f2576a340e4dc7b5fe8ca0d3c}{}\index{Contacto@{Contacto}!get\+Montante\+Negociado@{get\+Montante\+Negociado}}
+\index{get\+Montante\+Negociado@{get\+Montante\+Negociado}!Contacto@{Contacto}}
+\subsubsection[{get\+Montante\+Negociado()}]{\setlength{\rightskip}{0pt plus 5cm}float Contacto\+::get\+Montante\+Negociado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a73657b4f2576a340e4dc7b5fe8ca0d3c}
+
+
+get the amount traded, it will be 0 if not negotiated 
+
+\begin{DoxyReturn}{Returns}
+montante\+Negociado 
+\end{DoxyReturn}
+\hypertarget{class_contacto_aee20176836aae17cac823b87f850c500}{}\index{Contacto@{Contacto}!get\+Num\+Tel\+\_\+\+Pessoa\+Int@{get\+Num\+Tel\+\_\+\+Pessoa\+Int}}
+\index{get\+Num\+Tel\+\_\+\+Pessoa\+Int@{get\+Num\+Tel\+\_\+\+Pessoa\+Int}!Contacto@{Contacto}}
+\subsubsection[{get\+Num\+Tel\+\_\+\+Pessoa\+Int()}]{\setlength{\rightskip}{0pt plus 5cm}string Contacto\+::get\+Num\+Tel\+\_\+\+Pessoa\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_aee20176836aae17cac823b87f850c500}
+
+
+get phone number of interested person 
+
+return num\+Tel\+\_\+pessoa\+Int \hypertarget{class_contacto_a69478b8031acc4ab2b7a2b0522889b5c}{}\index{Contacto@{Contacto}!get\+Pessoa\+Interessada@{get\+Pessoa\+Interessada}}
+\index{get\+Pessoa\+Interessada@{get\+Pessoa\+Interessada}!Contacto@{Contacto}}
+\subsubsection[{get\+Pessoa\+Interessada()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Utilizador} $\ast$ Contacto\+::get\+Pessoa\+Interessada (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a69478b8031acc4ab2b7a2b0522889b5c}
+
+
+get pointer to interested person 
+
+\begin{DoxyReturn}{Returns}
+Utilizador$\ast$ pessoa\+Int 
+\end{DoxyReturn}
+\hypertarget{class_contacto_a754f72a858209441e499f78d2a38990d}{}\index{Contacto@{Contacto}!negocio\+Esta\+Concretizado@{negocio\+Esta\+Concretizado}}
+\index{negocio\+Esta\+Concretizado@{negocio\+Esta\+Concretizado}!Contacto@{Contacto}}
+\subsubsection[{negocio\+Esta\+Concretizado()}]{\setlength{\rightskip}{0pt plus 5cm}bool Contacto\+::negocio\+Esta\+Concretizado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_contacto_a754f72a858209441e499f78d2a38990d}
+
+
+reveals if trade is concretized 
+
+\begin{DoxyReturn}{Returns}
+bool concretizado 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_contacto_a77aa3267764f1deae040ab8d3a09cf9a}{}\index{Contacto@{Contacto}!anunciante@{anunciante}}
+\index{anunciante@{anunciante}!Contacto@{Contacto}}
+\subsubsection[{anunciante}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Utilizador}$\ast$ Contacto\+::anunciante\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_a77aa3267764f1deae040ab8d3a09cf9a}
+pointer to advertiser \hypertarget{class_contacto_a5cb4811ded2eea7ac9645acb1553b410}{}\index{Contacto@{Contacto}!anuncio@{anuncio}}
+\index{anuncio@{anuncio}!Contacto@{Contacto}}
+\subsubsection[{anuncio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Anuncio}$\ast$ Contacto\+::anuncio\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_a5cb4811ded2eea7ac9645acb1553b410}
+pointer to add \hypertarget{class_contacto_abc6301a323bd9b2808f29370800d3aa1}{}\index{Contacto@{Contacto}!concretizado@{concretizado}}
+\index{concretizado@{concretizado}!Contacto@{Contacto}}
+\subsubsection[{concretizado}]{\setlength{\rightskip}{0pt plus 5cm}bool Contacto\+::concretizado\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_abc6301a323bd9b2808f29370800d3aa1}
+reveals if trade is concretized \hypertarget{class_contacto_aa228ef797c7b8338bed47ad7ec8680f9}{}\index{Contacto@{Contacto}!data\+Negociada@{data\+Negociada}}
+\index{data\+Negociada@{data\+Negociada}!Contacto@{Contacto}}
+\subsubsection[{data\+Negociada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} Contacto\+::data\+Negociada\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_aa228ef797c7b8338bed47ad7ec8680f9}
+money negotiated \hypertarget{class_contacto_a5df8ad3ac8609cee665c21a2fa2a3e6a}{}\index{Contacto@{Contacto}!mensagem@{mensagem}}
+\index{mensagem@{mensagem}!Contacto@{Contacto}}
+\subsubsection[{mensagem}]{\setlength{\rightskip}{0pt plus 5cm}string Contacto\+::mensagem\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_a5df8ad3ac8609cee665c21a2fa2a3e6a}
+message of interested person to advertiser \hypertarget{class_contacto_a87b5fa8d59ad7b8596eb1d48bfb405df}{}\index{Contacto@{Contacto}!num\+Tel\+\_\+pessoa\+Int@{num\+Tel\+\_\+pessoa\+Int}}
+\index{num\+Tel\+\_\+pessoa\+Int@{num\+Tel\+\_\+pessoa\+Int}!Contacto@{Contacto}}
+\subsubsection[{num\+Tel\+\_\+pessoa\+Int}]{\setlength{\rightskip}{0pt plus 5cm}string Contacto\+::num\+Tel\+\_\+pessoa\+Int\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_a87b5fa8d59ad7b8596eb1d48bfb405df}
+phone number of interested person \hypertarget{class_contacto_a30bc3e0baecefc67118e591858b5da4c}{}\index{Contacto@{Contacto}!pessoa\+Int@{pessoa\+Int}}
+\index{pessoa\+Int@{pessoa\+Int}!Contacto@{Contacto}}
+\subsubsection[{pessoa\+Int}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Utilizador}$\ast$ Contacto\+::pessoa\+Int\hspace{0.3cm}{\ttfamily [private]}}\label{class_contacto_a30bc3e0baecefc67118e591858b5da4c}
+pointer to interested person 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Contacto.\+h\item 
+src/Contacto.\+cpp\end{DoxyCompactItemize}

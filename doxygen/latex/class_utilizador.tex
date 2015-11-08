@@ -1,0 +1,270 @@
+\hypertarget{class_utilizador}{}\section{Utilizador Class Reference}
+\label{class_utilizador}\index{Utilizador@{Utilizador}}
+
+
+\hyperlink{class_utilizador}{Utilizador} class.  
+
+
+
+
+{\ttfamily \#include $<$Utilizador.\+h$>$}
+
+
+
+Collaboration diagram for Utilizador\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{class_utilizador__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_utilizador_a95a298d18d13d9f76c0b6773f4690653}{Utilizador} (string \hyperlink{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}{nome}, string \hyperlink{class_utilizador_acbfe7f9a279131a567de9c85f00df332}{email}, string \hyperlink{class_utilizador_a15e6d87267bff22599a28ac069d6a210}{contacto}, \hyperlink{class_localizacao}{Localizacao} \hyperlink{class_utilizador_a0bd3436ff45c7f80236d591f750c5522}{localizacao})
+\begin{DoxyCompactList}\small\item\em constructor of class \hyperlink{class_utilizador}{Utilizador} \end{DoxyCompactList}\item 
+\hyperlink{class_utilizador_add322ece24e90359497d2cf97688cc68}{Utilizador} (string \hyperlink{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}{nome}, string \hyperlink{class_utilizador_acbfe7f9a279131a567de9c85f00df332}{email}, string \hyperlink{class_utilizador_a15e6d87267bff22599a28ac069d6a210}{contacto}, string freguesia, string concelho, string distrito)
+\begin{DoxyCompactList}\small\item\em constructor of class \hyperlink{class_utilizador}{Utilizador} \end{DoxyCompactList}\item 
+string \hyperlink{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}{get\+Nome} () const 
+\begin{DoxyCompactList}\small\item\em get name of user \end{DoxyCompactList}\item 
+string \hyperlink{class_utilizador_a9fc99ac7634ff085ca0f3afd4d502cc7}{get\+Email} () const 
+\begin{DoxyCompactList}\small\item\em get email of user \end{DoxyCompactList}\item 
+string \hyperlink{class_utilizador_a1b4563c81eec56c688d75e6e1b3a2dbb}{get\+Contacto} () const 
+\begin{DoxyCompactList}\small\item\em get phone number of user \end{DoxyCompactList}\item 
+\hyperlink{class_localizacao}{Localizacao} \hyperlink{class_utilizador_a2f72c346267d8cb2bc883e8af2905020}{get\+Localizacao} () const 
+\begin{DoxyCompactList}\small\item\em get localization of user \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a757fdfb4deb2f38879a81e0cf9930520}{set\+Nome} (const string \&\hyperlink{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}{nome})
+\begin{DoxyCompactList}\small\item\em set name of user \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_ae56c0e10e0600f7f56b9c3bae536dd74}{set\+Email} (const string \&\hyperlink{class_utilizador_acbfe7f9a279131a567de9c85f00df332}{email})
+\begin{DoxyCompactList}\small\item\em set email of user \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a0d865c0665b6cc8d828e50b675be8a3a}{set\+Contacto} (const string \&\hyperlink{class_utilizador_a15e6d87267bff22599a28ac069d6a210}{contacto})
+\begin{DoxyCompactList}\small\item\em set phone number of user \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_acc7de3615eff00f50c683ebf33305a77}{set\+Localizacao} (const \hyperlink{class_localizacao}{Localizacao} \&\hyperlink{class_utilizador_a0bd3436ff45c7f80236d591f750c5522}{localizacao})
+\begin{DoxyCompactList}\small\item\em set localization of user \end{DoxyCompactList}\item 
+\hypertarget{class_utilizador_a669d9c086d1aa44bf228f605bf68023f}{}void \hyperlink{class_utilizador_a669d9c086d1aa44bf228f605bf68023f}{imprime} ()\label{class_utilizador_a669d9c086d1aa44bf228f605bf68023f}
+
+\begin{DoxyCompactList}\small\item\em print information of user in console \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}{nome}
+\item 
+string \hyperlink{class_utilizador_acbfe7f9a279131a567de9c85f00df332}{email}
+\item 
+string \hyperlink{class_utilizador_a15e6d87267bff22599a28ac069d6a210}{contacto}
+\item 
+\hyperlink{class_localizacao}{Localizacao} \hyperlink{class_utilizador_a0bd3436ff45c7f80236d591f750c5522}{localizacao}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_utilizador_a8cbf08fee9efabf14e432ca7904529e2}{}ostream \& {\bfseries operator$<$$<$} (ostream \&os, const \hyperlink{class_utilizador}{Utilizador} \&utilizador)\label{class_utilizador_a8cbf08fee9efabf14e432ca7904529e2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_utilizador}{Utilizador} class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_utilizador_a95a298d18d13d9f76c0b6773f4690653}{}\index{Utilizador@{Utilizador}!Utilizador@{Utilizador}}
+\index{Utilizador@{Utilizador}!Utilizador@{Utilizador}}
+\subsubsection[{Utilizador(string nome, string email, string contacto, Localizacao localizacao)}]{\setlength{\rightskip}{0pt plus 5cm}Utilizador\+::\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{string}]{nome, }
+\item[{string}]{email, }
+\item[{string}]{contacto, }
+\item[{{\bf Localizacao}}]{localizacao}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_a95a298d18d13d9f76c0b6773f4690653}
+
+
+constructor of class \hyperlink{class_utilizador}{Utilizador} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & \\
+\hline
+{\em email} & \\
+\hline
+{\em contacto} & \\
+\hline
+{\em localizacao} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_add322ece24e90359497d2cf97688cc68}{}\index{Utilizador@{Utilizador}!Utilizador@{Utilizador}}
+\index{Utilizador@{Utilizador}!Utilizador@{Utilizador}}
+\subsubsection[{Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito)}]{\setlength{\rightskip}{0pt plus 5cm}Utilizador\+::\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{string}]{nome, }
+\item[{string}]{email, }
+\item[{string}]{contacto, }
+\item[{string}]{freguesia, }
+\item[{string}]{concelho, }
+\item[{string}]{distrito}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_add322ece24e90359497d2cf97688cc68}
+
+
+constructor of class \hyperlink{class_utilizador}{Utilizador} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & \\
+\hline
+{\em email} & \\
+\hline
+{\em contacto} & \\
+\hline
+{\em freguesia} & \\
+\hline
+{\em concelho} & \\
+\hline
+{\em distrito} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_utilizador_a1b4563c81eec56c688d75e6e1b3a2dbb}{}\index{Utilizador@{Utilizador}!get\+Contacto@{get\+Contacto}}
+\index{get\+Contacto@{get\+Contacto}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Contacto() const }]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+Contacto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_utilizador_a1b4563c81eec56c688d75e6e1b3a2dbb}
+
+
+get phone number of user 
+
+\begin{DoxyReturn}{Returns}
+contacto 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a9fc99ac7634ff085ca0f3afd4d502cc7}{}\index{Utilizador@{Utilizador}!get\+Email@{get\+Email}}
+\index{get\+Email@{get\+Email}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Email() const }]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+Email (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_utilizador_a9fc99ac7634ff085ca0f3afd4d502cc7}
+
+
+get email of user 
+
+\begin{DoxyReturn}{Returns}
+email 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a2f72c346267d8cb2bc883e8af2905020}{}\index{Utilizador@{Utilizador}!get\+Localizacao@{get\+Localizacao}}
+\index{get\+Localizacao@{get\+Localizacao}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Localizacao() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Localizacao} Utilizador\+::get\+Localizacao (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_utilizador_a2f72c346267d8cb2bc883e8af2905020}
+
+
+get localization of user 
+
+\begin{DoxyReturn}{Returns}
+localizacao localization of user 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}{}\index{Utilizador@{Utilizador}!get\+Nome@{get\+Nome}}
+\index{get\+Nome@{get\+Nome}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Nome() const }]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+Nome (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}
+
+
+get name of user 
+
+\begin{DoxyReturn}{Returns}
+nome 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a0d865c0665b6cc8d828e50b675be8a3a}{}\index{Utilizador@{Utilizador}!set\+Contacto@{set\+Contacto}}
+\index{set\+Contacto@{set\+Contacto}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Contacto(const string \&contacto)}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Contacto (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{contacto}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_a0d865c0665b6cc8d828e50b675be8a3a}
+
+
+set phone number of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacto} & phone number of user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_ae56c0e10e0600f7f56b9c3bae536dd74}{}\index{Utilizador@{Utilizador}!set\+Email@{set\+Email}}
+\index{set\+Email@{set\+Email}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Email(const string \&email)}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Email (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{email}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_ae56c0e10e0600f7f56b9c3bae536dd74}
+
+
+set email of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & email of user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_acc7de3615eff00f50c683ebf33305a77}{}\index{Utilizador@{Utilizador}!set\+Localizacao@{set\+Localizacao}}
+\index{set\+Localizacao@{set\+Localizacao}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Localizacao(const Localizacao \&localizacao)}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Localizacao (
+\begin{DoxyParamCaption}
+\item[{const {\bf Localizacao} \&}]{localizacao}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_acc7de3615eff00f50c683ebf33305a77}
+
+
+set localization of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em localizacao} & localization of user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a757fdfb4deb2f38879a81e0cf9930520}{}\index{Utilizador@{Utilizador}!set\+Nome@{set\+Nome}}
+\index{set\+Nome@{set\+Nome}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Nome(const string \&nome)}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Nome (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{nome}
+\end{DoxyParamCaption}
+)}\label{class_utilizador_a757fdfb4deb2f38879a81e0cf9930520}
+
+
+set name of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & name of user \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_utilizador_a15e6d87267bff22599a28ac069d6a210}{}\index{Utilizador@{Utilizador}!contacto@{contacto}}
+\index{contacto@{contacto}!Utilizador@{Utilizador}}
+\subsubsection[{contacto}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::contacto\hspace{0.3cm}{\ttfamily [private]}}\label{class_utilizador_a15e6d87267bff22599a28ac069d6a210}
+phone number of user \hypertarget{class_utilizador_acbfe7f9a279131a567de9c85f00df332}{}\index{Utilizador@{Utilizador}!email@{email}}
+\index{email@{email}!Utilizador@{Utilizador}}
+\subsubsection[{email}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::email\hspace{0.3cm}{\ttfamily [private]}}\label{class_utilizador_acbfe7f9a279131a567de9c85f00df332}
+email of user \hypertarget{class_utilizador_a0bd3436ff45c7f80236d591f750c5522}{}\index{Utilizador@{Utilizador}!localizacao@{localizacao}}
+\index{localizacao@{localizacao}!Utilizador@{Utilizador}}
+\subsubsection[{localizacao}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Localizacao} Utilizador\+::localizacao\hspace{0.3cm}{\ttfamily [private]}}\label{class_utilizador_a0bd3436ff45c7f80236d591f750c5522}
+localization of user \hypertarget{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}{}\index{Utilizador@{Utilizador}!nome@{nome}}
+\index{nome@{nome}!Utilizador@{Utilizador}}
+\subsubsection[{nome}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::nome\hspace{0.3cm}{\ttfamily [private]}}\label{class_utilizador_a3d22333263aef7b7a61a96b46ba7828d}
+name of user 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Utilizador.\+h\item 
+src/Utilizador.\+cpp\end{DoxyCompactItemize}

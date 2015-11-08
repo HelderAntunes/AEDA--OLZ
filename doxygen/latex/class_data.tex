@@ -1,0 +1,140 @@
+\hypertarget{class_data}{}\section{Data Class Reference}
+\label{class_data}\index{Data@{Data}}
+
+
+Date class.  
+
+
+
+
+{\ttfamily \#include $<$Data.\+h$>$}
+
+
+
+Collaboration diagram for Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=132pt]{class_data__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_data_ab19ff9142aad6f03e1a8be8284d9e8fa}{Data} (int d, int m, int a)
+\begin{DoxyCompactList}\small\item\em class \hyperlink{class_data}{Data} constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_data_af11f741cb7f587e2e495452a8905a22a}{Data} ()
+\begin{DoxyCompactList}\small\item\em class \hyperlink{class_data}{Data} constructor with no arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_data_ad76270db677fc394a4a7ded1c58de6d5}{dia}
+\item 
+int \hyperlink{class_data_a8f77c5b515144e08b4fe26a8604f30ad}{mes}
+\item 
+int \hyperlink{class_data_a80d76fe2225d187fe8a20414478a2cb5}{ano}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{class_data_a7505460bf312657f136542e2679823cf}{operator$<$$<$} (ostream \&out, const \hyperlink{class_data}{Data} \&data)
+\begin{DoxyCompactList}\small\item\em operator $<$$<$ for class \hyperlink{class_data}{Data} \end{DoxyCompactList}\item 
+istream \& \hyperlink{class_data_a7d2111bcdac5761603decce70d93d76e}{operator$>$$>$} (istream \&in, \hyperlink{class_data}{Data} \&data)
+\begin{DoxyCompactList}\small\item\em operator $>$$>$ for class \hyperlink{class_data}{Data} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Date class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_data_ab19ff9142aad6f03e1a8be8284d9e8fa}{}\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[{Data(int d, int m, int a)}]{\setlength{\rightskip}{0pt plus 5cm}Data\+::\+Data (
+\begin{DoxyParamCaption}
+\item[{int}]{d, }
+\item[{int}]{m, }
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_data_ab19ff9142aad6f03e1a8be8284d9e8fa}
+
+
+class \hyperlink{class_data}{Data} constructor. 
+
+Creates new date with information provided. 
+\begin{DoxyParams}{Parameters}
+{\em d} & date\textquotesingle{}s day \\
+\hline
+{\em m} & date\textquotesingle{}s month \\
+\hline
+{\em a} & date\textquotesingle{}s year \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_data_af11f741cb7f587e2e495452a8905a22a}{}\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[{Data()}]{\setlength{\rightskip}{0pt plus 5cm}Data\+::\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_data_af11f741cb7f587e2e495452a8905a22a}
+
+
+class \hyperlink{class_data}{Data} constructor with no arguments. 
+
+Creates new date 1/01/2000 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_data_a7505460bf312657f136542e2679823cf}{}\index{Data@{Data}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Data@{Data}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{out, }
+\item[{const {\bf Data} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{class_data_a7505460bf312657f136542e2679823cf}
+
+
+operator $<$$<$ for class \hyperlink{class_data}{Data} 
+
+sends date to out stream out 
+\begin{DoxyParams}{Parameters}
+{\em out} & out stream chosen \\
+\hline
+{\em data} & date to be sent \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_data_a7d2111bcdac5761603decce70d93d76e}{}\index{Data@{Data}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Data@{Data}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{in, }
+\item[{{\bf Data} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{class_data_a7d2111bcdac5761603decce70d93d76e}
+
+
+operator $>$$>$ for class \hyperlink{class_data}{Data} 
+
+sends date to in stream in 
+\begin{DoxyParams}{Parameters}
+{\em in} & in stream chosen \\
+\hline
+{\em data} & date to be sent \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_data_a80d76fe2225d187fe8a20414478a2cb5}{}\index{Data@{Data}!ano@{ano}}
+\index{ano@{ano}!Data@{Data}}
+\subsubsection[{ano}]{\setlength{\rightskip}{0pt plus 5cm}int Data\+::ano\hspace{0.3cm}{\ttfamily [private]}}\label{class_data_a80d76fe2225d187fe8a20414478a2cb5}
+date\textquotesingle{}s year \hypertarget{class_data_ad76270db677fc394a4a7ded1c58de6d5}{}\index{Data@{Data}!dia@{dia}}
+\index{dia@{dia}!Data@{Data}}
+\subsubsection[{dia}]{\setlength{\rightskip}{0pt plus 5cm}int Data\+::dia\hspace{0.3cm}{\ttfamily [private]}}\label{class_data_ad76270db677fc394a4a7ded1c58de6d5}
+date\textquotesingle{}s day \hypertarget{class_data_a8f77c5b515144e08b4fe26a8604f30ad}{}\index{Data@{Data}!mes@{mes}}
+\index{mes@{mes}!Data@{Data}}
+\subsubsection[{mes}]{\setlength{\rightskip}{0pt plus 5cm}int Data\+::mes\hspace{0.3cm}{\ttfamily [private]}}\label{class_data_a8f77c5b515144e08b4fe26a8604f30ad}
+date\textquotesingle{}s month 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Data.\+h\end{DoxyCompactItemize}

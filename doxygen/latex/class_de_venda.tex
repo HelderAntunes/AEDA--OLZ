@@ -1,0 +1,215 @@
+\hypertarget{class_de_venda}{}\section{De\+Venda Class Reference}
+\label{class_de_venda}\index{De\+Venda@{De\+Venda}}
+
+
+Sale Advertisement class derived from \hyperlink{class_anuncio}{Anuncio}.  
+
+
+
+
+{\ttfamily \#include $<$Anuncio.\+h$>$}
+
+
+
+Inheritance diagram for De\+Venda\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_de_venda__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for De\+Venda\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_de_venda__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_de_venda_aa45120d3a08d48875df0068965e83362}{De\+Venda} (string \hyperlink{class_anuncio_adb34bedd8220f42b9ee37662c21313e6}{titulo}, string categoria, string \hyperlink{class_anuncio_aa6a9eb8d08cb06d16061b006eb2c8b97}{descricao}, vector$<$ string $>$ \hyperlink{class_anuncio_a9ff3646a44a2e285d082682e37631ac7}{imagens}, int \hyperlink{class_anuncio_a42900203e39da639a1128277dbd96baf}{id}, Estado \hyperlink{class_de_venda_a54648a4106f60e954441a6e121da8b81}{estado}, float \hyperlink{class_de_venda_a2e2c3efbd50a6778965e5383267c261a}{preco}, bool \hyperlink{class_de_venda_a45c4aa9333658f4b59c91dcaf22a0496}{negociacao}, \hyperlink{class_data}{Data} \hyperlink{class_anuncio_a2c35b71b56332894a705eb2770d5102b}{data}, \hyperlink{class_utilizador}{Utilizador} $\ast$\hyperlink{class_anuncio_ac89450835a3cd86dac14bda6dfd83934}{anunciante}, int \hyperlink{class_anuncio_ae3fb8cd61ec06485ee166cd3b5d80804}{visualizacoes}, bool \hyperlink{class_anuncio_a6a41218c0a11ba393522d3a9a80ded95}{show\+Email}, bool \hyperlink{class_anuncio_a50feea41d2253cd5168243b18fa03aa6}{show\+Nome}, bool \hyperlink{class_anuncio_a8db5dc7339e63974c643a6602f2cf7bc}{show\+Num\+Tel})
+\begin{DoxyCompactList}\small\item\em class \hyperlink{class_de_venda}{De\+Venda} constructor. \end{DoxyCompactList}\item 
+Estado \hyperlink{class_de_venda_a400617bb5fbb866a4dd525ecbd288814}{get\+Estado} ()
+\begin{DoxyCompactList}\small\item\em get condition. \end{DoxyCompactList}\item 
+float \hyperlink{class_de_venda_a0c73b2b38bd4220996052d4162015d98}{get\+Preco} ()
+\begin{DoxyCompactList}\small\item\em get price. \end{DoxyCompactList}\item 
+bool \hyperlink{class_de_venda_a4a87f1bd483110ea4c5b672ba44b71a9}{get\+Negociacao} ()
+\begin{DoxyCompactList}\small\item\em get information about if the advertiser want negotiate \end{DoxyCompactList}\item 
+void \hyperlink{class_de_venda_a964e74c6176f62250dbc37c3b1ba4698}{set\+Preco} (float \hyperlink{class_de_venda_a2e2c3efbd50a6778965e5383267c261a}{preco})
+\begin{DoxyCompactList}\small\item\em set price. \end{DoxyCompactList}\item 
+void \hyperlink{class_de_venda_af1c5b76d122e55e8a05e365b5c1bfd90}{imprime} () const 
+\begin{DoxyCompactList}\small\item\em display sale ad. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Estado \hyperlink{class_de_venda_a54648a4106f60e954441a6e121da8b81}{estado}
+\item 
+float \hyperlink{class_de_venda_a2e2c3efbd50a6778965e5383267c261a}{preco}
+\item 
+bool \hyperlink{class_de_venda_a45c4aa9333658f4b59c91dcaf22a0496}{negociacao}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_de_venda_a9105bc409c4772abd8f320b90823a302}{}ostream \& {\bfseries operator$<$$<$} (ostream \&out, \hyperlink{class_de_venda}{De\+Venda} a)\label{class_de_venda_a9105bc409c4772abd8f320b90823a302}
+
+\item 
+\hypertarget{class_de_venda_a86a435d5400e4b3ea57830a605ede83e}{}istream \& {\bfseries operator$>$$>$} (istream \&in, \hyperlink{class_de_venda}{De\+Venda} \&a)\label{class_de_venda_a86a435d5400e4b3ea57830a605ede83e}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Sale Advertisement class derived from \hyperlink{class_anuncio}{Anuncio}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_de_venda_aa45120d3a08d48875df0068965e83362}{}\index{De\+Venda@{De\+Venda}!De\+Venda@{De\+Venda}}
+\index{De\+Venda@{De\+Venda}!De\+Venda@{De\+Venda}}
+\subsubsection[{De\+Venda(string titulo, string categoria, string descricao, vector$<$ string $>$ imagens, int id, Estado estado, float preco, bool negociacao, Data data, Utilizador $\ast$anunciante, int visualizacoes, bool show\+Email, bool show\+Nome, bool show\+Num\+Tel)}]{\setlength{\rightskip}{0pt plus 5cm}De\+Venda\+::\+De\+Venda (
+\begin{DoxyParamCaption}
+\item[{string}]{titulo, }
+\item[{string}]{categoria, }
+\item[{string}]{descricao, }
+\item[{vector$<$ string $>$}]{imagens, }
+\item[{int}]{id, }
+\item[{Estado}]{estado, }
+\item[{float}]{preco, }
+\item[{bool}]{negociacao, }
+\item[{{\bf Data}}]{data, }
+\item[{{\bf Utilizador} $\ast$}]{anunciante, }
+\item[{int}]{visualizacoes, }
+\item[{bool}]{show\+Email, }
+\item[{bool}]{show\+Nome, }
+\item[{bool}]{show\+Num\+Tel}
+\end{DoxyParamCaption}
+)}\label{class_de_venda_aa45120d3a08d48875df0068965e83362}
+
+
+class \hyperlink{class_de_venda}{De\+Venda} constructor. 
+
+Creates new sale advertisement with information provided and data correspondent to current date. 
+\begin{DoxyParams}{Parameters}
+{\em titulo} & advertisement\textquotesingle{}s title \\
+\hline
+{\em categoria} & advertisement\textquotesingle{}s category \\
+\hline
+{\em descricao} & advertisement\textquotesingle{}s description \\
+\hline
+{\em imagens} & names of image files used \\
+\hline
+{\em estado} & advertised object\textquotesingle{}s condition \\
+\hline
+{\em preco} & advertised object\textquotesingle{}s demanded price \\
+\hline
+{\em negociacao} & advertiser position regarding negotiation \\
+\hline
+{\em data} & date of creation \\
+\hline
+{\em anunciante} & pointer to the advertiser \\
+\hline
+{\em show\+Email} & is email public? \\
+\hline
+{\em show\+Nome} & is name public? \\
+\hline
+{\em show\+Num\+Tel} & is phone number public? \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_de_venda_a400617bb5fbb866a4dd525ecbd288814}{}\index{De\+Venda@{De\+Venda}!get\+Estado@{get\+Estado}}
+\index{get\+Estado@{get\+Estado}!De\+Venda@{De\+Venda}}
+\subsubsection[{get\+Estado()}]{\setlength{\rightskip}{0pt plus 5cm}Estado De\+Venda\+::get\+Estado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_de_venda_a400617bb5fbb866a4dd525ecbd288814}
+
+
+get condition. 
+
+\begin{DoxyReturn}{Returns}
+condition of advertised product 
+\end{DoxyReturn}
+\hypertarget{class_de_venda_a4a87f1bd483110ea4c5b672ba44b71a9}{}\index{De\+Venda@{De\+Venda}!get\+Negociacao@{get\+Negociacao}}
+\index{get\+Negociacao@{get\+Negociacao}!De\+Venda@{De\+Venda}}
+\subsubsection[{get\+Negociacao()}]{\setlength{\rightskip}{0pt plus 5cm}bool De\+Venda\+::get\+Negociacao (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_de_venda_a4a87f1bd483110ea4c5b672ba44b71a9}
+
+
+get information about if the advertiser want negotiate 
+
+\begin{DoxyReturn}{Returns}
+true if he wants, false if he does not want 
+\end{DoxyReturn}
+\hypertarget{class_de_venda_a0c73b2b38bd4220996052d4162015d98}{}\index{De\+Venda@{De\+Venda}!get\+Preco@{get\+Preco}}
+\index{get\+Preco@{get\+Preco}!De\+Venda@{De\+Venda}}
+\subsubsection[{get\+Preco()}]{\setlength{\rightskip}{0pt plus 5cm}float De\+Venda\+::get\+Preco (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_de_venda_a0c73b2b38bd4220996052d4162015d98}
+
+
+get price. 
+
+\begin{DoxyReturn}{Returns}
+price of advertised product 
+\end{DoxyReturn}
+\hypertarget{class_de_venda_af1c5b76d122e55e8a05e365b5c1bfd90}{}\index{De\+Venda@{De\+Venda}!imprime@{imprime}}
+\index{imprime@{imprime}!De\+Venda@{De\+Venda}}
+\subsubsection[{imprime() const }]{\setlength{\rightskip}{0pt plus 5cm}void De\+Venda\+::imprime (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_de_venda_af1c5b76d122e55e8a05e365b5c1bfd90}
+
+
+display sale ad. 
+
+Function displays sale advertisement on screen 
+
+Reimplemented from \hyperlink{class_anuncio_a22ca83f9eb721f4dc20dcbe952d29166}{Anuncio}.
+
+\hypertarget{class_de_venda_a964e74c6176f62250dbc37c3b1ba4698}{}\index{De\+Venda@{De\+Venda}!set\+Preco@{set\+Preco}}
+\index{set\+Preco@{set\+Preco}!De\+Venda@{De\+Venda}}
+\subsubsection[{set\+Preco(float preco)}]{\setlength{\rightskip}{0pt plus 5cm}void De\+Venda\+::set\+Preco (
+\begin{DoxyParamCaption}
+\item[{float}]{preco}
+\end{DoxyParamCaption}
+)}\label{class_de_venda_a964e74c6176f62250dbc37c3b1ba4698}
+
+
+set price. 
+
+Function changes the price of the product 
+\begin{DoxyParams}{Parameters}
+{\em preco} & new price for product \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_de_venda_a54648a4106f60e954441a6e121da8b81}{}\index{De\+Venda@{De\+Venda}!estado@{estado}}
+\index{estado@{estado}!De\+Venda@{De\+Venda}}
+\subsubsection[{estado}]{\setlength{\rightskip}{0pt plus 5cm}Estado De\+Venda\+::estado\hspace{0.3cm}{\ttfamily [protected]}}\label{class_de_venda_a54648a4106f60e954441a6e121da8b81}
+advertised object\textquotesingle{}s condition \hypertarget{class_de_venda_a45c4aa9333658f4b59c91dcaf22a0496}{}\index{De\+Venda@{De\+Venda}!negociacao@{negociacao}}
+\index{negociacao@{negociacao}!De\+Venda@{De\+Venda}}
+\subsubsection[{negociacao}]{\setlength{\rightskip}{0pt plus 5cm}bool De\+Venda\+::negociacao\hspace{0.3cm}{\ttfamily [protected]}}\label{class_de_venda_a45c4aa9333658f4b59c91dcaf22a0496}
+boolean indicating whether advertiser is willing to negotiate \hypertarget{class_de_venda_a2e2c3efbd50a6778965e5383267c261a}{}\index{De\+Venda@{De\+Venda}!preco@{preco}}
+\index{preco@{preco}!De\+Venda@{De\+Venda}}
+\subsubsection[{preco}]{\setlength{\rightskip}{0pt plus 5cm}float De\+Venda\+::preco\hspace{0.3cm}{\ttfamily [protected]}}\label{class_de_venda_a2e2c3efbd50a6778965e5383267c261a}
+advertised object\textquotesingle{}s demanded price 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{_anuncio_8h}{Anuncio.\+h}\item 
+src/\hyperlink{_anuncio_8cpp}{Anuncio.\+cpp}\end{DoxyCompactItemize}

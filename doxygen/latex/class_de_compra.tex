@@ -1,0 +1,163 @@
+\hypertarget{class_de_compra}{}\section{De\+Compra Class Reference}
+\label{class_de_compra}\index{De\+Compra@{De\+Compra}}
+
+
+Purchase Advertisement class derived from \hyperlink{class_anuncio}{Anuncio}.  
+
+
+
+
+{\ttfamily \#include $<$Anuncio.\+h$>$}
+
+
+
+Inheritance diagram for De\+Compra\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_de_compra__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for De\+Compra\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_de_compra__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_de_compra_ad83de3818a7e878826e61e920d537252}{De\+Compra} (string \hyperlink{class_anuncio_adb34bedd8220f42b9ee37662c21313e6}{titulo}, string categoria, string \hyperlink{class_anuncio_aa6a9eb8d08cb06d16061b006eb2c8b97}{descricao}, vector$<$ string $>$ \hyperlink{class_anuncio_a9ff3646a44a2e285d082682e37631ac7}{imagens}, int \hyperlink{class_anuncio_a42900203e39da639a1128277dbd96baf}{id}, bool \hyperlink{class_de_compra_a708ee7e2f74c736428d5c9c7308ee300}{troca}, int \hyperlink{class_de_compra_a280cfa44a43c68e29b446bef1a10e9d7}{troca\+Id}, \hyperlink{class_data}{Data} \hyperlink{class_anuncio_a2c35b71b56332894a705eb2770d5102b}{data}, \hyperlink{class_utilizador}{Utilizador} $\ast$\hyperlink{class_anuncio_ac89450835a3cd86dac14bda6dfd83934}{anunciante}, int \hyperlink{class_anuncio_ae3fb8cd61ec06485ee166cd3b5d80804}{visualizacoes}, bool \hyperlink{class_anuncio_a6a41218c0a11ba393522d3a9a80ded95}{show\+Email}, bool \hyperlink{class_anuncio_a50feea41d2253cd5168243b18fa03aa6}{show\+Nome}, bool \hyperlink{class_anuncio_a8db5dc7339e63974c643a6602f2cf7bc}{show\+Num\+Tel})
+\begin{DoxyCompactList}\small\item\em class \hyperlink{class_de_compra}{De\+Compra} constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_de_compra_aaa396bd58e71806e4d3ff66243cb57ba}{imprime} () const 
+\begin{DoxyCompactList}\small\item\em display purchase ad. \end{DoxyCompactList}\item 
+bool \hyperlink{class_de_compra_acbf735506b85b8b121cdeaaecd639be2}{get\+Troca} ()
+\item 
+int \hyperlink{class_de_compra_a788fd25fac80072adc70e644cdce0fc9}{Get\+Troca\+Id} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_de_compra_a708ee7e2f74c736428d5c9c7308ee300}{troca}
+\item 
+int \hyperlink{class_de_compra_a280cfa44a43c68e29b446bef1a10e9d7}{troca\+Id}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_de_compra_a2b44ab17cc629ebc18bd5ee9fcc2bc42}{}ostream \& {\bfseries operator$<$$<$} (ostream \&out, \hyperlink{class_de_compra}{De\+Compra} a)\label{class_de_compra_a2b44ab17cc629ebc18bd5ee9fcc2bc42}
+
+\item 
+\hypertarget{class_de_compra_ad407d344c85e30c8a365165c348c58e3}{}istream \& {\bfseries operator$>$$>$} (istream \&in, \hyperlink{class_de_compra}{De\+Compra} \&a)\label{class_de_compra_ad407d344c85e30c8a365165c348c58e3}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Purchase Advertisement class derived from \hyperlink{class_anuncio}{Anuncio}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_de_compra_ad83de3818a7e878826e61e920d537252}{}\index{De\+Compra@{De\+Compra}!De\+Compra@{De\+Compra}}
+\index{De\+Compra@{De\+Compra}!De\+Compra@{De\+Compra}}
+\subsubsection[{De\+Compra(string titulo, string categoria, string descricao, vector$<$ string $>$ imagens, int id, bool troca, int troca\+Id, Data data, Utilizador $\ast$anunciante, int visualizacoes, bool show\+Email, bool show\+Nome, bool show\+Num\+Tel)}]{\setlength{\rightskip}{0pt plus 5cm}De\+Compra\+::\+De\+Compra (
+\begin{DoxyParamCaption}
+\item[{string}]{titulo, }
+\item[{string}]{categoria, }
+\item[{string}]{descricao, }
+\item[{vector$<$ string $>$}]{imagens, }
+\item[{int}]{id, }
+\item[{bool}]{troca, }
+\item[{int}]{troca\+Id, }
+\item[{{\bf Data}}]{data, }
+\item[{{\bf Utilizador} $\ast$}]{anunciante, }
+\item[{int}]{visualizacoes, }
+\item[{bool}]{show\+Email, }
+\item[{bool}]{show\+Nome, }
+\item[{bool}]{show\+Num\+Tel}
+\end{DoxyParamCaption}
+)}\label{class_de_compra_ad83de3818a7e878826e61e920d537252}
+
+
+class \hyperlink{class_de_compra}{De\+Compra} constructor. 
+
+Creates new purchase advertisement with exchange possibility. 
+\begin{DoxyParams}{Parameters}
+{\em titulo} & advertisement\textquotesingle{}s title \\
+\hline
+{\em categoria} & advertisement\textquotesingle{}s category \\
+\hline
+{\em descricao} & advertisement\textquotesingle{}s description \\
+\hline
+{\em imagens} & names of image files used \\
+\hline
+{\em data} & date of creation \\
+\hline
+{\em anunciante} & pointer to the advertiser \\
+\hline
+{\em troca\+Id} & id of the sale ad admissible for exchange \\
+\hline
+{\em show\+Email} & is email public? \\
+\hline
+{\em show\+Nome} & is name public? \\
+\hline
+{\em show\+Num\+Tel} & is phone number public? \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_de_compra_acbf735506b85b8b121cdeaaecd639be2}{}\index{De\+Compra@{De\+Compra}!get\+Troca@{get\+Troca}}
+\index{get\+Troca@{get\+Troca}!De\+Compra@{De\+Compra}}
+\subsubsection[{get\+Troca()}]{\setlength{\rightskip}{0pt plus 5cm}bool De\+Compra\+::get\+Troca (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_de_compra_acbf735506b85b8b121cdeaaecd639be2}
+\begin{DoxyReturn}{Returns}
+if the advertiser want a exchange 
+\end{DoxyReturn}
+\hypertarget{class_de_compra_a788fd25fac80072adc70e644cdce0fc9}{}\index{De\+Compra@{De\+Compra}!Get\+Troca\+Id@{Get\+Troca\+Id}}
+\index{Get\+Troca\+Id@{Get\+Troca\+Id}!De\+Compra@{De\+Compra}}
+\subsubsection[{Get\+Troca\+Id()}]{\setlength{\rightskip}{0pt plus 5cm}int De\+Compra\+::\+Get\+Troca\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_de_compra_a788fd25fac80072adc70e644cdce0fc9}
+\begin{DoxyReturn}{Returns}
+the id of anuncio de venda 
+\end{DoxyReturn}
+\hypertarget{class_de_compra_aaa396bd58e71806e4d3ff66243cb57ba}{}\index{De\+Compra@{De\+Compra}!imprime@{imprime}}
+\index{imprime@{imprime}!De\+Compra@{De\+Compra}}
+\subsubsection[{imprime() const }]{\setlength{\rightskip}{0pt plus 5cm}void De\+Compra\+::imprime (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_de_compra_aaa396bd58e71806e4d3ff66243cb57ba}
+
+
+display purchase ad. 
+
+Function displays purchase advertisement on screen 
+
+Reimplemented from \hyperlink{class_anuncio_a22ca83f9eb721f4dc20dcbe952d29166}{Anuncio}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_de_compra_a708ee7e2f74c736428d5c9c7308ee300}{}\index{De\+Compra@{De\+Compra}!troca@{troca}}
+\index{troca@{troca}!De\+Compra@{De\+Compra}}
+\subsubsection[{troca}]{\setlength{\rightskip}{0pt plus 5cm}bool De\+Compra\+::troca\hspace{0.3cm}{\ttfamily [protected]}}\label{class_de_compra_a708ee7e2f74c736428d5c9c7308ee300}
+advertiser is open to the possibility of an exchange of items \hypertarget{class_de_compra_a280cfa44a43c68e29b446bef1a10e9d7}{}\index{De\+Compra@{De\+Compra}!troca\+Id@{troca\+Id}}
+\index{troca\+Id@{troca\+Id}!De\+Compra@{De\+Compra}}
+\subsubsection[{troca\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int De\+Compra\+::troca\+Id\hspace{0.3cm}{\ttfamily [protected]}}\label{class_de_compra_a280cfa44a43c68e29b446bef1a10e9d7}
+id of sale ad possible for exchange 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{_anuncio_8h}{Anuncio.\+h}\item 
+src/\hyperlink{_anuncio_8cpp}{Anuncio.\+cpp}\end{DoxyCompactItemize}

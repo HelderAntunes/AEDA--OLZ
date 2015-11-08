@@ -1,0 +1,363 @@
+\hypertarget{class_o_l_z}{}\section{O\+L\+Z Class Reference}
+\label{class_o_l_z}\index{O\+L\+Z@{O\+L\+Z}}
+
+
+compact all information of system  
+
+
+
+
+{\ttfamily \#include $<$O\+L\+Z.\+h$>$}
+
+
+
+Collaboration diagram for O\+L\+Z\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{class_o_l_z__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_o_l_z_a89acd44d0044fecdde8aaf41633aafa1}{}\hyperlink{class_o_l_z_a89acd44d0044fecdde8aaf41633aafa1}{O\+L\+Z} ()\label{class_o_l_z_a89acd44d0044fecdde8aaf41633aafa1}
+
+\begin{DoxyCompactList}\small\item\em constructor of \hyperlink{class_o_l_z}{O\+L\+Z} \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_ad5abc8741e0cc854f054202de883f1f9}{}virtual \hyperlink{class_o_l_z_ad5abc8741e0cc854f054202de883f1f9}{$\sim$\+O\+L\+Z} ()\label{class_o_l_z_ad5abc8741e0cc854f054202de883f1f9}
+
+\begin{DoxyCompactList}\small\item\em destructor of \hyperlink{class_o_l_z}{O\+L\+Z}, delete memory dynamic allocation \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_adc34cdef689453e84c1a652f7f4afbe5}{le\+Todos\+Os\+Dados} (istream \&olz\+\_\+file)
+\begin{DoxyCompactList}\small\item\em read data from a file \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a7e5a8b276d1df30602376369ba6cfe14}{le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios} (istream \&olz\+\_\+file)
+\begin{DoxyCompactList}\small\item\em read users and their ads from a file \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_aee6664561d25ddc1128357043a67925b}{le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador} (istream \&olz\+\_\+file, \hyperlink{class_utilizador}{Utilizador} $\ast$anunciante)
+\begin{DoxyCompactList}\small\item\em read selling ads from a file \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a051e14af4dd2054af70a1e1541977f1d}{le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador} (istream \&olz\+\_\+file, \hyperlink{class_utilizador}{Utilizador} $\ast$anunciante)
+\begin{DoxyCompactList}\small\item\em read want ads from a file \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a07fcdd1a07661eeffc089d63ed6fea80}{le\+Contactos} (istream \&olz\+\_\+file)
+\begin{DoxyCompactList}\small\item\em read the contatcs from a file \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_af0d6d24d3b7235971dc0a054467c42f3}{}void \hyperlink{class_o_l_z_af0d6d24d3b7235971dc0a054467c42f3}{imprime\+Utilizadores} ()\label{class_o_l_z_af0d6d24d3b7235971dc0a054467c42f3}
+
+\begin{DoxyCompactList}\small\item\em prints the information of existent users \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_ac64165d9506558b227245e496111e14c}{adicionar\+Utilizador} (\hyperlink{class_utilizador}{Utilizador} $\ast$novo\+Utilizador)
+\begin{DoxyCompactList}\small\item\em add a user to a vector of users \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a4480fde0b090fc3d834283025b5c1a48}{apagar\+Utilizador} (string email)
+\item 
+void \hyperlink{class_o_l_z_aa1d021afe69cc91d4e1aad91f824ae89}{adicionar\+Anuncio\+Venda} (\hyperlink{class_de_venda}{De\+Venda} $\ast$novo\+Anuncio)
+\begin{DoxyCompactList}\small\item\em add a seller add to a vector of seller adds \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a512218b5bfc74a4a068b1560ea7330c4}{adicionar\+Anuncio\+Compra} (\hyperlink{class_de_compra}{De\+Compra} $\ast$novo\+Anuncio)
+\begin{DoxyCompactList}\small\item\em add a want add to a vector of want adds \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a3ea3b35b04cb48ddde7bdd86c2f5afbb}{apagar\+Anuncio\+Venda} (int id)
+\begin{DoxyCompactList}\small\item\em delete a seller add of vector of seller adds \end{DoxyCompactList}\item 
+void \hyperlink{class_o_l_z_a0878e12f2fcfce5eff2edaed84ecd151}{apagar\+Anuncio\+Compra} (int id)
+\begin{DoxyCompactList}\small\item\em delete a want add of vector of seller adds \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_a2f802dc87e820b15c10a61c82b1780f4}{}void \hyperlink{class_o_l_z_a2f802dc87e820b15c10a61c82b1780f4}{adicionar\+Contacto} (\hyperlink{class_contacto}{Contacto} $\ast$novo\+Contacto)\label{class_o_l_z_a2f802dc87e820b15c10a61c82b1780f4}
+
+\begin{DoxyCompactList}\small\item\em add new contact between two users Contacto$\ast$ novo\+Contacto \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_a43b1d6b22b11317c2aadd73dac7cd556}{}void \hyperlink{class_o_l_z_a43b1d6b22b11317c2aadd73dac7cd556}{mostrar\+Contactos} ()\label{class_o_l_z_a43b1d6b22b11317c2aadd73dac7cd556}
+
+\begin{DoxyCompactList}\small\item\em print all contacts that exists \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_ab682a54d6b8b1581ab1dd01a8dd63823}{}vector$<$ \hyperlink{class_anuncio}{Anuncio} $\ast$ $>$ \hyperlink{class_o_l_z_ab682a54d6b8b1581ab1dd01a8dd63823}{get\+Anuncios\+De\+Venda\+Ede\+Compra} () const \label{class_o_l_z_ab682a54d6b8b1581ab1dd01a8dd63823}
+
+\begin{DoxyCompactList}\small\item\em get all adds that exists \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_de_venda}{De\+Venda} $\ast$ $>$ \hyperlink{class_o_l_z_ad05d7af1126d1acd61bda5feb1e5efb4}{get\+Anuncios\+De\+Venda} () const 
+\begin{DoxyCompactList}\small\item\em get all seller adds that exists \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_de_compra}{De\+Compra} $\ast$ $>$ \hyperlink{class_o_l_z_abcbd7749b370364f1c47efc2edba260c}{get\+Anuncios\+De\+Compra} () const 
+\begin{DoxyCompactList}\small\item\em get all want adds that exists \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_utilizador}{Utilizador} $\ast$ $>$ \hyperlink{class_o_l_z_a94ca5d06e2d6ef3a83624984d56c2bbf}{get\+Utilizadores} () const 
+\begin{DoxyCompactList}\small\item\em get all users that exists \end{DoxyCompactList}\item 
+vector$<$ string $>$ \hyperlink{class_o_l_z_adb379471c67cdb20cfc064bad6c2ea89}{get\+Categorias} () const 
+\begin{DoxyCompactList}\small\item\em get all categorys that exists \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_contacto}{Contacto} $\ast$ $>$ \hyperlink{class_o_l_z_ac8b482780fb999f659099c85c76697d0}{get\+Contactos} () const 
+\begin{DoxyCompactList}\small\item\em get all contacts that exists \end{DoxyCompactList}\item 
+\hypertarget{class_o_l_z_ac4677ea8683bccd617480fd9158e947d}{}void \hyperlink{class_o_l_z_ac4677ea8683bccd617480fd9158e947d}{salvar\+Todos\+Os\+Dados} (ostream \&olz\+\_\+file)\label{class_o_l_z_ac4677ea8683bccd617480fd9158e947d}
+
+\begin{DoxyCompactList}\small\item\em save all data into a file  istream\& olz\+\_\+file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{class_de_venda}{De\+Venda} $\ast$ $>$ \hyperlink{class_o_l_z_a9e9511571e01e0653ea037c5e39e2d7b}{anuncios\+De\+Venda}
+\item 
+vector$<$ \hyperlink{class_de_compra}{De\+Compra} $\ast$ $>$ \hyperlink{class_o_l_z_ab03ab936b6f6e5e3ba77c32adfa569c9}{anuncios\+De\+Compra}
+\item 
+vector$<$ \hyperlink{class_utilizador}{Utilizador} $\ast$ $>$ \hyperlink{class_o_l_z_ae692e8e3693b2f6bd12ed4134fa09ea5}{utilizadores}
+\item 
+vector$<$ \hyperlink{class_contacto}{Contacto} $\ast$ $>$ \hyperlink{class_o_l_z_aeee7197271ffaa714f0d564b5f16ca02}{contactos}
+\item 
+vector$<$ string $>$ \hyperlink{class_o_l_z_a363f3348b73d08f7594223d88f6cdf52}{categorias}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+compact all information of system 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_o_l_z_a512218b5bfc74a4a068b1560ea7330c4}{}\index{O\+L\+Z@{O\+L\+Z}!adicionar\+Anuncio\+Compra@{adicionar\+Anuncio\+Compra}}
+\index{adicionar\+Anuncio\+Compra@{adicionar\+Anuncio\+Compra}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{adicionar\+Anuncio\+Compra(\+De\+Compra $\ast$novo\+Anuncio)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::adicionar\+Anuncio\+Compra (
+\begin{DoxyParamCaption}
+\item[{{\bf De\+Compra} $\ast$}]{novo\+Anuncio}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a512218b5bfc74a4a068b1560ea7330c4}
+
+
+add a want add to a vector of want adds 
+
+
+\begin{DoxyParams}{Parameters}
+{\em De\+Compra$\ast$} & novo\+Anuncio \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_aa1d021afe69cc91d4e1aad91f824ae89}{}\index{O\+L\+Z@{O\+L\+Z}!adicionar\+Anuncio\+Venda@{adicionar\+Anuncio\+Venda}}
+\index{adicionar\+Anuncio\+Venda@{adicionar\+Anuncio\+Venda}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{adicionar\+Anuncio\+Venda(\+De\+Venda $\ast$novo\+Anuncio)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::adicionar\+Anuncio\+Venda (
+\begin{DoxyParamCaption}
+\item[{{\bf De\+Venda} $\ast$}]{novo\+Anuncio}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_aa1d021afe69cc91d4e1aad91f824ae89}
+
+
+add a seller add to a vector of seller adds 
+
+
+\begin{DoxyParams}{Parameters}
+{\em De\+Venda$\ast$} & novo\+Anuncio \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_ac64165d9506558b227245e496111e14c}{}\index{O\+L\+Z@{O\+L\+Z}!adicionar\+Utilizador@{adicionar\+Utilizador}}
+\index{adicionar\+Utilizador@{adicionar\+Utilizador}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{adicionar\+Utilizador(\+Utilizador $\ast$novo\+Utilizador)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::adicionar\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador} $\ast$}]{novo\+Utilizador}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_ac64165d9506558b227245e496111e14c}
+
+
+add a user to a vector of users 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Utilizador$\ast$} & novo\+Utilizador) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_a0878e12f2fcfce5eff2edaed84ecd151}{}\index{O\+L\+Z@{O\+L\+Z}!apagar\+Anuncio\+Compra@{apagar\+Anuncio\+Compra}}
+\index{apagar\+Anuncio\+Compra@{apagar\+Anuncio\+Compra}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{apagar\+Anuncio\+Compra(int id)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::apagar\+Anuncio\+Compra (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a0878e12f2fcfce5eff2edaed84ecd151}
+
+
+delete a want add of vector of seller adds 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & id of want add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_a3ea3b35b04cb48ddde7bdd86c2f5afbb}{}\index{O\+L\+Z@{O\+L\+Z}!apagar\+Anuncio\+Venda@{apagar\+Anuncio\+Venda}}
+\index{apagar\+Anuncio\+Venda@{apagar\+Anuncio\+Venda}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{apagar\+Anuncio\+Venda(int id)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::apagar\+Anuncio\+Venda (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a3ea3b35b04cb48ddde7bdd86c2f5afbb}
+
+
+delete a seller add of vector of seller adds 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & id of seller add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_a4480fde0b090fc3d834283025b5c1a48}{}\index{O\+L\+Z@{O\+L\+Z}!apagar\+Utilizador@{apagar\+Utilizador}}
+\index{apagar\+Utilizador@{apagar\+Utilizador}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{apagar\+Utilizador(string email)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::apagar\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{string}]{email}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a4480fde0b090fc3d834283025b5c1a48}
+a user 
+\begin{DoxyParams}{Parameters}
+{\em email´s} & user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_abcbd7749b370364f1c47efc2edba260c}{}\index{O\+L\+Z@{O\+L\+Z}!get\+Anuncios\+De\+Compra@{get\+Anuncios\+De\+Compra}}
+\index{get\+Anuncios\+De\+Compra@{get\+Anuncios\+De\+Compra}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{get\+Anuncios\+De\+Compra() const }]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf De\+Compra} $\ast$ $>$ O\+L\+Z\+::get\+Anuncios\+De\+Compra (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_o_l_z_abcbd7749b370364f1c47efc2edba260c}
+
+
+get all want adds that exists 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+De\+Compra$\ast$$>$ anuncios\+De\+Compra 
+\end{DoxyReturn}
+\hypertarget{class_o_l_z_ad05d7af1126d1acd61bda5feb1e5efb4}{}\index{O\+L\+Z@{O\+L\+Z}!get\+Anuncios\+De\+Venda@{get\+Anuncios\+De\+Venda}}
+\index{get\+Anuncios\+De\+Venda@{get\+Anuncios\+De\+Venda}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{get\+Anuncios\+De\+Venda() const }]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf De\+Venda} $\ast$ $>$ O\+L\+Z\+::get\+Anuncios\+De\+Venda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_o_l_z_ad05d7af1126d1acd61bda5feb1e5efb4}
+
+
+get all seller adds that exists 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+De\+Venda$\ast$$>$ anuncios\+De\+Venda 
+\end{DoxyReturn}
+\hypertarget{class_o_l_z_adb379471c67cdb20cfc064bad6c2ea89}{}\index{O\+L\+Z@{O\+L\+Z}!get\+Categorias@{get\+Categorias}}
+\index{get\+Categorias@{get\+Categorias}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{get\+Categorias() const }]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ string $>$ O\+L\+Z\+::get\+Categorias (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_o_l_z_adb379471c67cdb20cfc064bad6c2ea89}
+
+
+get all categorys that exists 
+
+\begin{DoxyReturn}{Returns}
+vector$<$string$>$ categorias 
+\end{DoxyReturn}
+\hypertarget{class_o_l_z_ac8b482780fb999f659099c85c76697d0}{}\index{O\+L\+Z@{O\+L\+Z}!get\+Contactos@{get\+Contactos}}
+\index{get\+Contactos@{get\+Contactos}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{get\+Contactos() const }]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Contacto} $\ast$ $>$ O\+L\+Z\+::get\+Contactos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_o_l_z_ac8b482780fb999f659099c85c76697d0}
+
+
+get all contacts that exists 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Contacto$\ast$$>$ contactos 
+\end{DoxyReturn}
+\hypertarget{class_o_l_z_a94ca5d06e2d6ef3a83624984d56c2bbf}{}\index{O\+L\+Z@{O\+L\+Z}!get\+Utilizadores@{get\+Utilizadores}}
+\index{get\+Utilizadores@{get\+Utilizadores}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{get\+Utilizadores() const }]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Utilizador} $\ast$ $>$ O\+L\+Z\+::get\+Utilizadores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_o_l_z_a94ca5d06e2d6ef3a83624984d56c2bbf}
+
+
+get all users that exists 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Utilizador$\ast$$>$ utilizadores 
+\end{DoxyReturn}
+\hypertarget{class_o_l_z_a051e14af4dd2054af70a1e1541977f1d}{}\index{O\+L\+Z@{O\+L\+Z}!le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador@{le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador}}
+\index{le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador@{le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador(istream \&olz\+\_\+file, Utilizador $\ast$anunciante)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::le\+Anuncios\+De\+Compra\+De\+Um\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{olz\+\_\+file, }
+\item[{{\bf Utilizador} $\ast$}]{anunciante}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a051e14af4dd2054af70a1e1541977f1d}
+
+
+read want ads from a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istream\&} & olz\+\_\+file \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_aee6664561d25ddc1128357043a67925b}{}\index{O\+L\+Z@{O\+L\+Z}!le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador@{le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador}}
+\index{le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador@{le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador(istream \&olz\+\_\+file, Utilizador $\ast$anunciante)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::le\+Anuncios\+De\+Venda\+De\+Um\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{olz\+\_\+file, }
+\item[{{\bf Utilizador} $\ast$}]{anunciante}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_aee6664561d25ddc1128357043a67925b}
+
+
+read selling ads from a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istream\&} & olz\+\_\+file \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_a07fcdd1a07661eeffc089d63ed6fea80}{}\index{O\+L\+Z@{O\+L\+Z}!le\+Contactos@{le\+Contactos}}
+\index{le\+Contactos@{le\+Contactos}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{le\+Contactos(istream \&olz\+\_\+file)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::le\+Contactos (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{olz\+\_\+file}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a07fcdd1a07661eeffc089d63ed6fea80}
+
+
+read the contatcs from a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istream\&} & olz\+\_\+file \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_adc34cdef689453e84c1a652f7f4afbe5}{}\index{O\+L\+Z@{O\+L\+Z}!le\+Todos\+Os\+Dados@{le\+Todos\+Os\+Dados}}
+\index{le\+Todos\+Os\+Dados@{le\+Todos\+Os\+Dados}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{le\+Todos\+Os\+Dados(istream \&olz\+\_\+file)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::le\+Todos\+Os\+Dados (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{olz\+\_\+file}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_adc34cdef689453e84c1a652f7f4afbe5}
+
+
+read data from a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istream\&} & olz\+\_\+file \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_o_l_z_a7e5a8b276d1df30602376369ba6cfe14}{}\index{O\+L\+Z@{O\+L\+Z}!le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios@{le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios}}
+\index{le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios@{le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios(istream \&olz\+\_\+file)}]{\setlength{\rightskip}{0pt plus 5cm}void O\+L\+Z\+::le\+Utilizadores\+\_\+e\+\_\+respetivos\+Anuncios (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{olz\+\_\+file}
+\end{DoxyParamCaption}
+)}\label{class_o_l_z_a7e5a8b276d1df30602376369ba6cfe14}
+
+
+read users and their ads from a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istream\&} & olz\+\_\+file \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_o_l_z_ab03ab936b6f6e5e3ba77c32adfa569c9}{}\index{O\+L\+Z@{O\+L\+Z}!anuncios\+De\+Compra@{anuncios\+De\+Compra}}
+\index{anuncios\+De\+Compra@{anuncios\+De\+Compra}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{anuncios\+De\+Compra}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf De\+Compra}$\ast$$>$ O\+L\+Z\+::anuncios\+De\+Compra\hspace{0.3cm}{\ttfamily [private]}}\label{class_o_l_z_ab03ab936b6f6e5e3ba77c32adfa569c9}
+vector of pointers to \hyperlink{class_de_compra}{De\+Compra} \hypertarget{class_o_l_z_a9e9511571e01e0653ea037c5e39e2d7b}{}\index{O\+L\+Z@{O\+L\+Z}!anuncios\+De\+Venda@{anuncios\+De\+Venda}}
+\index{anuncios\+De\+Venda@{anuncios\+De\+Venda}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{anuncios\+De\+Venda}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf De\+Venda}$\ast$$>$ O\+L\+Z\+::anuncios\+De\+Venda\hspace{0.3cm}{\ttfamily [private]}}\label{class_o_l_z_a9e9511571e01e0653ea037c5e39e2d7b}
+vector of pointers to \hyperlink{class_de_venda}{De\+Venda} \hypertarget{class_o_l_z_a363f3348b73d08f7594223d88f6cdf52}{}\index{O\+L\+Z@{O\+L\+Z}!categorias@{categorias}}
+\index{categorias@{categorias}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{categorias}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$string$>$ O\+L\+Z\+::categorias\hspace{0.3cm}{\ttfamily [private]}}\label{class_o_l_z_a363f3348b73d08f7594223d88f6cdf52}
+vector of categorias \hypertarget{class_o_l_z_aeee7197271ffaa714f0d564b5f16ca02}{}\index{O\+L\+Z@{O\+L\+Z}!contactos@{contactos}}
+\index{contactos@{contactos}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{contactos}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Contacto}$\ast$$>$ O\+L\+Z\+::contactos\hspace{0.3cm}{\ttfamily [private]}}\label{class_o_l_z_aeee7197271ffaa714f0d564b5f16ca02}
+vector of pointers to \hyperlink{class_contacto}{Contacto} \hypertarget{class_o_l_z_ae692e8e3693b2f6bd12ed4134fa09ea5}{}\index{O\+L\+Z@{O\+L\+Z}!utilizadores@{utilizadores}}
+\index{utilizadores@{utilizadores}!O\+L\+Z@{O\+L\+Z}}
+\subsubsection[{utilizadores}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Utilizador}$\ast$$>$ O\+L\+Z\+::utilizadores\hspace{0.3cm}{\ttfamily [private]}}\label{class_o_l_z_ae692e8e3693b2f6bd12ed4134fa09ea5}
+vector of pointers to \hyperlink{class_utilizador}{Utilizador} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/O\+L\+Z.\+h\item 
+src/O\+L\+Z.\+cpp\end{DoxyCompactItemize}

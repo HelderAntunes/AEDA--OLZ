@@ -307,7 +307,7 @@ void concretizarNegocio(OLZ& olz){
 			cout << "Contacto nao encontrado, tente de novo.\n";
 	}
 	cout << "Introduza o montante negociado:";
-	int montanteNegociado;
+	float montanteNegociado;
 	cin >> montanteNegociado;
 	cin.ignore();
 	cout << "Introduza a data de negociacai: (exemplo: '4 11 215', dia mes ano)\n";

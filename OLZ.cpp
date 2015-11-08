@@ -382,34 +382,7 @@ void OLZ::salvarTodosOsDados(ostream& olz_file){
 			if(anunciosDeVenda[j]->getAnunciante()->getEmail() == utilizadores[i]->getEmail()){
 				olz_file << "NOVO_ANUNCIO\n";
 
-				olz_file << anunciosDeVenda[j]->getTitulo() << endl;
-				olz_file << anunciosDeVenda[j]->getCategoria() << endl;
-				olz_file << anunciosDeVenda[j]->getDescricao() << endl;
-
-				vector<string> imagens = anunciosDeVenda[j]->getImagens();
-				olz_file << "Imagens\n";
-				for(unsigned int k = 0; k < imagens.size();k++)
-					olz_file << imagens[k]  << endl;
-				olz_file << "FimImagens\n";
-
-				olz_file << anunciosDeVenda[j]->getId() << endl;
-				olz_file << anunciosDeVenda[j]->getData() << endl;
-				olz_file << anunciosDeVenda[j]->getVisualizacoes() << endl;
-				olz_file << anunciosDeVenda[j]->getShowEmail() << " " << anunciosDeVenda[j]->getShowNome()
-								<< " " << anunciosDeVenda[j]->getShowNumTel() << endl;
-
-				Estado estado = anunciosDeVenda[j]->getEstado();
-				if(estado == NOVO)
-					olz_file << "NOVO\n";
-				else if(estado == USADO)
-					olz_file << "USADO\n";
-				else if(estado == FUNCIONAL)
-					olz_file << "FUNCIONAL\n";
-				else if(estado == PECAS)
-					olz_file << "PECAS\n";
-
-				olz_file << anunciosDeVenda[j]->getPreco() << endl;
-				olz_file << anunciosDeVenda[j]->getNegociacao() << endl;
+				olz_file << *anunciosDeVenda[j];
 			}
 		olz_file << "FIM_ANUNCIOS_VENDA\n";
 
@@ -417,24 +390,7 @@ void OLZ::salvarTodosOsDados(ostream& olz_file){
 		for(unsigned int j = 0;j < anunciosDeCompra.size();j++)
 			if(anunciosDeCompra[j]->getAnunciante()->getEmail() == utilizadores[i]->getEmail()){
 				olz_file << "NOVO_ANUNCIO\n";
-
-				olz_file << anunciosDeCompra[j]->getTitulo() << endl;
-				olz_file << anunciosDeCompra[j]->getCategoria() << endl;
-				olz_file << anunciosDeCompra[j]->getDescricao() << endl;
-
-				vector<string> imagens = anunciosDeCompra[j]->getImagens();
-				olz_file << "Imagens\n";
-				for(unsigned int k = 0; k < imagens.size();k++)
-					olz_file << imagens[k]  << endl;
-				olz_file << "FimImagens\n";
-
-				olz_file << anunciosDeCompra[j]->getId() << endl;
-				olz_file << anunciosDeCompra[j]->getData() << endl;
-				olz_file << anunciosDeCompra[j]->getVisualizacoes() << endl;
-				olz_file << anunciosDeCompra[j]->getShowEmail() << " " << anunciosDeCompra[j]->getShowNome()
-												<< " " << anunciosDeCompra[j]->getShowNumTel() << endl;
-
-				olz_file << anunciosDeCompra[j]->getTroca() << " " << anunciosDeCompra[j]->GetTrocaId() << endl;
+				olz_file << *anunciosDeCompra[j];
 			}
 		olz_file << "FIM_ANUNCIOS_COMPRA\n";
 	}
@@ -489,7 +445,7 @@ DeCompra* leAnuncioDeCompra(istream& olz_file){
 	getline(olz_file, descricao);
 	imagens = leImagensDoAnuncio(olz_file);
 	olz_file >> id;
-	data = leDataDoAnuncio(olz_file);
+	olz_file >> data;
 	olz_file >> visualizacoes;
 	olz_file >> showEmail >> showNome >> showNumTel;
 	olz_file >> troca >> trocaId;
@@ -508,12 +464,13 @@ DeVenda* leAnuncioDeVenda(istream& olz_file){
 	Estado estado;
 	float preco;
 	bool negociacao;
+
 	getline(olz_file, titulo);
 	getline(olz_file, categoria);
 	getline(olz_file, descricao);
 	imagens = leImagensDoAnuncio(olz_file);
 	olz_file >> id;
-	data = leDataDoAnuncio(olz_file);
+	olz_file >> data;
 	olz_file >> visualizacoes;
 	olz_file >> showEmail >> showNome >> showNumTel;
 	estado = leEstadoDoProdutoDoAnuncio(olz_file);

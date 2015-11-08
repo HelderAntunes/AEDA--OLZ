@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_anuncio.html" title="Advertisement class. " alt="" coords="5,31,75,57"/>
+<area shape="rect" id="node2" href="$class_de_compra.html" title="Purchase Advertisement class derived from Anuncio. " alt="" coords="123,5,205,32"/>
+<area shape="rect" id="node3" href="$class_de_venda.html" title="Sale Advertisement class derived from Anuncio. " alt="" coords="127,56,201,83"/>
+</map>

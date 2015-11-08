@@ -394,8 +394,8 @@ ostream &operator<<(ostream &out, DeVenda a){
 			break;
 	}
 
-	out << a.preco;
-	out << a.negociacao;
+	out << a.preco << endl;
+	out << a.negociacao << endl;
 	return out;
 }
 
