@@ -433,9 +433,8 @@ void verAnuncio(const OLZ& olz){
 void mostrarAnunciosPorCategoria(const OLZ& olz){
 	string categoria;
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria do anuncio de entre estas:";
-	cin >> categoria;
-	cin.ignore();
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
+	getline(cin,categoria);
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
 	int anunciosImprimidos = 0;
 	for(unsigned int i = 0;i < anuncios.size();i++)
@@ -552,7 +551,7 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 	getline(cin,titulo);
 
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria do anuncio de entre estas:";
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:";
 	getline(cin, descricao);
@@ -611,7 +610,7 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 	cout << "Introduza o titulo do anuncio:\n";
 	getline(cin,titulo);
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria do anuncio de entre estas:";
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas:";
 	categoria = leCategoria(olz);
 	cout << "Introduza a descricao do anuncio:\n";
 	getline(cin, descricao);

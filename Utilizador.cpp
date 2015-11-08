@@ -8,10 +8,10 @@
 /**
  * @brief constructor of class Utilizador
  *
- * @param nome 			name of user
- * @param email 		email of user
- * @param contacto 		phone number of user
- * @param localizacao	        localization of user
+ * @param nome 			
+ * @param email 		
+ * @param contacto 		
+ * @param localizacao	
  */
 Utilizador::Utilizador(string nome, string email, string contacto, Localizacao localizacao):
 	nome(nome),
@@ -25,12 +25,12 @@ Utilizador::Utilizador(string nome, string email, string contacto, Localizacao l
 /**
  * @brief constructor of class Utilizador
  *
- * @param nome 			name of user
- * @param email 		email of user
- * @param contacto 		phone number of user
- * @param freguesia		freguesia of user
- * @param concelho		concelho of user
- * @param distrito		distrito of user
+ * @param nome 			
+ * @param email 		
+ * @param contacto 		
+ * @param freguesia		
+ * @param concelho
+ * @param distrito		
  */
 Utilizador::Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito):
 		nome(nome),
@@ -74,7 +74,7 @@ string Utilizador::getContacto() const
 /**
  * @brief get localization of user
  *
- * @return localizacao
+ * @return localizacao		localization of user
  */
 Localizacao Utilizador::getLocalizacao() const
 {
@@ -84,7 +84,7 @@ Localizacao Utilizador::getLocalizacao() const
 /**
  * @brief set name of user
  *
- * @param nome	      name of user
+ * @param nome 		name of user
  */
 void Utilizador::setNome(const string & nome)
 {
@@ -94,7 +94,7 @@ void Utilizador::setNome(const string & nome)
 /**
  * @brief set email of user
  *
- * @param email	       email of user
+ * @param email		email of user
  */
 void Utilizador::setEmail(const string & email)
 {
@@ -104,7 +104,7 @@ void Utilizador::setEmail(const string & email)
 /**
  * @brief set phone number of user
  *
- * @param contacto 	phone numeber of user
+ * @param contacto	phone number of user
  */
 void Utilizador::setContacto(const string & contacto)
 {
@@ -114,7 +114,7 @@ void Utilizador::setContacto(const string & contacto)
 /**
  * @brief set localization of user
  *
- * @param localizacao
+ * @param localizacao	localization of user
  */
 void Utilizador::setLocalizacao(const Localizacao & localizacao)
 {
