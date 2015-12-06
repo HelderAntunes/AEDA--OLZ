@@ -50,6 +50,7 @@ void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
 
 int main(){
+
 	OLZ olz;
 	ifstream olz_file("OLZ-file.txt");
 	if (!olz_file.is_open()){

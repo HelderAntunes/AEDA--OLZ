@@ -8,10 +8,10 @@
 /**
  * @brief constructor of class Utilizador
  *
- * @param nome 			
- * @param email 		
- * @param contacto 		
- * @param localizacao	
+ * @param nome
+ * @param email
+ * @param contacto
+ * @param localizacao
  */
 Utilizador::Utilizador(string nome, string email, string contacto, Localizacao localizacao):
 	nome(nome),
@@ -25,12 +25,12 @@ Utilizador::Utilizador(string nome, string email, string contacto, Localizacao l
 /**
  * @brief constructor of class Utilizador
  *
- * @param nome 			
- * @param email 		
- * @param contacto 		
- * @param freguesia		
+ * @param nome
+ * @param email
+ * @param contacto
+ * @param freguesia
  * @param concelho
- * @param distrito		
+ * @param distrito
  */
 Utilizador::Utilizador(string nome, string email, string contacto, string freguesia, string concelho, string distrito):
 		nome(nome),
@@ -80,6 +80,26 @@ Localizacao Utilizador::getLocalizacao() const
 {
 	return localizacao;
 }
+
+/**
+* @brief get number of achieved trades
+*
+* @return negocios concretizados
+*/
+int Utilizador::getNegociosConcretizados() const
+{
+    return negociosConcretizados;
+}
+
+/**
+* @brief get the data of last trade
+*
+* @return dataUltimoNegocio
+*/
+Data Utilizador::getDataUltimoNegocio() const{
+    return dataUltimoNegocio;
+}
+
 
 /**
  * @brief set name of user
@@ -140,3 +160,29 @@ void Utilizador::imprime(){
 	cout << "Contacto: " << contacto << endl;
 	cout << "Localizacao: " << localizacao << endl;
 }
+
+
+/**
+*@brief overloading of operator == of class Utilizador
+*  two users are the same if they have the same email
+*/
+bool Utilizador::operator==(const Utilizador& u) const{
+    return email == u.getEmail();
+}
+
+/**
+*@brief overloading of operator < of class Utilizador
+* a user is less than another if he have less achieved trades, and
+* in case of draw, he is less if the date of last trade is less than another
+*/
+bool Utilizador::operator< (const Utilizador& right) const{
+
+    if(this->negociosConcretizados < right.negociosConcretizados)
+        return true;
+    else if(this->negociosConcretizados == right.negociosConcretizados)
+        return this->dataUltimoNegocio < right.dataUltimoNegocio;
+    else
+        return false;
+
+}
+

@@ -10,6 +10,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -99,6 +100,26 @@ public:
 
 		return in;
 	}
+
+    bool operator< (const Data& right) const{
+        vector<int> l,r;
+        l.push_back(this->ano);
+        l.push_back(this->mes);
+        l.push_back(this->dia);
+        r.push_back(right.ano);
+        r.push_back(right.mes);
+        r.push_back(right.dia);
+
+        for(size_t i = 0;i < l.size();i++){
+            if(l[i] < r[i])
+                return true;
+            else if(l[i] > r[i])
+                return false;
+        }
+
+        return false;
+    }
+
 };
 
 #endif /* SRC_DATA_H_ */
