@@ -27,9 +27,8 @@ struct eqNegocioConcretizado{
 
 // helder
 struct userPtrComp{
-	bool operator()(const Utilizador* left, const Utilizador* right){
-
-		return true;
+	bool operator()(const Utilizador* left, const Utilizador* right) const  {
+		return (*left) < (*right);
 	}
 };
 
@@ -47,7 +46,7 @@ struct menorPorDestaque_ACompra{
 	}
 };
 
-typedef tr1::unordered_set<Contacto*,hNegocioConcretizado,eqNegocioConcretizado>::iterator iteratorHNegociosConcre;
+typedef tr1::unordered_set<Contacto*,hNegocioConcretizado,eqNegocioConcretizado>::iterator iteratorHNegociosConcretizados;
 typedef tr1::unordered_set<Contacto*,hNegocioConcretizado,eqNegocioConcretizado> HashNegociosConcretizados;
 
 /**@class OLZ
@@ -65,11 +64,11 @@ public:
 	// helder
 	virtual ~OLZ();
 
-	// helder
+	// helder - esta feito
 	void adicionarUtilizador(Utilizador* novoUtilizador);
 
-	// helder
-	void apagarUtilizador(string email);
+	// helder - esta feito
+	void apagarUtilizadorESeusAnuncios(string email);
 
 	// filipe
 	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
@@ -101,7 +100,7 @@ public:
 	set<Utilizador*, userPtrComp> getUtilizadores() const;
 
 	// ines
-	vector<HashNegociosConcretizados> getNegociosConcretizados() const;
+	HashNegociosConcretizados getNegociosConcretizados() const;
 
 	vector<string> getCategorias() const;
 

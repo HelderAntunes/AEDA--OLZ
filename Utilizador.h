@@ -43,13 +43,6 @@ public:
 	bool operator< (const Utilizador& right) const;
 };
 
-struct UtilizadorPtrComp
-{
-	bool operator()(const Utilizador* left, const Utilizador* right) const  {
-		return (*left) < (*right);
-	}
-};
-
 /**@class ExceptionEmailJaExistente
  * @brief a exception class
  */
