@@ -134,6 +134,29 @@ vector<string> Anuncio::getImagens(){
 }
 
 /**
+ * @brief if a ad haves more visibility
+ * if it haves more visibility return true, otherwise return false
+ * @return temDestaque
+ */
+bool Anuncio::getTemDestaque(){
+	return temDestaque;
+}
+
+/**
+ * @brief set temDestaque to true
+ */
+void Anuncio::colocarDestaque(){
+	temDestaque = true;
+}
+
+/**
+ * @brief set temDestaque to false
+ */
+void Anuncio::retirarDestaque(){
+	temDestaque = false;
+}
+
+/**
  * @brief set permit to email.
  *
  * @param is email public?

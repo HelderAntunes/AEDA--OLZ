@@ -8,6 +8,8 @@
 
 using namespace std;
 
+
+
 /**@class Utilizador
  * @brief Utilizador class
  */
@@ -34,11 +36,19 @@ public:
 	void setLocalizacao(const Localizacao & localizacao);
 	friend ostream & operator<<(ostream & os, const Utilizador & utilizador);
 	void imprime();
+	void incNegociosConcretizados();
+	void updateDataUltimoNegocio(Data novaData);
 
 	bool operator==(const Utilizador& u) const;
 	bool operator< (const Utilizador& right) const;
 };
 
+struct UtilizadorPtrComp
+{
+	bool operator()(const Utilizador* left, const Utilizador* right) const  {
+		return (*left) < (*right);
+	}
+};
 
 /**@class ExceptionEmailJaExistente
  * @brief a exception class

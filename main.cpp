@@ -15,7 +15,11 @@
 
 using namespace std;
 
-void mostrarMenuPrincipal();
+int main(){
+	return 0;
+}
+
+/*void mostrarMenuPrincipal();
 bool isOpcaoInvalida(int opcao, int inf, int sup);
 Utilizador* criarUtilizador(const OLZ& olz);
 string pedeEmailDoUtilizadorQueQuerApagar();
@@ -48,8 +52,10 @@ void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
 void mostrarAnunciosMaisPopulares(const OLZ& olz);
 void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
+void imprimirUtilizadores(const OLZ& olz);*/
 
-int main(){
+
+/*int main(){
 
 	OLZ olz;
 	ifstream olz_file("OLZ-file.txt");
@@ -79,7 +85,7 @@ int main(){
 		}
 		switch(opcao){
 		case 1:
-			olz.imprimeUtilizadores();
+			imprimirUtilizadores(olz);
 			break;
 		case 2:
 			criar_e_adicionarNovoUtilizador(olz);
@@ -380,10 +386,10 @@ bool isOpcaoInvalida(int opcao, int inf, int sup){
 }
 
 bool emailExiste(string email,const OLZ& olz){
-	vector<Utilizador*> utilizadores = olz.getUtilizadores();
-	for(unsigned int i = 0;i < utilizadores.size();i++)
-		if(utilizadores[i]->getEmail() == email)
-			return true;
+//	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
+//	for(unsigned int i = 0;i < utilizadores.size();i++)
+//		if(utilizadores[i]->getEmail() == email)
+//			return true;
 	return false;
 }
 
@@ -752,7 +758,7 @@ bool existeCategoria(const OLZ& olz,string categoria){
 
 Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 	Utilizador* utilizador = NULL;
-	vector<Utilizador*> utilizadores = olz.getUtilizadores();
+	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
 	for(unsigned int i = 0;i < utilizadores.size();i++)
 		if(utilizadores[i]->getEmail() == email){
 			utilizador = utilizadores[i];
@@ -762,6 +768,6 @@ Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 		throw ExceptionUtilizadorNaoExistente(email);
 	else
 		return utilizador;
-}
+}*/
 
 

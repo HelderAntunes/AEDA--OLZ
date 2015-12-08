@@ -33,6 +33,7 @@ protected:
 	bool showEmail;			/**< advertiser wishes to make email public*/
 	bool showNome;			/**< advertiser wishes to make name public*/
 	bool showNumTel;		/**< advertiser wishes to make phone number public*/
+	bool temDestaque;
 public:
 	Anuncio(string titulo, string categoria, string descricao,
 			vector<string> imagens,int id, Data data, Utilizador* anunciante,
@@ -49,6 +50,7 @@ public:
 	bool getShowEmail();
 	bool getShowNome();
 	bool getShowNumTel();
+	bool getTemDestaque();
 	void setShowEmail(bool showEmail);
 	void setShowNome(bool showNome);
 	void setShowNumTel(bool showNumTel);
@@ -57,6 +59,8 @@ public:
 	void setAnunciantePtr(Utilizador* anunciantePtr);
 	static void setIdentificadorInicial(int static_id_anuncio_inicial);
 	static int getIdentificadorInicial();
+	void colocarDestaque();
+	void retirarDestaque();
 	/**
 	 * Function displays advertisement on screen
 	 * @brief display ad.

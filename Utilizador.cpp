@@ -17,9 +17,11 @@ Utilizador::Utilizador(string nome, string email, string contacto, Localizacao l
 	nome(nome),
 	email(email),
 	contacto(contacto),
-	localizacao(localizacao)
+	localizacao(localizacao),
+	dataUltimoNegocio(Data(0,0,0))
 {
-	// Empty Block
+	negociosConcretizados = 0;
+
 }
 
 /**
@@ -36,9 +38,10 @@ Utilizador::Utilizador(string nome, string email, string contacto, string fregue
 		nome(nome),
 		email(email),
 		contacto(contacto),
-		localizacao(Localizacao(freguesia, concelho, distrito))
+		localizacao(Localizacao(freguesia, concelho, distrito)),
+		dataUltimoNegocio(Data(0,0,0))
 {
-	// Empty Block
+	negociosConcretizados = 0;
 }
 
 /**
@@ -184,5 +187,22 @@ bool Utilizador::operator< (const Utilizador& right) const{
     else
         return false;
 
+}
+
+/**
+ * @brief increment the achieved trades of a user
+ */
+void Utilizador::incNegociosConcretizados(){
+	negociosConcretizados++;
+}
+
+/**
+ * @brief receive a date and set dataUltimoNegocio to novaData if novaData is more recent
+ *
+ * @param novaData
+ */
+void Utilizador::updateDataUltimoNegocio(Data novaData){
+	if(dataUltimoNegocio < novaData)
+		dataUltimoNegocio = novaData;
 }
 
