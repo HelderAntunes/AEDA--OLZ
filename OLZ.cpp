@@ -223,12 +223,21 @@ void OLZ::adicionarAnuncioVenda(DeVenda* novoAnuncio){
 
 /**
  * @brief add new contact between two users
- * Contacto* novoContacto
+ * @param Contacto* novoContacto contact to be added
  */
-/*void OLZ::adicionarContacto(Contacto* novoContacto){
+void OLZ::adicionarContacto(Contacto* novoContacto){
+	if(novoContacto->negocioEstaConcretizado())
+		negociosConcretizados.insert(novoContacto);
+	else
+		contactos.push_back(novoContacto);
+}
 
-}*/
-
+/**
+ * @brief get contacts referring to
+ */
+tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
+	return negociosConcretizados;
+}
 
 /**
  * @brief get all contacts that exists

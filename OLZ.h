@@ -15,15 +15,30 @@
 #include "Anuncio.h"
 #include "Contacto.h"
 
-//ines
-struct hNegocioConcretizado{
+//ines - esta feito (acho eu)
+struct NegocioConcretizadoHash
+{
+	int operator() (const Contacto* c) const
+	{
+		int soma = (c->getAnuncio())->getId();
+		string msg = c->getMensagem();
 
+		for (unsigned int i = 0; i < msg.size(); ++i) {
+			soma = 3*soma + msg[i];
+		}
+
+		return soma;
+	}
+
+	bool operator() (const Contacto* c1, const Contacto* c2) const
+	{
+		return ((c1->getAnuncio() == c2->getAnuncio()) && (c1->getPessoaInteressada() == c2->getPessoaInteressada()));
+	}
 };
 
-//ines
-struct eqNegocioConcretizado{
 
-};
+typedef tr1::unordered_set<Contacto*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
+typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
 
 // helder
 struct userPtrComp{
@@ -46,9 +61,6 @@ struct menorPorDestaque_ACompra{
 	}
 };
 
-typedef tr1::unordered_set<Contacto*,hNegocioConcretizado,eqNegocioConcretizado>::iterator iteratorHNegociosConcretizados;
-typedef tr1::unordered_set<Contacto*,hNegocioConcretizado,eqNegocioConcretizado> HashNegociosConcretizados;
-
 /**@class OLZ
  * @brief compact all information of system
  */
@@ -58,7 +70,7 @@ class OLZ {
 	set<Utilizador*, userPtrComp> utilizadores;
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > anunciosDeVenda;
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> anunciosDeCompra;
-	HashNegociosConcretizados negociosConcretizados;
+	tabHNegociosConcretizados negociosConcretizados;
 public:
 	OLZ();
 	// helder
@@ -82,9 +94,6 @@ public:
 	// filipe
 	void apagarAnuncioCompra(int id);
 
-	// ines (adicionar a contactos ou negocios concretizados consoante novoContacto esta concretizado ou nao)
-	void adicionarContacto(Contacto* novoContacto);
-
 	// filipe (acho melhor retornar um vetor do que uma fila de prioridade,
 	// pois o vetor e random acess iterator, enquanto que a fila de prioridade
 	// nem suporta iteradores(apenas push, pop, top)
@@ -99,8 +108,11 @@ public:
 	// helder
 	set<Utilizador*, userPtrComp> getUtilizadores() const;
 
-	// ines
-	HashNegociosConcretizados getNegociosConcretizados() const;
+	// ines - esta feito
+	void adicionarContacto(Contacto* novoContacto);
+
+	// ines - esta feito
+	tabHNegociosConcretizados getNegociosConcretizados() const;
 
 	vector<string> getCategorias() const;
 

@@ -44,7 +44,7 @@ void Contacto::setAnuncioPtr_toNull(){
  * @brief get pointer to add
  * @return Anuncio* anuncio
  */
-Anuncio* Contacto::getAnuncio(){
+Anuncio* Contacto::getAnuncio() const{
 	return anuncio;
 }
 
@@ -52,7 +52,7 @@ Anuncio* Contacto::getAnuncio(){
  * @brief get pointer to advertiser
  * @return Utilizador* anunciante
  */
-Utilizador* Contacto::getAnunciante(){
+Utilizador* Contacto::getAnunciante() const{
 	return anunciante;
 }
 
@@ -60,7 +60,7 @@ Utilizador* Contacto::getAnunciante(){
  * @brief get pointer to interested person
  * @return Utilizador* pessoaInt
  */
-Utilizador* Contacto::getPessoaInteressada(){
+Utilizador* Contacto::getPessoaInteressada() const{
 	return pessoaInt;
 }
 
@@ -153,7 +153,7 @@ void Contacto::setPessoaInteressadaPtr_toNull(){
  *
  * @return message
  */
-string Contacto::getMensagem(){
+string Contacto::getMensagem()const{
 	return mensagem;
 }
 

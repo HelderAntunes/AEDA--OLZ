@@ -37,6 +37,7 @@ Anuncio::Anuncio(string titulo, string categoria, string descricao,
 	this->showEmail =  showEmail;
 	this->showNome = showNome;
 	this->showNumTel = showNumTel;
+	this->temDestaque = false;		//adicionei esta instrução, por favor, confiram
 	this->id = id;
 }
 

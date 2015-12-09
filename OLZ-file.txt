@@ -16,8 +16,8 @@ imagem 1
 imagem 2
 FimImagens
 1
-31/0/15
-22
+31/10/2015
+24
 1 1 1
 USADO
 199.99
@@ -48,52 +48,181 @@ Porto
 Porto
 INICIO_ANUNCIOS_VENDA
 NOVO_ANUNCIO
-Vendo cadeira
-mobilia
-cadeira de criança com desenhos
+Vendo teclado
+tecnologia
+teclado
 Imagens
-cad1
-cad2
-cad3
+marca
+logitech
+preto
+em
+bom
+estado
 FimImagens
 3
-3/3/2015
-5
+6/11/2015
+0
 0 0 0
-FUNCIONAL
-9.99
+USADO
+40
 1
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
-Alfredo Afonso
-alf@aqui.pt
-961231234
-Canal Caveira
-Setubal
-Setubal
+Lena Torres
+leninha@hug.me
+914124569
+Moldes
+Arouca
+Aveiro
+INICIO_ANUNCIOS_VENDA
+NOVO_ANUNCIO
+Lote de sapatos tamanho 37
+moda
+4 pares sapatos de salto alto 
+Imagens
+lote
+sapato1
+sapato2
+sapato3 sapato4
+FimImagens
+6
+12/11/2015
+0
+1 1 0
+NOVO
+42
+1
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+NOVO_ANUNCIO
+Compro carteira Louis Vitton
+moda
+Pretendo arranjar uma bolsa preta de marca referida
+Imagens
+FimImagens
+5
+9/9/2014
+0
+0 1 1
+0
+0
+NOVO_ANUNCIO
+Blusao de pele Massimo Dutti
+moda
+Procuro blusao rosa da colecao de outono/inverno de 2013
+Imagens
+blusao
+FimImagens
+7
+13/12/2015
+1
+1 1 0
+1
+6
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Anabela Albuquerque
+anbeke@google.com
+960385183
+Cabeca Gorda
+Beja
+Beja
 INICIO_ANUNCIOS_VENDA
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
-Maria Bolacha
-mariaB@manteigas.com
-123456789
-Vitrine
-Balcao
-Pastelaria
+Teodoro Santana
+teoSant@outlook.pt
+912455698
+Cabrela
+Montemor-o-novo
+Evora
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Vitor Henriques
+henri@aeiou.pt
+990347022
+Vila de Macada
+Alijo
+Vila Real
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Margarida D'cruz
+maggy9592@google.com
+914322777
+Pepim
+Castro Daire
+Viseu
+INICIO_ANUNCIOS_VENDA
+NOVO_ANUNCIO
+Vendo livros da Anita
+lazer
+Colecao de 30 livros da infame Anita
+Imagens
+anita1
+anita2
+anita3
+FimImagens
+4
+12/11/2015
+0
+1 0 1
+USADO
+120
+0
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Vasco Rios
+mrRios@outlook.pt
+965321690
+Vila Seca e Bem da Fe
+Condeixa-A-Nova
+Coimbra
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Simao Belo
+jeSuisBelo@facebook.com
+91777525
+Chao de Couce
+Ansiao
+Leiria
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Frederica Ribeiro
+fredRica@hotmail.com
+954321739
+Cano
+Sousel
+Portalegre
 INICIO_ANUNCIOS_VENDA
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 FIM_UTILIZADORES
-4
+8
 CATEGORIAS
 tecnologia
-vestuario
+moda
 mobilia
+lazer
+outros
 FIM_CATEGORIAS
 CONTACTOS
 NOVO_CONTACTO
@@ -104,14 +233,5 @@ desejo comprar o telemovel
 918370036
 1
 200
-5/11/2015
-NOVO_CONTACTO
-helder_antunes-@hotmail.com
-inesfproenca@gmail.com
-1
-gostava de adquirir o produto em questao
-916560700
-1
-200
-6/11/2015
+5/1/15
 FIM_CONTACTOS

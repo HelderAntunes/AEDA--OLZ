@@ -29,10 +29,10 @@ public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);
 	void setAnuncioPtr_toNull();
-	Anuncio* getAnuncio();
-	Utilizador* getAnunciante();
-	Utilizador* getPessoaInteressada();
-	string getMensagem();
+	Anuncio* getAnuncio() const;
+	Utilizador* getAnunciante() const;
+	Utilizador* getPessoaInteressada() const;
+	string getMensagem()const;
 	string getNumTel_PessoaInt();
 	float getMontanteNegociado();
 	Data getDataNegociada();
