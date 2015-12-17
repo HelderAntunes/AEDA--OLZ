@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "Localizacao.h"
+#include "Data.h"
 
 using namespace std;
 

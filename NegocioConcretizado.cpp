@@ -11,7 +11,7 @@ NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anuncia
 		Anuncio* anuncio, float montanteNegociado, string mensagem):
 
 		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), anuncio(anuncio),
-		montanteNegociado(montanteNegociado), montanteNegociado(montanteNegociado), mensagem(mensagem){}
+		montanteNegociado(montanteNegociado), mensagem(mensagem){}
 
 NegocioConcretizado::~NegocioConcretizado() {
 }
@@ -24,7 +24,7 @@ Utilizador* NegocioConcretizado::getAnunciante() const{
 	return anunciante;
 }
 
-Utilizador* NegocioConcretizado::getPessoaInterssada() const{
+Utilizador* NegocioConcretizado::getPessoaInteressada() const{
 	return pessoaInt;
 }
 
@@ -40,3 +40,16 @@ string NegocioConcretizado::getMensagem() const{
 	return mensagem;
 }
 
+/**
+ * @brief set pointer to advertiser to NULL
+ */
+void NegocioConcretizado::setAnunciantePtr_toNull(){
+	anunciante = NULL;
+}
+
+/**
+ * @brief set pointer to interested person to NULL
+ */
+void NegocioConcretizado::setPessoaInteressadaPtr_toNull(){
+	pessoaInt = NULL;
+}

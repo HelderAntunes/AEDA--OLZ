@@ -226,10 +226,15 @@ void OLZ::adicionarAnuncioVenda(DeVenda* novoAnuncio){
  * @param Contacto* novoContacto contact to be added
  */
 void OLZ::adicionarContacto(Contacto* novoContacto){
-	if(novoContacto->negocioEstaConcretizado())
-		negociosConcretizados.insert(novoContacto);
-	else
-		contactos.push_back(novoContacto);
+	contactos.push_back(novoContacto);
+}
+
+/**
+ * @brief add new transaction between two users
+ * @param NegocioConcretizado* novoNegocio contact to be added
+ */
+void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
+	negociosConcretizados.insert(novoNegocio);
 }
 
 /**

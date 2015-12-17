@@ -14,11 +14,12 @@
 #include <tr1/unordered_set>
 #include "Anuncio.h"
 #include "Contacto.h"
+#include "NegocioConcretizado.h"
 
 //ines - esta feito (acho eu)
 struct NegocioConcretizadoHash
 {
-	int operator() (const Contacto* c) const
+	int operator() (const NegocioConcretizado* c) const
 	{
 		int soma = (c->getAnuncio())->getId();
 		string msg = c->getMensagem();
@@ -30,14 +31,14 @@ struct NegocioConcretizadoHash
 		return soma;
 	}
 
-	bool operator() (const Contacto* c1, const Contacto* c2) const
+	bool operator() (const NegocioConcretizado* c1, const NegocioConcretizado* c2) const
 	{
 		return ((c1->getAnuncio() == c2->getAnuncio()) && (c1->getPessoaInteressada() == c2->getPessoaInteressada()));
 	}
 };
 
 
-typedef tr1::unordered_set<Contacto*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
+typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
 typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
 
 // helder
@@ -110,8 +111,7 @@ public:
 
 	// ines - esta feito
 	void adicionarContacto(Contacto* novoContacto);
-
-	// ines - esta feito
+	void adicionarNegocio(NegocioConcretizado* novoNegocio);
 	tabHNegociosConcretizados getNegociosConcretizados() const;
 
 	vector<string> getCategorias() const;

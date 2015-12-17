@@ -22,9 +22,6 @@ private:
 	Anuncio* anuncio;		/**< pointer to add */
 	string mensagem;    /**< message of interested person to advertiser */
 	string numTel_pessoaInt;  /**< phone number of interested person */
-	bool concretizado;   /**< reveals if trade is concretized */
-	float montanteNegociado;  /** money negotiated */
-	Data dataNegociada;   /** data of negotiation */
 public:
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);
@@ -34,14 +31,10 @@ public:
 	Utilizador* getPessoaInteressada() const;
 	string getMensagem()const;
 	string getNumTel_PessoaInt();
-	float getMontanteNegociado();
-	Data getDataNegociada();
 	void setAnunciantePtr_toNull();
 	void setPessoaInteressadaPtr_toNull();
 	void concretizaNegocio(float montanteNegociado, Data data);
-	bool negocioEstaConcretizado();
 	void imprimeContacto();
-	void imprimeNegocioConcretizado();
 	virtual ~Contacto();
 };
 

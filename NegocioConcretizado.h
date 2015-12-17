@@ -25,10 +25,12 @@ public:
 	virtual ~NegocioConcretizado();
 	Data getDataNegociada() const;
 	Utilizador* getAnunciante() const;
-	Utilizador* getPessoaInterssada() const;
+	Utilizador* getPessoaInteressada() const;
 	Anuncio* getAnuncio() const;
 	float getMontanteNegociado() const;
 	string getMensagem() const;
+	void setAnunciantePtr_toNull();
+	void setPessoaInteressadaPtr_toNull();
 };
 
 #endif /* NEGOCIOCONCRETIZADO_H_ */
