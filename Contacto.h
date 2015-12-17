@@ -7,6 +7,7 @@
 #define SRC_CONTACTO_H_
 
 #include "Anuncio.h"
+#include "NegocioConcretizado.h"
 #include <string>
 #include <iostream>
 
@@ -33,7 +34,7 @@ public:
 	string getNumTel_PessoaInt();
 	void setAnunciantePtr_toNull();
 	void setPessoaInteressadaPtr_toNull();
-	void concretizaNegocio(float montanteNegociado, Data data);
+	NegocioConcretizado* concretizaNegocio(float montanteNegociado, Data data);
 	void imprimeContacto();
 	virtual ~Contacto();
 };

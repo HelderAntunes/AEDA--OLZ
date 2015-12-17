@@ -65,10 +65,9 @@ Utilizador* Contacto::getPessoaInteressada() const{
  * @param int montanteNegociado
  * @param Data data of negotiation
  */
-void Contacto::concretizaNegocio(float montanteNegociado, Data data){
-//	concretizado = true;
-//	this->montanteNegociado = montanteNegociado;
-//	this->dataNegociada = data;
+NegocioConcretizado* Contacto::concretizaNegocio(float montanteNegociado, Data data){
+
+	return new NegocioConcretizado(data, anunciante,pessoaInt,anuncio,montanteNegociado,mensagem);
 }
 
 /**
