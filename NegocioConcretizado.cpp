@@ -13,50 +13,24 @@ NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anuncia
 		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), descricaoAnuncio(anuncio->getDescricao()),
 		montanteNegociado(montanteNegociado), mensagem(mensagem){}
 
-NegocioConcretizado::~NegocioConcretizado() {
-}
+NegocioConcretizado::~NegocioConcretizado() {}
 
-Data NegocioConcretizado::getDataNegociada() const{
-	return dataNegociada;
-}
+Data NegocioConcretizado::getDataNegociada() const{	return dataNegociada;}
 
-Utilizador* NegocioConcretizado::getAnunciante() const{
-	return anunciante;
-}
+Utilizador* NegocioConcretizado::getAnunciante() const{	return anunciante;}
 
-Utilizador* NegocioConcretizado::getPessoaInteressada() const{
-	return pessoaInt;
-}
+Utilizador* NegocioConcretizado::getPessoaInteressada() const{ return pessoaInt;}
 
-string NegocioConcretizado::getDescricao() const{
-	return descricaoAnuncio;
-}
+string NegocioConcretizado::getDescricao() const{ return descricaoAnuncio;}
 
-float NegocioConcretizado::getMontanteNegociado() const{
-	return montanteNegociado;
-}
+float NegocioConcretizado::getMontanteNegociado() const{ return montanteNegociado;}
 
-string NegocioConcretizado::getMensagem() const{
-	return mensagem;
-}
+string NegocioConcretizado::getMensagem() const{ return mensagem;}
 
-/**
- * @brief set pointer to advertiser to NULL
- */
-void NegocioConcretizado::setAnunciantePtr_toNull(){
-	anunciante = NULL;
-}
+void NegocioConcretizado::setAnunciantePtr_toNull(){ anunciante = NULL;}
 
-/**
- * @brief set pointer to interested person to NULL
- */
-void NegocioConcretizado::setPessoaInteressadaPtr_toNull(){
-	pessoaInt = NULL;
-}
+void NegocioConcretizado::setPessoaInteressadaPtr_toNull(){	pessoaInt = NULL;}
 
-/**
- * @brief print transaction
- */
 void NegocioConcretizado::imprimeNegocioConcretizado(){
 	if(anunciante != NULL)
 		cout << "Anuciante: " << anunciante->getNome() << endl;
