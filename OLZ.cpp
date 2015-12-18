@@ -191,7 +191,7 @@ void OLZ::adicionarAnuncioCompra(DeCompra* novoAnuncio){
 	anunciosDeCompra.push(novoAnuncio);
 }
 
-void OLZ::apagaContactosAssociados_A_Anuncio(int id_anuncio){
+void OLZ::apagarContactosAssociados_A_Anuncio(int id_anuncio){
 	for(size_t i = 0;i < contactos.size();i++){
 		if(contactos[i]->getAnuncio()->getId() == id_anuncio){
 			contactos.erase(contactos.begin() + i);
@@ -209,7 +209,7 @@ void OLZ::apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio){
 		anunciosDeVenda.pop();
 
 		if(anuncio->getId() == id_anuncio)
-			apagaContactosAssociados_A_Anuncio(id_anuncio);
+			apagarContactosAssociados_A_Anuncio(id_anuncio);
 		else
 			aux.push(anuncio);
 	}
@@ -226,7 +226,7 @@ void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
 		anunciosDeCompra.pop();
 
 		if(anuncio->getId() == id_anuncio)
-			apagaContactosAssociados_A_Anuncio(id_anuncio);
+			apagarContactosAssociados_A_Anuncio(id_anuncio);
 		else
 			aux.push(anuncio);
 
@@ -235,133 +235,145 @@ void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
 	anunciosDeCompra = aux;
 }
 
-/**
- * @brief add new contact between two users
- * @param Contacto* novoContacto contact to be added
- */
+
 void OLZ::adicionarContacto(Contacto* novoContacto){
 	contactos.push_back(novoContacto);
 }
 
-/**
- * @brief add new transaction between two users
- * @param NegocioConcretizado* novoNegocio contact to be added
- */
+
 void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
 	negociosConcretizados.insert(novoNegocio);
 }
 
-/**
- * @brief get contacts referring to
- */
+
 tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
 	return negociosConcretizados;
 }
 
-/**
- * @brief get all contacts that exists
- * @return vector<Contacto*> contactos
- */
+
 vector<Contacto*> OLZ::getContactos() const{
 	return contactos;
 }
 
+void OLZ::apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador){
+	vector<Anuncio*> anunciosUtilizador = getAnunciosDeVendaEdeCompra();
 
-void OLZ::apagarUtilizadorESeusAnuncios(string email){
+	for(size_t i = 0;anunciosUtilizador.size();i++)
+		if(anunciosUtilizador[i]->getAnunciante()->getEmail() == emailUtilizador){
+			int id_anuncio = anunciosUtilizador[i]->getId();
+			apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
+		}
+
+}
+
+void OLZ::destruirInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador){
+	iteratorHNegociosConcretizados i = negociosConcretizados.begin();
+
+	while(i != negociosConcretizados.end()){
+		if((*i)->getAnunciante() != NULL){
+			if((*i)->getAnunciante()->getEmail() == emailUtilizador)
+				(*i)->setAnunciantePtr_toNull();
+		}
+
+		if((*i)->getPessoaInteressada() != NULL)
+			if((*i)->getPessoaInteressada()->getEmail() == emailUtilizador)
+				(*i)->setPessoaInteressadaPtr_toNull();
+	}
+
+}
+
+void OLZ::apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador){
 	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+
 	while(it != utilizadores.end()){
 
-		if((*it)->getEmail() == email){
+		if((*it)->getEmail() == emailUtilizador){
 
 			// apagar seus anuncios de venda
 			vector<DeVenda*> anunVenda = getAnunciosDeVenda();
 
 			for(size_t i = 0;i < anunVenda.size();i++)
-				if(anunVenda[i]->getAnunciante()->getEmail() == email){
+				if(anunVenda[i]->getAnunciante()->getEmail() == emailUtilizador){
 					int id_anuncio = anunVenda[i]->getId();
-					apagarAnuncioVenda(id_anuncio);
+					apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
 				}
 
 			//apagar seus anuncios de compra
 			vector<DeCompra*> anunCompra = getAnunciosDeCompra();
 
 			for(size_t i = 0;i < anunCompra.size();i++)
-				if(anunCompra[i]->getAnunciante()->getEmail() == email){
+				if(anunCompra[i]->getAnunciante()->getEmail() == emailUtilizador){
 					int id_anuncio = anunCompra[i]->getId();
-					apagarAnuncioCompra(id_anuncio);
+					apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
 				}
-
-			// Os contactos nao serao apagados,mas quando
-			// existir um apontador(anunciante ou pessoa interessada)
-			// referente a este utilizador, esse apontador vai ser posto
-			// a NULL
-			for(unsigned int i = 0;i < contactos.size();i++){
-				if(contactos[i]->getAnunciante() != NULL)
-					if(contactos[i]->getAnunciante()->getEmail() == email)
-						contactos[i]->setAnunciantePtr_toNull();
-
-				if(contactos[i]->getPessoaInteressada() != NULL)
-					if(contactos[i]->getPessoaInteressada()->getEmail() == email)
-						contactos[i]->setPessoaInteressadaPtr_toNull();
-			}
 
 			// apagar negocios concretizados
 			iteratorHNegociosConcretizados i = negociosConcretizados.begin();
 
 			while(i != negociosConcretizados.end()){
 				if((*i)->getAnunciante() != NULL){
-					if((*i)->getAnunciante()->getEmail() == email)
+					if((*i)->getAnunciante()->getEmail() == emailUtilizador)
 						(*i)->setAnunciantePtr_toNull();
 				}
 
 				if((*i)->getPessoaInteressada() != NULL)
-					if((*i)->getPessoaInteressada()->getEmail() == email)
+					if((*i)->getPessoaInteressada()->getEmail() == emailUtilizador)
 						(*i)->setPessoaInteressadaPtr_toNull();
 			}
 
-			// apagar utilizador
+
 			utilizadores.erase(it);
-			return;
 		}
 	}
 }
 
-/**
- * @brief get all adds that exists
- */
-/*vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 
-}*/
+vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
+	vector<Anuncio*> res;
 
-/**@brief get all seller adds that exists
- *
- * @return vector<DeVenda*> anunciosDeVenda
- */
-vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
+	vector<DeVenda*> anunVenda = getAnunciosDeVenda();
+	vector<DeCompra*> anunCompra = getAnunciosDeCompra();
 
+	res.insert(res.begin(),anunVenda.begin(),anunVenda.end());
+	res.insert(res.begin(),anunCompra.begin(),anunCompra.end());
+
+	return res;
 }
 
-/**
- * @brief get all want adds that exists
- * @return vector<DeCompra*> anunciosDeCompra
- */
-/*vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
 
-}*/
+vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
+	vector<DeVenda*> res;
+	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux = anunciosDeVenda;
 
-/**
- * @brief get all users that exists
- * @return vector<Utilizador*> utilizadores
- */
+	while(!aux.empty()){
+		DeVenda* anuncio = aux.top();
+		aux.pop();
+		res.push_back(anuncio);
+	}
+
+	return res;
+}
+
+
+vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
+	vector<DeCompra*> res;
+	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux = anunciosDeCompra;
+
+	while(!aux.empty()){
+		DeCompra* anuncio = aux.top();
+		aux.pop();
+		res.push_back(anuncio);
+	}
+
+	return res;
+}
+
+
 set<Utilizador*, userPtrComp> OLZ::getUtilizadores() const{
 	return utilizadores;
 }
 
 
-/**
- * @brief get all categorys that exists
- * @return vector<string> categorias
- */
 vector<string> OLZ::getCategorias() const{
 	return categorias;
 }

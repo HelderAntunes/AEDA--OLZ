@@ -16,8 +16,7 @@
 #include "Contacto.h"
 #include "NegocioConcretizado.h"
 
-typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
-typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
+
 
 /**
  * structure to hashing table of achieved business
@@ -58,6 +57,8 @@ struct NegocioConcretizadoHash
 	}
 };
 
+typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
+typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
 
 
 /**
@@ -116,7 +117,19 @@ class OLZ {
 	 *
 	 * @param id_anuncio id of a add
 	 */
-	void apagaContactosAssociados_A_Anuncio(int id_anuncio);
+	void apagarContactosAssociados_A_Anuncio(int id_anuncio);
+
+	/**@brief the function delete information about user in achieved business
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void destruirInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador);
+
+	/**@brief delete adds and contacts of a user, using user email
+	 *
+	 * @param emailUtilizador email of the user
+	 */
+	void apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador);
 
 public:
 	OLZ();
@@ -128,12 +141,6 @@ public:
 	 * @param Utilizador* novoUtilizador)
 	 */
 	void adicionarUtilizador(Utilizador* novoUtilizador);
-
-	/**@brief delete a user, their adds and their contacts
-	 *
-	 * @param email email of user
-	 */
-	void apagarUtilizadorESeusAnuncios(string email);
 
 	/**@brief add a seller add to a priority_queue of seller adds
 	 *
@@ -147,6 +154,12 @@ public:
 	 */
 	void adicionarAnuncioCompra(DeCompra* novoAnuncio);
 
+	/**@brief delete a user, their adds and their contacts
+	 *
+	 * @param email email of user
+	 */
+	void apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador);
+
 	/**@brief delete anunciosVenda and the contacts associated
 	 *
 	 * @param id id of add to delete
@@ -159,27 +172,57 @@ public:
 	 */
 	void apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio);
 
-	// filipe (acho melhor retornar um vetor do que uma fila de prioridade,
-	// pois o vetor e random acess iterator, enquanto que a fila de prioridade
-	// nem suporta iteradores(apenas push, pop, top)
+	/**@brief get all adds that exists
+	 *
+	 * @return vector<Anuncio*> vector of all adds
+	 */
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 
-	// filipe
+	/**@brief get all seller adds that exists
+	 *
+	 * @return vector<DeVenda*> anunciosDeVenda
+	 */
 	vector<DeVenda*> getAnunciosDeVenda() const;
 
-	// filipe
+	/**@brief get all want adds that exists
+	 *
+	 * @return vector<DeCompra*> anunciosDeCompra
+	 */
 	vector<DeCompra*> getAnunciosDeCompra() const;
 
-	// helder
+	/**@brief get all users that exists
+	 *
+	 * @return vector<Utilizador*> utilizadores
+	 */
 	set<Utilizador*, userPtrComp> getUtilizadores() const;
 
-	// ines - esta feito
+	/**@brief add new contact between two users
+	 *
+	 * @param Contacto* novoContacto contact to be added
+	 */
 	void adicionarContacto(Contacto* novoContacto);
+
+	/**@brief add new transaction between two users
+	 *
+	 * @param NegocioConcretizado* novoNegocio contact to be added
+	 */
 	void adicionarNegocio(NegocioConcretizado* novoNegocio);
+
+	/**@brief get achieved business
+	 *
+	 */
 	tabHNegociosConcretizados getNegociosConcretizados() const;
 
+	/**@brief get all categories that exists
+	 *
+	 * @return vector<string> categories that exists
+	 */
 	vector<string> getCategorias() const;
 
+	/**@brief get all contacts that exists
+	 *
+	 * @return vector<Contacto*> contactos
+	 */
 	vector<Contacto*> getContactos() const;
 
 	// helder
