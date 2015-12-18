@@ -17,7 +17,7 @@
  * @brief contact between two persons
  */
 class Contacto {
-private:
+protected:
 	Utilizador* anunciante;    /**< pointer to advertiser */
 	Utilizador* pessoaInt;    /**< pointer to interested person */
 	Anuncio* anuncio;		/**< pointer to add */
@@ -88,6 +88,7 @@ public:
 	 * @brief class contacto destructor
 	 */
 	virtual ~Contacto();
+	friend ostream &operator<<(ostream &out, Contacto c);
 };
 
 

@@ -76,3 +76,24 @@ string Contacto::getNumTel_PessoaInt(){
 }
 
 Contacto::~Contacto() {}
+
+ostream &operator<<(ostream &out, Contacto c){
+	if(c.anunciante != NULL)
+		out << c.anunciante->getEmail() << endl;
+	else
+		out << "semEmail.pt\n";
+	if(c.pessoaInt != NULL)
+		out << c.pessoaInt->getEmail() << endl;
+	else
+		out << "semEmail.pt\n";
+
+	if(c.anuncio != NULL)
+		out << c.anuncio->getId() << endl;
+	else
+		out << -1 << endl;
+
+	out << c.mensagem << endl;
+	out << c.numTel_pessoaInt << endl;
+
+	return out;
+}

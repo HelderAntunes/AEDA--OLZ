@@ -353,11 +353,10 @@ vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
  * @brief get all users that exists
  * @return vector<Utilizador*> utilizadores
  */
-/*
-set<Utilizador*> OLZ::getUtilizadores() const{
+set<Utilizador*, userPtrComp> OLZ::getUtilizadores() const{
 	return utilizadores;
 }
- */
+
 
 /**
  * @brief get all categorys that exists
@@ -372,7 +371,59 @@ vector<string> OLZ::getCategorias() const{
  * @para istream& olz_file
  */
 void OLZ::salvarTodosOsDados(ostream& olz_file){
-	//...
+	olz_file << "INICIO_UTILIZADORES\n";
+	for (set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin(); it != utilizadores.end(); ++it) {
+		olz_file << "NOVO_UTILIZADOR\n";
+		olz_file << (*it)->getNome() << endl;
+		olz_file << (*it)->getEmail() << endl;
+		olz_file << (*it)->getContacto() << endl;
+		olz_file << (*it)->getLocalizacao().getFreguesia() << endl;
+		olz_file << (*it)->getLocalizacao().getConcelho() << endl;
+		olz_file << (*it)->getLocalizacao().getDistrito() << endl;
+
+		olz_file << "INICIO_ANUNCIOS_VENDA\n";
+		priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > venda = anunciosDeVenda;
+		while(!venda.empty()){
+			DeVenda* anuncio = venda.top();
+			if(anuncio->getAnunciante() == *it){
+				olz_file << "NOVO_ANUNCIO\n";
+				olz_file << *anuncio;
+			}
+			venda.pop();
+		}
+		olz_file << "FIM_ANUNCIOS_VENDA\n";
+
+		olz_file << "INICIO_ANUNCIOS_COMPRA\n";
+		priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> compra = anunciosDeCompra;
+		while(!compra.empty()){
+			DeCompra* anuncio = compra.top();
+			if(anuncio->getAnunciante() == *it){
+				olz_file << "NOVO_ANUNCIO\n";
+				olz_file << *anuncio;
+			}
+			compra.pop();
+		}
+		olz_file << "FIM_ANUNCIOS_COMPRA\n";
+	}
+	olz_file << "FIM_UTILIZADORES\n";
+
+	olz_file << Anuncio::getIdentificadorInicial() << endl;
+
+	olz_file << "CATEGORIAS\n";
+	for(unsigned int i = 0;i< categorias.size();i++)
+		olz_file << categorias[i] << endl;
+	olz_file << "FIM_CATEGORIAS\n";
+
+	olz_file << "CONTACTOS\n";
+	for (unsigned int i = 0; i < contactos.size(); ++i)
+		olz_file << *contactos[i];
+	olz_file << "FIM_CONTACTOS\n";
+
+	olz_file << "NEGOCIOS\n";
+	tabHNegociosConcretizados::const_iterator it  = negociosConcretizados.begin();
+	while(it != negociosConcretizados.end())
+		olz_file << **it;
+	olz_file << "FIM_NEGOCIOS\n";
 }
 
 /*

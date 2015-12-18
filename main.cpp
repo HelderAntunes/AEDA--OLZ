@@ -185,7 +185,7 @@ void apagarUtilizador(OLZ& olz){
 	while(1){
 		try{
 			string email = pedeEmailDoUtilizadorQueQuerApagar();
-			olz.apagarUtilizador(email);
+			olz.apagarUtilizadorESeusAnuncios(email);
 		}
 		catch(ExceptionUtilizadorNaoExistente& u){
 			cout << "Utilizador com email " << u.getEmail() << " nao foi encontrado.\n";
@@ -748,9 +748,11 @@ bool existeCategoria(const OLZ& olz,string categoria){
 Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 	Utilizador* utilizador = NULL;
 	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
-	for(unsigned int i = 0;i < utilizadores.size();i++)
-		if(utilizadores[i]->getEmail() == email){
-			utilizador = utilizadores[i];
+	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+
+	while(it != utilizadores.end())
+		if((*it)->getEmail() == email){
+			utilizador = *it;
 			break;
 		}
 	if(utilizador == NULL)
@@ -759,4 +761,10 @@ Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 		return utilizador;
 }
 
+void imprimirUtilizadores(const OLZ& olz){
+	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
+	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
 
+	while(it != utilizadores.end())
+		(*it)->imprime();
+}

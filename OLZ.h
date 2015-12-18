@@ -188,7 +188,6 @@ public:
 	void leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leContactos(istream& olz_file);
-	// helder
 	void salvarTodosOsDados(ostream& olz_file);
 };
 

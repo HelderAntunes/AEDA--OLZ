@@ -51,3 +51,14 @@ void NegocioConcretizado::imprimeNegocioConcretizado(){
 	cout << "Montante negociado: " << montanteNegociado << "€\n";
 	cout << "Data do negocio: " << dataNegociada << endl;
 }
+
+ostream &operator<<(ostream &out, NegocioConcretizado nc){
+
+	out << nc.dataNegociada << endl;
+	out << nc.anunciante->getEmail() << endl;
+	out << nc.pessoaInt->getEmail() << endl;
+	out << nc.descricaoAnuncio << endl;
+	out << nc.mensagem << endl;
+
+	return out;
+}

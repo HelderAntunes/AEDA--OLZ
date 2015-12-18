@@ -12,7 +12,7 @@
 #include "Anuncio.h"
 
 class NegocioConcretizado {
-private:
+protected:
 	Data dataNegociada;   /** data of negotiation */
 	Utilizador* anunciante;    /**< pointer to advertiser */
 	Utilizador* pessoaInt;    /**< pointer to interested person */
@@ -82,6 +82,7 @@ public:
 	 * @brief print transaction
 	 */
 	void imprimeNegocioConcretizado();
+	friend ostream &operator<<(ostream &out, NegocioConcretizado nc);
 };
 
 #endif /* NEGOCIOCONCRETIZADO_H_ */
