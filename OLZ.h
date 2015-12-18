@@ -21,19 +21,29 @@ struct NegocioConcretizadoHash
 {
 	int operator() (const NegocioConcretizado* c) const
 	{
-		int soma = (c->getAnuncio())->getId();
-		string msg = c->getMensagem();
-
-		for (unsigned int i = 0; i < msg.size(); ++i) {
-			soma = 3*soma + msg[i];
+		int hash = 0;
+		string desc = c->getDescricao();
+		for (unsigned int i = 0; i < desc.size(); ++i) {
+			hash = hash*3 + desc[i];
 		}
-
-		return soma;
+		Utilizador* ptr = c->getAnunciante();
+		string email = ptr->getEmail();
+		for (unsigned int i = 0; i < desc.size(); ++i) {
+			hash = hash*3 + email[i];
+		}
+		ptr = c->getPessoaInteressada();
+		email = ptr->getEmail();
+		for (unsigned int i = 0; i < desc.size(); ++i) {
+			hash = hash*3 + email[i];
+		}
+		return hash;
 	}
 
 	bool operator() (const NegocioConcretizado* c1, const NegocioConcretizado* c2) const
 	{
-		return ((c1->getAnuncio() == c2->getAnuncio()) && (c1->getPessoaInteressada() == c2->getPessoaInteressada()));
+		return ((c1->getDescricao() == c2->getDescricao())
+				&& (c1->getAnunciante() == c2->getAnunciante())
+				&& (c1->getPessoaInteressada() == c2->getPessoaInteressada()));
 	}
 };
 

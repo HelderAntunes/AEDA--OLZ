@@ -10,7 +10,7 @@
 NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt,
 		Anuncio* anuncio, float montanteNegociado, string mensagem):
 
-		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), anuncio(anuncio),
+		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), descricaoAnuncio(anuncio->getDescricao()),
 		montanteNegociado(montanteNegociado), mensagem(mensagem){}
 
 NegocioConcretizado::~NegocioConcretizado() {
@@ -28,8 +28,8 @@ Utilizador* NegocioConcretizado::getPessoaInteressada() const{
 	return pessoaInt;
 }
 
-Anuncio* NegocioConcretizado::getAnuncio() const{
-	return anuncio;
+string NegocioConcretizado::getDescricao() const{
+	return descricaoAnuncio;
 }
 
 float NegocioConcretizado::getMontanteNegociado() const{
@@ -52,4 +52,28 @@ void NegocioConcretizado::setAnunciantePtr_toNull(){
  */
 void NegocioConcretizado::setPessoaInteressadaPtr_toNull(){
 	pessoaInt = NULL;
+}
+
+/**
+ * @brief print transaction
+ */
+void NegocioConcretizado::imprimeNegocioConcretizado(){
+	if(anunciante != NULL)
+		cout << "Anuciante: " << anunciante->getNome() << endl;
+	else
+		cout << "Anunciante ja nao se encontra registado no site OLZ.\n";
+
+	if(pessoaInt != NULL)
+		cout << "Pessoa interessada: " << pessoaInt->getNome() << endl;
+	else
+		cout << "A pessoa interessada ja nao se encontra registado no site OLZ.\n";
+
+	cout << "Objeto negociado:" << descricaoAnuncio << endl;
+
+
+	cout << "Mensagem da pessoa interessada:\n";
+	cout << mensagem << endl;
+
+	cout << "Montante negociado: " << montanteNegociado << "€\n";
+	cout << "Data do negocio: " << dataNegociada << endl;
 }

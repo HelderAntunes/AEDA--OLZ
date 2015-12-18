@@ -15,11 +15,7 @@
 
 using namespace std;
 
-int main(){
-	return 0;
-}
-
-/*void mostrarMenuPrincipal();
+void mostrarMenuPrincipal();
 bool isOpcaoInvalida(int opcao, int inf, int sup);
 Utilizador* criarUtilizador(const OLZ& olz);
 string pedeEmailDoUtilizadorQueQuerApagar();
@@ -52,10 +48,10 @@ void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz);
 void mostrarAnunciosMaisPopulares(const OLZ& olz);
 void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
-void imprimirUtilizadores(const OLZ& olz);*/
+void imprimirUtilizadores(const OLZ& olz);
 
 
-/*int main(){
+int main(){
 
 	OLZ olz;
 	ifstream olz_file("OLZ-file.txt");
@@ -235,34 +231,27 @@ void mostrarMenuPrincipal(){
 
 void mostrarContactos(OLZ& olz){
 	vector<Contacto*> contactos = olz.getContactos();
-	int negociosImpri = 0;
-	for(unsigned int i = 0;i< contactos.size();i++)
-		if(contactos[i]->negocioEstaConcretizado()){
-			contactos[i]->imprimeNegocioConcretizado();
-			cout << endl << "/--------------------------------------------\n";
-			negociosImpri++;
-		}
-		else{
-			contactos[i]->imprimeContacto();
-			cout << endl << "/--------------------------------------------\n";
-			negociosImpri++;
-		}
-	if(negociosImpri == 0)
-		cout << "Nao foram encontrados negocios concretizados.\n";
+
+	for(unsigned int i = 0;i< contactos.size();i++){
+		contactos[i]->imprimeContacto();
+		cout << endl << "/--------------------------------------------\n";
+	}
+	if(contactos.empty())
+		cout << "Nao foram encontrados contactos.\n";
 }
 
 void mostrarNegociosConcretizados(OLZ& olz){
-	vector<Contacto*> contactos = olz.getContactos();
-	int negociosImpri = 0;
-	for(unsigned int i = 0;i< contactos.size();i++)
-		if(contactos[i]->negocioEstaConcretizado()){
-			contactos[i]->imprimeNegocioConcretizado();
-			cout << endl << "/--------------------------------------------\n";
-			negociosImpri++;
-		}
-	if(negociosImpri == 0)
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+	tabHNegociosConcretizados::const_iterator it  = negocios.begin();
+
+	while(it != negocios.end()){
+		(*it)->imprimeNegocioConcretizado();
+		cout << endl << "/--------------------------------------------\n";
+	}
+	if(negocios.empty())
 		cout << "Nao foram encontrados negocios concretizados.\n";
 }
+
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz){
 	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
 	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
@@ -306,8 +295,8 @@ void concretizarNegocio(OLZ& olz){
 		for(unsigned int i = 0;i < contactos.size();i++){
 			if(contactos[i]->getAnunciante() != NULL && contactos[i]->getPessoaInteressada() != NULL)
 				if(contactos[i]->getAnunciante()->getEmail() == anunciante->getEmail()
-				&& contactos[i]->getPessoaInteressada()->getEmail() == pessoaInt->getEmail()
-				&& contactos[i]->getAnuncio()->getId() == anuncio->getId())
+						&& contactos[i]->getPessoaInteressada()->getEmail() == pessoaInt->getEmail()
+						&& contactos[i]->getAnuncio()->getId() == anuncio->getId())
 					contacto = contactos[i];
 		}
 
@@ -386,10 +375,10 @@ bool isOpcaoInvalida(int opcao, int inf, int sup){
 }
 
 bool emailExiste(string email,const OLZ& olz){
-//	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
-//	for(unsigned int i = 0;i < utilizadores.size();i++)
-//		if(utilizadores[i]->getEmail() == email)
-//			return true;
+	//	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
+	//	for(unsigned int i = 0;i < utilizadores.size();i++)
+	//		if(utilizadores[i]->getEmail() == email)
+	//			return true;
 	return false;
 }
 
@@ -768,6 +757,6 @@ Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 		throw ExceptionUtilizadorNaoExistente(email);
 	else
 		return utilizador;
-}*/
+}
 
 

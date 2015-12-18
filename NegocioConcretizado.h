@@ -16,7 +16,7 @@ private:
 	Data dataNegociada;   /** data of negotiation */
 	Utilizador* anunciante;    /**< pointer to advertiser */
 	Utilizador* pessoaInt;    /**< pointer to interested person */
-	Anuncio* anuncio;		/**< pointer to add */
+	string descricaoAnuncio;		/**< pointer to add */
 	float montanteNegociado;  /** money negotiated */
 	string mensagem;    /**< message of interested person to advertiser */
 
@@ -26,11 +26,12 @@ public:
 	Data getDataNegociada() const;
 	Utilizador* getAnunciante() const;
 	Utilizador* getPessoaInteressada() const;
-	Anuncio* getAnuncio() const;
+	string getDescricao() const;
 	float getMontanteNegociado() const;
 	string getMensagem() const;
 	void setAnunciantePtr_toNull();
 	void setPessoaInteressadaPtr_toNull();
+	void imprimeNegocioConcretizado();
 };
 
 #endif /* NEGOCIOCONCRETIZADO_H_ */

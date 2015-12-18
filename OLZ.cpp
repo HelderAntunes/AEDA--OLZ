@@ -59,7 +59,7 @@ void OLZ::leTodosOsDados(istream& olz_file){
  * @param istream& olz_file
  */
 void OLZ::leContactos(istream& olz_file){
-	/*	olz_file.ignore();
+	/*olz_file.ignore();
 	string inicioContactos;
 	olz_file >> inicioContactos;
 	while(1){
