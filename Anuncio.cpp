@@ -420,6 +420,8 @@ ostream &operator<<(ostream &out, DeVenda a){
 
 	out << a.preco << endl;
 	out << a.negociacao << endl;
+	out << a.temDestaque << endl;
+
 	return out;
 }
 
@@ -458,6 +460,7 @@ istream &operator>>(istream &in, DeVenda &a){
 
 	in >> a.preco;
 	in >> a.negociacao;
+	in >> a.temDestaque;
 
 	return in;
 }
@@ -478,6 +481,7 @@ ostream &operator<<(ostream &out, DeCompra a){
 	out << a.showEmail << " " << a.showNome << " " << a.showNumTel << endl;
 	out << a.troca << endl;
 	out << a.trocaId << endl;
+	out << a.temDestaque << endl;
 	return out;
 }
 
@@ -503,6 +507,7 @@ istream &operator>>(istream &in, DeCompra &a){
 	in >> a.showEmail >> a.showNome >> a.showNumTel;
 	in >> a.troca;
 	in >> a.trocaId;
+	in >> a.temDestaque;
 
 	return in;
 }
