@@ -42,7 +42,7 @@ public:
 	string getTitulo();
 	string getCategoria();
 	int getId();
-	Data getData();
+	Data getData() const;
 	int getVisualizacoes();
 	Utilizador* getAnunciante();
 	vector<string> getImagens();
@@ -50,7 +50,7 @@ public:
 	bool getShowEmail();
 	bool getShowNome();
 	bool getShowNumTel();
-	bool getTemDestaque();
+	bool anuncioTemDestaque() const;
 	void setShowEmail(bool showEmail);
 	void setShowNome(bool showNome);
 	void setShowNumTel(bool showNumTel);

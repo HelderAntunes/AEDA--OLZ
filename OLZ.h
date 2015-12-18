@@ -16,29 +16,40 @@
 #include "Contacto.h"
 #include "NegocioConcretizado.h"
 
-//ines - esta feito (acho eu)
+typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
+typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
+
+/**
+ * structure to hashing table of achieved business
+ */
 struct NegocioConcretizadoHash
 {
+	// hashing function
 	int operator() (const NegocioConcretizado* c) const
 	{
 		int hash = 0;
+
 		string desc = c->getDescricao();
 		for (unsigned int i = 0; i < desc.size(); ++i) {
 			hash = hash*3 + desc[i];
 		}
+
 		Utilizador* ptr = c->getAnunciante();
 		string email = ptr->getEmail();
 		for (unsigned int i = 0; i < desc.size(); ++i) {
 			hash = hash*3 + email[i];
 		}
+
 		ptr = c->getPessoaInteressada();
 		email = ptr->getEmail();
 		for (unsigned int i = 0; i < desc.size(); ++i) {
 			hash = hash*3 + email[i];
 		}
+
 		return hash;
 	}
 
+	// equal function
 	bool operator() (const NegocioConcretizado* c1, const NegocioConcretizado* c2) const
 	{
 		return ((c1->getDescricao() == c2->getDescricao())
@@ -48,27 +59,45 @@ struct NegocioConcretizadoHash
 };
 
 
-typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
-typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
 
-// helder
+/**
+ * structure to compare two pointer of users (useful to implement the set)
+ */
 struct userPtrComp{
 	bool operator()(const Utilizador* left, const Utilizador* right) const  {
 		return (*left) < (*right);
 	}
 };
 
-// filipe
+/**
+ * structure that implement the operator minus for seller ad
+ */
 struct menorPorDestaque_AVenda{
 	bool operator()(const DeVenda* left, const DeVenda* right) const{
-		return true;
+		if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
+			return true;
+
+		else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
+			return false;
+
+		else
+			return left->getData() < right->getData();
 	}
 };
 
-// filipe
+/**
+ * structure that implement the operator minus for Buying ad
+ */
 struct menorPorDestaque_ACompra{
 	bool operator()(const DeCompra* left, const DeCompra* right) const{
-		return true;
+		if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
+			return true;
+
+		else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
+			return false;
+
+		else
+			return left->getData() < right->getData();
 	}
 };
 
@@ -82,28 +111,53 @@ class OLZ {
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > anunciosDeVenda;
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> anunciosDeCompra;
 	tabHNegociosConcretizados negociosConcretizados;
+
+	/**@brief delete contacts associated to a determined add
+	 *
+	 * @param id_anuncio id of a add
+	 */
+	void apagaContactosAssociados_A_Anuncio(int id_anuncio);
+
 public:
 	OLZ();
 	// helder
 	virtual ~OLZ();
 
-	// helder - esta feito
+	/**@brief add a user to a set of users
+	 *
+	 * @param Utilizador* novoUtilizador)
+	 */
 	void adicionarUtilizador(Utilizador* novoUtilizador);
 
-	// helder - esta feito
+	/**@brief delete a user, their adds and their contacts
+	 *
+	 * @param email email of user
+	 */
 	void apagarUtilizadorESeusAnuncios(string email);
 
-	// filipe
+	/**@brief add a seller add to a priority_queue of seller adds
+	 *
+	 * @param DeVenda* novoAnuncio
+	 */
 	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
 
-	// filipe
+	/**@brief add a want add to a priority_queue of want adds
+	 *
+	 * @param DeCompra* novoAnuncio
+	 */
 	void adicionarAnuncioCompra(DeCompra* novoAnuncio);
 
-	// filipe
-	void apagarAnuncioVenda(int id);
+	/**@brief delete anunciosVenda and the contacts associated
+	 *
+	 * @param id id of add to delete
+	 */
+	void apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio);
 
-	// filipe
-	void apagarAnuncioCompra(int id);
+	/**@brief delete anunciosCompra and the contacts associated
+	 *
+	 * @param id_anuncio id of add to delete
+	 */
+	void apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio);
 
 	// filipe (acho melhor retornar um vetor do que uma fila de prioridade,
 	// pois o vetor e random acess iterator, enquanto que a fila de prioridade

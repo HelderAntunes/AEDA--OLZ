@@ -73,7 +73,7 @@ int Anuncio::getId(){return id;}
  *
  * @return advertisement's creation date
  */
-Data Anuncio::getData(){ return data;}
+Data Anuncio::getData() const{ return data;}
 
 /**
  * @brief get views.
@@ -139,7 +139,7 @@ vector<string> Anuncio::getImagens(){
  * if it haves more visibility return true, otherwise return false
  * @return temDestaque
  */
-bool Anuncio::getTemDestaque(){
+bool Anuncio::anuncioTemDestaque() const{
 	return temDestaque;
 }
 
