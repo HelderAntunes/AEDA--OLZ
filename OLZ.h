@@ -123,7 +123,7 @@ class OLZ {
 	 *
 	 * @param emailUtilizador email of user
 	 */
-	void destruirInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador);
+	void apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador);
 
 	/**@brief delete adds and contacts of a user, using user email
 	 *
@@ -131,6 +131,11 @@ class OLZ {
 	 */
 	void apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador);
 
+	/**@brief just delete a user from a set of users
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void apagarUtilizador(string emailUtilizador);
 public:
 	OLZ();
 	// helder
@@ -231,6 +236,7 @@ public:
 	void leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
 	void leContactos(istream& olz_file);
+	//ines
 	void salvarTodosOsDados(ostream& olz_file);
 };
 

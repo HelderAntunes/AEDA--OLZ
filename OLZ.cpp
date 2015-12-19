@@ -266,7 +266,7 @@ void OLZ::apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador){
 
 }
 
-void OLZ::destruirInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador){
+void OLZ::apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador){
 	iteratorHNegociosConcretizados i = negociosConcretizados.begin();
 
 	while(i != negociosConcretizados.end()){
@@ -282,49 +282,22 @@ void OLZ::destruirInformacoesDoUtilizadorEmNegociosConcretizados(string emailUti
 
 }
 
-void OLZ::apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador){
+void OLZ::apagarUtilizador(string emailUtilizador){
 	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
 
 	while(it != utilizadores.end()){
 
 		if((*it)->getEmail() == emailUtilizador){
-
-			// apagar seus anuncios de venda
-			vector<DeVenda*> anunVenda = getAnunciosDeVenda();
-
-			for(size_t i = 0;i < anunVenda.size();i++)
-				if(anunVenda[i]->getAnunciante()->getEmail() == emailUtilizador){
-					int id_anuncio = anunVenda[i]->getId();
-					apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
-				}
-
-			//apagar seus anuncios de compra
-			vector<DeCompra*> anunCompra = getAnunciosDeCompra();
-
-			for(size_t i = 0;i < anunCompra.size();i++)
-				if(anunCompra[i]->getAnunciante()->getEmail() == emailUtilizador){
-					int id_anuncio = anunCompra[i]->getId();
-					apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
-				}
-
-			// apagar negocios concretizados
-			iteratorHNegociosConcretizados i = negociosConcretizados.begin();
-
-			while(i != negociosConcretizados.end()){
-				if((*i)->getAnunciante() != NULL){
-					if((*i)->getAnunciante()->getEmail() == emailUtilizador)
-						(*i)->setAnunciantePtr_toNull();
-				}
-
-				if((*i)->getPessoaInteressada() != NULL)
-					if((*i)->getPessoaInteressada()->getEmail() == emailUtilizador)
-						(*i)->setPessoaInteressadaPtr_toNull();
-			}
-
-
 			utilizadores.erase(it);
+			break;
 		}
 	}
+}
+
+void OLZ::apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador){
+	apagarUtilizador(emailUtilizador);
+	apagarAnuncios_E_Contactos_DeUmUtilizador(emailUtilizador);
+	apagarInformacoesDoUtilizadorEmNegociosConcretizados(emailUtilizador);
 }
 
 
