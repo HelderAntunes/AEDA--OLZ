@@ -16,8 +16,6 @@
 #include "Contacto.h"
 #include "NegocioConcretizado.h"
 
-
-
 /**
  * structure to hashing table of achieved business
  */

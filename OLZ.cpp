@@ -6,6 +6,7 @@
  */
 
 #include "OLZ.h"
+#include <algorithm>
 
 /*
  * Funções auxiliares
@@ -18,6 +19,7 @@ Estado leEstadoDoProdutoDoAnuncio(istream& olz_file);
 DeCompra* leAnuncioDeCompra(istream& olz_file);
 DeVenda* leAnuncioDeVenda(istream& olz_file);
 vector<string> leCategorias(istream& olz_file);
+bool ordenarPorDestaque(Anuncio* left, Anuncio* right);
 
 /**
  * @brief constructor of OLZ
@@ -339,7 +341,20 @@ vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 	res.insert(res.begin(),anunVenda.begin(),anunVenda.end());
 	res.insert(res.begin(),anunCompra.begin(),anunCompra.end());
 
+	sort(res.begin(),res.end(),ordenarPorDestaque);
+
 	return res;
+}
+
+bool ordenarPorDestaque(Anuncio* left, Anuncio* right){
+	if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
+		return true;
+
+	else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
+		return false;
+
+	else
+		return left->getData() < right->getData();
 }
 
 
