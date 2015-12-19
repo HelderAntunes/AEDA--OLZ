@@ -113,9 +113,9 @@ class OLZ {
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> anunciosDeCompra;
 	tabHNegociosConcretizados negociosConcretizados;
 
-	/**@brief delete contacts associated to a determined add
+	/**@brief delete all the contacts associated to a ad
 	 *
-	 * @param id_anuncio id of a add
+	 *@param id_anuncio id of ad
 	 */
 	void apagarContactosAssociados_A_Anuncio(int id_anuncio);
 
@@ -125,17 +125,36 @@ class OLZ {
 	 */
 	void apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador);
 
-	/**@brief delete adds and contacts of a user, using user email
+	/**@brief delete ads and contacts of a user, using user email
 	 *
 	 * @param emailUtilizador email of the user
 	 */
-	void apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador);
+	void apagarAnunciosDeUmUtilizador(string emailUtilizador);
 
 	/**@brief just delete a user from a set of users
 	 *
 	 * @param emailUtilizador email of user
 	 */
 	void apagarUtilizador(string emailUtilizador);
+
+	/**@brief detete all the contacts of a user
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void apagarContactosDeUmUtilizador(string emailUtilizador);
+
+	/**@brief delete a seller add
+	 *
+	 * @param id_anuncio id of add for be deleted
+	 */
+	void apagarAnuncioDeVenda(int id_anuncio);
+
+	/**@brief delete a want ad
+	 *
+	 * @param id_anuncio id of add for be deleted
+	 */
+	void apagarAnuncioDeCompra(int id_anuncio);
+
 public:
 	OLZ();
 	// helder
@@ -146,6 +165,18 @@ public:
 	 * @param Utilizador* novoUtilizador)
 	 */
 	void adicionarUtilizador(Utilizador* novoUtilizador);
+
+	/**@brief add new contact between two users
+	 *
+	 * @param Contacto* novoContacto contact to be added
+	 */
+	void adicionarContacto(Contacto* novoContacto);
+
+	/**@brief add new transaction between two users
+	 *
+	 * @param NegocioConcretizado* novoNegocio contact to be added
+	 */
+	void adicionarNegocio(NegocioConcretizado* novoNegocio);
 
 	/**@brief add a seller add to a priority_queue of seller adds
 	 *
@@ -159,23 +190,23 @@ public:
 	 */
 	void adicionarAnuncioCompra(DeCompra* novoAnuncio);
 
-	/**@brief delete a user, their adds and their contacts
+	/**@brief delete a user, his adds, his contacts and informations in achieved trades
 	 *
 	 * @param email email of user
 	 */
-	void apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador);
+	void apagarUtilizador_SeusAnuncios_Contactos_E_Informacoes(string emailUtilizador);
 
-	/**@brief delete anunciosVenda and the contacts associated
+	/**@brief delete a seller ad and all associated contacts
 	 *
-	 * @param id id of add to delete
+	 * @param id_anuncio id of ad
 	 */
-	void apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio);
+	void apagarAnuncioDeVendaESeusContactos(int id_anuncio);
 
-	/**@brief delete anunciosCompra and the contacts associated
+	/**@brief delete a want ad and all asociated contacts
 	 *
-	 * @param id_anuncio id of add to delete
+	 * @param id_anuncio id of ad
 	 */
-	void apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio);
+	void apagarAnuncioDeCompraESeusContactos(int id_anuncio);
 
 	/**@brief get all adds that exists
 	 *
@@ -201,20 +232,7 @@ public:
 	 */
 	set<Utilizador*, userPtrComp> getUtilizadores() const;
 
-	/**@brief add new contact between two users
-	 *
-	 * @param Contacto* novoContacto contact to be added
-	 */
-	void adicionarContacto(Contacto* novoContacto);
-
-	/**@brief add new transaction between two users
-	 *
-	 * @param NegocioConcretizado* novoNegocio contact to be added
-	 */
-	void adicionarNegocio(NegocioConcretizado* novoNegocio);
-
 	/**@brief get achieved business
-	 *
 	 */
 	tabHNegociosConcretizados getNegociosConcretizados() const;
 

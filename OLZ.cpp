@@ -16,6 +16,7 @@ Data leDataDoAnuncio(istream& olz_file);
 vector<string> leImagensDoAnuncio(istream& olz_file);
 Estado leEstadoDoProdutoDoAnuncio(istream& olz_file);
 DeCompra* leAnuncioDeCompra(istream& olz_file);
+DeVenda* leAnuncioDeVenda(istream& olz_file);
 vector<string> leCategorias(istream& olz_file);
 
 /**
@@ -185,39 +186,19 @@ void OLZ::adicionarAnuncioVenda(DeVenda* novoAnuncio){
 	anunciosDeVenda.push(novoAnuncio);
 }
 
-
-
 void OLZ::adicionarAnuncioCompra(DeCompra* novoAnuncio){
 	anunciosDeCompra.push(novoAnuncio);
 }
 
-void OLZ::apagarContactosAssociados_A_Anuncio(int id_anuncio){
-	for(size_t i = 0;i < contactos.size();i++){
-		if(contactos[i]->getAnuncio()->getId() == id_anuncio){
-			contactos.erase(contactos.begin() + i);
-			i--;
-		}
-	}
+void OLZ::adicionarContacto(Contacto* novoContacto){
+	contactos.push_back(novoContacto);
 }
 
-void OLZ::apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio){
-	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux;
-
-	while(!anunciosDeVenda.empty()){
-
-		DeVenda* anuncio = anunciosDeVenda.top();
-		anunciosDeVenda.pop();
-
-		if(anuncio->getId() == id_anuncio)
-			apagarContactosAssociados_A_Anuncio(id_anuncio);
-		else
-			aux.push(anuncio);
-	}
-
-	anunciosDeVenda = aux;
+void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
+	negociosConcretizados.insert(novoNegocio);
 }
 
-void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
+void OLZ::apagarAnuncioDeCompra(int id_anuncio){
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux;
 
 	while(!anunciosDeCompra.empty()){
@@ -225,43 +206,47 @@ void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
 		DeCompra* anuncio = anunciosDeCompra.top();
 		anunciosDeCompra.pop();
 
-		if(anuncio->getId() == id_anuncio)
-			apagarContactosAssociados_A_Anuncio(id_anuncio);
-		else
+		if(anuncio->getId() != id_anuncio)
 			aux.push(anuncio);
+		else
+			delete(anuncio);
 
 	}
 
 	anunciosDeCompra = aux;
 }
 
+void OLZ::apagarAnuncioDeVenda(int id_anuncio){
+	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux;
 
-void OLZ::adicionarContacto(Contacto* novoContacto){
-	contactos.push_back(novoContacto);
+	while(!anunciosDeVenda.empty()){
+
+		DeVenda* anuncio = anunciosDeVenda.top();
+		anunciosDeVenda.pop();
+
+		if(anuncio->getId() != id_anuncio)
+			aux.push(anuncio);
+		else
+			delete(anuncio);
+	}
+
+	anunciosDeVenda = aux;
 }
 
+void OLZ::apagarAnunciosDeUmUtilizador(string emailUtilizador){
+	vector<DeVenda*> anunVenda = getAnunciosDeVenda();
+	vector<DeCompra*> anunCompra = getAnunciosDeCompra();
 
-void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
-	negociosConcretizados.insert(novoNegocio);
-}
+	for(size_t i = 0;anunVenda.size();i++)
+		if(anunVenda[i]->getAnunciante()->getEmail() == emailUtilizador){
+			int id_anuncio = anunVenda[i]->getId();
+			apagarAnuncioDeVenda(id_anuncio);
+		}
 
-
-tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
-	return negociosConcretizados;
-}
-
-
-vector<Contacto*> OLZ::getContactos() const{
-	return contactos;
-}
-
-void OLZ::apagarAnuncios_E_Contactos_DeUmUtilizador(string emailUtilizador){
-	vector<Anuncio*> anunciosUtilizador = getAnunciosDeVendaEdeCompra();
-
-	for(size_t i = 0;anunciosUtilizador.size();i++)
-		if(anunciosUtilizador[i]->getAnunciante()->getEmail() == emailUtilizador){
-			int id_anuncio = anunciosUtilizador[i]->getId();
-			apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
+	for(size_t i = 0;anunCompra.size();i++)
+		if(anunCompra[i]->getAnunciante()->getEmail() == emailUtilizador){
+			int id_anuncio = anunCompra[i]->getId();
+			apagarAnuncioDeCompra(id_anuncio);
 		}
 
 }
@@ -294,12 +279,56 @@ void OLZ::apagarUtilizador(string emailUtilizador){
 	}
 }
 
-void OLZ::apagarUtilizador_SeusAnuncios_E_SeusContactos(string emailUtilizador){
+void OLZ::apagarContactosAssociados_A_Anuncio(int id_anuncio){
+	for(size_t i = 0;i < contactos.size();i++){
+		if(contactos[i]->getAnuncio()->getId() == id_anuncio){
+			delete(contactos[i]);
+			contactos.erase(contactos.begin() + i);
+			i--;
+		}
+	}
+}
+
+void OLZ::apagarAnuncioDeVendaESeusContactos(int id_anuncio){
+	apagarContactosAssociados_A_Anuncio(id_anuncio);
+	apagarAnuncioDeVenda(id_anuncio);
+}
+
+
+void OLZ::apagarAnuncioDeCompraESeusContactos(int id_anuncio){
+	apagarContactosAssociados_A_Anuncio(id_anuncio);
+	apagarAnuncioDeCompra(id_anuncio);
+}
+
+void OLZ::apagarUtilizador_SeusAnuncios_Contactos_E_Informacoes(string emailUtilizador){
 	apagarUtilizador(emailUtilizador);
-	apagarAnuncios_E_Contactos_DeUmUtilizador(emailUtilizador);
+	apagarAnunciosDeUmUtilizador(emailUtilizador);
+	apagarContactosDeUmUtilizador(emailUtilizador);
 	apagarInformacoesDoUtilizadorEmNegociosConcretizados(emailUtilizador);
 }
 
+void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
+	for(size_t i = 0;i < contactos.size();i++){
+
+		string emailAnunciante = contactos[i]->getAnunciante()->getEmail();
+		string emailInteressado = contactos[i]->getPessoaInteressada()->getEmail();
+
+		if(emailAnunciante == emailUtilizador || emailAnunciante == emailUtilizador){
+			delete(contactos[i]);
+			contactos.erase(contactos.begin()+i);
+			i--;
+		}
+	}
+}
+
+tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
+	return negociosConcretizados;
+}
+
+
+vector<Contacto*> OLZ::getContactos() const{
+	return contactos;
+}
 
 vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 	vector<Anuncio*> res;
