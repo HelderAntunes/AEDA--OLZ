@@ -30,10 +30,10 @@ protected:
 	Data data;				/**< advertisement's date of creation */
 	int visualizacoes;		/**< advertisement's number of views */
 	Utilizador *anunciante;	/**< pointer to the advertiser */
-	bool showEmail;			/**< advertiser wishes to make email public*/
-	bool showNome;			/**< advertiser wishes to make name public*/
-	bool showNumTel;		/**< advertiser wishes to make phone number public*/
-	bool temDestaque;
+	bool showEmail;			/**< advertiser wishes to make email public */
+	bool showNome;			/**< advertiser wishes to make name public */
+	bool showNumTel;		/**< advertiser wishes to make phone number public */
+	bool temDestaque;		/**< indicator if the ad have priority in search */
 public:
 	Anuncio(string titulo, string categoria, string descricao,
 			vector<string> imagens,int id, Data data, Utilizador* anunciante,

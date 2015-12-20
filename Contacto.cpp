@@ -82,6 +82,7 @@ ostream &operator<<(ostream &out, Contacto c){
 		out << c.anunciante->getEmail() << endl;
 	else
 		out << "semEmail.pt\n";
+
 	if(c.pessoaInt != NULL)
 		out << c.pessoaInt->getEmail() << endl;
 	else

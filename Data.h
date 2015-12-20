@@ -96,8 +96,6 @@ public:
 		char lixo;
 		in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
 
-		Data test(data.dia,data.mes,data.ano);
-
 		return in;
 	}
 
