@@ -7,11 +7,33 @@
 
 #include "NegocioConcretizado.h"
 
+
+
 NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt,
 		Anuncio* anuncio, float montanteNegociado, string mensagem):
+		dataNegociada(dataNegociada),
+		anunciante(anunciante),
+		pessoaInt(pessoaInt),
+		descricaoAnuncio(anuncio->getDescricao()),
+		montanteNegociado(montanteNegociado),
+		mensagem(mensagem),
+		categoria(anuncio->getCategoria()){}
 
+NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt,
+		string descricaoAnuncio, float montanteNegociado, string mensagem, string categoria):
+		dataNegociada(dataNegociada),
+		anunciante(anunciante),
+		pessoaInt(pessoaInt),
+		descricaoAnuncio(descricaoAnuncio),
+		montanteNegociado(montanteNegociado),
+		mensagem(mensagem),
+		categoria(categoria){}
+
+<<<<<<< HEAD
 		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), descricaoAnuncio(anuncio->getDescricao()),
 		categoria(anuncio->getCategoria()), montanteNegociado(montanteNegociado), mensagem(mensagem){}
+=======
+>>>>>>> origin/master
 
 NegocioConcretizado::~NegocioConcretizado() {}
 
@@ -54,13 +76,27 @@ void NegocioConcretizado::imprimeNegocioConcretizado(){
 	cout << "Data do negocio: " << dataNegociada << endl;
 }
 
-ostream &operator<<(ostream &out, NegocioConcretizado nc){
+ostream &operator<<(ostream &out,const NegocioConcretizado& nc){
 
 	out << nc.dataNegociada << endl;
-	out << nc.anunciante->getEmail() << endl;
-	out << nc.pessoaInt->getEmail() << endl;
+
+	if(nc.anunciante != NULL)
+		out << nc.anunciante->getEmail() << endl;
+	else
+		out << "semEmail.pt\n";
+
+	if(nc.pessoaInt != NULL)
+		out << nc.pessoaInt->getEmail() << endl;
+	else
+		out << "semEmail.pt\n";
+
 	out << nc.descricaoAnuncio << endl;
+	out << nc.montanteNegociado << endl;
 	out << nc.mensagem << endl;
+	out << nc.categoria << endl;
 
 	return out;
 }
+
+
+

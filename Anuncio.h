@@ -30,14 +30,17 @@ protected:
 	Data data;				/**< advertisement's date of creation */
 	int visualizacoes;		/**< advertisement's number of views */
 	Utilizador *anunciante;	/**< pointer to the advertiser */
-	bool showEmail;			/**< advertiser wishes to make email public*/
-	bool showNome;			/**< advertiser wishes to make name public*/
-	bool showNumTel;		/**< advertiser wishes to make phone number public*/
-	bool temDestaque;
+	bool showEmail;			/**< advertiser wishes to make email public */
+	bool showNome;			/**< advertiser wishes to make name public */
+	bool showNumTel;		/**< advertiser wishes to make phone number public */
+	bool temDestaque;		/**< indicator if the ad have priority in search */
 public:
 	Anuncio(string titulo, string categoria, string descricao,
 			vector<string> imagens,int id, Data data, Utilizador* anunciante,
-			int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
+			int visualizacoes, bool showEmail, bool showNome, bool showNumTel);
+	Anuncio(string titulo, string categoria, string descricao,
+				vector<string> imagens,int id, Data data, Utilizador* anunciante,
+				int visualizacoes, bool showEmail, bool showNome, bool showNumTel, bool temDestaque);
 	virtual ~Anuncio();
 	string getTitulo();
 	string getCategoria();
@@ -82,7 +85,7 @@ protected:
 public:
 	DeVenda(string titulo, string categoria, string descricao,vector<string> imagens, int id,
 			Estado estado, float preco,bool negociacao, Data data, Utilizador* anunciante,
-			int visualizacoes, bool showEmail, bool showNome,	bool showNumTel);
+			int visualizacoes, bool showEmail, bool showNome, bool showNumTel, bool temDestaque);
 	Estado getEstado();
 	float getPreco();
 	bool getNegociacao();
@@ -102,7 +105,7 @@ protected:
 public:
 	DeCompra(string titulo, string categoria, string descricao, vector<string> imagens, int id,
 			bool troca, int trocaId, Data data, Utilizador* anunciante, int visualizacoes,
-			bool showEmail, bool showNome, bool showNumTel);
+			bool showEmail, bool showNome, bool showNumTel, bool temDestaque);
 	void imprime() const ;
 	friend ostream &operator<<(ostream &out, DeCompra a);
 	friend istream &operator>>(istream &in, DeCompra &a);

@@ -57,6 +57,10 @@ struct NegocioConcretizadoHash
 
 typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
 typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
 /**
  * structure to compare two pointer of users (useful to implement the set)
@@ -103,89 +107,223 @@ struct menorPorDestaque_ACompra{
  * @brief compact all information of system
  */
 class OLZ {
-	vector<Contacto*> contactos;
-	vector<string> categorias;
 	set<Utilizador*, userPtrComp> utilizadores;
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > anunciosDeVenda;
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> anunciosDeCompra;
 	tabHNegociosConcretizados negociosConcretizados;
-
-	/**@brief delete contacts associated to a determined add
+	vector<Contacto*> contactos;
+	vector<string> categorias;
+	/**
+	 * @brief delete all the contacts associated to a ad
 	 *
-	 * @param id_anuncio id of a add
+	 *@param id_anuncio id of ad
 	 */
-	void apagaContactosAssociados_A_Anuncio(int id_anuncio);
+	void apagarContactosAssociados_A_Anuncio(int id_anuncio);
+
+	/**
+	 * @brief the function delete information about user in achieved business
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador);
+
+	/**
+	 * @brief delete ads and contacts of a user, using user email
+	 *
+	 * @param emailUtilizador email of the user
+	 */
+	void apagarAnunciosDeUmUtilizador(string emailUtilizador);
+
+	/**
+	 * @brief just delete a user from a set of users
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void apagarUtilizador(string emailUtilizador);
+
+	/**
+	 * @brief detete all the contacts of a user
+	 *
+	 * @param emailUtilizador email of user
+	 */
+	void apagarContactosDeUmUtilizador(string emailUtilizador);
+
+	/**
+	 * @brief delete a seller add
+	 *
+	 * @param id_anuncio id of add for be deleted
+	 */
+	void apagarAnuncioDeVenda(int id_anuncio);
+
+	/**
+	 * @brief delete a want ad
+	 *
+	 * @param id_anuncio id of add for be deleted
+	 */
+	void apagarAnuncioDeCompra(int id_anuncio);
 
 public:
+	/**
+	 * @brief constructor of class OLZ
+	 * The function don´t initialize any variables
+	 */
+
 	OLZ();
-	// helder
+	/**
+	 * @brief destuctor of class OLZ, free dynamic allocated memory
+	 */
 	virtual ~OLZ();
 
-	/**@brief add a user to a set of users
+	/**
+	 * @brief add a user to a set of users
 	 *
 	 * @param Utilizador* novoUtilizador)
 	 */
 	void adicionarUtilizador(Utilizador* novoUtilizador);
 
-	/**@brief delete a user, their adds and their contacts
+	/**
+	 * @brief add new contact between two users
 	 *
-	 * @param email email of user
+	 * @param Contacto* novoContacto contact to be added
 	 */
-	void apagarUtilizadorESeusAnuncios(string email);
+	void adicionarContacto(Contacto* novoContacto);
 
-	/**@brief add a seller add to a priority_queue of seller adds
+	/**
+	 * @brief add new transaction between two users
+	 *
+	 * @param NegocioConcretizado* novoNegocio contact to be added
+	 */
+	void adicionarNegocio(NegocioConcretizado* novoNegocio);
+
+	/**
+	 * @brief add a seller add to a priority_queue of seller adds
 	 *
 	 * @param DeVenda* novoAnuncio
 	 */
 	void adicionarAnuncioVenda(DeVenda* novoAnuncio);
 
-	/**@brief add a want add to a priority_queue of want adds
+	/**
+	 * @brief add a want add to a priority_queue of want adds
 	 *
 	 * @param DeCompra* novoAnuncio
 	 */
 	void adicionarAnuncioCompra(DeCompra* novoAnuncio);
 
-	/**@brief delete anunciosVenda and the contacts associated
+	/**
+	 * @brief delete a user, his adds, his contacts and informations in achieved trades
 	 *
-	 * @param id id of add to delete
+	 * @param email email of user
 	 */
-	void apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio);
+	void apagarUtilizador_SeusAnuncios_Contactos_E_Informacoes(string emailUtilizador);
 
-	/**@brief delete anunciosCompra and the contacts associated
+	/**
+	 * @brief delete a seller ad and all associated contacts
 	 *
-	 * @param id_anuncio id of add to delete
+	 * @param id_anuncio id of ad
 	 */
-	void apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio);
+	void apagarAnuncioDeVendaESeusContactos(int id_anuncio);
 
-	// filipe (acho melhor retornar um vetor do que uma fila de prioridade,
-	// pois o vetor e random acess iterator, enquanto que a fila de prioridade
-	// nem suporta iteradores(apenas push, pop, top)
+	/**
+	 * @brief delete a want ad and all asociated contacts
+	 *
+	 * @param id_anuncio id of ad
+	 */
+	void apagarAnuncioDeCompraESeusContactos(int id_anuncio);
+
+	/**
+	 * @brief get all adds that exists
+	 *
+	 * @return vector<Anuncio*> vector of all adds
+	 */
 	vector<Anuncio*> getAnunciosDeVendaEdeCompra() const;
 
-	// filipe
+	/**
+	 * @brief get all seller adds that exists
+	 *
+	 * @return vector<DeVenda*> anunciosDeVenda
+	 */
 	vector<DeVenda*> getAnunciosDeVenda() const;
 
-	// filipe
+	/**
+	 * @brief get all want adds that exists
+	 *
+	 * @return vector<DeCompra*> anunciosDeCompra
+	 */
 	vector<DeCompra*> getAnunciosDeCompra() const;
 
-	// helder
+	/**
+	 * @brief get all users that exists
+	 *
+	 * @return vector<Utilizador*> utilizadores
+	 */
 	set<Utilizador*, userPtrComp> getUtilizadores() const;
 
-	// ines - esta feito
-	void adicionarContacto(Contacto* novoContacto);
-	void adicionarNegocio(NegocioConcretizado* novoNegocio);
+	/**
+	 * @brief get achieved business
+	 */
 	tabHNegociosConcretizados getNegociosConcretizados() const;
 
+	/**
+	 * @brief get all categories that exists
+	 *
+	 * @return vector<string> categories that exists
+	 */
 	vector<string> getCategorias() const;
 
+	/**
+	 * @brief get all contacts that exists
+	 *
+	 * @return vector<Contacto*> contactos
+	 */
 	vector<Contacto*> getContactos() const;
 
-	// helder
+	/**
+	 * @brief read data from a file
+	 *
+	 * @param olz_file
+	 */
 	void leTodosOsDados(istream& olz_file);
+
+	/**
+	 * @brief read users and their ads from a file
+	 *
+	 * @param olz_file
+	 */
 	void leUtilizadores_e_respetivosAnuncios(istream& olz_file);
+
+	/**
+	 * @brief read selling ads from a file
+	 *
+	 * @param olz_file
+	 */
 	void leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
+
+	/**
+	 * @brief read want ads from a file
+	 *
+	 * @param olz_file
+	 */
 	void leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante);
+
+	/**
+	 * @brief read the contacts from a file
+	 *
+	 * @param olz_file
+	 */
 	void leContactos(istream& olz_file);
+
+	/**
+	 * @brief read the contacts from a file
+	 *
+	 * @param olz_file
+	 */
+	void leNegocios(istream& olz_file);
+
+	/**
+	 * @brief save all data into a file
+	 *
+	 * @para istream& olz_file
+	 */
 	void salvarTodosOsDados(ostream& olz_file);
 };
 

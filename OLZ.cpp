@@ -6,6 +6,7 @@
  */
 
 #include "OLZ.h"
+#include <algorithm>
 
 /*
  * Funções auxiliares
@@ -16,7 +17,9 @@ Data leDataDoAnuncio(istream& olz_file);
 vector<string> leImagensDoAnuncio(istream& olz_file);
 Estado leEstadoDoProdutoDoAnuncio(istream& olz_file);
 DeCompra* leAnuncioDeCompra(istream& olz_file);
+DeVenda* leAnuncioDeVenda(istream& olz_file);
 vector<string> leCategorias(istream& olz_file);
+bool ordenarPorDestaque(Anuncio* left, Anuncio* right);
 
 /**
  * @brief constructor of OLZ
@@ -27,154 +30,35 @@ OLZ::OLZ() {}
  * @brief destructor of OLZ, delete memory dynamic allocation
  */
 OLZ::~OLZ() {
-	/*	for(unsigned int i = 0;i < utilizadores.size();i++)
-		delete utilizadores[i];
+
+	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+	while(it != utilizadores.end()){
+		delete(*it);
+		it++;
+	}
 	utilizadores.clear();
-	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
-		delete anunciosDeCompra[i];
-	anunciosDeCompra.clear();
-	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
-		delete anunciosDeVenda[i];
-	anunciosDeVenda.clear();
+
+	while(!anunciosDeCompra.empty()){
+		delete anunciosDeCompra.top();
+		anunciosDeCompra.pop();
+	}
+
+	while(!anunciosDeVenda.empty()){
+		delete anunciosDeVenda.top();
+		anunciosDeVenda.pop();
+	}
+
 	for(unsigned int i = 0;i < contactos.size();i++)
 		delete contactos[i];
-	contactos.clear();*/
-}
+	contactos.clear();
 
-/**
- * @brief read data from a file
- * @param istream& olz_file
- */
-void OLZ::leTodosOsDados(istream& olz_file){
-	/*	leUtilizadores_e_respetivosAnuncios(olz_file);
-	int static_id_anuncio_inicial;
-	olz_file >> static_id_anuncio_inicial;
-	Anuncio::setIdentificadorInicial(static_id_anuncio_inicial);
-	categorias = leCategorias(olz_file);
-	leContactos(olz_file);*/
-}
+	iteratorHNegociosConcretizados it2 = negociosConcretizados.begin();
+	while(it2 != negociosConcretizados.end()){
+		delete(*it2);
+		it2++;
+	}
+	negociosConcretizados.clear();
 
-/**
- * @brief read the contatcs from a file
- * @param istream& olz_file
- */
-void OLZ::leContactos(istream& olz_file){
-	/*olz_file.ignore();
-	string inicioContactos;
-	olz_file >> inicioContactos;
-	while(1){
-		string inidicadorNovoContacto;
-		olz_file >> inidicadorNovoContacto;
-		if(inidicadorNovoContacto == "NOVO_CONTACTO"){
-			string emailAnunciante, emailPessoaInt;
-			Utilizador* anunciante = NULL;
-			Utilizador* pessoaInt = NULL;
-			olz_file >> emailAnunciante;
-			olz_file >> emailPessoaInt;
-			for(unsigned int i = 0;i < utilizadores.size();i++)
-				if(utilizadores[i]->getEmail() == emailAnunciante){
-					anunciante = utilizadores[i];
-					break;
-				}
-			for(unsigned int i = 0;i< utilizadores.size();i++)
-				if(utilizadores[i]->getEmail() == emailPessoaInt){
-					pessoaInt = utilizadores[i];
-					break;
-				}
-
-			int id_anuncio;
-			olz_file >> id_anuncio;
-			Anuncio* anuncio = NULL;
-			vector<Anuncio*> anuncios = this->getAnunciosDeVendaEdeCompra();
-			for(unsigned int i = 0;i< anuncios.size();i++)
-				if(anuncios[i]->getId() == id_anuncio){
-					anuncio = anuncios[i];
-					break;
-				}
-			string mensagem;
-			olz_file.ignore();
-			getline(olz_file, mensagem);
-			string numTel_pessoaInt;
-			getline(olz_file, numTel_pessoaInt);
-			Contacto* novoContacto = new Contacto(anunciante,pessoaInt,anuncio,mensagem,numTel_pessoaInt);
-			bool concretizado;
-			olz_file >> concretizado;
-			float montanteNegociado;
-			olz_file >> montanteNegociado;
-			Data data;
-			olz_file >> data;
-			if(concretizado)
-				novoContacto->concretizaNegocio(montanteNegociado,data);
-
-			contactos.push_back(novoContacto);
-		}
-		else if(inidicadorNovoContacto == "FIM_CONTACTOS")
-			break;
-	}*/
-}
-
-/**
- * @brief read users and their ads from a file
- * @param istream& olz_file
- */
-void OLZ::leUtilizadores_e_respetivosAnuncios(istream& olz_file){
-	/*	string utilizadores_inicio;
-	olz_file >> utilizadores_inicio;
-	while(1){
-		string indicadorNovoUtilizador;
-		olz_file >> indicadorNovoUtilizador;
-		if(indicadorNovoUtilizador == "NOVO_UTILIZADOR"){
-			olz_file.ignore();
-			Utilizador* utilizador = leUtilizador(olz_file);
-			utilizadores.push_back(utilizador);
-			leAnunciosDeVendaDeUmUtilizador(olz_file, utilizador);
-			leAnunciosDeCompraDeUmUtilizador(olz_file, utilizador);
-		}
-		else if(indicadorNovoUtilizador == "FIM_UTILIZADORES")
-			break;
-	}*/
-}
-
-/**
- * @brief read selling ads from a file
- * @param istream& olz_file
- */
-void OLZ::leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante){
-	/*	string anunciosDeVenda_inicio;
-	olz_file >> anunciosDeVenda_inicio;
-	while(1){
-		string indicadorNovoAnuncio;
-		olz_file >> indicadorNovoAnuncio;
-		if(indicadorNovoAnuncio == "NOVO_ANUNCIO"){
-			olz_file.ignore();
-			DeVenda* anuncioVenda = leAnuncioDeVenda(olz_file);
-			anuncioVenda->setAnunciantePtr(anunciante);
-			anunciosDeVenda.push_back(anuncioVenda);
-		}
-		else if(indicadorNovoAnuncio == "FIM_ANUNCIOS_VENDA")
-			break;
-	}*/
-}
-
-/**
- * @brief read want ads from a file
- * @param istream& olz_file
- */
-void OLZ::leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante){
-	/*	string anunciosDeCompra_inicio;
-	olz_file >> anunciosDeCompra_inicio;
-	while(1){
-		string indicadorNovoAnuncio;
-		olz_file >> indicadorNovoAnuncio;
-		if(indicadorNovoAnuncio == "NOVO_ANUNCIO"){
-			olz_file.ignore();
-			DeCompra* anuncioCompra = leAnuncioDeCompra(olz_file);
-			anuncioCompra->setAnunciantePtr(anunciante);
-			anunciosDeCompra.push_back(anuncioCompra);
-		}
-		else if(indicadorNovoAnuncio == "FIM_ANUNCIOS_COMPRA")
-			break;
-	}*/
 }
 
 void OLZ::adicionarUtilizador(Utilizador* novoUtilizador){
@@ -185,39 +69,19 @@ void OLZ::adicionarAnuncioVenda(DeVenda* novoAnuncio){
 	anunciosDeVenda.push(novoAnuncio);
 }
 
-
-
 void OLZ::adicionarAnuncioCompra(DeCompra* novoAnuncio){
 	anunciosDeCompra.push(novoAnuncio);
 }
 
-void OLZ::apagaContactosAssociados_A_Anuncio(int id_anuncio){
-	for(size_t i = 0;i < contactos.size();i++){
-		if(contactos[i]->getAnuncio()->getId() == id_anuncio){
-			contactos.erase(contactos.begin() + i);
-			i--;
-		}
-	}
+void OLZ::adicionarContacto(Contacto* novoContacto){
+	contactos.push_back(novoContacto);
 }
 
-void OLZ::apagarAnuncioVenda_E_ContactosAssociados(int id_anuncio){
-	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux;
-
-	while(!anunciosDeVenda.empty()){
-
-		DeVenda* anuncio = anunciosDeVenda.top();
-		anunciosDeVenda.pop();
-
-		if(anuncio->getId() == id_anuncio)
-			apagaContactosAssociados_A_Anuncio(id_anuncio);
-		else
-			aux.push(anuncio);
-	}
-
-	anunciosDeVenda = aux;
+void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
+	negociosConcretizados.insert(novoNegocio);
 }
 
-void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
+void OLZ::apagarAnuncioDeCompra(int id_anuncio){
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux;
 
 	while(!anunciosDeCompra.empty()){
@@ -225,114 +89,170 @@ void OLZ::apagarAnuncioCompra_E_ContactosAssociados(int id_anuncio){
 		DeCompra* anuncio = anunciosDeCompra.top();
 		anunciosDeCompra.pop();
 
-		if(anuncio->getId() == id_anuncio)
-			apagaContactosAssociados_A_Anuncio(id_anuncio);
-		else
+		if(anuncio->getId() != id_anuncio)
 			aux.push(anuncio);
+		else
+			delete(anuncio);
 
 	}
 
 	anunciosDeCompra = aux;
 }
 
-/**
- * @brief add new contact between two users
- * @param Contacto* novoContacto contact to be added
- */
-void OLZ::adicionarContacto(Contacto* novoContacto){
-	contactos.push_back(novoContacto);
+void OLZ::apagarAnuncioDeVenda(int id_anuncio){
+	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux;
+
+	while(!anunciosDeVenda.empty()){
+
+		DeVenda* anuncio = anunciosDeVenda.top();
+		anunciosDeVenda.pop();
+
+		if(anuncio->getId() != id_anuncio)
+			aux.push(anuncio);
+		else
+			delete(anuncio);
+	}
+
+	anunciosDeVenda = aux;
 }
 
-/**
- * @brief add new transaction between two users
- * @param NegocioConcretizado* novoNegocio contact to be added
- */
-void OLZ::adicionarNegocio(NegocioConcretizado* novoNegocio){
-	negociosConcretizados.insert(novoNegocio);
+void OLZ::apagarAnunciosDeUmUtilizador(string emailUtilizador){
+	vector<DeVenda*> anunVenda = getAnunciosDeVenda();
+	vector<DeCompra*> anunCompra = getAnunciosDeCompra();
+
+	for(size_t i = 0;anunVenda.size();i++)
+		if(anunVenda[i]->getAnunciante()->getEmail() == emailUtilizador){
+			int id_anuncio = anunVenda[i]->getId();
+			apagarAnuncioDeVenda(id_anuncio);
+		}
+
+	for(size_t i = 0;anunCompra.size();i++)
+		if(anunCompra[i]->getAnunciante()->getEmail() == emailUtilizador){
+			int id_anuncio = anunCompra[i]->getId();
+			apagarAnuncioDeCompra(id_anuncio);
+		}
+
 }
 
-/**
- * @brief get contacts referring to
- */
-tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
-	return negociosConcretizados;
+void OLZ::apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtilizador){
+	iteratorHNegociosConcretizados i = negociosConcretizados.begin();
+
+	while(i != negociosConcretizados.end()){
+		if((*i)->getAnunciante() != NULL){
+			if((*i)->getAnunciante()->getEmail() == emailUtilizador)
+				(*i)->setAnunciantePtr_toNull();
+		}
+
+		if((*i)->getPessoaInteressada() != NULL)
+			if((*i)->getPessoaInteressada()->getEmail() == emailUtilizador)
+				(*i)->setPessoaInteressadaPtr_toNull();
+	}
+
 }
 
-/**
- * @brief get all contacts that exists
- * @return vector<Contacto*> contactos
- */
-vector<Contacto*> OLZ::getContactos() const{
-	return contactos;
-}
-
-
-void OLZ::apagarUtilizadorESeusAnuncios(string email){
+void OLZ::apagarUtilizador(string emailUtilizador){
 	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+
 	while(it != utilizadores.end()){
 
-		if((*it)->getEmail() == email){
+		if((*it)->getEmail() == emailUtilizador){
+			utilizadores.erase(it);
+			break;
+		}
+	}
+}
 
-			// apagar seus anuncios de venda
-			vector<DeVenda*> anunVenda = getAnunciosDeVenda();
+void OLZ::apagarContactosAssociados_A_Anuncio(int id_anuncio){
+	for(size_t i = 0;i < contactos.size();i++){
+		if(contactos[i]->getAnuncio()->getId() == id_anuncio){
+			delete(contactos[i]);
+			contactos.erase(contactos.begin() + i);
+			i--;
+		}
+	}
+}
 
+void OLZ::apagarAnuncioDeVendaESeusContactos(int id_anuncio){
+	apagarContactosAssociados_A_Anuncio(id_anuncio);
+	apagarAnuncioDeVenda(id_anuncio);
+}
+
+void OLZ::apagarAnuncioDeCompraESeusContactos(int id_anuncio){
+	apagarContactosAssociados_A_Anuncio(id_anuncio);
+	apagarAnuncioDeCompra(id_anuncio);
+}
+
+void OLZ::apagarUtilizador_SeusAnuncios_Contactos_E_Informacoes(string emailUtilizador){
+	apagarUtilizador(emailUtilizador);
+	apagarAnunciosDeUmUtilizador(emailUtilizador);
+	apagarContactosDeUmUtilizador(emailUtilizador);
+	apagarInformacoesDoUtilizadorEmNegociosConcretizados(emailUtilizador);
+}
+
+void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
+	for(size_t i = 0;i < contactos.size();i++){
+
+		string emailAnunciante = contactos[i]->getAnunciante()->getEmail();
+		string emailInteressado = contactos[i]->getPessoaInteressada()->getEmail();
+
+<<<<<<< HEAD
 			for(size_t i = 0;i < anunVenda.size();i++)
 				if(anunVenda[i]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunVenda[i]->getId();
 					apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
 				}
+=======
+		if(emailAnunciante == emailUtilizador || emailAnunciante == emailUtilizador){
+			delete(contactos[i]);
+			contactos.erase(contactos.begin()+i);
+			i--;
+		}
+	}
+}
+>>>>>>> origin/master
 
-			//apagar seus anuncios de compra
-			vector<DeCompra*> anunCompra = getAnunciosDeCompra();
+tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
+	return negociosConcretizados;
+}
 
+<<<<<<< HEAD
 			for(size_t i = 0;i < anunCompra.size();i++)
 				if(anunCompra[i]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunCompra[i]->getId();
 					apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
 				}
+=======
+vector<Contacto*> OLZ::getContactos() const{
+	return contactos;
+}
+>>>>>>> origin/master
 
-			// Os contactos nao serao apagados,mas quando
-			// existir um apontador(anunciante ou pessoa interessada)
-			// referente a este utilizador, esse apontador vai ser posto
-			// a NULL
-			for(unsigned int i = 0;i < contactos.size();i++){
-				if(contactos[i]->getAnunciante() != NULL)
-					if(contactos[i]->getAnunciante()->getEmail() == email)
-						contactos[i]->setAnunciantePtr_toNull();
+vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
+	vector<Anuncio*> res;
 
-				if(contactos[i]->getPessoaInteressada() != NULL)
-					if(contactos[i]->getPessoaInteressada()->getEmail() == email)
-						contactos[i]->setPessoaInteressadaPtr_toNull();
-			}
+	vector<DeVenda*> anunVenda = getAnunciosDeVenda();
+	vector<DeCompra*> anunCompra = getAnunciosDeCompra();
 
-			// apagar negocios concretizados
-			iteratorHNegociosConcretizados i = negociosConcretizados.begin();
+	res.insert(res.begin(),anunVenda.begin(),anunVenda.end());
+	res.insert(res.begin(),anunCompra.begin(),anunCompra.end());
 
-			while(i != negociosConcretizados.end()){
-				if((*i)->getAnunciante() != NULL){
-					if((*i)->getAnunciante()->getEmail() == email)
-						(*i)->setAnunciantePtr_toNull();
-				}
+	sort(res.begin(),res.end(),ordenarPorDestaque);
 
-				if((*i)->getPessoaInteressada() != NULL)
-					if((*i)->getPessoaInteressada()->getEmail() == email)
-						(*i)->setPessoaInteressadaPtr_toNull();
-			}
-
-			// apagar utilizador
-			utilizadores.erase(it);
-			return;
-		}
-	}
+	return res;
 }
 
-/**
- * @brief get all adds that exists
- */
-/*vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
+bool ordenarPorDestaque(Anuncio* left, Anuncio* right){
+	if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
+		return true;
 
-}*/
+	else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
+		return false;
 
+	else
+		return left->getData() < right->getData();
+}
+
+<<<<<<< HEAD
 /**@brief get all seller adds that exists
  *
  * @return vector<DeVenda*> anunciosDeVenda
@@ -340,36 +260,42 @@ void OLZ::apagarUtilizadorESeusAnuncios(string email){
 /*vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 
 }*/
+=======
+vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
+	vector<DeVenda*> res;
+	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux = anunciosDeVenda;
 
-/**
- * @brief get all want adds that exists
- * @return vector<DeCompra*> anunciosDeCompra
- */
-/*vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
+	while(!aux.empty()){
+		DeVenda* anuncio = aux.top();
+		aux.pop();
+		res.push_back(anuncio);
+	}
 
-}*/
+	return res;
+}
+>>>>>>> origin/master
 
-/**
- * @brief get all users that exists
- * @return vector<Utilizador*> utilizadores
- */
+vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
+	vector<DeCompra*> res;
+	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux = anunciosDeCompra;
+
+	while(!aux.empty()){
+		DeCompra* anuncio = aux.top();
+		aux.pop();
+		res.push_back(anuncio);
+	}
+
+	return res;
+}
+
 set<Utilizador*, userPtrComp> OLZ::getUtilizadores() const{
 	return utilizadores;
 }
 
-
-/**
- * @brief get all categorys that exists
- * @return vector<string> categorias
- */
 vector<string> OLZ::getCategorias() const{
 	return categorias;
 }
 
-/**
- * @brief save all data into a file
- * @para istream& olz_file
- */
 void OLZ::salvarTodosOsDados(ostream& olz_file){
 	olz_file << "INICIO_UTILIZADORES\n";
 	for (set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin(); it != utilizadores.end(); ++it) {
@@ -415,27 +341,233 @@ void OLZ::salvarTodosOsDados(ostream& olz_file){
 	olz_file << "FIM_CATEGORIAS\n";
 
 	olz_file << "CONTACTOS\n";
-	for (unsigned int i = 0; i < contactos.size(); ++i)
-		olz_file << *contactos[i];
+	for (unsigned int i = 0; i < contactos.size(); ++i){
+		olz_file << "NOVO_CONTACTO\n";
+		olz_file << (*contactos[i]);
+	}
 	olz_file << "FIM_CONTACTOS\n";
 
 	olz_file << "NEGOCIOS\n";
 	tabHNegociosConcretizados::const_iterator it  = negociosConcretizados.begin();
-	while(it != negociosConcretizados.end())
-		olz_file << **it;
+	while(it != negociosConcretizados.end()){
+		olz_file << "NOVO_NEGOCIO\n";
+		olz_file << *(*it);
+		it++;
+	}
 	olz_file << "FIM_NEGOCIOS\n";
 }
 
-/*
- * Funcoes auxiliares
- */
+void OLZ::leTodosOsDados(istream& olz_file){
+	leUtilizadores_e_respetivosAnuncios(olz_file);
+	int static_id_anuncio_inicial;
+	olz_file >> static_id_anuncio_inicial;
+	Anuncio::setIdentificadorInicial(static_id_anuncio_inicial);
+	categorias = leCategorias(olz_file);
+	leContactos(olz_file);
+	leNegocios(olz_file);
+}
 
+void OLZ::leNegocios(istream& olz_file){
+	olz_file.ignore();
+	string inicioNegocios;
+	olz_file >> inicioNegocios;
+
+	while(1){
+		string inidicadorNovoNegocio;
+		olz_file >> inidicadorNovoNegocio;
+
+		if(inidicadorNovoNegocio == "NOVO_NEGOCIO"){
+			Data data;
+			string emailAnunciante, emailPessoaInt;
+			Utilizador* anunciante = NULL;
+			Utilizador* pessoaInt = NULL;
+			string descricaoAnuncio;
+			float montanteNegociado;
+			string mensagem;
+			string categoria;
+
+			olz_file >> data;
+
+			olz_file >> emailAnunciante;
+			olz_file >> emailPessoaInt;
+
+			set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+			while(it != utilizadores.end()){
+				string emailUtil = (*it)->getEmail();
+
+				if(emailUtil == emailAnunciante){
+					anunciante = (*it);
+					anunciante->incNegociosConcretizados();
+					anunciante->updateDataUltimoNegocio(data);
+					utilizadores.erase(it);
+					utilizadores.insert(anunciante);
+				}
+
+				if(emailUtil == emailPessoaInt)
+					pessoaInt = (*it);
+
+				it++;
+			}
+
+			olz_file.ignore();
+			getline(olz_file,descricaoAnuncio);
+
+			olz_file >> montanteNegociado;
+
+			olz_file.ignore();
+			getline(olz_file, mensagem);
+
+			getline(olz_file, categoria);
+
+			NegocioConcretizado* novoNegocio = new NegocioConcretizado(data,anunciante,pessoaInt,descricaoAnuncio,
+																		montanteNegociado,mensagem,categoria);
+
+			adicionarNegocio(novoNegocio);;
+		}
+		else if(inidicadorNovoNegocio == "FIM_NEGOCIOS")
+			break;
+	}
+}
+
+void OLZ::leContactos(istream& olz_file){
+	olz_file.ignore();
+	string inicioContactos;
+	olz_file >> inicioContactos;
+
+	while(1){
+		string inidicadorNovoContacto;
+		olz_file >> inidicadorNovoContacto;
+
+		if(inidicadorNovoContacto == "NOVO_CONTACTO"){
+			string emailAnunciante, emailPessoaInt;
+			Utilizador* anunciante = NULL;
+			Utilizador* pessoaInt = NULL;
+			int id_anuncio;
+			Anuncio* anuncio = NULL;
+			string mensagem;
+			string numTel_pessoaInt;
+
+
+
+			olz_file >> emailAnunciante;
+			olz_file >> emailPessoaInt;
+
+			set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+			while(it != utilizadores.end()){
+				string emailUtil = (*it)->getEmail();
+
+				if(emailUtil == emailAnunciante)
+					anunciante = (*it);
+				if(emailUtil == emailPessoaInt)
+					pessoaInt = (*it);
+
+				it++;
+			}
+
+			olz_file >> id_anuncio;
+			vector<Anuncio*> anuncios = this->getAnunciosDeVendaEdeCompra();
+			for(unsigned int i = 0;i< anuncios.size();i++)
+				if(anuncios[i]->getId() == id_anuncio){
+					anuncio = anuncios[i];
+					break;
+				}
+
+			olz_file.ignore();
+			getline(olz_file, mensagem);
+
+			getline(olz_file, numTel_pessoaInt);
+
+			Contacto* novoContacto = new Contacto(anunciante,pessoaInt,anuncio,mensagem,numTel_pessoaInt);
+
+			adicionarContacto(novoContacto);
+		}
+		else if(inidicadorNovoContacto == "FIM_CONTACTOS")
+			break;
+	}
+}
+
+void OLZ::leUtilizadores_e_respetivosAnuncios(istream& olz_file){
+	string utilizadores_inicio;
+	string indicadorNovoUtilizador;
+
+	olz_file >> utilizadores_inicio;
+	while(1){
+
+		olz_file >> indicadorNovoUtilizador;
+
+		if(indicadorNovoUtilizador == "NOVO_UTILIZADOR"){
+			olz_file.ignore();
+
+			Utilizador* utilizador = leUtilizador(olz_file);
+			adicionarUtilizador(utilizador);
+
+			leAnunciosDeVendaDeUmUtilizador(olz_file, utilizador);
+			leAnunciosDeCompraDeUmUtilizador(olz_file, utilizador);
+
+		}
+		else if(indicadorNovoUtilizador == "FIM_UTILIZADORES")
+			break;
+	}
+}
+
+void OLZ::leAnunciosDeVendaDeUmUtilizador(istream& olz_file, Utilizador* anunciante){
+	string anunciosDeVenda_inicio;
+	string indicadorNovoAnuncio;
+	DeVenda* anuncioVenda = NULL;
+
+	olz_file >> anunciosDeVenda_inicio;
+
+	while(1){
+		olz_file >> indicadorNovoAnuncio;
+
+		if(indicadorNovoAnuncio == "NOVO_ANUNCIO"){
+			olz_file.ignore();
+
+			anuncioVenda = leAnuncioDeVenda(olz_file);
+			anuncioVenda->setAnunciantePtr(anunciante);
+			adicionarAnuncioVenda(anuncioVenda);
+		}
+
+		else if(indicadorNovoAnuncio == "FIM_ANUNCIOS_VENDA")
+			break;
+	}
+}
+
+void OLZ::leAnunciosDeCompraDeUmUtilizador(istream& olz_file, Utilizador* anunciante){
+	string anunciosDeCompra_inicio;
+	string indicadorNovoAnuncio;
+	DeCompra* anuncioCompra = NULL;
+
+	olz_file >> anunciosDeCompra_inicio;
+
+	while(1){
+		olz_file >> indicadorNovoAnuncio;
+
+		if(indicadorNovoAnuncio == "NOVO_ANUNCIO"){
+			olz_file.ignore();
+
+			anuncioCompra = leAnuncioDeCompra(olz_file);
+			anuncioCompra->setAnunciantePtr(anunciante);
+			adicionarAnuncioCompra(anuncioCompra);
+		}
+		else if(indicadorNovoAnuncio == "FIM_ANUNCIOS_COMPRA")
+			break;
+	}
+}
+/***********************
+ * AUXILIARY FUNCTIONS *
+ ***********************/
+
+/**
+ * @brief read a want ad from a file
+ */
 DeCompra* leAnuncioDeCompra(istream& olz_file){
 	string lixo, titulo, categoria, descricao;
 	vector<string> imagens;
 	int visualizacoes, id, trocaId;
-	bool showEmail, showNome, showNumTel, troca;
+	bool showEmail, showNome, showNumTel, troca, temDestaque;
 	Data data;
+
 	getline(olz_file, titulo);
 	getline(olz_file, categoria);
 	getline(olz_file, descricao);
@@ -445,17 +577,23 @@ DeCompra* leAnuncioDeCompra(istream& olz_file){
 	olz_file >> visualizacoes;
 	olz_file >> showEmail >> showNome >> showNumTel;
 	olz_file >> troca >> trocaId;
+	olz_file >> temDestaque;
+
 	DeCompra* deCompra_ptr = new DeCompra(titulo, categoria, descricao, imagens,id,troca,
 			trocaId, data,NULL, visualizacoes,showEmail,
-			showNome, showNumTel);
+			showNome, showNumTel, temDestaque);
+
 	return deCompra_ptr;
 }
 
+/**
+ * @brief read a seller ad froma a file
+ */
 DeVenda* leAnuncioDeVenda(istream& olz_file){
 	string lixo, titulo, categoria, descricao;
 	vector<string> imagens;
 	int visualizacoes, id;
-	bool showEmail, showNome, showNumTel;
+	bool showEmail, showNome, showNumTel, temDestaque;
 	Data data;
 	Estado estado;
 	float preco;
@@ -472,28 +610,24 @@ DeVenda* leAnuncioDeVenda(istream& olz_file){
 	estado = leEstadoDoProdutoDoAnuncio(olz_file);
 	olz_file >> preco;
 	olz_file >> negociacao;
+	olz_file >> temDestaque;
+
 	DeVenda* deVenda_ptr = new DeVenda(titulo, categoria, descricao, imagens,
 			id, estado, preco, negociacao, data, NULL, visualizacoes,
-			showEmail, showNome, showNumTel);
+			showEmail, showNome, showNumTel, temDestaque);
+
 	return deVenda_ptr;
 }
 
-Utilizador* leUtilizador(istream& olz_file){
-	string nome, email, numTel, freguesia, concelho, distrito;
-	getline(olz_file, nome);
-	getline(olz_file, email);
-	getline(olz_file, numTel);
-	getline(olz_file, freguesia);
-	getline(olz_file, concelho);
-	getline(olz_file, distrito);
-	Utilizador* utilizador_ptr = new Utilizador(nome, email, numTel, freguesia, concelho, distrito);
-	return utilizador_ptr;
-}
-
+/**
+ * @brief read state of a product of a seller ad
+ */
 Estado leEstadoDoProdutoDoAnuncio(istream& olz_file){
 	Estado estado;
 	string estado_string;
+
 	olz_file >> estado_string;
+
 	if(estado_string == "NOVO")
 		estado = NOVO;
 	else if(estado_string == "USADO")
@@ -502,45 +636,80 @@ Estado leEstadoDoProdutoDoAnuncio(istream& olz_file){
 		estado = FUNCIONAL;
 	else if(estado_string == "PECAS")
 		estado = PECAS;
+
 	return estado;
 }
 
+/**
+ * @brief read information of a user from a file
+ */
+Utilizador* leUtilizador(istream& olz_file){
+	string nome, email, numTel, freguesia, concelho, distrito;
+
+	getline(olz_file, nome);
+	getline(olz_file, email);
+	getline(olz_file, numTel);
+	getline(olz_file, freguesia);
+	getline(olz_file, concelho);
+	getline(olz_file, distrito);
+
+	return new Utilizador(nome, email, numTel, freguesia, concelho, distrito);
+}
+
+/**
+ * @brief read data from a file
+ */
 Data leDataDoAnuncio(istream& olz_file){
 	int dia, mes, ano;
+
 	olz_file >> dia;
 	olz_file >> mes;
 	olz_file >> ano;
-	Data d(dia,mes,ano);
-	return d;
+
+	return Data(dia,mes,ano);
 }
 
+/**
+ * @brief read images from a ad (want ad or seller ad)
+ */
 vector<string> leImagensDoAnuncio(istream& olz_file){
 	string imagem, lixo;
 	vector<string> imagens;
+
 	getline(olz_file, lixo);
+
 	while(1){
 		getline(olz_file,imagem);
+
 		if(imagem == "FimImagens")
 			break;
 		else
 			imagens.push_back(imagem);
 	}
+
 	return imagens;
 }
 
+/**
+ * @brief read categories from a file
+ */
 vector<string> leCategorias(istream& olz_file){
 	vector<string> categorias;
 	string indicadorInicioCategorias;
+	string categoria;
+
 	olz_file.ignore();
 	olz_file >> indicadorInicioCategorias;
+
 	while(1){
-		string categoria;
 		olz_file >> categoria;
+
 		if(categoria == "FIM_CATEGORIAS")
 			break;
 		else
 			categorias.push_back(categoria);
 	}
+
 	return categorias;
 }
 

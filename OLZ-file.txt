@@ -1,5 +1,27 @@
 INICIO_UTILIZADORES
 NOVO_UTILIZADOR
+Anabela Albuquerque
+anbeke@google.com
+960385183
+Cabeca Gorda
+Beja
+Beja
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Frederica Ribeiro
+fredRica@hotmail.com
+954321739
+Cano
+Sousel
+Portalegre
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
 Helder Antunes
 helder_antunes-@hotmail.com
 918370036
@@ -22,6 +44,7 @@ FimImagens
 USADO
 199.99
 1
+0
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 NOVO_ANUNCIO
@@ -38,6 +61,7 @@ FimImagens
 1 1 1
 1
 1
+0
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
 Ines Proenca
@@ -66,6 +90,7 @@ FimImagens
 USADO
 40
 1
+0
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
@@ -94,20 +119,9 @@ FimImagens
 NOVO
 42
 1
+0
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
-NOVO_ANUNCIO
-Compro carteira Louis Vitton
-moda
-Pretendo arranjar uma bolsa preta de marca referida
-Imagens
-FimImagens
-5
-9/9/2014
-0
-0 1 1
-0
-0
 NOVO_ANUNCIO
 Blusao de pele Massimo Dutti
 moda
@@ -121,39 +135,20 @@ FimImagens
 1 1 0
 1
 6
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Anabela Albuquerque
-anbeke@google.com
-960385183
-Cabeca Gorda
-Beja
-Beja
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Teodoro Santana
-teoSant@outlook.pt
-912455698
-Cabrela
-Montemor-o-novo
-Evora
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Vitor Henriques
-henri@aeiou.pt
-990347022
-Vila de Macada
-Alijo
-Vila Real
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
+0
+NOVO_ANUNCIO
+Compro carteira Louis Vitton
+moda
+Pretendo arranjar uma bolsa preta de marca referida
+Imagens
+FimImagens
+5
+9/9/2014
+0
+0 1 1
+0
+0
+0
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
 Margarida D'cruz
@@ -179,17 +174,7 @@ FimImagens
 USADO
 120
 0
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Vasco Rios
-mrRios@outlook.pt
-965321690
-Vila Seca e Bem da Fe
-Condeixa-A-Nova
-Coimbra
-INICIO_ANUNCIOS_VENDA
+0
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
@@ -205,12 +190,34 @@ FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
-Frederica Ribeiro
-fredRica@hotmail.com
-954321739
-Cano
-Sousel
-Portalegre
+Teodoro Santana
+teoSant@outlook.pt
+912455698
+Cabrela
+Montemor-o-novo
+Evora
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Vasco Rios
+mrRios@outlook.pt
+965321690
+Vila Seca e Bem da Fe
+Condeixa-A-Nova
+Coimbra
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Vitor Henriques
+henri@aeiou.pt
+990347022
+Vila de Macada
+Alijo
+Vila Real
 INICIO_ANUNCIOS_VENDA
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
@@ -231,7 +238,6 @@ helder_antunes-@hotmail.com
 1
 desejo comprar o telemovel
 918370036
-1
-200
-5/1/15
 FIM_CONTACTOS
+NEGOCIOS
+FIM_NEGOCIOS

@@ -27,7 +27,7 @@ int Anuncio::identificador(0);
 Anuncio::Anuncio(string titulo, string categoria, string descricao,
 		vector<string> imagens,int id, Data data, Utilizador* anunciante,
 		int visualizacoes, bool showEmail, bool showNome, bool showNumTel):
-		data(data){
+				data(data){
 	this->titulo = titulo;
 	this->descricao = descricao;
 	this->imagens = imagens;
@@ -38,6 +38,38 @@ Anuncio::Anuncio(string titulo, string categoria, string descricao,
 	this->showNome = showNome;
 	this->showNumTel = showNumTel;
 	this->temDestaque = false;		//adicionei esta instrução, por favor, confiram
+	this->id = id;
+}
+
+/**
+ * Creates new advertisement with information provided and data correspondent to current date.
+ * @brief class Anuncio constructor.
+ *
+ * @param titulo 		advertisement's title
+ * @param categoria 	advertisement's category
+ * @param descricao 	advertisement's description
+ * @param imagens 		names of image files used
+ * @param data 			date of creation
+ * @param anunciante 	pointer to the advertiser
+ * @param showEmail 	is email public?
+ * @param showNome		is name public?
+ * @param showNumTel	is phone number public?
+ * @param temDestaque 	is ad priority in search
+ */
+Anuncio::Anuncio(string titulo, string categoria, string descricao,
+		vector<string> imagens,int id, Data data, Utilizador* anunciante,
+		int visualizacoes, bool showEmail, bool showNome, bool showNumTel, bool temDestaque):
+			data(data){
+	this->titulo = titulo;
+	this->descricao = descricao;
+	this->imagens = imagens;
+	this->visualizacoes = visualizacoes;
+	this->anunciante = anunciante;
+	this->cat = categoria;
+	this->showEmail =  showEmail;
+	this->showNome = showNome;
+	this->showNumTel = showNumTel;
+	this->temDestaque = temDestaque;
 	this->id = id;
 }
 
@@ -244,9 +276,9 @@ int Anuncio::getIdentificadorInicial(){
 DeVenda::DeVenda(string titulo,	string categoria,string descricao,
 		vector<string> imagens,int id, Estado estado,float preco,
 		bool negociacao,Data data, Utilizador* anunciante,
-		int visualizacoes, bool showEmail, bool showNome, bool showNumTel) :
-	Anuncio(titulo,categoria,descricao, imagens, id, data, anunciante,
-			visualizacoes, showEmail, showNome, showNumTel){
+		int visualizacoes, bool showEmail, bool showNome, bool showNumTel, bool temDestaque) :
+			Anuncio(titulo,categoria,descricao, imagens, id, data, anunciante,
+					visualizacoes, showEmail, showNome, showNumTel, temDestaque){
 	this->estado = estado;
 	this->preco = preco;
 	this->negociacao = negociacao;
@@ -338,9 +370,9 @@ void DeVenda::imprime() const {
  */
 DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens,
 		int id, bool troca, int trocaId, Data data, Utilizador* anunciante,int visualizacoes,
-		bool showEmail, bool showNome, bool showNumTel):
-		Anuncio(titulo,categoria,descricao, imagens,id, data, anunciante,
-				visualizacoes, showEmail, showNome, showNumTel){
+		bool showEmail, bool showNome, bool showNumTel, bool temDestaque):
+				Anuncio(titulo,categoria,descricao, imagens,id, data, anunciante,
+						visualizacoes, showEmail, showNome, showNumTel, temDestaque){
 	this->troca = troca;
 	this->trocaId = trocaId;
 }
@@ -408,14 +440,14 @@ ostream &operator<<(ostream &out, DeVenda a){
 		out << "NOVO\n";
 		break;
 	case USADO:
-			out << "USADO\n";
-			break;
+		out << "USADO\n";
+		break;
 	case FUNCIONAL:
-			out << "FUNCIONAL\n";
-			break;
+		out << "FUNCIONAL\n";
+		break;
 	case PECAS:
-			out << "PECAS\n";
-			break;
+		out << "PECAS\n";
+		break;
 	}
 
 	out << a.preco << endl;
