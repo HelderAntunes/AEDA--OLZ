@@ -11,7 +11,7 @@ NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anuncia
 		Anuncio* anuncio, float montanteNegociado, string mensagem):
 
 		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), descricaoAnuncio(anuncio->getDescricao()),
-		montanteNegociado(montanteNegociado), mensagem(mensagem){}
+		categoria(anuncio->getCategoria()), montanteNegociado(montanteNegociado), mensagem(mensagem){}
 
 NegocioConcretizado::~NegocioConcretizado() {}
 
@@ -20,6 +20,8 @@ Data NegocioConcretizado::getDataNegociada() const{	return dataNegociada;}
 Utilizador* NegocioConcretizado::getAnunciante() const{	return anunciante;}
 
 Utilizador* NegocioConcretizado::getPessoaInteressada() const{ return pessoaInt;}
+
+string NegocioConcretizado::getCategoria() const{ return categoria;}
 
 string NegocioConcretizado::getDescricao() const{ return descricaoAnuncio;}
 

@@ -279,7 +279,7 @@ void OLZ::apagarUtilizadorESeusAnuncios(string email){
 			for(size_t i = 0;i < anunVenda.size();i++)
 				if(anunVenda[i]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunVenda[i]->getId();
-					apagarAnuncioVenda(id_anuncio);
+					apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
 				}
 
 			//apagar seus anuncios de compra
@@ -288,7 +288,7 @@ void OLZ::apagarUtilizadorESeusAnuncios(string email){
 			for(size_t i = 0;i < anunCompra.size();i++)
 				if(anunCompra[i]->getAnunciante()->getEmail() == email){
 					int id_anuncio = anunCompra[i]->getId();
-					apagarAnuncioCompra(id_anuncio);
+					apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
 				}
 
 			// Os contactos nao serao apagados,mas quando
@@ -337,9 +337,9 @@ void OLZ::apagarUtilizadorESeusAnuncios(string email){
  *
  * @return vector<DeVenda*> anunciosDeVenda
  */
-vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
+/*vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 
-}
+}*/
 
 /**
  * @brief get all want adds that exists

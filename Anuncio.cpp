@@ -381,7 +381,7 @@ bool DeCompra::getTroca(){
 /**
  * @return the id of anuncio de venda
  */
-int DeCompra::GetTrocaId(){
+int DeCompra::getTrocaId(){
 	return trocaId;
 }
 

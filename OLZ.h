@@ -16,9 +16,6 @@
 #include "Contacto.h"
 #include "NegocioConcretizado.h"
 
-typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
-typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
-
 /**
  * structure to hashing table of achieved business
  */
@@ -58,7 +55,8 @@ struct NegocioConcretizadoHash
 	}
 };
 
-
+typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
+typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
 
 /**
  * structure to compare two pointer of users (useful to implement the set)

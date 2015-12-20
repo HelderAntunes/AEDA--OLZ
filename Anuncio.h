@@ -107,7 +107,7 @@ public:
 	friend ostream &operator<<(ostream &out, DeCompra a);
 	friend istream &operator>>(istream &in, DeCompra &a);
 	bool getTroca();
-	int GetTrocaId();
+	int getTrocaId();
 };
 
 #endif /* SRC_ANUNCIO_H_ */

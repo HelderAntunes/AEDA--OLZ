@@ -24,8 +24,8 @@ void mostrarAnunciosPorLocalizacaoDoAnunciante(const OLZ& olz);
 void mostrarAnunciosPorPalavraChave(const OLZ& olz);
 void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados);
 void mostrarAnunciosPorPrecoAproximado(const OLZ& olz);
-DeVenda* CriarAnuncioVenda(const OLZ& olz);
-DeCompra* CriaAnuncioCompra(const OLZ& olz);
+DeVenda* criarAnuncioVenda(const OLZ& olz);
+DeCompra* criarAnuncioCompra(const OLZ& olz);
 Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email);
 bool existeCategoria(const OLZ& olz,string categoria);
 Estado leEstadoDoProduto();
@@ -49,6 +49,11 @@ void mostrarAnunciosMaisPopulares(const OLZ& olz);
 void criar_e_adicionarNovoUtilizador(OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
 void imprimirUtilizadores(const OLZ& olz);
+//Mostrar Negocios Concretizados
+void mostrarNCPorCategoria(const OLZ& olz);
+void mostrarNCPorAnunciante(const OLZ& olz);
+void mostrarNCPorComprador(const OLZ& olz);
+void mostrarNCPorPreco(const OLZ& olz);
 
 
 int main(){
@@ -103,13 +108,13 @@ int main(){
 			break;
 		case 8:
 		{
-			DeVenda* novoAnuncio = CriarAnuncioVenda(olz);
+			DeVenda* novoAnuncio = criarAnuncioVenda(olz);
 			olz.adicionarAnuncioVenda(novoAnuncio);
 		}
 		break;
 		case 9:
 		{
-			DeCompra* novoAnuncio = CriaAnuncioCompra(olz);
+			DeCompra* novoAnuncio = criarAnuncioCompra(olz);
 			olz.adicionarAnuncioCompra(novoAnuncio);
 		}
 		break;
@@ -132,15 +137,27 @@ int main(){
 			mostrarNegociosConcretizados(olz);
 			break;
 		case 15:
-			mostrarContactos(olz);
+			mostrarNCPorCategoria(olz);
 			break;
 		case 16:
-			mostrarCategorias(olz);
+			mostrarNCPorAnunciante(olz);
 			break;
 		case 17:
-			mostrarAnunciosMaisPopulares(olz);
+			mostrarNCPorComprador(olz);
 			break;
 		case 18:
+			mostrarNCPorPreco(olz);
+			break;
+		case 19:
+			mostrarContactos(olz);
+			break;
+		case 20:
+			mostrarCategorias(olz);
+			break;
+		case 21:
+			mostrarAnunciosMaisPopulares(olz);
+			break;
+		case 22:
 			run = false;
 		}
 		cout << "\n\nPrime a tecla enter para continuar.";
@@ -220,10 +237,14 @@ void mostrarMenuPrincipal(){
 			"\t12 - Criar contacto entre dois utilizadores\n"
 			"\t13 - Concretizar negocio\n"
 			"\t14 - Mostrar negocios concretizados\n"
-			"\t15 - Mostrar contactos\n"
-			"\t16 - Mostrar categorias\n"
-			"\t17 - Mostrar anuncios mais populares\n"
-			"\t18 - Sair da aplicacao\n";
+			"\t15 - Mostrar negocios concretizados por categoria\n"
+			"\t16 - Mostrar negocios concretizados por anunciante\n"
+			"\t17 - Mostrar negocios concretizados por comprador\n"
+			"\t18 - Mostrar negocios concretizados por preco aproximado\n"
+			"\t19 - Mostrar contactos\n"
+			"\t20 - Mostrar categorias\n"
+			"\t21 - Mostrar anuncios mais populares\n"
+			"\t22 - Sair da aplicacao\n";
 	cout << endl;
 	cout << "Opcao: ";
 	return;
@@ -256,14 +277,14 @@ void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz){
 	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
 	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
 		if(anunciosDeVenda[i]->getId() == id_anuncio){
-			olz.apagarAnuncioVenda(id_anuncio);
+			olz.apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
 			return;
 		}
 
 	vector<DeCompra*> anunciosDeCompra = olz.getAnunciosDeCompra();
 	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
 		if(anunciosDeCompra[i]->getId() == id_anuncio){
-			olz.apagarAnuncioCompra(id_anuncio);
+			olz.apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
 			return;
 		}
 }
@@ -534,7 +555,7 @@ void mostrarAnunciosPorPrecoAproximado(const OLZ& olz){
 	imprimirAnunciosEncontrados(anunciosParaImprimir);
 }
 
-DeVenda* CriarAnuncioVenda(const OLZ& olz){
+DeVenda* criarAnuncioVenda(const OLZ& olz){
 	string titulo,categoria,descricao;
 	vector<string> imagens;
 	int id;
@@ -596,7 +617,7 @@ Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz){
 	return anunciante;
 }
 
-DeCompra* CriaAnuncioCompra(const OLZ& olz){
+DeCompra* criarAnuncioCompra(const OLZ& olz){
 	string titulo,categoria,descricao;
 	vector<string> imagens;
 	int id;
@@ -767,4 +788,74 @@ void imprimirUtilizadores(const OLZ& olz){
 
 	while(it != utilizadores.end())
 		(*it)->imprime();
+}
+
+void mostrarNCPorCategoria(const OLZ& olz){
+	string categoria;
+	mostrarCategorias(olz);
+	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
+	getline(cin,categoria);
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+	int negociosImprimidos = 0;
+	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
+		if((*it)->getCategoria() == categoria){
+			(*it)->imprimeNegocioConcretizado();
+			cout << endl << "/--------------------------------------------\n";
+			negociosImprimidos++;
+		}
+	if(negociosImprimidos == 0)
+		cout << "Nao foram encontrados negocios dessa categoria.\n";
+
+}
+
+void mostrarNCPorAnunciante(const OLZ& olz){
+	Utilizador* anunciante = NULL;
+	cout << "Introduza o email do anunciante:";
+	anunciante = leUtilizadorAtravesDoEmail(olz);
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+	int negociosImprimidos = 0;
+	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
+		if((*it)->getAnunciante() == anunciante){
+			(*it)->imprimeNegocioConcretizado();
+			cout << endl << "/--------------------------------------------\n";
+			negociosImprimidos++;
+		}
+	if(negociosImprimidos == 0)
+		cout << "Nao foram encontrados negocios desse anunciante.\n";
+}
+void mostrarNCPorComprador(const OLZ& olz){
+	Utilizador* PessoaInt = NULL;
+	cout << "Introduza o email da pessoa interessada:";
+	PessoaInt = leUtilizadorAtravesDoEmail(olz);
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+	int negociosImprimidos = 0;
+	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
+		if((*it)->getPessoaInteressada() == PessoaInt){
+			(*it)->imprimeNegocioConcretizado();
+			cout << endl << "/--------------------------------------------\n";
+			negociosImprimidos++;
+		}
+	if(negociosImprimidos == 0)
+		cout << "Nao foram encontrados negocios dessa pessoa comprador.\n";
+}
+void mostrarNCPorPreco(const OLZ& olz){
+	float preco_min, preco_max;
+	cout << "Introduza um intervalo de preco\n";
+	cout << "Preco minimo: ";
+	cin >> preco_min;
+	cin.ignore();
+	cout << "Preco maximo: ";
+	cin >> preco_max;
+	cin.ignore();
+
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+	int negociosImprimidos = 0;
+	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
+		if((*it)->getMontanteNegociado() >= preco_min || (*it)->getMontanteNegociado() <= preco_max){
+			(*it)->imprimeNegocioConcretizado();
+			cout << endl << "/--------------------------------------------\n";
+			negociosImprimidos++;
+		}
+	if(negociosImprimidos == 0)
+		cout << "Nao foram encontrados negocios dessa gama de precos.\n";
 }

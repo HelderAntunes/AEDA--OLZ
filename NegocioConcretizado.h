@@ -13,12 +13,13 @@
 
 class NegocioConcretizado {
 protected:
-	Data dataNegociada;   /** data of negotiation */
-	Utilizador* anunciante;    /**< pointer to advertiser */
-	Utilizador* pessoaInt;    /**< pointer to interested person */
-	string descricaoAnuncio;		/**< pointer to add */
-	float montanteNegociado;  /** money negotiated */
-	string mensagem;    /**< message of interested person to advertiser */
+	Data dataNegociada;			/** data of negotiation */
+	Utilizador* anunciante;		/**< pointer to advertiser */
+	Utilizador* pessoaInt;		/**< pointer to interested person */
+	string categoria;			/**< ad's category */
+	string descricaoAnuncio;	/**< description of ad */
+	float montanteNegociado;	/** money negotiated */
+	string mensagem;			/**< message of interested person to advertiser */
 
 public:
 	/**
@@ -52,6 +53,12 @@ public:
 	 * @return Utilizador* pessoaInt
 	 */
 	Utilizador* getPessoaInteressada() const;
+	/**
+	 * @brief get ad category
+	 *
+	 * return ad category
+	 */
+	string getCategoria() const;
 	/**
 	 * @brief get ad description
 	 *
