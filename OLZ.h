@@ -104,13 +104,12 @@ struct menorPorDestaque_ACompra{
  * @brief compact all information of system
  */
 class OLZ {
-	vector<Contacto*> contactos;
-	vector<string> categorias;
 	set<Utilizador*, userPtrComp> utilizadores;
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > anunciosDeVenda;
 	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> anunciosDeCompra;
 	tabHNegociosConcretizados negociosConcretizados;
-
+	vector<Contacto*> contactos;
+	vector<string> categorias;
 	/**@brief delete all the contacts associated to a ad
 	 *
 	 *@param id_anuncio id of ad
@@ -154,8 +153,13 @@ class OLZ {
 	void apagarAnuncioDeCompra(int id_anuncio);
 
 public:
+	/**@brief constructor of class OLZ
+	 * The function don´t initialize any variables
+	 */
+
 	OLZ();
-	// helder
+	/**@brief destuctor of class OLZ, free dynamic allocated memory
+	 */
 	virtual ~OLZ();
 
 	/**@brief add a user to a set of users

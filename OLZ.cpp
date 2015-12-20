@@ -30,18 +30,35 @@ OLZ::OLZ() {}
  * @brief destructor of OLZ, delete memory dynamic allocation
  */
 OLZ::~OLZ() {
-	/*	for(unsigned int i = 0;i < utilizadores.size();i++)
-		delete utilizadores[i];
+
+	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+	while(it != utilizadores.end()){
+		delete(*it);
+		it++;
+	}
 	utilizadores.clear();
-	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
-		delete anunciosDeCompra[i];
-	anunciosDeCompra.clear();
-	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
-		delete anunciosDeVenda[i];
-	anunciosDeVenda.clear();
+
+	while(!anunciosDeCompra.empty()){
+		delete anunciosDeCompra.top();
+		anunciosDeCompra.pop();
+	}
+
+	while(!anunciosDeVenda.empty()){
+		delete anunciosDeVenda.top();
+		anunciosDeVenda.pop();
+	}
+
 	for(unsigned int i = 0;i < contactos.size();i++)
 		delete contactos[i];
-	contactos.clear();*/
+	contactos.clear();
+
+	iteratorHNegociosConcretizados it2 = negociosConcretizados.begin();
+	while(it2 != negociosConcretizados.end()){
+		delete(*it2);
+		it2++;
+	}
+	negociosConcretizados.clear();
+
 }
 
 /**
@@ -49,12 +66,12 @@ OLZ::~OLZ() {
  * @param istream& olz_file
  */
 void OLZ::leTodosOsDados(istream& olz_file){
-	/*	leUtilizadores_e_respetivosAnuncios(olz_file);
+	leUtilizadores_e_respetivosAnuncios(olz_file);
 	int static_id_anuncio_inicial;
 	olz_file >> static_id_anuncio_inicial;
 	Anuncio::setIdentificadorInicial(static_id_anuncio_inicial);
 	categorias = leCategorias(olz_file);
-	leContactos(olz_file);*/
+	leContactos(olz_file);
 }
 
 /**
@@ -62,7 +79,7 @@ void OLZ::leTodosOsDados(istream& olz_file){
  * @param istream& olz_file
  */
 void OLZ::leContactos(istream& olz_file){
-	/*olz_file.ignore();
+	olz_file.ignore();
 	string inicioContactos;
 	olz_file >> inicioContactos;
 	while(1){
@@ -113,7 +130,7 @@ void OLZ::leContactos(istream& olz_file){
 		}
 		else if(inidicadorNovoContacto == "FIM_CONTACTOS")
 			break;
-	}*/
+	}
 }
 
 /**
