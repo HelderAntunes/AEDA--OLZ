@@ -217,8 +217,12 @@ void imprimirUtilizadores(const OLZ& olz){
 	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
 	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
 
-	while(it != utilizadores.end())
+	while(it != utilizadores.end()){
 		(*it)->imprime();
+		cout << "\n\n";
+		it++;
+	}
+
 }
 
 /**OPTION 2
@@ -532,7 +536,7 @@ DeVenda* CriarAnuncioVenda(const OLZ& olz){
 
 	return new DeVenda(titulo,categoria,descricao,imagens,
 			id,estado,preco,negociacao,data,anunciante
-			,0,showEmail,showNome,showNumTel);
+			,0,showEmail,showNome,showNumTel,false);
 }
 
 /**OPTION 9
@@ -592,7 +596,7 @@ DeCompra* CriaAnuncioCompra(const OLZ& olz){
 
 	return new DeCompra(titulo,categoria,descricao,imagens,
 			id,troca,trocaId,data,anunciante
-			,0,showEmail,showNome,showNumTel);
+			,0,showEmail,showNome,showNumTel,false);
 }
 
 int leIdDoAnuncioDeVendaParaTroca(Utilizador* anunciante,const OLZ& olz){

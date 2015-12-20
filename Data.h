@@ -118,6 +118,14 @@ public:
         return false;
     }
 
+    bool operator==(const Data& right) const{
+    	if(this->dia == right.dia && this->mes == right.mes && this->ano == right.ano)
+    		return true;
+
+    	return false;
+    }
+
+
 };
 
 #endif /* SRC_DATA_H_ */

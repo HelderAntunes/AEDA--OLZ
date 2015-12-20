@@ -182,8 +182,12 @@ bool Utilizador::operator< (const Utilizador& right) const{
 
     if(this->negociosConcretizados < right.negociosConcretizados)
         return true;
-    else if(this->negociosConcretizados == right.negociosConcretizados)
-        return this->dataUltimoNegocio < right.dataUltimoNegocio;
+    else if(this->negociosConcretizados == right.negociosConcretizados){
+    	if(this->dataUltimoNegocio == right.dataUltimoNegocio)
+    		return this->nome < right.nome;
+    	else
+    		return this->dataUltimoNegocio < right.dataUltimoNegocio;
+    }
     else
         return false;
 

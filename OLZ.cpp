@@ -369,8 +369,14 @@ void OLZ::leNegocios(istream& olz_file){
 			while(it != utilizadores.end()){
 				string emailUtil = (*it)->getEmail();
 
-				if(emailUtil == emailAnunciante)
+				if(emailUtil == emailAnunciante){
 					anunciante = (*it);
+					anunciante->incNegociosConcretizados();
+					anunciante->updateDataUltimoNegocio(data);
+					utilizadores.erase(it);
+					utilizadores.insert(anunciante);
+				}
+
 				if(emailUtil == emailPessoaInt)
 					pessoaInt = (*it);
 
@@ -533,7 +539,7 @@ DeCompra* leAnuncioDeCompra(istream& olz_file){
 	string lixo, titulo, categoria, descricao;
 	vector<string> imagens;
 	int visualizacoes, id, trocaId;
-	bool showEmail, showNome, showNumTel, troca;
+	bool showEmail, showNome, showNumTel, troca, temDestaque;
 	Data data;
 
 	getline(olz_file, titulo);
@@ -545,10 +551,11 @@ DeCompra* leAnuncioDeCompra(istream& olz_file){
 	olz_file >> visualizacoes;
 	olz_file >> showEmail >> showNome >> showNumTel;
 	olz_file >> troca >> trocaId;
+	olz_file >> temDestaque;
 
 	DeCompra* deCompra_ptr = new DeCompra(titulo, categoria, descricao, imagens,id,troca,
 			trocaId, data,NULL, visualizacoes,showEmail,
-			showNome, showNumTel);
+			showNome, showNumTel, temDestaque);
 
 	return deCompra_ptr;
 }
@@ -560,7 +567,7 @@ DeVenda* leAnuncioDeVenda(istream& olz_file){
 	string lixo, titulo, categoria, descricao;
 	vector<string> imagens;
 	int visualizacoes, id;
-	bool showEmail, showNome, showNumTel;
+	bool showEmail, showNome, showNumTel, temDestaque;
 	Data data;
 	Estado estado;
 	float preco;
@@ -577,10 +584,11 @@ DeVenda* leAnuncioDeVenda(istream& olz_file){
 	estado = leEstadoDoProdutoDoAnuncio(olz_file);
 	olz_file >> preco;
 	olz_file >> negociacao;
+	olz_file >> temDestaque;
 
 	DeVenda* deVenda_ptr = new DeVenda(titulo, categoria, descricao, imagens,
 			id, estado, preco, negociacao, data, NULL, visualizacoes,
-			showEmail, showNome, showNumTel);
+			showEmail, showNome, showNumTel, temDestaque);
 
 	return deVenda_ptr;
 }
