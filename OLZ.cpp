@@ -195,13 +195,6 @@ void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
 		string emailAnunciante = contactos[i]->getAnunciante()->getEmail();
 		string emailInteressado = contactos[i]->getPessoaInteressada()->getEmail();
 
-<<<<<<< HEAD
-			for(size_t i = 0;i < anunVenda.size();i++)
-				if(anunVenda[i]->getAnunciante()->getEmail() == email){
-					int id_anuncio = anunVenda[i]->getId();
-					apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
-				}
-=======
 		if(emailAnunciante == emailUtilizador || emailAnunciante == emailUtilizador){
 			delete(contactos[i]);
 			contactos.erase(contactos.begin()+i);
@@ -209,23 +202,14 @@ void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
 		}
 	}
 }
->>>>>>> origin/master
 
 tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
 	return negociosConcretizados;
 }
 
-<<<<<<< HEAD
-			for(size_t i = 0;i < anunCompra.size();i++)
-				if(anunCompra[i]->getAnunciante()->getEmail() == email){
-					int id_anuncio = anunCompra[i]->getId();
-					apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
-				}
-=======
 vector<Contacto*> OLZ::getContactos() const{
 	return contactos;
 }
->>>>>>> origin/master
 
 vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 	vector<Anuncio*> res;
@@ -252,15 +236,10 @@ bool ordenarPorDestaque(Anuncio* left, Anuncio* right){
 		return left->getData() < right->getData();
 }
 
-<<<<<<< HEAD
 /**@brief get all seller adds that exists
  *
  * @return vector<DeVenda*> anunciosDeVenda
  */
-/*vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
-
-}*/
-=======
 vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 	vector<DeVenda*> res;
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux = anunciosDeVenda;
@@ -273,7 +252,6 @@ vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 
 	return res;
 }
->>>>>>> origin/master
 
 vector<DeCompra*> OLZ::getAnunciosDeCompra() const{
 	vector<DeCompra*> res;

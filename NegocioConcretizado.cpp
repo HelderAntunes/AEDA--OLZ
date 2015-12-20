@@ -7,18 +7,6 @@
 
 #include "NegocioConcretizado.h"
 
-
-
-NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt,
-		Anuncio* anuncio, float montanteNegociado, string mensagem):
-		dataNegociada(dataNegociada),
-		anunciante(anunciante),
-		pessoaInt(pessoaInt),
-		descricaoAnuncio(anuncio->getDescricao()),
-		montanteNegociado(montanteNegociado),
-		mensagem(mensagem),
-		categoria(anuncio->getCategoria()){}
-
 NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt,
 		string descricaoAnuncio, float montanteNegociado, string mensagem, string categoria):
 		dataNegociada(dataNegociada),
@@ -28,12 +16,6 @@ NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anuncia
 		montanteNegociado(montanteNegociado),
 		mensagem(mensagem),
 		categoria(categoria){}
-
-<<<<<<< HEAD
-		dataNegociada(dataNegociada), anunciante(anunciante), pessoaInt(pessoaInt), descricaoAnuncio(anuncio->getDescricao()),
-		categoria(anuncio->getCategoria()), montanteNegociado(montanteNegociado), mensagem(mensagem){}
-=======
->>>>>>> origin/master
 
 NegocioConcretizado::~NegocioConcretizado() {}
 

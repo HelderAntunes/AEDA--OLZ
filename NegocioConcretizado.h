@@ -13,7 +13,6 @@
 
 class NegocioConcretizado {
 protected:
-<<<<<<< HEAD
 	Data dataNegociada;			/** data of negotiation */
 	Utilizador* anunciante;		/**< pointer to advertiser */
 	Utilizador* pessoaInt;		/**< pointer to interested person */
@@ -21,30 +20,8 @@ protected:
 	string descricaoAnuncio;	/**< description of ad */
 	float montanteNegociado;	/** money negotiated */
 	string mensagem;			/**< message of interested person to advertiser */
-=======
-	Data dataNegociada;   		/** data of negotiation */
-	Utilizador* anunciante;     /**< pointer to advertiser */
-	Utilizador* pessoaInt;      /**< pointer to interested person */
-	string descricaoAnuncio;	/**< pointer to add */
-	float montanteNegociado;  	/** money negotiated */
-	string mensagem;    		/**< message of interested person to advertiser */
-	string categoria;  			/**< category of ad */
->>>>>>> origin/master
 
 public:
-	/**
-	 * @brief class NegocioConcretizado constructor
-	 *
-	 * @param dataNegociada date of transaction
-	 * @param anunciante pointer to anunciante
-	 * @param pessoaInt pointer to interested person
-	 * @param anuncio pointer to anuncio
-	 * @param montanteNegociado price agreed
-	 * @param mensagem message sent by interested person
-	 */
-	NegocioConcretizado(Data dataNegociada, Utilizador* anunciante, Utilizador* pessoaInt, Anuncio* anuncio,
-						float montanteNegociado, string mensagem);
-
 	/**
 	 * @brief class NegocioConcretizado constructor
 	 *

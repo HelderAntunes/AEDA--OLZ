@@ -57,10 +57,6 @@ struct NegocioConcretizadoHash
 
 typedef tr1::unordered_set<NegocioConcretizado*,NegocioConcretizadoHash,NegocioConcretizadoHash> tabHNegociosConcretizados;
 typedef tabHNegociosConcretizados::iterator iteratorHNegociosConcretizados;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
 /**
  * structure to compare two pointer of users (useful to implement the set)

@@ -34,10 +34,6 @@ void mostrarAnunciosPorLocalizacaoDoAnunciante(const OLZ& olz);
 void mostrarAnunciosPorPalavraChave(const OLZ& olz);
 // OPTION 7
 void mostrarAnunciosPorPrecoAproximado(const OLZ& olz);
-<<<<<<< HEAD
-DeVenda* criarAnuncioVenda(const OLZ& olz);
-DeCompra* criarAnuncioCompra(const OLZ& olz);
-=======
 // OPTION 8
 void adicionarAnuncioDeVenda(OLZ& olz);
 // OPTION 9
@@ -66,10 +62,8 @@ bool isOpcaoInvalida(int opcao, int inf, int sup);
 Utilizador* criarUtilizador(const OLZ& olz);
 string leEmaiDoUtilizador();
 void imprimirAnunciosEncontrados(const vector<Anuncio*>& anunciosEncontrados);
-DeVenda* CriarAnuncioVenda(const OLZ& olz);
-DeCompra* CriaAnuncioCompra(const OLZ& olz);
->>>>>>> origin/master
-Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email);
+DeVenda* criarAnuncioVenda(const OLZ& olz);
+DeCompra* criarAnuncioCompra(const OLZ& olz);
 bool existeCategoria(const OLZ& olz,string categoria);
 Estado leEstadoDoProduto();
 bool leResposta();
@@ -82,20 +76,16 @@ Utilizador* leUtilizadorAtravesDoEmail(const OLZ& olz);
 Anuncio* encontraAnuncioAtravesDoId(const OLZ& olz,int id);
 void apagarAnuncioEncontradoEseusContactos(int id_anuncio, OLZ& olz);
 bool emailExiste(string email,const OLZ& olz);
-<<<<<<< HEAD
+Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email);
 void imprimirUtilizadores(const OLZ& olz);
 //Mostrar Negocios Concretizados
 void mostrarNCPorCategoria(const OLZ& olz);
 void mostrarNCPorAnunciante(const OLZ& olz);
 void mostrarNCPorComprador(const OLZ& olz);
 void mostrarNCPorPreco(const OLZ& olz);
-=======
+
 void avisarOpcaoInvalida();
 bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2);
-
-
-
->>>>>>> origin/master
 
 
 int main(){
@@ -152,25 +142,11 @@ int main(){
 			mostrarAnunciosPorPrecoAproximado(olz);
 			break;
 		case 8:
-<<<<<<< HEAD
-		{
-			DeVenda* novoAnuncio = criarAnuncioVenda(olz);
-			olz.adicionarAnuncioVenda(novoAnuncio);
-		}
-		break;
-		case 9:
-		{
-			DeCompra* novoAnuncio = criarAnuncioCompra(olz);
-			olz.adicionarAnuncioCompra(novoAnuncio);
-		}
-		break;
-=======
 			adicionarAnuncioDeVenda(olz);
 			break;
 		case 9:
 			adicionarAnuncioDeCompra(olz);
 			break;
->>>>>>> origin/master
 		case 10:
 			verAnuncio(olz);
 			break;
@@ -266,28 +242,22 @@ void imprimirUtilizadores(const OLZ& olz){
 		cout << "\n\n";
 		it++;
 	}
-<<<<<<< HEAD
-	if(negocios.empty())
-		cout << "Nao foram encontrados negocios concretizados.\n";
 }
 
 void apagarAnuncioEncontrado(int id_anuncio, OLZ& olz){
 	vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
 	for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
 		if(anunciosDeVenda[i]->getId() == id_anuncio){
-			olz.apagarAnuncioVenda_E_ContactosAssociados(id_anuncio);
+			olz.apagarAnuncioDeVendaESeusContactos(id_anuncio);
 			return;
 		}
 
 	vector<DeCompra*> anunciosDeCompra = olz.getAnunciosDeCompra();
 	for(unsigned int i = 0;i < anunciosDeCompra.size();i++)
 		if(anunciosDeCompra[i]->getId() == id_anuncio){
-			olz.apagarAnuncioCompra_E_ContactosAssociados(id_anuncio);
+			olz.apagarAnuncioDeCompraESeusContactos(id_anuncio);
 			return;
 		}
-=======
-
->>>>>>> origin/master
 }
 
 /**OPTION 2
@@ -544,7 +514,7 @@ void mostrarAnunciosPorPrecoAproximado(const OLZ& olz){
  * @brief add a seller ad
  */
 void adicionarAnuncioDeVenda(OLZ& olz){
-	DeVenda* novoAnuncio = CriarAnuncioVenda(olz);
+	DeVenda* novoAnuncio = criarAnuncioVenda(olz);
 	olz.adicionarAnuncioVenda(novoAnuncio);
 }
 
@@ -608,7 +578,7 @@ DeVenda* criarAnuncioVenda(const OLZ& olz){
  * @brief add a want ad
  */
 void adicionarAnuncioDeCompra(OLZ& olz){
-	DeCompra* novoAnuncio = CriaAnuncioCompra(olz);
+	DeCompra* novoAnuncio = criarAnuncioCompra(olz);
 	olz.adicionarAnuncioCompra(novoAnuncio);
 }
 
