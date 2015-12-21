@@ -1,27 +1,5 @@
 INICIO_UTILIZADORES
 NOVO_UTILIZADOR
-Anabela Albuquerque
-anbeke@google.com
-960385183
-Cabeca Gorda
-Beja
-Beja
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Frederica Ribeiro
-fredRica@hotmail.com
-954321739
-Cano
-Sousel
-Portalegre
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
 Helder Antunes
 helder_antunes-@hotmail.com
 918370036
@@ -123,6 +101,19 @@ NOVO
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 NOVO_ANUNCIO
+Compro carteira Louis Vitton
+moda
+Pretendo arranjar uma bolsa preta de marca referida
+Imagens
+FimImagens
+5
+9/9/2014
+0
+0 1 1
+0
+0
+0
+NOVO_ANUNCIO
 Blusao de pele Massimo Dutti
 moda
 Procuro blusao rosa da colecao de outono/inverno de 2013
@@ -136,19 +127,39 @@ FimImagens
 1
 6
 0
-NOVO_ANUNCIO
-Compro carteira Louis Vitton
-moda
-Pretendo arranjar uma bolsa preta de marca referida
-Imagens
-FimImagens
-5
-9/9/2014
-0
-0 1 1
-0
-0
-0
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Anabela Albuquerque
+anbeke@google.com
+960385183
+Cabeca Gorda
+Beja
+Beja
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Teodoro Santana
+teoSant@outlook.pt
+912455698
+Cabrela
+Montemor-o-novo
+Evora
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Vitor Henriques
+henri@aeiou.pt
+990347022
+Vila de Macada
+Alijo
+Vila Real
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
 Margarida D'cruz
@@ -179,28 +190,6 @@ FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
-Simao Belo
-jeSuisBelo@facebook.com
-91777525
-Chao de Couce
-Ansiao
-Leiria
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Teodoro Santana
-teoSant@outlook.pt
-912455698
-Cabrela
-Montemor-o-novo
-Evora
-INICIO_ANUNCIOS_VENDA
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
 Vasco Rios
 mrRios@outlook.pt
 965321690
@@ -212,12 +201,23 @@ FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
-Vitor Henriques
-henri@aeiou.pt
-990347022
-Vila de Macada
-Alijo
-Vila Real
+Simao Belo
+jeSuisBelo@facebook.com
+91777525
+Chao de Couce
+Ansiao
+Leiria
+INICIO_ANUNCIOS_VENDA
+FIM_ANUNCIOS_VENDA
+INICIO_ANUNCIOS_COMPRA
+FIM_ANUNCIOS_COMPRA
+NOVO_UTILIZADOR
+Frederica Ribeiro
+fredRica@hotmail.com
+954321739
+Cano
+Sousel
+Portalegre
 INICIO_ANUNCIOS_VENDA
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
@@ -238,6 +238,9 @@ helder_antunes-@hotmail.com
 1
 desejo comprar o telemovel
 918370036
+1
+200
+5/1/15
 FIM_CONTACTOS
-NEGOCIOS
+INICIO_NEGOCIOS
 FIM_NEGOCIOS
