@@ -118,7 +118,7 @@ int main(){
 			continue;
 		}
 		cin.ignore();
-		if(isOpcaoInvalida(opcao, 1, 18) == true){
+		if(isOpcaoInvalida(opcao, 1, 22) == true){
 			avisarOpcaoInvalida();
 			continue;
 		}
@@ -751,17 +751,15 @@ void concretizarNegocio(OLZ& olz){
 	float montanteNegociado;
 	int id_anuncio;
 
-	while(1){
+	while (1){
 		cout << "Introduza o id do anuncio: ";
-		while(1){
-			cin >> id_anuncio;
-			cin.ignore();
-			anuncio = encontraAnuncioAtravesDoId(olz,id_anuncio);
-			if(anuncio != NULL)
-				break;
-			else
-				cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
-		}
+		cin >> id_anuncio;
+		cin.ignore();
+		anuncio = encontraAnuncioAtravesDoId(olz, id_anuncio);
+		if (anuncio != NULL)
+			break;
+		else
+			cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
 	}
 
 	cout << "Email do anunciante\n";
@@ -812,6 +810,7 @@ void mostrarNegociosConcretizados(OLZ& olz){
 	while(it != negocios.end()){
 		(*it)->imprimeNegocioConcretizado();
 		cout << endl << "/--------------------------------------------\n";
+		it++;
 	}
 	if(negocios.empty())
 		cout << "Nao foram encontrados negocios concretizados.\n";
@@ -1096,11 +1095,13 @@ Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
 	set<Utilizador*, userPtrComp> utilizadores = olz.getUtilizadores();
 	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
 
-	while(it != utilizadores.end())
-		if((*it)->getEmail() == email){
+	while (it != utilizadores.end()){
+		if ((*it)->getEmail() == email){
 			utilizador = *it;
 			break;
 		}
+		it++;
+	}
 	if(utilizador == NULL)
 		throw ExceptionUtilizadorNaoExistente(email);
 	else

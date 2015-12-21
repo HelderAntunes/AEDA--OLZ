@@ -39,13 +39,15 @@ OLZ::~OLZ() {
 	utilizadores.clear();
 
 	while(!anunciosDeCompra.empty()){
-		delete anunciosDeCompra.top();
+		DeCompra* compra = anunciosDeCompra.top();
 		anunciosDeCompra.pop();
+		delete compra;
 	}
 
 	while(!anunciosDeVenda.empty()){
-		delete anunciosDeVenda.top();
+		DeVenda* venda = anunciosDeVenda.top();
 		anunciosDeVenda.pop();
+		delete venda;
 	}
 
 	for(unsigned int i = 0;i < contactos.size();i++)
