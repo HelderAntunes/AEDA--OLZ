@@ -330,6 +330,7 @@ bool emailExiste(string email,const OLZ& olz){
 	while(it != utilizadores.end()){
 		if((*it)->getEmail() == email)
 			return true;
+		it++;
 	}
 
 	return false;

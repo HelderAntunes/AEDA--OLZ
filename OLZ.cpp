@@ -122,13 +122,13 @@ void OLZ::apagarAnunciosDeUmUtilizador(string emailUtilizador){
 	vector<DeVenda*> anunVenda = getAnunciosDeVenda();
 	vector<DeCompra*> anunCompra = getAnunciosDeCompra();
 
-	for(size_t i = 0;anunVenda.size();i++)
+	for(size_t i = 0; i < anunVenda.size();i++)
 		if(anunVenda[i]->getAnunciante()->getEmail() == emailUtilizador){
 			int id_anuncio = anunVenda[i]->getId();
 			apagarAnuncioDeVenda(id_anuncio);
 		}
 
-	for(size_t i = 0;anunCompra.size();i++)
+	for(size_t i = 0; i < anunCompra.size();i++)
 		if(anunCompra[i]->getAnunciante()->getEmail() == emailUtilizador){
 			int id_anuncio = anunCompra[i]->getId();
 			apagarAnuncioDeCompra(id_anuncio);
@@ -148,8 +148,8 @@ void OLZ::apagarInformacoesDoUtilizadorEmNegociosConcretizados(string emailUtili
 		if((*i)->getPessoaInteressada() != NULL)
 			if((*i)->getPessoaInteressada()->getEmail() == emailUtilizador)
 				(*i)->setPessoaInteressadaPtr_toNull();
+		i++;
 	}
-
 }
 
 void OLZ::apagarUtilizador(string emailUtilizador){
@@ -161,6 +161,7 @@ void OLZ::apagarUtilizador(string emailUtilizador){
 			utilizadores.erase(it);
 			break;
 		}
+		it++;
 	}
 }
 
@@ -371,6 +372,7 @@ void OLZ::leNegocios(istream& olz_file){
 			olz_file >> emailAnunciante;
 			olz_file >> emailPessoaInt;
 
+			//Find and update anunciante
 			set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
 			while(it != utilizadores.end()){
 				string emailUtil = (*it)->getEmail();
@@ -379,13 +381,22 @@ void OLZ::leNegocios(istream& olz_file){
 					anunciante = (*it);
 					anunciante->incNegociosConcretizados();
 					anunciante->updateDataUltimoNegocio(data);
-					utilizadores.erase(it);
+					it = utilizadores.erase(it);
 					utilizadores.insert(anunciante);
+					break;
 				}
+				else
+					it++;
+			}
 
-				if(emailUtil == emailPessoaInt)
+			//Find pessoa interessada
+			it = utilizadores.begin();
+			while (it != utilizadores.end()){
+				string emailUtil = (*it)->getEmail();
+				if (emailUtil == emailPessoaInt){
 					pessoaInt = (*it);
-
+					break;
+				}
 				it++;
 			}
 
