@@ -6,10 +6,12 @@
  */
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <ctime>
 #include "Anuncio.h"
 #include "OLZ.h"
 
@@ -539,40 +541,38 @@ DeVenda* criarAnuncioVenda(const OLZ& olz){
 	getline(cin,titulo);
 
 	mostrarCategorias(olz);
-	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
+	cout << "Introduza o nome da categoria do anuncio de entre estas: ";
 	categoria = leCategoria(olz);
 
 	cout << "Introduza a descricao do anuncio: ";
 	getline(cin, descricao);
 
-	cout << "Imagens do anuncio: ('N' - nao tem mais imagens)\n";
+	cout << "Imagens do anuncio ('N' - nao tem mais imagens):\n";
 	imagens = leImagens();
 
 	id = Anuncio::getIdentificadorInicial();
 	Anuncio::setIdentificadorInicial(id+1);
 
-	cout << "Introduza o preco do anuncio:\n";
+	cout << "Introduza o preco do anuncio: ";
 	cin >> preco;
 	cin.ignore();
 
-	cout << "Introduza o estado do produto: (NOVO/USADO/FUNCIONAL/PARA PECAS)\n";
+	cout << "Introduza o estado do produto (NOVO/USADO/FUNCIONAL/PARA PECAS): ";
 	estado = leEstadoDoProduto();
 
-	cout << "Esta disponivel para negociar: y-sim n-nao\n";
+	cout << "Esta disponivel para negociar (y - Sim; n - Nao): ";
 	negociacao = leResposta();
 
-	cout << "Pretende mostrar o email no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o email no anuncio (y - Sim; n - Nao): ";
 	showEmail = leResposta();
 
-	cout << "Pretende mostrar o nome no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o nome no anuncio (y - Sim; n - Nao): ";
 	showNome = leResposta();
 
-	cout << "Pretende mostrar o numero de telemovel no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o numero de telemovel no anuncio (y - Sim; n - Nao): ";
 	showNumTel = leResposta();
 
-	cout << "Introduza a data de hoje: (exemplo: '4 11 215', dia mes ano)\n";
-
-	data = leData();
+	cout << "Anuncio criado com a data " << data << endl;
 
 	return new DeVenda(titulo,categoria,descricao,imagens,
 			id,estado,preco,negociacao,data,anunciante
@@ -596,43 +596,42 @@ DeCompra* criarAnuncioCompra(const OLZ& olz){
 	Data data;
 	Utilizador* anunciante = NULL;
 
-	cout << "Introduza o email do anunciante:\n";
+	cout << "Introduza o email do anunciante: ";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 
-	cout << "Introduza o titulo do anuncio:\n";
+	cout << "Introduza o titulo do anuncio: ";
 	getline(cin,titulo);
 	mostrarCategorias(olz);
 
-	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
+	cout << "Introduza o nome da categoria do anuncio de entre estas: ";
 	categoria = leCategoria(olz);
 
-	cout << "Introduza a descricao do anuncio:\n";
+	cout << "Introduza a descricao do anuncio: ";
 	getline(cin, descricao);
 
-	cout << "Imagens do anuncio: ('N' - nao tem mais imagens)\n";
+	cout << "Imagens do anuncio ('N' - nao tem mais imagens):\n";
 	imagens = leImagens();
 
 	id = Anuncio::getIdentificadorInicial();
 	Anuncio::setIdentificadorInicial(id+1);
 
-	cout << "Esta disponivel para troca: y-sim n-nao\n";
+	cout << "Esta disponivel para troca (y - Sim; n - Nao): ";
 	troca = leResposta();
 	if (troca){
-		cout << "Introduza o id do anuncio de venda do utilizador\n";
+		cout << "Introduza o id do anuncio de venda do utilizador: ";
 		trocaId = leIdDoAnuncioDeVendaParaTroca(anunciante, olz);
 	}
 
-	cout << "Pretende mostrar o email no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o email no anuncio (y - Sim n - Nao): ";
 	showEmail = leResposta();
 
-	cout << "Pretende mostrar o nome no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o nome no anuncio (y - Sim n - Nao): ";
 	showNome = leResposta();
 
-	cout << "Pretende mostrar o numero de telemovel no anuncio: y-sim n-nao\n";
+	cout << "Pretende mostrar o numero de telemovel no anuncio (y - Sim; n - Nao): ";
 	showNumTel = leResposta();
 
-	cout << "Introduza a data de hoje: (exemplo: '4 11 215', dia mes ano)\n";
-	data = leData();
+	cout << "Anuncio criado com a data " << data << endl;
 
 	return new DeCompra(titulo,categoria,descricao,imagens,
 			id,troca,trocaId,data,anunciante
@@ -713,10 +712,10 @@ Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
 	Anuncio* anuncio = NULL;
 	int id;
 
-	cout << "Introduza o email da pessoa interessada:";
+	cout << "Introduza o email da pessoa interessada: ";
 	pessoaInt = leUtilizadorAtravesDoEmail(olz);
 
-	cout << "Introduza o id do anuncio:";
+	cout << "Introduza o id do anuncio: ";
 	while(1){
 		cin >> id;
 		cin.ignore();
@@ -728,10 +727,10 @@ Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
 			break;
 		}
 		else
-			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
+			cout << "Anuncio nao encontrado, tente de novo com outro id: ";
 	}
 
-	cout << "Mensagem da pessoa interessada para a o anunciante:\n";
+	cout << "Mensagem da pessoa interessada para a o anunciante: ";
 	getline(cin, mensagem);
 
 	numTel_pessoaInt = pessoaInt->getContacto();
@@ -761,13 +760,13 @@ void concretizarNegocio(OLZ& olz){
 		if (anuncio != NULL)
 			break;
 		else
-			cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
+			cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id: ";
 	}
 
-	cout << "Email do anunciante:\n";
+	cout << "Email do anunciante: ";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 
-	cout << "Email da pessoa interessada:\n";
+	cout << "Email da pessoa interessada: ";
 	pessoaInt = leUtilizadorAtravesDoEmail(olz);
 
 	while(1){
@@ -784,22 +783,23 @@ void concretizarNegocio(OLZ& olz){
 		if(contacto != NULL)
 			break;
 		else{
-			cout << "Erro encontrado:\n";
-			cout << "Nao existe contacto entre os utilizadores inseridos em relacao ao anuncio.\n";
+			cout << "Erro: Nao existe contacto entre os utilizadores inseridos em relacao ao anuncio.\n";
 			return;
 		}
 	}
 
-	cout << "Introduza o montante negociado:";
+	cout << "Introduza o montante negociado: ";
 	cin >> montanteNegociado;
 	cin.ignore();
 
-	cout << "Introduza a data de negociacai: (exemplo: '4/11/215', dia/mes/ano)\n";
+	cout << "Introduza a data de negociacao (exemplo: 10-11-2012; Deixe em branco para a data de hoje): ";
 	Data data = leData();
 
 	NegocioConcretizado* negocio = contacto->concretizaNegocio(montanteNegociado,data);
 	olz.adicionarNegocio(negocio);
 	olz.incNegociosEatualizaDataUltimoNegocioDeUtilizador(anunciante->getEmail(), data);
+
+	cout << "Negocio concretizado em " << data << " por €" << montanteNegociado << endl;
 
 	apagarAnuncioEncontradoEseusContactos(id_anuncio, olz);
 }
@@ -1035,17 +1035,26 @@ string leCategoria(const OLZ& olz){
 }
 
 Data leData(){
-	Data data;
 	while(1){
+		Data data;
+		string d;
+
+		getline(cin, d);
+		stringstream ds(d);
+
 		try{
-			if (!(cin >> data)){
-				cout << "Erro na data! Tente de novo. ";
+			if (d.empty()) {
+				return data;
+			}
+			else if (!(ds >> data)){
+				cout << "Erro na data! Tente de novo: ";
 				cin.clear();
-				cin.ignore(10000, '\n');
+				//cin.ignore(10000, '\n');
 				continue;
 			}
 			else
 				cin.ignore();
+
 		}catch(ExceptionDataInvalida& dInv){
 			cout << dInv.dado << " " << dInv.valor << " invalido, tente de novo.\n";
 			continue;
@@ -1063,7 +1072,7 @@ bool leResposta(){
 		else if(resposta == "n")
 			return false;
 		else
-			cout << "Opcao invalida, tente de novo.\n";
+			avisarOpcaoInvalida();
 	}
 }
 
@@ -1129,5 +1138,5 @@ Utilizador* encontraUtilizadorAtravesDoEmail(const OLZ& olz, string email){
  * @brief warning the user that the option previously chosen is invalid
  */
 void avisarOpcaoInvalida(){
-	cout << "Opcao invalida, tente de novo.\n";
+	cout << "Opcao invalida, tente de novo: ";
 }
