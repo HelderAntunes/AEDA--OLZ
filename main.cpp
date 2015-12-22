@@ -198,7 +198,7 @@ int main(){
 			run = false;
 		}
 		cout << "\n\nPrime a tecla enter para continuar.";
-		cin.ignore(1000,'\n');
+		cin.ignore(10000,'\n');
 		system("cls");
 	}
 	cout << "Obrigado! Volte sempre!\n";
@@ -510,11 +510,24 @@ void mostrarAnunciosPorPrecoAproximado(const OLZ& olz){
 
 	cout << "Introduza um intervalo de preco\n";
 	cout << "Preco minimo: ";
-	cin >> preco_min;
-	cin.ignore();
+	if (!(cin >> preco_min)) {
+		cout << "Preco minimo invalido.";
+		cin.clear();
+		cin.ignore(10000, '\n');
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
+
 	cout << "Preco maximo: ";
-	cin >> preco_max;
-	cin.ignore();
+	if (!(cin >> preco_max)) {
+		cout << "Preco maximo invalido.";
+		cin.clear();
+		cin.ignore(10000, '\n');
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
 
 	for(unsigned int i = 0;i < anunciosVenda.size();i++)
 		if(anunciosVenda[i]->getPreco() >= preco_min && anunciosVenda[i]->getPreco() <= preco_max)
@@ -911,11 +924,24 @@ void mostrarNCPorPreco(const OLZ& olz){
 
 	cout << "Introduza um intervalo de preco\n";
 	cout << "Preco minimo: ";
-	cin >> preco_min;
-	cin.ignore();
+	if (!(cin >> preco_min)) {
+		cout << "Preco minimo invalido.";
+		cin.clear();
+		cin.ignore(10000, '\n');
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
+
 	cout << "Preco maximo: ";
-	cin >> preco_max;
-	cin.ignore();
+	if (!(cin >> preco_max)) {
+		cout << "Preco maximo invalido.";
+		cin.clear();
+		cin.ignore(10000, '\n');
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
 
 	int negociosImprimidos = 0;
 	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
