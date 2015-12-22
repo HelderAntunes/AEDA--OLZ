@@ -65,7 +65,7 @@ void mostrarCategorias(const OLZ& olz);
 // OPTION 21
 void mostrarAnunciosMaisPopulares(const OLZ& olz);
 // OPTION 22
-void colocarDestaquemEmAnuncio(const OLZ& olz);
+void colocarDestaquemEmAnuncio(OLZ& olz);
 
 /***********************
  * AUXILIARY FUNCTIONS *
@@ -123,7 +123,7 @@ int main(){
 			continue;
 		}
 		cin.ignore();
-		if(isOpcaoInvalida(opcao, 1, 22) == true){
+		if(isOpcaoInvalida(opcao, 1, 23) == true){
 			avisarOpcaoInvalida();
 			continue;
 		}
@@ -1009,7 +1009,7 @@ void mostrarAnunciosMaisPopulares(const OLZ& olz){
 /**OPTION 22
  * @puts an ad into featured list
  */
-void colocarDestaquemEmAnuncio(const OLZ& olz)
+void colocarDestaquemEmAnuncio(OLZ& olz)
 {
 	int id;
 	Anuncio* anuncio = NULL;
@@ -1028,7 +1028,8 @@ void colocarDestaquemEmAnuncio(const OLZ& olz)
 			cout << "Anuncio nao encontrado, tente de novo com outro id: ";
 	}
 
-	anuncio->colocarDestaque();
+	olz.colocarDestaqueEmAnuncio(anuncio, true);
+
 }
 
 bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2){
