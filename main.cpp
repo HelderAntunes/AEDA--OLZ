@@ -814,8 +814,14 @@ void concretizarNegocio(OLZ& olz){
 	}
 
 	cout << "Introduza o montante negociado: ";
-	cin >> montanteNegociado;
-	cin.ignore();
+	while(!(cin >> montanteNegociado))
+	{
+		cin.clear();
+		cin.ignore(10000, '\n');
+		cout << "Montante invalido, por favor tente novamente: ";
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
 
 	cout << "Introduza a data de negociacao (exemplo: 10-11-2012; Deixe em branco para a data de hoje): ";
 	Data data = leData();
@@ -1110,7 +1116,7 @@ Data leData(){
 				return data;
 			}
 			else if (!(ds >> data)){
-				cout << "Erro na data! Tente de novo: ";
+				cout << "Data invalida! Tente de novo: ";
 				cin.clear();
 				//cin.ignore(10000, '\n');
 				continue;
