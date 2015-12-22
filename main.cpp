@@ -643,7 +643,8 @@ int leIdDoAnuncioDeVendaParaTroca(Utilizador* anunciante,const OLZ& olz){
 	while(1){
 		cout << "Id do anuncio de Venda: ";
 		cin >> idTroca;
-		cin.ignore();
+		cin.clear();
+		cin.ignore(10000,'\n');
 		vector<DeVenda*> anunciosDeVenda = olz.getAnunciosDeVenda();
 		for(unsigned int i = 0;i < anunciosDeVenda.size();i++)
 			if(anunciosDeVenda[i]->getId() == idTroca && anunciante->getEmail() == anunciosDeVenda[i]->getAnunciante()->getEmail())
@@ -662,7 +663,8 @@ void verAnuncio(const OLZ& olz){
 	while(1){
 		cout << "Introduz o id do anuncio que quer ver: ";
 		cin >> id;
-		cin.ignore();
+		cin.clear();
+		cin.ignore(10000,'\n');
 
 		anuncio = encontraAnuncioAtravesDoId(olz,id);
 
@@ -683,9 +685,10 @@ void apagarAnuncio(OLZ& olz){
 	Anuncio* anuncio = NULL;
 
 	while(1){
-		cout << "Introduza o id do anuncio que quer apagar:";
+		cout << "Introduza o id do anuncio que quer apagar: ";
 		cin >> id;
-		cin.ignore();
+		cin.clear();
+		cin.ignore(10000,'\n');
 
 		anuncio = encontraAnuncioAtravesDoId(olz,id);
 
@@ -718,7 +721,8 @@ Contacto* criarContactoEntreDoisUtilizadores(const OLZ& olz){
 	cout << "Introduza o id do anuncio: ";
 	while(1){
 		cin >> id;
-		cin.ignore();
+		cin.clear();
+		cin.ignore(10000,'\n');
 
 		anuncio = encontraAnuncioAtravesDoId(olz, id);
 
@@ -755,7 +759,9 @@ void concretizarNegocio(OLZ& olz){
 	while (1){
 		cout << "Introduza o id do anuncio: ";
 		cin >> id_anuncio;
-		cin.ignore();
+		cin.clear();
+		cin.ignore(10000,'\n');
+
 		anuncio = encontraAnuncioAtravesDoId(olz, id_anuncio);
 		if (anuncio != NULL)
 			break;
