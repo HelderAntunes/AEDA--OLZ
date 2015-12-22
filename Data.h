@@ -11,6 +11,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -35,9 +36,9 @@ struct ExceptionDataInvalida{
  * @brief Date class
  */
 class Data{
-	int dia;		/**< date's day*/
-	int mes;		/**< date's month*/
-	int ano;		/**< date's year*/
+	unsigned int dia;		/**< date's day*/
+	unsigned int mes;		/**< date's month*/
+	unsigned int ano;		/**< date's year*/
 public:
 	/**
 	 * Creates new date with information provided.
@@ -47,8 +48,8 @@ public:
 	 * @param m		 	date's month
 	 * @param a			date's year
 	 */
-	Data(int d, int m, int a){
-		if(m < 0 || m >12)
+	Data(unsigned int d, unsigned int m, unsigned int a){
+		if(m < 0 || m > 12)
 			throw ExceptionDataInvalida("mes",m);
 		if(d < 0 || d > 31)
 			throw ExceptionDataInvalida("dia",d);
@@ -63,13 +64,15 @@ public:
 	}
 
 	/**
-	 * Creates new date 1/01/2000
+	 * Creates new date with current day, month and year
 	 * @brief class Data constructor with no arguments.
 	 */
 	Data(){
-		dia = 1;
-		mes = 1;
-		ano = 2000;
+		time_t t = time(0); // time now
+		struct tm * now = localtime(& t);
+		dia = now->tm_mday;
+		mes = now->tm_mon;
+		ano = now->tm_year + 1900;
 	}
 
 	/**
@@ -79,9 +82,8 @@ public:
 	 * @param out 		out stream chosen
 	 * @param data		date to be sent
 	 */
-	friend ostream& operator<< (ostream& out, const Data &data){
+	friend ostream& operator<< (ostream& out, const Data &data) {
 		out << data.dia << "/" << data.mes << "/" << data.ano;
-
 		return out;
 	}
 
@@ -93,8 +95,19 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend istream &operator>>( istream  &in, Data &data ){
-		char lixo;
-		in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
+
+		/*if (in.rdbuf()->showmanyc() == 0)
+		{
+			time_t t = time(0); // time now
+			struct tm * now = localtime(& t);
+			data.dia = now->tm_mday;
+			data.mes = now->tm_mon;
+			data.ano = now->tm_year + 1900;
+		} else {*/
+			char lixo;
+			in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
+		//}
+
 
 		return in;
 	}
