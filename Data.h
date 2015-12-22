@@ -95,19 +95,8 @@ public:
 	 * @param data		date to be sent
 	 */
 	friend istream &operator>>( istream  &in, Data &data ){
-
-		/*if (in.rdbuf()->showmanyc() == 0)
-		{
-			time_t t = time(0); // time now
-			struct tm * now = localtime(& t);
-			data.dia = now->tm_mday;
-			data.mes = now->tm_mon;
-			data.ano = now->tm_year + 1900;
-		} else {*/
-			char lixo;
-			in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
-		//}
-
+		char lixo;
+		in >> data.dia >> lixo >> data.mes >> lixo >> data.ano;
 
 		return in;
 	}
