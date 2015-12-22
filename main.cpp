@@ -550,7 +550,7 @@ DeVenda* criarAnuncioVenda(const OLZ& olz){
 	int id;
 	float preco;
 	Estado estado;
-	bool negociacao, showEmail, showNome, showNumTel;
+	bool negociacao, showEmail, showNome, showNumTel, temDestaque;
 	Data data;
 	Utilizador* anunciante = NULL;
 
@@ -573,8 +573,14 @@ DeVenda* criarAnuncioVenda(const OLZ& olz){
 	Anuncio::setIdentificadorInicial(id+1);
 
 	cout << "Introduza o preco do anuncio: ";
-	cin >> preco;
-	cin.ignore();
+	while(!(cin >> preco))
+	{
+		cin.clear();
+		cin.ignore(10000, '\n');
+		cout << "Preco invalido, tente novamente: ";
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
 
 	cout << "Introduza o estado do produto (NOVO/USADO/FUNCIONAL/PARA PECAS): ";
 	estado = leEstadoDoProduto();
@@ -591,11 +597,14 @@ DeVenda* criarAnuncioVenda(const OLZ& olz){
 	cout << "Pretende mostrar o numero de telemovel no anuncio (y - Sim; n - Nao): ";
 	showNumTel = leResposta();
 
+	cout << "Pretende colocar o anuncio em destaque (y - Sim; n - Nao): ";
+	temDestaque = leResposta();
+
 	cout << "Anuncio criado com a data " << data << endl;
 
 	return new DeVenda(titulo,categoria,descricao,imagens,
 			id,estado,preco,negociacao,data,anunciante
-			,0,showEmail,showNome,showNumTel,false);
+			,0,showEmail,showNome,showNumTel,temDestaque);
 }
 
 /**OPTION 9
@@ -611,7 +620,7 @@ DeCompra* criarAnuncioCompra(const OLZ& olz){
 	vector<string> imagens;
 	int id;
 	int trocaId = 0;
-	bool troca, showEmail, showNome, showNumTel;
+	bool troca, showEmail, showNome, showNumTel, temDestaque;
 	Data data;
 	Utilizador* anunciante = NULL;
 
@@ -650,11 +659,14 @@ DeCompra* criarAnuncioCompra(const OLZ& olz){
 	cout << "Pretende mostrar o numero de telemovel no anuncio (y - Sim; n - Nao): ";
 	showNumTel = leResposta();
 
+	cout << "Pretende colocar o anuncio em destaque (y - Sim; n - Nao): ";
+	temDestaque = leResposta();
+
 	cout << "Anuncio criado com a data " << data << endl;
 
 	return new DeCompra(titulo,categoria,descricao,imagens,
 			id,troca,trocaId,data,anunciante
-			,0,showEmail,showNome,showNumTel,false);
+			,0,showEmail,showNome,showNumTel,temDestaque);
 }
 
 int leIdDoAnuncioDeVendaParaTroca(Utilizador* anunciante,const OLZ& olz){
@@ -1118,7 +1130,6 @@ Data leData(){
 			else if (!(ds >> data)){
 				cout << "Data invalida! Tente de novo: ";
 				cin.clear();
-				//cin.ignore(10000, '\n');
 				continue;
 			}
 			else
@@ -1167,7 +1178,8 @@ Estado leEstadoDoProduto(){
 			return estado;
 		}
 		else
-			cout << "Estado invalido, tente de novo.\n";
+			cout << "Estado invalido, tente de novo: ";
+		cin.clear();
 	}
 }
 
@@ -1180,7 +1192,7 @@ bool existeCategoria(const OLZ& olz,string categoria){
 		throw ExceptionCategoriaInexistente(categoria);
 	}
 	catch(ExceptionCategoriaInexistente& c){
-		cout << "Nao existe categoria chamada: " << c.getCategoria() << endl;
+		cout << "Nao existe categoria chamada: " << c.getCategoria() << ". Tente novamente: ";
 		return false;
 	}
 }
