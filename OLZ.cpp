@@ -206,6 +206,39 @@ void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
 	}
 }
 
+void OLZ::colocarDestaqueEmAnuncio(Anuncio * anuncio, bool destaque)
+	{
+		priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux1;
+		while (anunciosDeVenda.empty())
+		{
+			if (anuncio->getId() == anunciosDeVenda.top()->getId())
+			{
+				if (destaque)
+					anunciosDeVenda.top()->colocarDestaque();
+				else
+					anunciosDeVenda.top()->retirarDestaque();
+			}
+			aux1.push(anunciosDeVenda.top());
+			anunciosDeVenda.pop();
+		}
+
+		priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux2;
+		{
+			if (anuncio->getId() == anunciosDeCompra.top()->getId())
+			{
+				if (destaque)
+					anunciosDeCompra.top()->colocarDestaque();
+				else
+					anunciosDeCompra.top()->retirarDestaque();
+			}
+			aux2.push(anunciosDeCompra.top());
+			anunciosDeCompra.pop();
+		}
+
+		anunciosDeVenda = aux1;
+		anunciosDeCompra = aux2;
+	}
+
 tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
 	return negociosConcretizados;
 }

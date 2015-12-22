@@ -226,6 +226,14 @@ public:
 	 */
 	void apagarAnuncioDeCompraESeusContactos(int id_anuncio);
 
+	/*
+	 * @brief sets or removes an ad into featured list and updates the priority queue
+	 *
+	 * @param anuncio the ad to set or remove the feature
+	 * @param destaque whether to set or remove the feature
+	 */
+	void colocarDestaqueEmAnuncio(Anuncio * anuncio, bool destaque);
+
 	/**
 	 * @brief get all adds that exists
 	 *
