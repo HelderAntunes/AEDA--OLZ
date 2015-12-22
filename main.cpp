@@ -64,6 +64,8 @@ void mostrarContactos(OLZ& olz);
 void mostrarCategorias(const OLZ& olz);
 // OPTION 21
 void mostrarAnunciosMaisPopulares(const OLZ& olz);
+// OPTION 22
+void colocarDestaquemEmAnuncio(const OLZ& olz);
 
 /***********************
  * AUXILIARY FUNCTIONS *
@@ -190,6 +192,9 @@ int main(){
 			mostrarAnunciosMaisPopulares(olz);
 			break;
 		case 22:
+			colocarDestaquemEmAnuncio(olz);
+			break;
+		case 23:
 			run = false;
 		}
 		cout << "\n\nPrime a tecla enter para continuar.";
@@ -229,7 +234,8 @@ void mostrarMenuPrincipal(){
 			"\t19 - Mostrar contactos\n"
 			"\t20 - Mostrar categorias\n"
 			"\t21 - Mostrar anuncios mais populares\n"
-			"\t22 - Sair da aplicacao\n";
+			"\t22 - Colocar destaque num anuncio\n"
+			"\t23 - Sair da aplicacao\n";
 	cout << endl;
 	cout << "Opcao: ";
 	return;
@@ -695,7 +701,7 @@ void apagarAnuncio(OLZ& olz){
 		if(anuncio != NULL)
 			break;
 		else
-			cout << "Anuncio nao encontrado, tente de novo com outro id.\n";
+			cout << "Anuncio nao encontrado, tente de novo com outro id: ";
 	}
 	apagarAnuncioEncontradoEseusContactos(id,olz);
 }
@@ -859,7 +865,7 @@ void mostrarNCPorAnunciante(const OLZ& olz){
 	Utilizador* anunciante = NULL;
 	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
 
-	cout << "Introduza o email do anunciante:";
+	cout << "Introduza o email do anunciante: ";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 
 	int negociosImprimidos = 0;
@@ -881,7 +887,7 @@ void mostrarNCPorComprador(const OLZ& olz){
 	Utilizador* PessoaInt = NULL;
 	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
 
-	cout << "Introduza o email da pessoa interessada:";
+	cout << "Introduza o email da pessoa interessada: ";
 	PessoaInt = leUtilizadorAtravesDoEmail(olz);
 
 	int negociosImprimidos = 0;
@@ -954,6 +960,31 @@ void mostrarAnunciosMaisPopulares(const OLZ& olz){
 	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
 	sort(anuncios.begin(),anuncios.end(),ordenaPorVisualizacoes); // ordem decrescente
 	imprimirAnunciosEncontrados(anuncios);
+}
+
+/**OPTION 22
+ * @puts an ad into featured list
+ */
+void colocarDestaquemEmAnuncio(const OLZ& olz)
+{
+	int id;
+	Anuncio* anuncio = NULL;
+
+	while(1){
+		cout << "Introduza o id do anuncio que quer colocar destaque: ";
+		cin >> id;
+		cin.clear();
+		cin.ignore(10000,'\n');
+
+		anuncio = encontraAnuncioAtravesDoId(olz,id);
+
+		if(anuncio != NULL)
+			break;
+		else
+			cout << "Anuncio nao encontrado, tente de novo com outro id: ";
+	}
+
+	anuncio->colocarDestaque();
 }
 
 bool ordenaPorVisualizacoes(Anuncio* a1, Anuncio* a2){
