@@ -31,7 +31,6 @@ Utilizador* Contacto::getPessoaInteressada() const{
 }
 
 NegocioConcretizado* Contacto::concretizaNegocio(float montanteNegociado, Data data){
-
 	return new NegocioConcretizado(data, anunciante,pessoaInt,anuncio->getDescricao(),montanteNegociado,mensagem, anuncio->getCategoria());
 }
 

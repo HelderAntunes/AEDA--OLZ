@@ -115,6 +115,7 @@ int main(){
 			cin.clear();
 			cin.ignore(1000,'\n');
 			avisarOpcaoInvalida();
+
 			continue;
 		}
 		cin.ignore();
@@ -763,10 +764,10 @@ void concretizarNegocio(OLZ& olz){
 			cout << "Nao foi possivel encontrar o anuncio, tente de novo com outro id.\n";
 	}
 
-	cout << "Email do anunciante\n";
+	cout << "Email do anunciante:\n";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
 
-	cout << "Email da pessoa interessada\n";
+	cout << "Email da pessoa interessada:\n";
 	pessoaInt = leUtilizadorAtravesDoEmail(olz);
 
 	while(1){
@@ -776,6 +777,7 @@ void concretizarNegocio(OLZ& olz){
 				if(contactos[i]->getAnunciante()->getEmail() == anunciante->getEmail()
 						&& contactos[i]->getPessoaInteressada()->getEmail() == pessoaInt->getEmail()
 						&& contactos[i]->getAnuncio()->getId() == anuncio->getId())
+
 					contacto = contactos[i];
 		}
 
@@ -792,11 +794,12 @@ void concretizarNegocio(OLZ& olz){
 	cin >> montanteNegociado;
 	cin.ignore();
 
-	cout << "Introduza a data de negociacai: (exemplo: '4 11 215', dia mes ano)\n";
+	cout << "Introduza a data de negociacai: (exemplo: '4/11/215', dia/mes/ano)\n";
 	Data data = leData();
 
 	NegocioConcretizado* negocio = contacto->concretizaNegocio(montanteNegociado,data);
 	olz.adicionarNegocio(negocio);
+	olz.incNegociosEatualizaDataUltimoNegocioDeUtilizador(anunciante->getEmail(), data);
 
 	apagarAnuncioEncontradoEseusContactos(id_anuncio, olz);
 }
@@ -813,6 +816,7 @@ void mostrarNegociosConcretizados(OLZ& olz){
 		cout << endl << "/--------------------------------------------\n";
 		it++;
 	}
+
 	if(negocios.empty())
 		cout << "Nao foram encontrados negocios concretizados.\n";
 }
@@ -822,10 +826,13 @@ void mostrarNegociosConcretizados(OLZ& olz){
  */
 void mostrarNCPorCategoria(const OLZ& olz){
 	string categoria;
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	mostrarCategorias(olz);
 	cout << "Introduza a categoria(o nome) do anuncio de entre estas: ";
 	getline(cin,categoria);
-	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
+
 	int negociosImprimidos = 0;
 	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
 		if((*it)->getCategoria() == categoria){
@@ -833,6 +840,7 @@ void mostrarNCPorCategoria(const OLZ& olz){
 			cout << endl << "/--------------------------------------------\n";
 			negociosImprimidos++;
 		}
+
 	if(negociosImprimidos == 0)
 		cout << "Nao foram encontrados negocios dessa categoria.\n";
 
@@ -843,9 +851,11 @@ void mostrarNCPorCategoria(const OLZ& olz){
  */
 void mostrarNCPorAnunciante(const OLZ& olz){
 	Utilizador* anunciante = NULL;
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	cout << "Introduza o email do anunciante:";
 	anunciante = leUtilizadorAtravesDoEmail(olz);
-	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	int negociosImprimidos = 0;
 	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
 		if((*it)->getAnunciante() == anunciante){
@@ -853,6 +863,7 @@ void mostrarNCPorAnunciante(const OLZ& olz){
 			cout << endl << "/--------------------------------------------\n";
 			negociosImprimidos++;
 		}
+
 	if(negociosImprimidos == 0)
 		cout << "Nao foram encontrados negocios desse anunciante.\n";
 }
@@ -862,9 +873,11 @@ void mostrarNCPorAnunciante(const OLZ& olz){
  */
 void mostrarNCPorComprador(const OLZ& olz){
 	Utilizador* PessoaInt = NULL;
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	cout << "Introduza o email da pessoa interessada:";
 	PessoaInt = leUtilizadorAtravesDoEmail(olz);
-	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	int negociosImprimidos = 0;
 	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
 		if((*it)->getPessoaInteressada() == PessoaInt){
@@ -872,6 +885,7 @@ void mostrarNCPorComprador(const OLZ& olz){
 			cout << endl << "/--------------------------------------------\n";
 			negociosImprimidos++;
 		}
+
 	if(negociosImprimidos == 0)
 		cout << "Nao foram encontrados negocios dessa pessoa comprador.\n";
 }
@@ -881,6 +895,8 @@ void mostrarNCPorComprador(const OLZ& olz){
  */
 void mostrarNCPorPreco(const OLZ& olz){
 	float preco_min, preco_max;
+	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
+
 	cout << "Introduza um intervalo de preco\n";
 	cout << "Preco minimo: ";
 	cin >> preco_min;
@@ -889,7 +905,6 @@ void mostrarNCPorPreco(const OLZ& olz){
 	cin >> preco_max;
 	cin.ignore();
 
-	tabHNegociosConcretizados negocios = olz.getNegociosConcretizados();
 	int negociosImprimidos = 0;
 	for(iteratorHNegociosConcretizados it = negocios.begin(); it != negocios.end();it++)
 		if((*it)->getMontanteNegociado() >= preco_min || (*it)->getMontanteNegociado() <= preco_max){
@@ -897,6 +912,7 @@ void mostrarNCPorPreco(const OLZ& olz){
 			cout << endl << "/--------------------------------------------\n";
 			negociosImprimidos++;
 		}
+
 	if(negociosImprimidos == 0)
 		cout << "Nao foram encontrados negocios dessa gama de precos.\n";
 }

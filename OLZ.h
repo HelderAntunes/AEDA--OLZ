@@ -11,7 +11,7 @@
 #include <vector>
 #include <set>
 #include <queue>
-#include <unordered_set>
+#include <tr1/unordered_set>
 #include "Anuncio.h"
 #include "Contacto.h"
 #include "NegocioConcretizado.h"
@@ -272,6 +272,14 @@ public:
 	 * @return vector<Contacto*> contactos
 	 */
 	vector<Contacto*> getContactos() const;
+
+	/**
+	 * @brief increment the number of business and update the date of last business of a user
+	 *
+	 * @param string emailUtilizador email of user to update
+	 * @param data date of last business
+	 */
+	void incNegociosEatualizaDataUltimoNegocioDeUtilizador(string emailUtilizador, Data data);
 
 	/**
 	 * @brief read data from a file

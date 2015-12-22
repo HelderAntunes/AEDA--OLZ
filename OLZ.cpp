@@ -214,6 +214,26 @@ vector<Contacto*> OLZ::getContactos() const{
 	return contactos;
 }
 
+void OLZ::incNegociosEatualizaDataUltimoNegocioDeUtilizador(string emailUtilizador, Data data){
+	set<Utilizador*, userPtrComp>::iterator it = utilizadores.begin();
+	Utilizador* utilizador = NULL;
+
+	while(it != utilizadores.end()){
+		string emailUtil = (*it)->getEmail();
+
+		if(emailUtil == emailUtilizador){
+			utilizador = (*it);
+			utilizador->incNegociosConcretizados();
+			utilizador->updateDataUltimoNegocio(data);
+			utilizadores.erase(it);
+			utilizadores.insert(utilizador);
+			break;
+		}
+		else
+			it++;
+	}
+}
+
 vector<Anuncio*> OLZ::getAnunciosDeVendaEdeCompra() const{
 	vector<Anuncio*> res;
 
@@ -381,7 +401,7 @@ void OLZ::leNegocios(istream& olz_file){
 					anunciante = (*it);
 					anunciante->incNegociosConcretizados();
 					anunciante->updateDataUltimoNegocio(data);
-					it = utilizadores.erase(it);
+					utilizadores.erase(it);
 					utilizadores.insert(anunciante);
 					break;
 				}
@@ -625,7 +645,7 @@ Estado leEstadoDoProdutoDoAnuncio(istream& olz_file){
 		estado = USADO;
 	else if(estado_string == "FUNCIONAL")
 		estado = FUNCIONAL;
-	else if(estado_string == "PECAS")
+	else//(estado_string == "PECAS")
 		estado = PECAS;
 
 	return estado;
