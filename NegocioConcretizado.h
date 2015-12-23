@@ -11,7 +11,9 @@
 #include "Utilizador.h"
 #include "Anuncio.h"
 
-
+/**@class NegocioConcretizado
+ * @brief class representing finished business
+ */
 class NegocioConcretizado {
 protected:
 	Data dataNegociada;			/**< data of negotiation */

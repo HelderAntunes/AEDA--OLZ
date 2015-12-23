@@ -132,4 +132,3 @@ int main(){
 	olzFile.close();
 	return 0;
 }
-
