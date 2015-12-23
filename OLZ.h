@@ -227,12 +227,11 @@ public:
 	void apagarAnuncioDeCompraESeusContactos(int id_anuncio);
 
 	/*
-	 * @brief sets or removes an ad into featured list and updates the priority queue
-	 *
-	 * @param anuncio the ad to set or remove the feature
-	 * @param destaque whether to set or remove the feature
+	 * @brief update the priority queues of OLZ
+	 * An ad could be altered, so the order of ads of priority
+	 * queue must be updated
 	 */
-	void colocarDestaqueEmAnuncio(Anuncio * anuncio, bool destaque);
+	void atualizarFilasPrioridade();
 
 	/**
 	 * @brief get all adds that exists

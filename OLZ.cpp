@@ -158,6 +158,7 @@ void OLZ::apagarUtilizador(string emailUtilizador){
 	while(it != utilizadores.end()){
 
 		if((*it)->getEmail() == emailUtilizador){
+			delete (*it);
 			utilizadores.erase(it);
 			break;
 		}
@@ -206,38 +207,23 @@ void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
 	}
 }
 
-void OLZ::colocarDestaqueEmAnuncio(Anuncio * anuncio, bool destaque)
-	{
-		priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux1;
-		while (anunciosDeVenda.empty())
-		{
-			if (anuncio->getId() == anunciosDeVenda.top()->getId())
-			{
-				if (destaque)
-					anunciosDeVenda.top()->colocarDestaque();
-				else
-					anunciosDeVenda.top()->retirarDestaque();
-			}
-			aux1.push(anunciosDeVenda.top());
-			anunciosDeVenda.pop();
-		}
+void OLZ::atualizarFilasPrioridade(){
+	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux1;
+	priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux2;
 
-		priority_queue<DeCompra*, vector<DeCompra*>, menorPorDestaque_ACompra> aux2;
-		{
-			if (anuncio->getId() == anunciosDeCompra.top()->getId())
-			{
-				if (destaque)
-					anunciosDeCompra.top()->colocarDestaque();
-				else
-					anunciosDeCompra.top()->retirarDestaque();
-			}
-			aux2.push(anunciosDeCompra.top());
-			anunciosDeCompra.pop();
-		}
-
-		anunciosDeVenda = aux1;
-		anunciosDeCompra = aux2;
+	while(!anunciosDeVenda.empty()){
+		aux1.push(anunciosDeVenda.top());
+		anunciosDeVenda.pop();
 	}
+
+	while(!anunciosDeCompra.empty()){
+		aux2.push(anunciosDeCompra.top());
+		anunciosDeCompra.pop();
+	}
+
+	anunciosDeVenda = aux1;
+	anunciosDeCompra = aux2;
+}
 
 tabHNegociosConcretizados OLZ::getNegociosConcretizados() const{
 	return negociosConcretizados;
@@ -292,10 +278,6 @@ bool ordenarPorDestaque(Anuncio* left, Anuncio* right){
 		return left->getData() < right->getData();
 }
 
-/**@brief get all seller adds that exists
- *
- * @return vector<DeVenda*> anunciosDeVenda
- */
 vector<DeVenda*> OLZ::getAnunciosDeVenda() const{
 	vector<DeVenda*> res;
 	priority_queue<DeVenda*, vector<DeVenda*>, menorPorDestaque_AVenda > aux = anunciosDeVenda;
@@ -464,7 +446,7 @@ void OLZ::leNegocios(istream& olz_file){
 			getline(olz_file, categoria);
 
 			NegocioConcretizado* novoNegocio = new NegocioConcretizado(data,anunciante,pessoaInt,descricaoAnuncio,
-																		montanteNegociado,mensagem,categoria);
+					montanteNegociado,mensagem,categoria);
 
 			adicionarNegocio(novoNegocio);;
 		}

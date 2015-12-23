@@ -13,9 +13,10 @@ NegocioConcretizado::NegocioConcretizado(Data dataNegociada, Utilizador* anuncia
 		anunciante(anunciante),
 		pessoaInt(pessoaInt),
 		descricaoAnuncio(descricaoAnuncio),
-		montanteNegociado(montanteNegociado),
-		mensagem(mensagem),
-		categoria(categoria){}
+		montanteNegociado(montanteNegociado){
+	this->mensagem = mensagem;
+	this->categoria = categoria;
+}
 
 NegocioConcretizado::~NegocioConcretizado() {}
 

@@ -44,6 +44,7 @@ public:
 	bool operator< (const Utilizador& right) const;
 };
 
+
 /**@class ExceptionEmailJaExistente
  * @brief a exception class
  */
