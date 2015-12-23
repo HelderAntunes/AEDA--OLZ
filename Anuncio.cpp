@@ -18,8 +18,10 @@ int Anuncio::identificador(0);
  * @param categoria 	advertisement's category
  * @param descricao 	advertisement's description
  * @param imagens 		names of image files used
+ * @param id			ad's id
  * @param data 			date of creation
  * @param anunciante 	pointer to the advertiser
+ * @param visualizacoes	number of views
  * @param showEmail 	is email public?
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
@@ -49,8 +51,10 @@ Anuncio::Anuncio(string titulo, string categoria, string descricao,
  * @param categoria 	advertisement's category
  * @param descricao 	advertisement's description
  * @param imagens 		names of image files used
+ * @param id			ad's id
  * @param data 			date of creation
  * @param anunciante 	pointer to the advertiser
+ * @param visualizacoes	number of views
  * @param showEmail 	is email public?
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
@@ -124,7 +128,7 @@ Utilizador* Anuncio::getAnunciante(){return anunciante;}
 /**
  * @brief get permit to show email.
  *
- * @return is email public?
+ * @return showEmail is email public?
  */
 bool Anuncio::getShowEmail(){
 	return showEmail;
@@ -133,16 +137,16 @@ bool Anuncio::getShowEmail(){
 /**
  * @brief get permit to show name.
  *
- * @return is name public?
+ * @return showNome is name public?
  */
 bool Anuncio::getShowNome(){
-	return this->showNome;
+	return showNome;
 }
 
 /**
  * @brief get permit to show phone number.
  *
- * @return is phone number public?
+ * @return showNumTel is phone number public?
  */
 bool Anuncio::getShowNumTel(){
 	return showNumTel;
@@ -192,7 +196,7 @@ void Anuncio::retirarDestaque(){
 /**
  * @brief set permit to email.
  *
- * @param is email public?
+ * @param showEmail is email public?
  */
 void Anuncio::setShowEmail(bool showEmail){
 	this->showEmail = showEmail;
@@ -201,7 +205,7 @@ void Anuncio::setShowEmail(bool showEmail){
 /**
  * @brief set permit to show name.
  *
- * @param is name public?
+ * @param showNome is name public?
  */
 void Anuncio::setShowNome(bool showNome){
 	this->showNome = showNome;
@@ -210,7 +214,7 @@ void Anuncio::setShowNome(bool showNome){
 /**
  * @brief set permit to show phone number.
  *
- * @param is phone number public?
+ * @param showNumTel is phone number public?
  */
 void Anuncio::setShowNumTel(bool showNumTel){
 	this->showNumTel = showNumTel;
@@ -240,18 +244,40 @@ bool Anuncio::procuraPalavraChave(string palavra){
 	return false;
 }
 
+/**
+ * @brief compares two ads by id
+ *
+ * @param right ad on the right of operator <
+ *
+ * @return true if id of ad on the left is less than the one on the right
+ */
 bool Anuncio::operator<(const Anuncio &right){
 	return id < right.id;
 }
 
+/**
+ * @brief set advertiser
+ *
+ * @param anunciantePtr new advertiser
+ */
 void Anuncio::setAnunciantePtr(Utilizador* anunciantePtr){
 	anunciante = anunciantePtr;
 }
 
+/**
+ * @brief set identifier
+ *
+ * @param static_id_anuncio_inicial new identifier
+ */
 void Anuncio::setIdentificadorInicial(int static_id_anuncio_inicial){
 	identificador = static_id_anuncio_inicial;
 }
 
+/**
+ * @brief get identifier
+ *
+ * @return identifier
+ */
 int Anuncio::getIdentificadorInicial(){
 	return identificador;
 }
@@ -260,18 +286,21 @@ int Anuncio::getIdentificadorInicial(){
  * Creates new sale advertisement with information provided and data correspondent to current date.
  * @brief class DeVenda constructor.
  *
- * @param titulo advertisement's title
- * @param categoria advertisement's category
- * @param descricao advertisement's description
- * @param imagens names of image files used
- * @param estado advertised object's condition
- * @param preco advertised object's demanded price
- * @param negociacao advertiser position regarding negotiation
- * @param data date of creation
- * @param anunciante pointer to the advertiser
+ * @param titulo 		advertisement's title
+ * @param categoria 	advertisement's category
+ * @param descricao 	advertisement's description
+ * @param imagens 		names of image files used
+ * @param id			ad's id
+ * @param estado 		advertised object's condition
+ * @param preco 		advertised object's demanded price
+ * @param negociacao 	advertiser position regarding negotiation
+ * @param data 			date of creation
+ * @param anunciante 	pointer to the advertiser
+ * @param visualizacoes	number of views
  * @param showEmail 	is email public?
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
+ * @param temDestaque 	ad has priority in search?
  */
 DeVenda::DeVenda(string titulo,	string categoria,string descricao,
 		vector<string> imagens,int id, Estado estado,float preco,
@@ -360,13 +389,17 @@ void DeVenda::imprime() const {
  * @param titulo advertisement's title
  * @param categoria advertisement's category
  * @param descricao advertisement's description
- * @param imagens names of image files used
- * @param data date of creation
- * @param anunciante pointer to the advertiser
+ * @param imagens 		names of image files used
+ * @param id			ad's id
+ * @param troca			is available for trade
+ * @param data 			date of creation
+ * @param anunciante 	pointer to the advertiser
+ * @param visualizacoes	number of views
  * @param trocaId id of the sale ad admissible for exchange
  * @param showEmail 	is email public?
  * @param showNome		is name public?
  * @param showNumTel	is phone number public?
+ * @param temDestaque 	ad has priority in search?
  */
 DeCompra::DeCompra(string titulo, string categoria, string descricao, vector<string> imagens,
 		int id, bool troca, int trocaId, Data data, Utilizador* anunciante,int visualizacoes,

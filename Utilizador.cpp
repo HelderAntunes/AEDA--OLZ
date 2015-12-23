@@ -144,7 +144,12 @@ void Utilizador::setLocalizacao(const Localizacao & localizacao)
 	this->localizacao = localizacao;
 }
 
-//operator <<
+/**
+ * @brief operator << to write user in file
+ *
+ * @param os file to be written in
+ * @param utilizador user to be written
+ */
 ostream & operator<<(ostream & os, const Utilizador & utilizador)
 {
 	os << "Nome: " << utilizador.getNome() << endl;

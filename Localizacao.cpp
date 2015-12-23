@@ -48,7 +48,11 @@ string Localizacao::getDistrito() const
 	return distrito;
 }
 
-// operator <<
+/**@brief operator << to write location
+ *
+ * @param os where to write
+ * @param l  location to be written *
+ */
 ostream & operator<<(ostream & os, const Localizacao & l)
 {
 	os << l.getFreguesia() << ", " << l.getConcelho() << ", " << l.getDistrito();

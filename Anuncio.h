@@ -14,6 +14,8 @@
 
 using namespace std;
 
+/** @brief state of use
+ */
 enum Estado {NOVO,USADO, FUNCIONAL, PECAS};
 
 /**@class Anuncio
@@ -70,8 +72,6 @@ public:
 	 */
 	virtual void imprime() const {}
 	bool operator<(const Anuncio &right);
-	//friend ostream &operator<<(ostream &out, Anuncio a);
-	//friend istream &operator>>(istream &in, Anuncio &a);
 };
 
 /**@class DeVenda

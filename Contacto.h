@@ -28,11 +28,11 @@ public:
 	/**
 	 * @brief class Contacto constructor
 	 *
-	 * @param pointer to anunciante
-	 * @param pointer to interested person
-	 * @param pointer to anuncio
-	 * @param message to send to anunciante
-	 * @param numTel_pessoaInt to send to anunciante
+	 * @param anunciante pointer to anunciante
+	 * @param pessoaInt pointer to interested person
+	 * @param anuncio pointer to anuncio
+	 * @param mensagem message to send to anunciante
+	 * @param numTel_pessoaInt phone number to send to anunciante
 	 */
 	Contacto(Utilizador* anunciante,Utilizador* pessoaInt,Anuncio* anuncio,
 			string mensagem, string numTel_pessoaInt);
@@ -85,8 +85,8 @@ public:
 
 	/**
 	 * @brief concretize the trade
-	 * @param int montanteNegociado
-	 * @param Data data of negotiation
+	 * @param montanteNegociado price agreed
+	 * @param data data of negotiation
 	 */
 	NegocioConcretizado* concretizaNegocio(float montanteNegociado, Data data);
 

@@ -26,8 +26,8 @@ struct ExceptionDataInvalida{
 	 * Creates new exception with information provided.
 	 * @brief class DataInvalida constructor.
 	 *
-	 * @param dado 		component of Data that created the exception
-	 * @param valor 	invalid value the component of Data took
+	 * @param erro 		component of Data that created the exception
+	 * @param val 	invalid value the component of Data took
 	 */
 	ExceptionDataInvalida(string erro, int val): dado(erro), valor(val){}
 };
