@@ -187,10 +187,10 @@ void OLZ::apagarAnuncioDeCompraESeusContactos(int id_anuncio){
 }
 
 void OLZ::apagarUtilizador_SeusAnuncios_Contactos_E_Informacoes(string emailUtilizador){
-	apagarUtilizador(emailUtilizador);
 	apagarAnunciosDeUmUtilizador(emailUtilizador);
 	apagarContactosDeUmUtilizador(emailUtilizador);
 	apagarInformacoesDoUtilizadorEmNegociosConcretizados(emailUtilizador);
+	apagarUtilizador(emailUtilizador);
 }
 
 void OLZ::apagarContactosDeUmUtilizador(string emailUtilizador){
