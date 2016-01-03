@@ -34,18 +34,6 @@ struct NegocioConcretizadoHash
 			hash = hash*3 + desc[i];
 		}
 
-		Utilizador* ptr = c->getAnunciante();
-		string email = ptr->getEmail();
-		for (unsigned int i = 0; i < desc.size(); ++i) {
-			hash = hash*3 + email[i];
-		}
-
-		ptr = c->getPessoaInteressada();
-		email = ptr->getEmail();
-		for (unsigned int i = 0; i < desc.size(); ++i) {
-			hash = hash*3 + email[i];
-		}
-
 		return hash;
 	}
 
