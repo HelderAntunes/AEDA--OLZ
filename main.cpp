@@ -47,7 +47,7 @@ int main(){
 			continue;
 		}
 		cin.ignore();
-		if(isOpcaoInvalida(opcao, 1, 23) == true){
+		if(isOpcaoInvalida(opcao, 1, 24) == true){
 			avisarOpcaoInvalida();
 			continue;
 		}
@@ -118,8 +118,12 @@ int main(){
 		case 22:
 			colocarOuRetirarDestaquemEmAnuncio(olz);
 			break;
-		case 23:
+		case 24:
 			run = false;
+			break;
+		case 23:
+			mostrarAnuncios(olz);
+			break;
 		}
 		cout << "\n\nPrime a tecla enter para continuar.";
 		cin.ignore(10000,'\n');

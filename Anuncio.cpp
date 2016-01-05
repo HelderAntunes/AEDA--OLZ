@@ -380,6 +380,10 @@ void DeVenda::imprime() const {
 		cout << "\tEmail: " << anunciante->getEmail() << endl;
 	cout << "\n\tNumero de visualizacoes: " << visualizacoes << endl;
 	cout << "\tCriado em: " << data <<endl;
+	if(temDestaque)
+		cout << "Este anuncio tem destaque.\n";
+	else
+		cout << "Este anuncio nao tem destaque.\n";
 }
 
 /**
@@ -434,6 +438,10 @@ void DeCompra::imprime() const{
 
 	cout << "\n\tNumero de visualizacoes: " << visualizacoes << endl;
 	cout << "\tCriado em: " << data <<endl;
+	if(temDestaque)
+		cout << "Este anuncio tem destaque.\n";
+	else
+		cout << "Este anuncio nao tem destaque.\n";
 }
 
 /**

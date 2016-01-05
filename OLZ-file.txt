@@ -1,28 +1,53 @@
 INICIO_UTILIZADORES
 NOVO_UTILIZADOR
-Helder Antunes
-helder_antunes-@hotmail.com
-918370036
-Sobrado
-Valongo
-Porto
+Lena Torres
+leninha@hug.me
+914124569
+Moldes
+Arouca
+Aveiro
 INICIO_ANUNCIOS_VENDA
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 NOVO_ANUNCIO
-compro telemovel
-tecnologia
-interessado em um Samsumg Galaxy
+interessado num vestido
+moda
+novo ou semi-novo
 Imagens
-imagem 1
-imagem 2
 FimImagens
-2
-31/10/2015
-32
+8
+5/0/2016
+0
 1 1 1
+0
+0
+0
+NOVO_ANUNCIO
+Blusao de pele Massimo Dutti
+moda
+Procuro blusao rosa da colecao de outono/inverno de 2013
+Imagens
+blusao
+FimImagens
+7
+13/12/2015
 1
+1 1 0
 1
+6
+0
+NOVO_ANUNCIO
+Compro carteira Louis Vitton
+moda
+Pretendo arranjar uma bolsa preta de marca referida
+Imagens
+FimImagens
+5
+9/9/2014
+0
+0 1 1
+0
+0
 0
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
@@ -77,62 +102,6 @@ USADO
 0
 FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
-FIM_ANUNCIOS_COMPRA
-NOVO_UTILIZADOR
-Lena Torres
-leninha@hug.me
-914124569
-Moldes
-Arouca
-Aveiro
-INICIO_ANUNCIOS_VENDA
-NOVO_ANUNCIO
-Lote de sapatos tamanho 37
-moda
-4 pares sapatos de salto alto 
-Imagens
-lote
-sapato1
-sapato2
-sapato3 sapato4
-FimImagens
-6
-12/11/2015
-0
-1 1 0
-NOVO
-42
-1
-0
-FIM_ANUNCIOS_VENDA
-INICIO_ANUNCIOS_COMPRA
-NOVO_ANUNCIO
-Blusao de pele Massimo Dutti
-moda
-Procuro blusao rosa da colecao de outono/inverno de 2013
-Imagens
-blusao
-FimImagens
-7
-13/12/2015
-1
-1 1 0
-1
-6
-0
-NOVO_ANUNCIO
-Compro carteira Louis Vitton
-moda
-Pretendo arranjar uma bolsa preta de marca referida
-Imagens
-FimImagens
-5
-9/9/2014
-0
-0 1 1
-0
-0
-0
 FIM_ANUNCIOS_COMPRA
 NOVO_UTILIZADOR
 Margarida D'cruz
@@ -207,7 +176,7 @@ FIM_ANUNCIOS_VENDA
 INICIO_ANUNCIOS_COMPRA
 FIM_ANUNCIOS_COMPRA
 FIM_UTILIZADORES
-8
+9
 CATEGORIAS
 tecnologia
 moda
@@ -220,10 +189,18 @@ FIM_CONTACTOS
 NEGOCIOS
 NOVO_NEGOCIO
 22/12/2015
-helder_antunes-@hotmail.com
-helder_antunes-@hotmail.com
+semEmail.pt
+semEmail.pt
 vendo telemovel Iphone 5s
 60
 desejo comprar o telemovel
 tecnologia
+NOVO_NEGOCIO
+4/0/2016
+leninha@hug.me
+fredRica@hotmail.com
+4 pares sapatos de salto alto 
+42
+interessado por esse preco
+moda
 FIM_NEGOCIOS

@@ -50,7 +50,8 @@ void mostrarMenuPrincipal(){
 			"\t21 - Mostrar anuncios mais populares\n"
 			"\t22 - Colocar ou retirar destaque de um anuncio\n\n"
 
-			"\t23 - Sair da aplicacao\n";
+			"\t23 - Mostrar todos os anuncios\n"
+			"\t24 - Sair da aplicacao\n";
 	cout << endl;
 	cout << "Opcao: ";
 	return;
@@ -870,6 +871,15 @@ void colocarOuRetirarDestaquemEmAnuncio(OLZ& olz){
 
 	olz.atualizarFilasPrioridade();
 }
+
+/**
+ * OPTION 23
+ */
+void mostrarAnuncios(OLZ& olz){
+	vector<Anuncio*> anuncios = olz.getAnunciosDeVendaEdeCompra();
+	imprimirAnunciosEncontrados(anuncios);
+}
+
 
 
 /**************************************

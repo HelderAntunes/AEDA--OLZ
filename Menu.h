@@ -61,6 +61,9 @@ void mostrarCategorias(const OLZ& olz);
 void mostrarAnunciosMaisPopulares(const OLZ& olz);
 // OPTION 22
 void colocarOuRetirarDestaquemEmAnuncio(OLZ& olz);
+// OPTION 23
+void mostrarAnuncios(OLZ& olz);
+
 
 
 /***********************

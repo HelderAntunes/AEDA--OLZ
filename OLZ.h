@@ -77,10 +77,10 @@ struct menorPorDestaque_AVenda{
 	 */
 	bool operator()(const DeVenda* left, const DeVenda* right) const{
 		if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
-			return true;
+			return false;
 
 		else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
-			return false;
+			return true;
 
 		else
 			return left->getData() < right->getData();
@@ -98,10 +98,10 @@ struct menorPorDestaque_ACompra{
 	 */
 	bool operator()(const DeCompra* left, const DeCompra* right) const{
 		if(left->anuncioTemDestaque() && !right->anuncioTemDestaque())
-			return true;
+			return false;
 
 		else if(!left->anuncioTemDestaque() && right->anuncioTemDestaque())
-			return false;
+			return true;
 
 		else
 			return left->getData() < right->getData();
